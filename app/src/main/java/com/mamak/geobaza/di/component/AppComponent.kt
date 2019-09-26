@@ -16,7 +16,8 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     InterfaceModule::class,
     ContextModule::class,
-    ActivityModule::class
+    ActivityModule::class,
+    PicassoModule::class
 ])
 interface AppComponent {
     @Component.Builder
@@ -29,6 +30,9 @@ interface AppComponent {
 
         @BindsInstance
         fun interfaceModule(interfaceModule: InterfaceModule): Builder
+
+        @BindsInstance
+        fun picassoModule(picassoModule: PicassoModule): Builder
 
         fun build(): AppComponent
     }

@@ -3,6 +3,7 @@ package com.mamak.geobaza.di.controller
 import android.app.Application
 import com.mamak.geobaza.di.component.DaggerAppComponent
 import com.mamak.geobaza.di.module.InterfaceModule
+import com.mamak.geobaza.di.module.PicassoModule
 import com.mamak.geobaza.di.module.ProjectApiModule
 
 import dagger.android.AndroidInjector
@@ -24,6 +25,7 @@ class AppController : Application(), HasAndroidInjector {
             .application(this)
             .projectApiModule(ProjectApiModule())
             .interfaceModule(InterfaceModule())
+            .picassoModule(PicassoModule())
             .build()
             .inject(this)
     }

@@ -1,6 +1,7 @@
 package com.mamak.geobaza.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,6 +14,7 @@ import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
+import com.mamak.geobaza.ui.`interface`.ProjectListItemInterfaceImpl
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.FilterDialogFragment
@@ -20,8 +22,10 @@ import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.EmptyView
 import com.mamak.geobaza.utils.LocationManager
 import com.mamak.geobaza.utils.ProjectListManager
+import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*
+import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
@@ -31,8 +35,10 @@ class ProjectListActivity : BaseActivity() {
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
     internal lateinit var  projectListViewModel: ProjectListViewModel
-    //@Inject
-    //internal lateinit var  projectListItemInterfaceImpl: ProjectListItemInterfaceImpl
+//    @Inject
+//    internal lateinit var  projectListItemInterfaceImpl: ProjectListItemInterfaceImpl
+    @Inject
+    internal lateinit var picasso: Picasso
 
     private lateinit var projectListAdapter: ProjectListAdapter
 
