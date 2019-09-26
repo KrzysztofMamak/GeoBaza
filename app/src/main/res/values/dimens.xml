@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Start -> Normal padding_margin-->
+    <dimen name="default_padding_margin_small_x">2dp</dimen>
+    <dimen name="default_padding_margin_small">4dp</dimen>
+    <dimen name="default_padding_margin">8dp</dimen>
+    <dimen name="default_padding_margin_h">12dp</dimen>
+    <dimen name="default_padding_margin_x">16dp</dimen>
+    <dimen name="default_padding_margin_xh">20dp</dimen>
+    <dimen name="default_padding_margin_xx">24dp</dimen>
+    <dimen name="default_padding_margin_xxh">28dp</dimen>
+    <dimen name="default_padding_margin_xxx">32dp</dimen>
+    <dimen name="default_padding_margin_xxxh">36dp</dimen>
+    <dimen name="default_padding_margin_xxxx">40dp</dimen>
+    <dimen name="default_padding_margin_xxxxh">44dp</dimen>
+    <!-- End -> Normal padding_margin-->
+
+    <!-- Start -> Big padding_margin -->
+    <dimen name="padding_margin_huge">48dp</dimen>
+    <dimen name="padding_margin_huge_x">56dp</dimen>
+    <dimen name="padding_margin_huge_xh">60dp</dimen>
+    <dimen name="padding_margin_huge_xx">64dp</dimen>
+    <dimen name="padding_margin_huge_xxh">68dp</dimen>
+    <dimen name="padding_margin_huge_xxx">72dp</dimen>
+    <dimen name="padding_margin_huge_xxxh">76dp</dimen>
+    <dimen name="padding_margin_huge_xxxx">80dp</dimen>
+    <!-- End -> Big padding_margin -->
+
+    <!-- Start -> Text -->
+    <dimen name="text_small">10sp</dimen>
+    <dimen name="text_medium">12sp</dimen>
+    <dimen name="text_big">14sp</dimen>
+    <dimen name="text_huge">16sp</dimen>
+    <dimen name="text_header_small">20sp</dimen>
+    <dimen name="text_header_medium">24sp</dimen>
+    <dimen name="text_header_big">34sp</dimen>
+    <dimen name="text_header_huge_x">48sp</dimen>
+    <dimen name="text_header_huge_xx">60sp</dimen>
+    <dimen name="text_header_huge_xxx">96sp</dimen>
+    <!-- End -> Text -->
+
+    <!-- Start -> Icon, Avatar, Button -->
+    <dimen name="icon_touch_size_small">36dp</dimen>
+    <dimen name="icon_touch_size_medium">48dp</dimen>
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="button_height_small">36dp</dimen>
+    <dimen name="button_height_medium">42dp</dimen>
+    <!-- End -> Icon, Avatar, Button -->
+
+    <!-- Start -> Elevation -->
+    <!-- Search bar,
+         Card,
+         Switch -->
+    <dimen name="elevation_small">1dp</dimen>
+
+    <!-- Contained button -->
+    <dimen name="elevation_medium">2dp</dimen>
+
+    <!-- Top app bar -->
+    <dimen name="elevation_big">4dp</dimen>
+
+    <!-- Standard bottom sheet,
+         Standard side sheet,
+         Bottom navigation bar,
+         Bottom app bar,
+         Menus and submenus,
+         Card(when picked up),
+         Contained button(pressed state) -->
+    <dimen name="elevation_huge">8dp</dimen>
+
+    <!-- Navigation drawer,
+        Modal Bottom sheet,
+        Modal side sheet -->
+    <dimen name="elevation_huge_x">16dp</dimen>
+
+    <!-- Dialog -->
+    <dimen name="elevation_huge_xx">24dp</dimen>
+    <!-- End -> Elevation -->
+
+    <!-- Start -> Divider -->
+    <dimen name="divider_small">0.5dp</dimen>
+    <!-- End -> Divider -->
+</resources>

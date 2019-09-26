@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Start -> EmptyView -->
+    <string name="ev_no_internet">Nie udało się połączyć z serwerem. Sprawdź swoje połączenie i spróbuj ponownie.</string>
+    <string name="ev_no_service">Usługa jest niedostępna. Spróbuj ponownie później</string>
+    <string name="ev_empty_project_list">Lista projektów jest pusta.</string>
+    <!-- End -> EmptyView -->
+
+    <!-- Start -> Filter categories -->
+    <string name="filter_area">Obszar</string>
+    <string name="filter_state">Stan</string>
+    <!-- End -> Filter categories -->
+
+    <!-- Start -> Sort categories -->
+    <string name="sort_type">Sortuj według</string>
+    <string name="sort_order">Kolejność</string>
+    <!-- End -> Sort categories -->
+
+    <!-- Start -> FilterDialogFragment -->
+    <!-- Area -->
+    <string-array name="array_area_filter">
+        <item>Cieszyn</item>
+        <item>Jastrzębie-Zdrój</item>
+        <item>Pszczyna</item>
+        <item>Rybnik</item>
+        <item>Wodzisław Śląski</item>
+        <item>Żory</item>
+        <item>All</item>
+    </string-array>
+
+    <!-- State -->
+    <string-array name="array_state_filter">
+        <item>Wytyczone</item>
+        <item>Pomierzone</item>
+        <item>Wykonane</item>
+        <item>Wszystkie</item>
+    </string-array>
+
+    <!-- Sort Type -->
+    <string-array name="array_sort_type_filter">
+        <item>Numer</item>
+        <item>Dystans</item>
+        <item>Alfabetycznie</item>
+        <item>Złożoność</item>
+    </string-array>
+
+    <!-- Sort Order -->
+    <string-array name="array_sort_order_filter">
+        <item>Rosnąco</item>
+        <item>Malejąco</item>
+    </string-array>
+    <!-- Start -> FilterDialogFragment -->
+
+    <!-- Start -> Universal -->
+    <string name="cancel">Anuluj</string>
+    <string name="apply">Zastosuj</string>
+    <string name="search_filter">Filtr wyszukiwania</string>
+    <!-- End -> Universal -->
+
+    <!-- Start -> Content Description -->
+    <string name="cd_navigation_icon">Ikona nawigacji</string>
+    <string name="cd_project_number">Numer projektu</string>
+    <string name="cd_empty_view_icon">Ikona pustego widoku</string>
+    <!-- End -> Content Description -->
+</resources>

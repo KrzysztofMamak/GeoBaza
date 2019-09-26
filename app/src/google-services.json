@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "899920660425",
+    "firebase_url": "https://geobaza.firebaseio.com",
+    "project_id": "geobaza",
+    "storage_bucket": "geobaza.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899920660425:android:3fd433b004cb83d7",
+        "android_client_info": {
+          "package_name": "com.mamak.geobaza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899920660425-jda3vpu5lp4pjisdfk2om18tgd2aioa7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdoRFuDciKIHNKgYArjAstw3jV4tmUj0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899920660425-jda3vpu5lp4pjisdfk2om18tgd2aioa7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
