@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import com.mamak.geobaza.R
 
+//TODO Refactor
 object LocationManager {
     fun navigateByGeoCoordinates(context: Context, x: Double?, y: Double?) {
         val geoCoordinates = CoordinatesConverter.tr2000WGS(

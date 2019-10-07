@@ -1,7 +1,6 @@
 package com.mamak.geobaza.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -25,7 +24,6 @@ import com.mamak.geobaza.utils.ProjectListManager
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*
-import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
@@ -36,7 +34,7 @@ class ProjectListActivity : BaseActivity() {
     @Inject
     internal lateinit var  projectListViewModel: ProjectListViewModel
 //    @Inject
-//    internal lateinit var  projectListItemInterfaceImpl: ProjectListItemInterfaceImpl
+//    internal lateinit var  projectListItemInterface: ProjectListItemInterface
     @Inject
     internal lateinit var picasso: Picasso
 
@@ -161,9 +159,7 @@ class ProjectListActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.action_filter -> {
-                showFilterDielog()
-            }
+            R.id.action_filter -> showFilterDielog()
         }
         return true
     }
@@ -180,19 +176,16 @@ class ProjectListActivity : BaseActivity() {
         }
 
         override fun openProjectDetails(number: Int?) {
-//            TODO ProjectDetails
+//            TODO Open Project Details
         }
     }
 
     private fun createFilterDialogInterface(): FilterDialogInterface {
         return object : FilterDialogInterface {
-            override fun filterProjects(
-                areaFilterType: ProjectListManager.AreaFilterType,
-                stateFilterType: ProjectListManager.StateFilterType,
-                sortType: ProjectListManager.SortType,
-                orderType: ProjectListManager.OrderType
-            ) {
-                projectListAdapter.filterProjects(areaFilterType, stateFilterType, sortType, orderType)
+            override fun filterProjects() {
+                projectListAdapter.filterProjects()
+//                TODO -  Hide SearchView, Refactor
+                this@ProjectListActivity.currentFocus?.clearFocus()
             }
         }
     }

@@ -24,6 +24,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes true
+}
+
 ext {
     retrofit_version = "2.6.1"
     rxjava_version = "2.2.10"

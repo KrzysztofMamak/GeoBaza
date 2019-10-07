@@ -10,8 +10,9 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.viewholder.ProjectListViewHolder
 import com.mamak.geobaza.utils.ProjectListManager
+import javax.inject.Inject
 
-class ProjectListAdapter(private val projectListItemCommunication: ProjectListItemInterface)
+class ProjectListAdapter @Inject constructor(private val projectListItemCommunication: ProjectListItemInterface)
         : RecyclerView.Adapter<ProjectListViewHolder>(), Filterable {
     private var projects = mutableListOf<Project>()
     private var filteredProjects = mutableListOf<Project>()
@@ -38,12 +39,7 @@ class ProjectListAdapter(private val projectListItemCommunication: ProjectListIt
         notifyDataSetChanged()
     }
 
-    fun filterProjects(
-            areaFilterType: ProjectListManager.AreaFilterType,
-            stateFilterType: ProjectListManager.StateFilterType,
-            sortType: ProjectListManager.SortType,
-            orderType: ProjectListManager.OrderType) {
-        ProjectListManager.setAttributes(areaFilterType, stateFilterType, sortType, orderType)
+    fun filterProjects() {
         filteredProjects = ProjectListManager.getRequiredProjects()
         notifyDataSetChanged()
     }
@@ -87,6 +83,7 @@ class ProjectListAdapter(private val projectListItemCommunication: ProjectListIt
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+//                TODO Check
                 filteredProjects = results?.values as MutableList<Project>
                 notifyDataSetChanged()
             }

@@ -3,15 +3,14 @@
     <item
             android:id="@+id/action_filter"
             android:icon="@drawable/ic_filter_list"
-            android:iconTint="@color/white"
-            android:title="Filter"
+            android:title="@string/menu_filter"
             android:visible="true"
             app:showAsAction="always"/>
 
     <item
             android:id="@+id/action_search"
             android:icon="@drawable/ic_search"
-            android:title="SearchView Action"
+            android:title="@string/menu_search"
             app:actionViewClass="androidx.appcompat.widget.SearchView"
             app:showAsAction="ifRoom|collapseActionView"/>
 </menu>

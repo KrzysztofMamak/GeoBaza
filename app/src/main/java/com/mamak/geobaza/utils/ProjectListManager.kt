@@ -3,11 +3,12 @@ package com.mamak.geobaza.utils
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 
+//TODO Refactor, Check all
 object ProjectListManager {
-    private var areaFilterType: AreaFilterType = ProjectListManager.AreaFilterType.ALL
-    private var stateFilterType: StateFilterType = ProjectListManager.StateFilterType.ALL
-    private var sortType: SortType = ProjectListManager.SortType.NUMBER
-    private var orderType: OrderType = ProjectListManager.OrderType.INCREASE
+    var areaFilterType: AreaFilterType = ProjectListManager.AreaFilterType.ALL
+    var stateFilterType: StateFilterType = ProjectListManager.StateFilterType.ALL
+    var sortType: SortType = ProjectListManager.SortType.NUMBER
+    var orderType: OrderType = ProjectListManager.OrderType.INCREASE
 
     fun getRequiredProjects(): MutableList<Project> {
         val originalList = ProjectLab.getAllProjects()
@@ -22,57 +23,24 @@ object ProjectListManager {
     private fun filterProjects(list: List<Project>, areaFilterType: AreaFilterType, stateFilterType: StateFilterType): List<Project> {
         var tempList =  mutableListOf<Project>()
         tempList.addAll(list)
-        tempList = when (areaFilterType) {
-            ProjectListManager.AreaFilterType.ZORY -> {
-                tempList.filter {
-                    it.area == "Zory"
-                }
-            }
-            ProjectListManager.AreaFilterType.WODZISLAW -> {
-                tempList.filter {
-                    it.area == "Wodzislaw"
-                }
-            }
-            ProjectListManager.AreaFilterType.PSZCZYNA -> {
-                tempList.filter {
-                    it.area == "Pszczyna"
-                }
-            }
-            ProjectListManager.AreaFilterType.RYBNIK -> {
-                tempList.filter {
-                    it.area == "Rybnik"
-                }
-            }
-            ProjectListManager.AreaFilterType.CIESZYN -> {
-                tempList.filter {
-                    it.area == "Cieszyn"
-                }
-            }
-            ProjectListManager.AreaFilterType.JASTRZEBIE_ZDROJ -> {
-                tempList.filter {
-                    it.area == "Jastrzebie-Zdroj"
-                }
-            }
-            else -> list
-        }.toMutableList()
+        if (areaFilterType != ProjectListManager.AreaFilterType.ALL) {
+//            TODO Jastrzebie, Check others
+            tempList = tempList.filter {
+                it.area == areaFilterType.name.toLowerCase().capitalize()
+            }.toMutableList()
+        }
 
-        return when (stateFilterType) {
-            ProjectListManager.StateFilterType.MARKED -> {
-                tempList.filter {
-                    it.isMarked
+        return if (stateFilterType != ProjectListManager.StateFilterType.ALL) {
+            tempList.filter {
+                when (stateFilterType) {
+                    ProjectListManager.StateFilterType.MARKED -> it.isMarked
+                    ProjectListManager.StateFilterType.MEASURED -> it.isMeasured
+                    ProjectListManager.StateFilterType.DONE -> it.isDone
+                    else -> true
                 }
             }
-            ProjectListManager.StateFilterType.MEASURED -> {
-                tempList.filter {
-                    it.isMeasured
-                }
-            }
-            ProjectListManager.StateFilterType.DONE -> {
-                tempList.filter {
-                    it.isDone
-                }
-            }
-            else -> tempList
+        } else {
+            tempList
         }
     }
 
@@ -126,10 +94,10 @@ object ProjectListManager {
     }
 
     fun setAttributes(
-        areaFilterType: AreaFilterType,
-        stateFilterType: StateFilterType,
-        sortType: SortType,
-        orderType: OrderType) {
+            areaFilterType: AreaFilterType,
+            stateFilterType: StateFilterType,
+            sortType: SortType,
+            orderType: OrderType) {
         this.areaFilterType = areaFilterType
         this.stateFilterType = stateFilterType
         this.sortType = sortType

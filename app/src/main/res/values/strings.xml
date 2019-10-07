@@ -59,6 +59,11 @@
     </string-array>
     <!-- Start -> FilterDialogFragment -->
 
+    <!-- Start -> Menu -->
+    <string name="menu_filter">Filtering</string>
+    <string name="menu_search">Searching</string>
+    <!-- End -> Menu -->
+
     <!-- Start -> Universal -->
     <string name="cancel">Cancel</string>
     <string name="apply">Apply</string>

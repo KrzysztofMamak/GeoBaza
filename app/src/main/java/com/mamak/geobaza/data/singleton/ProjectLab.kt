@@ -12,6 +12,10 @@ object ProjectLab {
     fun getAllProjects(): MutableList<Project> = projects
 
     fun getProject(number: Int): Project? {
+//        TODO Check
+//        return projects.find {
+//            it.number == number
+//        }
         for (project in projects) {
             if (project.number == number) {
                 return project

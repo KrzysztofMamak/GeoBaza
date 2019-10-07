@@ -13,4 +13,10 @@ class ProjectListItemInterfaceImpl(val context: Context)
     override fun openProjectDetails(number: Int?) {
         //TODO - start ProjectDetailsActivity
     }
+
+    class Builder(val context: Context) {
+        fun build(): ProjectListItemInterfaceImpl {
+            return ProjectListItemInterfaceImpl(context)
+        }
+    }
 }

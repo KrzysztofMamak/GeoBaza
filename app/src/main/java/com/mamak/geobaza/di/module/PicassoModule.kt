@@ -9,7 +9,8 @@ import dagger.Module
 
 
 @Module(includes = [
-    ContextModule::class
+    ContextModule::class,
+    OkHttpModule::class
 ])
 class PicassoModule {
 

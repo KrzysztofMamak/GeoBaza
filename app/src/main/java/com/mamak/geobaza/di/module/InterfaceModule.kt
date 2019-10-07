@@ -1,6 +1,7 @@
 package com.mamak.geobaza.di.module
 
 import android.content.Context
+import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterfaceImpl
 import dagger.Module
 import dagger.Provides
@@ -10,7 +11,7 @@ import dagger.Provides
 ])
 class InterfaceModule {
     @Provides
-    fun projectListItemInterface(context: Context): ProjectListItemInterfaceImpl {
-        return ProjectListItemInterfaceImpl(context)
+    fun projectListItemInterface(context: Context): ProjectListItemInterface {
+        return ProjectListItemInterfaceImpl.Builder(context).build()
     }
 }
