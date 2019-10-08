@@ -3,51 +3,47 @@ package com.mamak.geobaza.utils
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 
-//TODO Refactor, Check all
+//TODO Refactor, Impl by resources, Change Strings
 object ProjectListManager {
-    var areaFilterType: AreaFilterType = ProjectListManager.AreaFilterType.ALL
-    var stateFilterType: StateFilterType = ProjectListManager.StateFilterType.ALL
-    var sortType: SortType = ProjectListManager.SortType.NUMBER
-    var orderType: OrderType = ProjectListManager.OrderType.INCREASE
+    var area = "All"
+    var state: State = ProjectListManager.State.ALL
+    var sort: Sort = ProjectListManager.Sort.NUMBER
+    var order: Order = ProjectListManager.Order.INCREASE
 
     fun getRequiredProjects(): MutableList<Project> {
         val originalList = ProjectLab.getAllProjects()
         var resultList = mutableListOf<Project>()
 
-        resultList.addAll(filterProjects(originalList, areaFilterType, stateFilterType))
-        resultList = sortProjects(resultList, sortType, orderType).toMutableList()
+        resultList.addAll(filterProjects(originalList))
+        resultList = sortProjects(resultList).toMutableList()
 
         return resultList
     }
 
-    private fun filterProjects(list: List<Project>, areaFilterType: AreaFilterType, stateFilterType: StateFilterType): List<Project> {
+    private fun filterProjects(list: List<Project>): List<Project> {
         var tempList =  mutableListOf<Project>()
         tempList.addAll(list)
-        if (areaFilterType != ProjectListManager.AreaFilterType.ALL) {
-//            TODO Jastrzebie, Check others
+
+        if (area != "All") {
             tempList = tempList.filter {
-                it.area == areaFilterType.name.toLowerCase().capitalize()
+                it.area == area
             }.toMutableList()
         }
 
-        return if (stateFilterType != ProjectListManager.StateFilterType.ALL) {
-            tempList.filter {
-                when (stateFilterType) {
-                    ProjectListManager.StateFilterType.MARKED -> it.isMarked
-                    ProjectListManager.StateFilterType.MEASURED -> it.isMeasured
-                    ProjectListManager.StateFilterType.DONE -> it.isDone
-                    else -> true
-                }
+        return tempList.filter {
+            when (state) {
+                ProjectListManager.State.MARKED -> it.isMarked
+                ProjectListManager.State.MEASURED -> it.isMeasured
+                ProjectListManager.State.DONE -> it.isDone
+                else -> true
             }
-        } else {
-            tempList
         }
     }
 
-    private fun sortProjects(list: List<Project>, sortType: SortType, orderType: OrderType): List<Project> {
-        return when (sortType) {
-            ProjectListManager.SortType.NUMBER -> {
-                if (orderType == ProjectListManager.OrderType.INCREASE) {
+    private fun sortProjects(list: List<Project>): List<Project> {
+        return when (sort) {
+            ProjectListManager.Sort.NUMBER -> {
+                if (order == ProjectListManager.Order.INCREASE) {
                     list.sortedBy {
                         it.number
                     }
@@ -57,8 +53,8 @@ object ProjectListManager {
                     }
                 }
             }
-            ProjectListManager.SortType.DISTANCE -> {
-                if (orderType == ProjectListManager.OrderType.INCREASE) {
+            ProjectListManager.Sort.DISTANCE -> {
+                if (order == ProjectListManager.Order.INCREASE) {
                     list.sortedBy {
                         it.distance
                     }
@@ -68,8 +64,8 @@ object ProjectListManager {
                     }
                 }
             }
-            ProjectListManager.SortType.ALPHABET -> {
-                if (orderType == ProjectListManager.OrderType.INCREASE) {
+            ProjectListManager.Sort.ALPHABET -> {
+                if (order == ProjectListManager.Order.INCREASE) {
                     list.sortedBy {
                         it.area
                     }
@@ -79,8 +75,8 @@ object ProjectListManager {
                     }
                 }
             }
-            ProjectListManager.SortType.COMPLEXITY -> {
-                if (orderType == ProjectListManager.OrderType.INCREASE) {
+            ProjectListManager.Sort.COMPLEXITY -> {
+                if (order == ProjectListManager.Order.INCREASE) {
                     list.sortedBy {
                         it.pointList?.size
                     }
@@ -93,30 +89,22 @@ object ProjectListManager {
         }
     }
 
-    fun setAttributes(
-            areaFilterType: AreaFilterType,
-            stateFilterType: StateFilterType,
-            sortType: SortType,
-            orderType: OrderType) {
-        this.areaFilterType = areaFilterType
-        this.stateFilterType = stateFilterType
-        this.sortType = sortType
-        this.orderType = orderType
+    fun setAttributes(area: String, state: State, sort: Sort, order: Order) {
+        this.area = area
+        this.state = state
+        this.sort = sort
+        this.order = order
     }
 
-    enum class AreaFilterType {
-        ZORY, WODZISLAW, PSZCZYNA, RYBNIK, CIESZYN, JASTRZEBIE_ZDROJ, ALL
+    enum class State {
+        MARKED, MEASURED, DONE, ALL
     }
 
-    enum class StateFilterType {
-        DONE, MEASURED, MARKED, ALL
-    }
-
-    enum class SortType {
+    enum class Sort {
         NUMBER, DISTANCE, ALPHABET, COMPLEXITY
     }
 
-    enum class OrderType {
+    enum class Order {
         INCREASE, DECREASE
     }
 }

@@ -11,6 +11,7 @@ import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.utils.ProjectListManager
 import kotlinx.android.synthetic.main.fragment_filter_project_list.*
 
+//TODO Refactor, add SpinnerHelper, Use resources as strings
 class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterface) : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_filter_project_list, container, false)
@@ -45,45 +46,45 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
 
     private fun setAreaSpinner() {
         spinner_area.setSelection(
-            when (ProjectListManager.areaFilterType) {
-                ProjectListManager.AreaFilterType.CIESZYN -> 0
-                ProjectListManager.AreaFilterType.JASTRZEBIE_ZDROJ -> 1
-                ProjectListManager.AreaFilterType.PSZCZYNA -> 2
-                ProjectListManager.AreaFilterType.RYBNIK -> 3
-                ProjectListManager.AreaFilterType.WODZISLAW -> 4
-                ProjectListManager.AreaFilterType.ZORY -> 5
-                ProjectListManager.AreaFilterType.ALL -> 6
+            when (ProjectListManager.area) {
+                "Cieszyn" -> 0
+                "Jastrzębie-Zdrój" -> 1
+                "Pszczyna" -> 2
+                "Rybnik" -> 3
+                "Wodzisław Śląski" -> 4
+                "Żory" -> 5
+                else -> 6
             }
         )
     }
 
     private fun setStateSpinner() {
         spinner_state.setSelection(
-            when (ProjectListManager.stateFilterType) {
-                ProjectListManager.StateFilterType.MARKED -> 0
-                ProjectListManager.StateFilterType.MEASURED -> 1
-                ProjectListManager.StateFilterType.DONE -> 2
-                ProjectListManager.StateFilterType.ALL -> 3
+            when (ProjectListManager.state) {
+                ProjectListManager.State.MARKED -> 0
+                ProjectListManager.State.MEASURED -> 1
+                ProjectListManager.State.DONE -> 2
+                else -> 3
             }
         )
     }
 
     private fun setSortTypeSpinner() {
         spinner_sort_type.setSelection(
-            when (ProjectListManager.sortType) {
-                ProjectListManager.SortType.NUMBER -> 0
-                ProjectListManager.SortType.DISTANCE -> 1
-                ProjectListManager.SortType.ALPHABET -> 2
-                ProjectListManager.SortType.COMPLEXITY -> 3
+            when (ProjectListManager.sort) {
+                ProjectListManager.Sort.NUMBER -> 0
+                ProjectListManager.Sort.DISTANCE -> 1
+                ProjectListManager.Sort.ALPHABET -> 2
+                else -> 3
             }
         )
     }
 
     private fun setSortOrderSpinner() {
         spinner_sort_order.setSelection(
-            when (ProjectListManager.orderType) {
-                ProjectListManager.OrderType.INCREASE -> 0
-                ProjectListManager.OrderType.DECREASE -> 1
+            when (ProjectListManager.order) {
+                ProjectListManager.Order.INCREASE -> 0
+                else -> 1
             }
         )
     }
@@ -99,49 +100,41 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
     }
 
     private fun applyChanges() {
-        val areaFilterType = applyAreaFilterChanges()
-        val stateFilterType = applyStateFilterChanges()
-        val sortType = applySortTypeChanges()
-        val orderType = applyOrderTypeChanges()
+        val area = applyAreaChanges()
+        val state = applyStateChanges()
+        val sort = applySortChanges()
+        val order = applyOrderChanges()
 
-        ProjectListManager.setAttributes(areaFilterType, stateFilterType, sortType, orderType)
+        ProjectListManager.setAttributes(area, state, sort, order)
         filterDialogInterface.filterProjects()
     }
 
-    private fun applyAreaFilterChanges(): ProjectListManager.AreaFilterType {
-        return when (spinner_area.selectedItemPosition) {
-            0 -> ProjectListManager.AreaFilterType.CIESZYN
-            1 -> ProjectListManager.AreaFilterType.JASTRZEBIE_ZDROJ
-            2 -> ProjectListManager.AreaFilterType.PSZCZYNA
-            3 -> ProjectListManager.AreaFilterType.RYBNIK
-            4 -> ProjectListManager.AreaFilterType.WODZISLAW
-            5 -> ProjectListManager.AreaFilterType.ZORY
-            else -> ProjectListManager.AreaFilterType.ALL
+    private fun applyAreaChanges(): String {
+        return spinner_area.selectedItem as String
+    }
+
+    private fun applyStateChanges(): ProjectListManager.State {
+        return when (spinner_state.selectedItem) {
+            "Marked" -> ProjectListManager.State.MARKED
+            "Measured" -> ProjectListManager.State.MEASURED
+            "Done" -> ProjectListManager.State.DONE
+            else -> ProjectListManager.State.ALL
         }
     }
 
-    private fun applyStateFilterChanges(): ProjectListManager.StateFilterType {
-        return when (spinner_state.selectedItemPosition) {
-            0 -> ProjectListManager.StateFilterType.MARKED
-            1 -> ProjectListManager.StateFilterType.MEASURED
-            2 -> ProjectListManager.StateFilterType.DONE
-            else -> ProjectListManager.StateFilterType.ALL
+    private fun applySortChanges(): ProjectListManager.Sort {
+        return when (spinner_sort_type.selectedItem) {
+            "Number" -> ProjectListManager.Sort.NUMBER
+            "Distance" -> ProjectListManager.Sort.DISTANCE
+            "Alphabet" -> ProjectListManager.Sort.ALPHABET
+            else -> ProjectListManager.Sort.COMPLEXITY
         }
     }
 
-    private fun applySortTypeChanges(): ProjectListManager.SortType {
-        return when (spinner_sort_type.selectedItemPosition) {
-            0 -> ProjectListManager.SortType.NUMBER
-            1 -> ProjectListManager.SortType.DISTANCE
-            2 -> ProjectListManager.SortType.ALPHABET
-            else -> ProjectListManager.SortType.COMPLEXITY
-        }
-    }
-
-    private fun applyOrderTypeChanges(): ProjectListManager.OrderType {
-        return when (spinner_sort_order.selectedItemPosition) {
-            0 -> ProjectListManager.OrderType.INCREASE
-            else -> ProjectListManager.OrderType.DECREASE
+    private fun applyOrderChanges(): ProjectListManager.Order {
+        return when (spinner_sort_order.selectedItem) {
+            "Increase" -> ProjectListManager.Order.INCREASE
+            else -> ProjectListManager.Order.DECREASE
         }
     }
 }
