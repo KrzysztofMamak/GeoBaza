@@ -11,7 +11,7 @@ import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.utils.ProjectListManager
 import kotlinx.android.synthetic.main.fragment_filter_project_list.*
 
-//TODO Refactor, add SpinnerHelper, Use resources as strings
+//TODO Refactor, safe
 class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterface) : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_filter_project_list, container, false)
@@ -24,7 +24,7 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
     }
 
     private fun createArrayAdapter(itemsArray: Int) : ArrayAdapter<CharSequence> {
-//        TODO Context? -> Context
+//        TODO Nullable Context Warning
         val arrayAdapter = ArrayAdapter.createFromResource(context, itemsArray, R.layout.item_spinner)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         return arrayAdapter
@@ -45,48 +45,44 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
     }
 
     private fun setAreaSpinner() {
-        spinner_area.setSelection(
-            when (ProjectListManager.area) {
-                "Cieszyn" -> 0
-                "Jastrzębie-Zdrój" -> 1
-                "Pszczyna" -> 2
-                "Rybnik" -> 3
-                "Wodzisław Śląski" -> 4
-                "Żory" -> 5
-                else -> 6
-            }
-        )
+        val position: Int = when (ProjectListManager.area) {
+            getString(R.string.area_cieszyn) -> spinner_area.getIndex(getString(R.string.area_cieszyn))
+            getString(R.string.area_jastrzebie_zdroj) -> spinner_area.getIndex(getString(R.string.area_jastrzebie_zdroj))
+            getString(R.string.area_pszczyna) -> spinner_area.getIndex(getString(R.string.area_pszczyna))
+            getString(R.string.area_rybnik) -> spinner_area.getIndex(getString(R.string.area_rybnik))
+            getString(R.string.area_wodzislaw_slaski) -> spinner_area.getIndex(getString(R.string.area_wodzislaw_slaski))
+            getString(R.string.area_zory) -> spinner_area.getIndex(getString(R.string.area_zory))
+            else -> spinner_area.getIndex(getString(R.string.all))
+        }
+        spinner_area.setSelection(position)
     }
 
     private fun setStateSpinner() {
-        spinner_state.setSelection(
-            when (ProjectListManager.state) {
-                ProjectListManager.State.MARKED -> 0
-                ProjectListManager.State.MEASURED -> 1
-                ProjectListManager.State.DONE -> 2
-                else -> 3
-            }
-        )
+        val position: Int = when (ProjectListManager.state) {
+            ProjectListManager.State.MARKED -> spinner_state.getIndex(getString(R.string.marked))
+            ProjectListManager.State.MEASURED -> spinner_state.getIndex(getString(R.string.measured))
+            ProjectListManager.State.DONE -> spinner_state.getIndex(getString(R.string.done))
+            else -> spinner_state.getIndex(getString(R.string.all))
+        }
+        spinner_state.setSelection(position)
     }
 
     private fun setSortTypeSpinner() {
-        spinner_sort_type.setSelection(
-            when (ProjectListManager.sort) {
-                ProjectListManager.Sort.NUMBER -> 0
-                ProjectListManager.Sort.DISTANCE -> 1
-                ProjectListManager.Sort.ALPHABET -> 2
-                else -> 3
-            }
-        )
+        val position: Int = when (ProjectListManager.sort) {
+            ProjectListManager.Sort.NUMBER -> spinner_sort_type.getIndex(getString(R.string.number))
+            ProjectListManager.Sort.DISTANCE -> spinner_sort_type.getIndex(getString(R.string.distance))
+            ProjectListManager.Sort.ALPHABET -> spinner_sort_type.getIndex(getString(R.string.alphabet))
+            else -> spinner_sort_type.getIndex(getString(R.string.complexity)) //TODO - Check
+        }
+        spinner_sort_type.setSelection(position)
     }
 
     private fun setSortOrderSpinner() {
-        spinner_sort_order.setSelection(
-            when (ProjectListManager.order) {
-                ProjectListManager.Order.INCREASE -> 0
-                else -> 1
-            }
-        )
+        val position: Int = when (ProjectListManager.order) {
+            ProjectListManager.Order.INCREASE -> spinner_sort_order.getIndex(getString(R.string.increase))
+            else -> spinner_sort_order.getIndex(getString(R.string.decrease))
+        }
+        spinner_sort_order.setSelection(position)
     }
 
     private fun setOnClicks() {
@@ -115,25 +111,25 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
 
     private fun applyStateChanges(): ProjectListManager.State {
         return when (spinner_state.selectedItem) {
-            "Marked" -> ProjectListManager.State.MARKED
-            "Measured" -> ProjectListManager.State.MEASURED
-            "Done" -> ProjectListManager.State.DONE
+            getString(R.string.marked) -> ProjectListManager.State.MARKED
+            getString(R.string.measured) -> ProjectListManager.State.MEASURED
+            getString(R.string.done) -> ProjectListManager.State.DONE
             else -> ProjectListManager.State.ALL
         }
     }
 
     private fun applySortChanges(): ProjectListManager.Sort {
         return when (spinner_sort_type.selectedItem) {
-            "Number" -> ProjectListManager.Sort.NUMBER
-            "Distance" -> ProjectListManager.Sort.DISTANCE
-            "Alphabet" -> ProjectListManager.Sort.ALPHABET
+            getString(R.string.number) -> ProjectListManager.Sort.NUMBER
+            getString(R.string.distance) -> ProjectListManager.Sort.DISTANCE
+            getString(R.string.alphabet) -> ProjectListManager.Sort.ALPHABET
             else -> ProjectListManager.Sort.COMPLEXITY
         }
     }
 
     private fun applyOrderChanges(): ProjectListManager.Order {
         return when (spinner_sort_order.selectedItem) {
-            "Increase" -> ProjectListManager.Order.INCREASE
+            getString(R.string.increase) -> ProjectListManager.Order.INCREASE
             else -> ProjectListManager.Order.DECREASE
         }
     }

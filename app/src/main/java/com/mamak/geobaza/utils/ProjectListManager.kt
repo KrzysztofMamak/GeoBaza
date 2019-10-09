@@ -3,6 +3,7 @@ package com.mamak.geobaza.utils
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 
+//TODO Refactor, safe
 object ProjectListManager {
     var area = "All"
     var state: State = ProjectListManager.State.ALL
@@ -67,11 +68,11 @@ object ProjectListManager {
             ProjectListManager.Sort.ALPHABET -> {
                 if (order == ProjectListManager.Order.INCREASE) {
                     list.sortedBy {
-                        it.area
+                        it.town
                     }
                 } else {
                     list.sortedByDescending {
-                        it.area
+                        it.town
                     }
                 }
             }

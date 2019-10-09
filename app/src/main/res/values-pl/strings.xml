@@ -16,6 +16,15 @@
     <string name="sort_order">Kolejność</string>
     <!-- End -> Sort categories -->
 
+    <!-- Start -> Areas -->
+    <string name="area_cieszyn">Cieszyn</string>
+    <string name="area_jastrzebie_zdroj">Jastrzębie-Zdrój</string>
+    <string name="area_pszczyna">Pszczyna</string>
+    <string name="area_rybnik">Rybnik</string>
+    <string name="area_wodzislaw_slaski">Wodzisław Śląski</string>
+    <string name="area_zory">Żory</string>
+    <!-- End -> Areas -->
+
     <!-- Start -> FilterDialogFragment -->
     <!-- Area -->
     <string-array name="array_area_filter">
@@ -31,7 +40,7 @@
     <!-- State -->
     <string-array name="array_state_filter">
         <item>Wytyczone</item>
-        <item>Pomierzone</item>
+        <item>Zmierzone</item>
         <item>Wykonane</item>
         <item>Wszystkie</item>
     </string-array>
@@ -61,6 +70,15 @@
     <string name="apply">Zastosuj</string>
     <string name="search_filter">Filtr wyszukiwania</string>
     <string name="all">Wszystkie</string>
+    <string name="marked">Wytyczone</string>
+    <string name="measured">Zmierzone</string>
+    <string name="done">Gotowe</string>
+    <string name="number">Numer</string>
+    <string name="distance">Dystans</string>
+    <string name="alphabet">Alfabet</string>
+    <string name="complexity">Złożoność</string>
+    <string name="increase">Rosnąco</string>
+    <string name="decrease">Malejąco</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->
