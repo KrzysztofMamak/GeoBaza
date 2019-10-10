@@ -54,16 +54,16 @@ object ProjectListManager {
                     }
                 }
             }
-            ProjectListManager.Sort.DISTANCE -> {
-                if (order == ProjectListManager.Order.INCREASE) {
-                    list.sortedBy {
-                        it.distance
-                    }
-                } else {
-                    list.sortedByDescending {
-                        it.distance
-                    }
-                }
+            ProjectListManager.Sort.DISTANCE -> {list
+//                if (order == ProjectListManager.Order.INCREASE) {
+//                    list.sortedBy {
+//                        it.distance
+//                    }
+//                } else {
+//                    list.sortedByDescending {
+//                        it.distance
+//                    }
+//                }
             }
             ProjectListManager.Sort.ALPHABET -> {
                 if (order == ProjectListManager.Order.INCREASE) {

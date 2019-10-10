@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class Project(
     @PrimaryKey
     @ColumnInfo(name = "number")
-    var number: Int? = 0,
+    var number: Int,
 
     @ColumnInfo(name = "area")
     var area: String?,

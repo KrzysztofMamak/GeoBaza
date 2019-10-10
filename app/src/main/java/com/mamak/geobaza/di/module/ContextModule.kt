@@ -11,4 +11,8 @@ abstract class ContextModule {
     @Singleton
     @Binds
     abstract fun context(appInstance: Application): Context
+
+//    @Singleton
+//    @Binds
+//    abstract fun application(appInstance: Application): Application
 }
