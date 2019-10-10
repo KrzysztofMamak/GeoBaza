@@ -176,9 +176,7 @@ class ProjectListActivity : BaseActivity() {
             LocationManager.navigateByGeoCoordinates(this@ProjectListActivity, x, y)
         }
 
-        override fun openProjectDetails(number: Int?) {
-//            TODO Open Project Details
-        }
+        override fun openProjectDetails(number: Int?) {}
     }
 
     private fun createFilterDialogInterface(): FilterDialogInterface {

@@ -16,6 +16,5 @@ class Project(
     @SerializedName("startDate") @Expose var startDate: String? = null,
     @SerializedName("markDate") @Expose var markDate: String? = null,
     @SerializedName("measureDate") @Expose var measureDate: String? = null,
-    @SerializedName("doneDate") @Expose var doneDate: String? = null,
-    var distance: Float? = 0F
+    @SerializedName("doneDate") @Expose var doneDate: String? = null
 )

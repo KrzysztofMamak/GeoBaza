@@ -11,7 +11,6 @@ import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.utils.ProjectListManager
 import kotlinx.android.synthetic.main.fragment_filter_project_list.*
 
-//TODO Refactor, safe
 class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterface) : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_filter_project_list, container, false)
@@ -23,10 +22,12 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
         setOnClicks()
     }
 
-    private fun createArrayAdapter(itemsArray: Int) : ArrayAdapter<CharSequence> {
-//        TODO Nullable Context Warning
-        val arrayAdapter = ArrayAdapter.createFromResource(context, itemsArray, R.layout.item_spinner)
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    private fun createArrayAdapter(itemsArray: Int) : ArrayAdapter<CharSequence>? {
+        var arrayAdapter: ArrayAdapter<CharSequence>? = null
+        context?.let {
+            arrayAdapter = ArrayAdapter.createFromResource(it, itemsArray, R.layout.item_spinner)
+            (arrayAdapter as ArrayAdapter<CharSequence>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
         return arrayAdapter
     }
 
@@ -45,16 +46,7 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
     }
 
     private fun setAreaSpinner() {
-        val position: Int = when (ProjectListManager.area) {
-            getString(R.string.area_cieszyn) -> spinner_area.getIndex(getString(R.string.area_cieszyn))
-            getString(R.string.area_jastrzebie_zdroj) -> spinner_area.getIndex(getString(R.string.area_jastrzebie_zdroj))
-            getString(R.string.area_pszczyna) -> spinner_area.getIndex(getString(R.string.area_pszczyna))
-            getString(R.string.area_rybnik) -> spinner_area.getIndex(getString(R.string.area_rybnik))
-            getString(R.string.area_wodzislaw_slaski) -> spinner_area.getIndex(getString(R.string.area_wodzislaw_slaski))
-            getString(R.string.area_zory) -> spinner_area.getIndex(getString(R.string.area_zory))
-            else -> spinner_area.getIndex(getString(R.string.all))
-        }
-        spinner_area.setSelection(position)
+        spinner_area.setSelection(spinner_area.getIndex(ProjectListManager.area))
     }
 
     private fun setStateSpinner() {
@@ -72,7 +64,7 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
             ProjectListManager.Sort.NUMBER -> spinner_sort_type.getIndex(getString(R.string.number))
             ProjectListManager.Sort.DISTANCE -> spinner_sort_type.getIndex(getString(R.string.distance))
             ProjectListManager.Sort.ALPHABET -> spinner_sort_type.getIndex(getString(R.string.alphabet))
-            else -> spinner_sort_type.getIndex(getString(R.string.complexity)) //TODO - Check
+            else -> spinner_sort_type.getIndex(getString(R.string.complexity))
         }
         spinner_sort_type.setSelection(position)
     }

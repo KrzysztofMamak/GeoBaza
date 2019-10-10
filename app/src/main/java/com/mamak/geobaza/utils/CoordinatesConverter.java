@@ -1,6 +1,5 @@
 package com.mamak.geobaza.utils;
 
-//TODO Refactor, Check
 public abstract class CoordinatesConverter {
     public static double[] tr2000WGS(double[] xy){
         double[] wsp={1,1};

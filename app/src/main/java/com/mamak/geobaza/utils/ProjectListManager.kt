@@ -3,7 +3,7 @@ package com.mamak.geobaza.utils
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 
-//TODO Refactor, safe
+//TODO safe
 object ProjectListManager {
     var area = "All"
     var state: State = ProjectListManager.State.ALL
