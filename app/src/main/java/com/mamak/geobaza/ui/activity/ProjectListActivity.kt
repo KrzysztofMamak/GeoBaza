@@ -1,27 +1,28 @@
 package com.mamak.geobaza.ui.activity
 
+import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.buchandersenn.android_permission_manager.PermissionManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
-import com.mamak.geobaza.ui.`interface`.ProjectListItemInterfaceImpl
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.FilterDialogFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
+import com.mamak.geobaza.utils.AppConstans.REQUEST_CODE_ACCESS_FINE_LOCATION
 import com.mamak.geobaza.utils.EmptyView
 import com.mamak.geobaza.utils.LocationManager
-import com.mamak.geobaza.utils.ProjectListManager
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*
@@ -29,22 +30,21 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
-class ProjectListActivity : BaseActivity() {
+class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsResultCallback {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
     internal lateinit var  projectListViewModel: ProjectListViewModel
-//    @Inject
-//    internal lateinit var  projectListItemInterface: ProjectListItemInterface
     @Inject
     internal lateinit var picasso: Picasso
-
     private lateinit var projectListAdapter: ProjectListAdapter
+    private var permissionManager = PermissionManager.create(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_project)
         AndroidInjection.inject(this)
+        checkPermissionsAndShotLocation()
         initRecycler()
         initViewModel()
         getProjects()
@@ -109,29 +109,19 @@ class ProjectListActivity : BaseActivity() {
     }
 
     private fun showEmptyView(emptyViewType: EmptyView.Companion.EmptyViewType) {
+        setEmptyViewOnClick()
         when (emptyViewType) {
             EmptyView.Companion.EmptyViewType.NO_DATA -> {
-                setEmptyViewOnClick()
-                ev_project_list.apply {
-                    visibility = View.VISIBLE
-                    showNoDataEmptyView()
-                }
+                ev_project_list.showNoDataEmptyView()
             }
             EmptyView.Companion.EmptyViewType.NO_INTERNET -> {
-                setEmptyViewOnClick()
-                ev_project_list.apply {
-                    visibility = View.VISIBLE
-                    showNoInternetEmptyView()
-                }
+                ev_project_list.showNoInternetEmptyView()
             }
             EmptyView.Companion.EmptyViewType.NO_SERVICE -> {
-                setEmptyViewOnClick()
-                ev_project_list.apply {
-                    visibility = View.VISIBLE
-                    showNoServiceEmptyView()
-                }
+                ev_project_list.showNoServiceEmptyView()
             }
         }
+        ev_project_list.visibility = View.VISIBLE
     }
 
     private fun setEmptyViewOnClick() {
@@ -160,19 +150,18 @@ class ProjectListActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.action_filter -> showFilterDielog()
+            R.id.action_filter -> showFilterDialog()
         }
         return true
     }
 
-    private fun showFilterDielog() {
+    private fun showFilterDialog() {
         val filterDialogFragment = FilterDialogFragment(createFilterDialogInterface())
         filterDialogFragment.show(supportFragmentManager, null)
     }
 
-    private fun createProjectListItemInterface()
-            = object : ProjectListItemInterface {
-        override fun openGoogleMaps(x: Double?, y: Double?) {
+    private fun createProjectListItemInterface() = object : ProjectListItemInterface {
+        override fun openGoogleMaps(x: Double, y: Double) {
             LocationManager.navigateByGeoCoordinates(this@ProjectListActivity, x, y)
         }
 
@@ -187,5 +176,16 @@ class ProjectListActivity : BaseActivity() {
                 this@ProjectListActivity.currentFocus?.clearFocus()
             }
         }
+    }
+
+    private fun checkPermissionsAndShotLocation() {
+        permissionManager.with(Manifest.permission.ACCESS_FINE_LOCATION)
+            .usingRequestCode(REQUEST_CODE_ACCESS_FINE_LOCATION)
+            .onPermissionGranted { projectListViewModel.shotLocation() }
+            .request()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        permissionManager.handlePermissionResult(requestCode, grantResults)
     }
 }

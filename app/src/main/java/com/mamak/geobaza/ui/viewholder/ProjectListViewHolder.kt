@@ -1,9 +1,13 @@
 package com.mamak.geobaza.ui.viewholder
 
+import android.location.Location
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.mamak.geobaza.data.model.Point
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
+import com.mamak.geobaza.utils.CoordinatesConverter
 import kotlinx.android.synthetic.main.item_list_project.view.*
 
 class ProjectListViewHolder(
@@ -12,6 +16,7 @@ class ProjectListViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     fun bindView(project: Project) {
         setProjectData(project)
+        setDistance(project.pointList[0])
         setNavigationIcon(project)
         setItemViewOnClick(project.number)
     }
@@ -28,8 +33,8 @@ class ProjectListViewHolder(
     private fun setNavigationIcon(project: Project) {
         itemView.iv_navigation.setOnClickListener {
             projectListItemCommunication.openGoogleMaps(
-                project.pointList?.get(0)?.x,
-                project.pointList?.get(0)?.y
+                project.pointList[0].x,
+                project.pointList[0].y
             )
         }
     }
@@ -38,5 +43,20 @@ class ProjectListViewHolder(
         itemView.setOnClickListener {
             projectListItemCommunication.openProjectDetails(number)
         }
+    }
+
+    private fun setDistance(point: Point) {
+        calculateDistance(point)?.let {
+            itemView.tv_distance.text = "${it}km"
+            itemView.visibility = View.VISIBLE
+        }
+    }
+
+    private fun calculateDistance(point: Point): Float? {
+        val location = Location("destLocation")
+        val geoCoordinates = CoordinatesConverter.tr2000WGS(doubleArrayOf(point.x, point.y))
+        location.latitude = geoCoordinates[0]
+        location.longitude = geoCoordinates[1]
+        return ProjectLab.getCurrentLocation()?.distanceTo(location)
     }
 }

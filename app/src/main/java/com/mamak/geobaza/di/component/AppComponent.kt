@@ -18,7 +18,8 @@ import javax.inject.Singleton
     ContextModule::class,
     ActivityModule::class,
     PicassoModule::class,
-    DbModule::class
+    DbModule::class,
+    LocationModule::class
 ])
 interface AppComponent {
     @Component.Builder
@@ -37,6 +38,9 @@ interface AppComponent {
 
         @BindsInstance
         fun dbModule(dbModule: DbModule): Builder
+
+        @BindsInstance
+        fun locationModule(locationModule: LocationModule): Builder
 
         fun build(): AppComponent
     }

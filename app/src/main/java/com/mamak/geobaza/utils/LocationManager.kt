@@ -6,13 +6,8 @@ import android.net.Uri
 import com.mamak.geobaza.R
 
 object LocationManager {
-    fun navigateByGeoCoordinates(context: Context, x: Double?, y: Double?) {
-        val geoCoordinates = CoordinatesConverter.tr2000WGS(
-                x?.let {
-                    y?.let {
-                            it1 -> doubleArrayOf(it, it1)
-                    }
-                }).asList()
+    fun navigateByGeoCoordinates(context: Context, x: Double, y: Double) {
+        val geoCoordinates = CoordinatesConverter.tr2000WGS(doubleArrayOf(x, y)).asList()
         val intentUri = Uri.parse(context.getString(R.string.google_maps_query) +
                 geoCoordinates[0] + "," +
                 geoCoordinates[1])

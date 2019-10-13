@@ -22,24 +22,24 @@ data class Project(
     @ColumnInfo(name = "description")
     var description: String?,
 
-    @ColumnInfo(name = "is_marked")
+    @ColumnInfo(name = "isMarked")
     var isMarked: Boolean,
 
-    @ColumnInfo(name = "is_measured")
+    @ColumnInfo(name = "isMeasured")
     var isMeasured: Boolean,
 
-    @ColumnInfo(name = "is_done")
+    @ColumnInfo(name = "isDone")
     var isDone: Boolean,
 
-    @ColumnInfo(name = "start_date")
+    @ColumnInfo(name = "startDate")
     var startDate: String?,
 
-    @ColumnInfo(name = "mark_date")
+    @ColumnInfo(name = "markDate")
     var markDate: String?,
 
-    @ColumnInfo(name = "measure_date")
+    @ColumnInfo(name = "measureDate")
     var measureDate: String?,
 
-    @ColumnInfo(name = "done_date")
+    @ColumnInfo(name = "doneDate")
     var doneDate: String?
 )

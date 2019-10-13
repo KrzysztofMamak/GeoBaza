@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ProjectListItemInterfaceImpl(val context: Context)
         : ProjectListItemInterface {
-    override fun openGoogleMaps(x: Double?, y: Double?) {
+    override fun openGoogleMaps(x: Double, y: Double) {
         LocationManager.navigateByGeoCoordinates(context, x, y)
     }
 

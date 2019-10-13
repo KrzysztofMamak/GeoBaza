@@ -54,7 +54,7 @@ object ProjectListManager {
                     }
                 }
             }
-            ProjectListManager.Sort.DISTANCE -> {list
+            ProjectListManager.Sort.DISTANCE -> { list
 //                if (order == ProjectListManager.Order.INCREASE) {
 //                    list.sortedBy {
 //                        it.distance
@@ -79,11 +79,11 @@ object ProjectListManager {
             ProjectListManager.Sort.COMPLEXITY -> {
                 if (order == ProjectListManager.Order.INCREASE) {
                     list.sortedBy {
-                        it.pointList?.size
+                        it.pointList.size
                     }
                 } else {
                     list.sortedByDescending {
-                        it.pointList?.size
+                        it.pointList.size
                     }
                 }
             }

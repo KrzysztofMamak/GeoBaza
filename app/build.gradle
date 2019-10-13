@@ -41,6 +41,7 @@ ext {
     room_version = "1.1.1"
     play_services_version = "17.0.0"
     picasso_version = "2.71828"
+    permission_manager_version = "1.0.0"
 }
 
 dependencies {
@@ -89,4 +90,7 @@ dependencies {
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    //Permission Manager
+    implementation "com.github.buchandersenn:android-permission-manager:$permission_manager_version"
 }

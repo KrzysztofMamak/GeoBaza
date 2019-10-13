@@ -14,6 +14,6 @@ interface PointDao {
     @Delete
     fun delete(point: Point)
 
-    @Query("SELECT * FROM points WHERE project_number=:projectNumber")
+    @Query("SELECT * FROM points WHERE projectNumber=:projectNumber")
     fun getPointsForProject(projectNumber: Int): List<Point>
 }

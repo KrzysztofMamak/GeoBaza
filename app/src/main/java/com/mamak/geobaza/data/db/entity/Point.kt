@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = Project::class,
             parentColumns = ["number"],
-            childColumns = ["project_number"],
+            childColumns = ["projectNumber"],
             onDelete = CASCADE
         )
     ]
@@ -28,6 +28,6 @@ class Point(
     @ColumnInfo(name = "y")
     var y: Double?,
 
-    @ColumnInfo(name = "project_number")
+    @ColumnInfo(name = "projectNumber")
     var projectNumber: Int?
 )
