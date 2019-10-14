@@ -9,6 +9,7 @@ import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.utils.CoordinatesConverter
 import kotlinx.android.synthetic.main.item_list_project.view.*
+import java.text.DecimalFormat
 
 class ProjectListViewHolder(
     itemView: View,
@@ -47,16 +48,17 @@ class ProjectListViewHolder(
 
     private fun setDistance(point: Point) {
         calculateDistance(point)?.let {
-            itemView.tv_distance.text = "${it}km"
+            val decimalFormat = DecimalFormat("#0.0")
+            itemView.tv_distance.text = "${decimalFormat.format(it)}km"
             itemView.visibility = View.VISIBLE
         }
     }
 
     private fun calculateDistance(point: Point): Float? {
         val location = Location("destLocation")
-        val geoCoordinates = CoordinatesConverter.tr2000WGS(doubleArrayOf(point.x, point.y))
+        val geoCoordinates = CoordinatesConverter.tr2000WGS(doubleArrayOf(point.x, point.y)).asList()
         location.latitude = geoCoordinates[0]
         location.longitude = geoCoordinates[1]
-        return ProjectLab.getCurrentLocation()?.distanceTo(location)
+        return ProjectLab.getCurrentLocation()?.distanceTo(location)?.div(1000)
     }
 }
