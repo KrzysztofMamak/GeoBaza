@@ -151,6 +151,8 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_filter -> showFilterDialog()
+//            TODO check - updating list after location change
+            R.id.action_locate -> projectListAdapter.notifyDataSetChanged()
         }
         return true
     }

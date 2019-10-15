@@ -5,7 +5,10 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.mamak.geobaza.data.db.AppDatabase
+import com.mamak.geobaza.data.db.entity.Point
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.network.api.ProjectApiService
@@ -18,9 +21,9 @@ import java.lang.Exception
 import javax.inject.Inject
 
 class ProjectListViewModel @Inject constructor(
-        private val projectApiService: ProjectApiService,
-        //private val appDatabase: AppDatabase,
-        private val locationManager: LocationManager
+    private val projectApiService: ProjectApiService,
+    private val appDatabase: AppDatabase,
+    private val locationManager: LocationManager
 ) : BaseViewModel() {
     private val projectsLiveData = MutableLiveData<Resource<List<Project>>>()
 
@@ -33,7 +36,9 @@ class ProjectListViewModel @Inject constructor(
                 projectsLiveData.postValue(Resource.loading())
             }
             .subscribeBy (
-                onNext = { projectsLiveData.postValue(Resource.success(it)) },
+                onNext = {
+                    projectsLiveData.postValue(Resource.success(it))
+                },
                 onError = { projectsLiveData.postValue(Resource.error(it as Exception)) }
             )
     }

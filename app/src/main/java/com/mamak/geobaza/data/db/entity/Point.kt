@@ -17,7 +17,7 @@ import androidx.room.PrimaryKey
         )
     ]
 )
-class Point(
+data class Point(
     @PrimaryKey
     @ColumnInfo(name = "name")
     var name: String,
@@ -28,6 +28,6 @@ class Point(
     @ColumnInfo(name = "y")
     var y: Double?,
 
-    @ColumnInfo(name = "projectNumber")
+    @ColumnInfo(name = "projectNumber", index = true)
     var projectNumber: Int?
 )

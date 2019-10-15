@@ -71,6 +71,7 @@
     <!-- Start -> Menu -->
     <string name="menu_filter">Filtering</string>
     <string name="menu_search">Searching</string>
+    <string name="menu_locate">Locating</string>
     <!-- End -> Menu -->
 
     <!-- Start -> Universal -->

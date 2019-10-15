@@ -7,7 +7,7 @@ import com.mamak.geobaza.data.db.dao.ProjectDao
 import com.mamak.geobaza.data.db.entity.Point
 import com.mamak.geobaza.data.db.entity.Project
 
-@Database(entities = [Project::class, Point::class], version = 1)
+@Database(entities = [Project::class, Point::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun projectDao(): ProjectDao
     abstract fun pointDao(): PointDao

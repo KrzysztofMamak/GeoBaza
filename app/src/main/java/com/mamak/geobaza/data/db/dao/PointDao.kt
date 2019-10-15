@@ -5,7 +5,8 @@ import com.mamak.geobaza.data.db.entity.Point
 
 @Dao
 interface PointDao {
-    @Insert
+//    TODO check onConflict - name
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(point: Point)
 
     @Update
@@ -15,5 +16,5 @@ interface PointDao {
     fun delete(point: Point)
 
     @Query("SELECT * FROM points WHERE projectNumber=:projectNumber")
-    fun getPointsForProject(projectNumber: Int): List<Point>
+    fun getPointsByProjectNumber(projectNumber: Int): List<Point>
 }

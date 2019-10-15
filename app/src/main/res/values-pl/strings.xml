@@ -63,6 +63,7 @@
     <!-- Start -> Menu -->
     <string name="menu_filter">Filtrowanie</string>
     <string name="menu_search">Wyszukiwanie</string>
+    <string name="menu_locate">Lokalizowanie</string>
     <!-- End -> Menu -->
 
     <!-- Start -> Universal -->
