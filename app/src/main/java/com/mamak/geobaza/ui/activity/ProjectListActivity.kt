@@ -46,6 +46,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         AndroidInjection.inject(this)
         checkPermissionsAndShotLocation()
         initRecycler()
+        initSwipeRefreshLayout()
         initViewModel()
         getProjects()
     }
@@ -59,6 +60,12 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         rv_projects.apply {
             adapter = projectListAdapter
             layoutManager = LinearLayoutManager(this@ProjectListActivity)
+        }
+    }
+
+    private fun initSwipeRefreshLayout() {
+        srl_projects.setOnRefreshListener {
+            projectListViewModel.fetchProjects()
         }
     }
 
@@ -77,6 +84,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
 
     private fun handleSuccessResponse(projects: List<Project>) {
         hideProgressBar()
+        srl_projects.isRefreshing = false
         ev_project_list.visibility = View.GONE
         ProjectLab.setProjects(projects).also {
             projectListAdapter.setProjects()
@@ -85,6 +93,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
 
     private fun handleErrorResponse(exception: Exception? = null) {
         hideProgressBar()
+        srl_projects.isRefreshing = false
         when (exception) {
             is SocketTimeoutException -> {
                 showEmptyView(EmptyView.Companion.EmptyViewType.NO_SERVICE)
@@ -100,11 +109,13 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
 
     private fun showProgressBar() {
         pb_projects.visibility = View.VISIBLE
+        srl_projects.visibility = View.GONE
         rv_projects.visibility = View.GONE
     }
 
     private fun hideProgressBar() {
         pb_projects.visibility = View.GONE
+        srl_projects.visibility = View.VISIBLE
         rv_projects.visibility = View.VISIBLE
     }
 
