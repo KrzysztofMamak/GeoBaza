@@ -5,10 +5,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.mamak.geobaza.data.db.AppDatabase
-import com.mamak.geobaza.data.db.entity.Point
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.network.api.ProjectApiService
@@ -17,12 +14,11 @@ import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import java.lang.Exception
 import javax.inject.Inject
 
 class ProjectListViewModel @Inject constructor(
     private val projectApiService: ProjectApiService,
-    private val appDatabase: AppDatabase,
+    //private val appDatabase: AppDatabase,
     private val locationManager: LocationManager
 ) : BaseViewModel() {
     private val projectsLiveData = MutableLiveData<Resource<List<Project>>>()
@@ -35,11 +31,17 @@ class ProjectListViewModel @Inject constructor(
             .doOnSubscribe {
                 projectsLiveData.postValue(Resource.loading())
             }
-            .subscribeBy (
+            .subscribeBy(
                 onNext = {
                     projectsLiveData.postValue(Resource.success(it))
+//                    appDatabase.projectDao().insert(it[0].toProjectEntity())
+//                    appDatabase.projectDao().insert(it[1].toProjectEntity())
+//                    Timber.d(appDatabase.projectDao().getProjectByNumber(1).toString())
+//                    Timber.d(appDatabase.projectDao().getProjectByNumber(2).toString())
                 },
-                onError = { projectsLiveData.postValue(Resource.error(it as Exception)) }
+                onError = {
+                    projectsLiveData.postValue(Resource.error(it as Exception))
+                }
             )
     }
 
@@ -51,14 +53,10 @@ class ProjectListViewModel @Inject constructor(
             }
 
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-
             override fun onProviderEnabled(provider: String?) {}
-
             override fun onProviderDisabled(provider: String?) {}
         })
     }
 
-    fun getProjectsLiveData() : MutableLiveData<Resource<List<Project>>> {
-        return projectsLiveData
-    }
+    fun getProjectsLiveData() = projectsLiveData
 }

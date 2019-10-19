@@ -4,6 +4,7 @@ import android.content.Context
 import com.mamak.geobaza.utils.LocationManager
 import javax.inject.Inject
 
+//TODO Inject Interface
 class ProjectListItemInterfaceImpl(val context: Context)
         : ProjectListItemInterface {
     override fun openGoogleMaps(x: Double, y: Double) {

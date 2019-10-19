@@ -44,6 +44,7 @@ class ProjectListAdapter @Inject constructor(private val projectListItemCommunic
         notifyDataSetChanged()
     }
 
+//    TODO Refactor NotNull
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -52,25 +53,18 @@ class ProjectListAdapter @Inject constructor(private val projectListItemCommunic
                 if (!queryString.isNullOrEmpty()) {
                     val filterList = mutableListOf<Project>()
                     for (project in projects) {
-                        project.area?.toLowerCase()?.let {
-                            if (it.contains(queryString)) {
-                                filterList.add(project)
-                            }
+//                        TODO Refactor
+                        if (project.area.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
                         }
-                        project.town?.toLowerCase()?.let {
-                            if (it.contains(queryString)) {
-                                filterList.add(project)
-                            }
+                        if (project.town.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
                         }
-                        project.street?.toLowerCase()?.let {
-                            if (it.contains(queryString)) {
-                                filterList.add(project)
-                            }
+                        if (project.street.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
                         }
-                        project.description?.toLowerCase()?.let {
-                            if (it.contains(queryString)) {
-                                filterList.add(project)
-                            }
+                        if (project.description.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
                         }
                     }
                     results.count = filterList.size
@@ -83,7 +77,7 @@ class ProjectListAdapter @Inject constructor(private val projectListItemCommunic
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//                TODO Cast Warning
+//                TODO Cast Warning -> Try - Catch
                 filteredProjects = results?.values as MutableList<Project>
                 notifyDataSetChanged()
             }

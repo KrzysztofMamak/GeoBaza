@@ -1,26 +1,29 @@
 package com.mamak.geobaza.data.db.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.mamak.geobaza.data.model.Point
+import com.mamak.geobaza.data.model.Project
 
 @Entity(tableName = "projects")
-data class Project(
+data class ProjectEntity(
     @PrimaryKey
     @ColumnInfo(name = "number")
     var number: Int,
 
     @ColumnInfo(name = "area")
-    var area: String?,
+    var area: String,
 
     @ColumnInfo(name = "town")
-    var town: String?,
+    var town: String,
 
     @ColumnInfo(name = "street")
-    var street: String?,
+    var street: String,
 
     @ColumnInfo(name = "description")
-    var description: String?,
+    var description: String,
+
+    @ColumnInfo(name = "pointList")
+    var pointList: List<Point>,
 
     @ColumnInfo(name = "isMarked")
     var isMarked: Boolean,
@@ -42,4 +45,22 @@ data class Project(
 
     @ColumnInfo(name = "doneDate")
     var doneDate: String?
-)
+) {
+    fun toProject(): Project {
+        return Project(
+            number,
+            area,
+            town,
+            street,
+            description,
+            pointList,
+            isMarked,
+            isMeasured,
+            isDone,
+            startDate,
+            markDate,
+            measureDate,
+            doneDate
+        )
+    }
+}

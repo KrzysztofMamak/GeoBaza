@@ -1,22 +1,25 @@
 package com.mamak.geobaza.data.db.dao
 
 import androidx.room.*
-import com.mamak.geobaza.data.db.entity.Project
+import com.mamak.geobaza.data.db.entity.ProjectEntity
 
 @Dao
 interface ProjectDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(project: Project)
+    fun insert(projectEntity: ProjectEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(projectEntityList: List<ProjectEntity>)
 
     @Update
-    fun update(project: Project)
+    fun update(projectEntity: ProjectEntity)
 
     @Delete
-    fun delete(project: Project)
+    fun delete(projectEntity: ProjectEntity)
 
     @Query("SELECT * FROM projects")
-    fun getAllProjects(): List<Project>
+    fun getAllProjects(): List<ProjectEntity>
 
     @Query("SELECT * FROM projects WHERE number=:number")
-    fun getProjectByNumber(number: Int): List<Project>
+    fun getProjectByNumber(number: Int): List<ProjectEntity>
 }

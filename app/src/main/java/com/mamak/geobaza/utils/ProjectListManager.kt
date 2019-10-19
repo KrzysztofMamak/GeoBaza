@@ -54,6 +54,7 @@ object ProjectListManager {
                     }
                 }
             }
+//            TODO Sorting by distance
             ProjectListManager.Sort.DISTANCE -> { list
 //                if (order == ProjectListManager.Order.INCREASE) {
 //                    list.sortedBy {

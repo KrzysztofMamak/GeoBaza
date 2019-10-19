@@ -47,6 +47,7 @@ class ProjectListViewHolder(
     }
 
     private fun setDistance(point: Point) {
+//        TODO Refactor
         calculateDistance(point)?.let {
             val decimalFormat = DecimalFormat("#0.0")
             itemView.tv_distance.text = "${decimalFormat.format(it)}km"

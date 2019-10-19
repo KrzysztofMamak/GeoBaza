@@ -2,6 +2,7 @@ package com.mamak.geobaza.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.mamak.geobaza.data.db.entity.ProjectEntity
 
 class Project(
     @SerializedName("number") @Expose var number: Int = 0,
@@ -17,4 +18,22 @@ class Project(
     @SerializedName("markDate") @Expose var markDate: String? = null,
     @SerializedName("measureDate") @Expose var measureDate: String? = null,
     @SerializedName("doneDate") @Expose var doneDate: String? = null
-)
+) {
+    fun toProjectEntity(): ProjectEntity {
+        return ProjectEntity(
+            number,
+            area,
+            town,
+            street,
+            description,
+            pointList,
+            isMarked,
+            isMeasured,
+            isDone,
+            startDate,
+            markDate,
+            measureDate,
+            doneDate
+        )
+    }
+}

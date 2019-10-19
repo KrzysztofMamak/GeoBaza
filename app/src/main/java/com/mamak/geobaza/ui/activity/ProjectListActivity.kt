@@ -63,6 +63,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         }
     }
 
+//    TODO Add Delay
     private fun initSwipeRefreshLayout() {
         srl_projects.setOnRefreshListener {
             projectListViewModel.fetchProjects()
@@ -162,7 +163,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_filter -> showFilterDialog()
-//            TODO check - updating list after location change
+//            TODO Check - Updating list after location change
             R.id.action_locate -> projectListAdapter.notifyDataSetChanged()
         }
         return true
