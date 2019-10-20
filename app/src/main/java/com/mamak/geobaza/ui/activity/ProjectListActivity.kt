@@ -39,6 +39,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     internal lateinit var  projectListViewModel: ProjectListViewModel
     @Inject
     internal lateinit var picasso: Picasso
+
     private lateinit var projectListAdapter: ProjectListAdapter
     private var permissionManager = PermissionManager.create(this)
 
@@ -67,12 +68,12 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
 
     private fun initSwipeRefreshLayout() {
         srl_projects.setOnRefreshListener {
-            projectListViewModel.fetchProjects()
+            projectListViewModel.fetchProjectsByRepo()
         }
     }
 
     private fun getProjects() {
-        projectListViewModel.fetchProjects()
+        projectListViewModel.fetchProjectsByRepo()
         projectListViewModel.getProjectsLiveData().observe(this, Observer { resource ->
             if (resource!!.isLoading) {
                 showProgressBar()
