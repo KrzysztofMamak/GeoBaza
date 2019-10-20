@@ -2,6 +2,7 @@ package com.mamak.geobaza.ui.activity
 
 import android.Manifest
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -20,6 +21,7 @@ import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.FilterDialogFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
+import com.mamak.geobaza.utils.AppConstans.DELAY_SHORT
 import com.mamak.geobaza.utils.AppConstans.REQUEST_CODE_ACCESS_FINE_LOCATION
 import com.mamak.geobaza.utils.EmptyView
 import com.mamak.geobaza.utils.LocationManager
@@ -63,7 +65,6 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         }
     }
 
-//    TODO Add Delay
     private fun initSwipeRefreshLayout() {
         srl_projects.setOnRefreshListener {
             projectListViewModel.fetchProjects()
@@ -84,12 +85,14 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun handleSuccessResponse(projects: List<Project>) {
-        hideProgressBar()
-        srl_projects.isRefreshing = false
-        ev_project_list.visibility = View.GONE
-        ProjectLab.setProjects(projects).also {
-            projectListAdapter.setProjects()
-        }
+        Handler().postDelayed({
+            hideProgressBar()
+                    srl_projects.isRefreshing = false
+                    ev_project_list.visibility = View.GONE
+                    ProjectLab.setProjects(projects).also {
+                        projectListAdapter.setProjects()
+                    }
+        }, DELAY_SHORT)
     }
 
     private fun handleErrorResponse(exception: Exception? = null) {

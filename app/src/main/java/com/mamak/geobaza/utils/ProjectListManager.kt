@@ -3,7 +3,7 @@ package com.mamak.geobaza.utils
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 
-//TODO safe
+//TODO Safe
 object ProjectListManager {
     var area = "All"
     var state: State = ProjectListManager.State.ALL
@@ -54,17 +54,17 @@ object ProjectListManager {
                     }
                 }
             }
-//            TODO Sorting by distance
-            ProjectListManager.Sort.DISTANCE -> { list
-//                if (order == ProjectListManager.Order.INCREASE) {
-//                    list.sortedBy {
-//                        it.distance
-//                    }
-//                } else {
-//                    list.sortedByDescending {
-//                        it.distance
-//                    }
-//                }
+//            TODO Check
+            ProjectListManager.Sort.DISTANCE -> {
+                if (order == ProjectListManager.Order.INCREASE) {
+                    list.sortedBy {
+                        LocationManager.calculateDistance(it.pointList[0])
+                    }
+                } else {
+                    list.sortedByDescending {
+                        LocationManager.calculateDistance(it.pointList[0])
+                    }
+                }
             }
             ProjectListManager.Sort.ALPHABET -> {
                 if (order == ProjectListManager.Order.INCREASE) {

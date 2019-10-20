@@ -44,7 +44,6 @@ class ProjectListAdapter @Inject constructor(private val projectListItemCommunic
         notifyDataSetChanged()
     }
 
-//    TODO Refactor NotNull
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -53,19 +52,27 @@ class ProjectListAdapter @Inject constructor(private val projectListItemCommunic
                 if (!queryString.isNullOrEmpty()) {
                     val filterList = mutableListOf<Project>()
                     for (project in projects) {
-//                        TODO Refactor
-                        if (project.area.toLowerCase().contains(queryString)) {
-                            filterList.add(project)
+//                        TODO Check
+                        run loop@{
+                            listOf(project.area, project.town, project.street, project.description).forEach {
+                                if (it.toLowerCase().contains(queryString)) {
+                                    filterList.add(project)
+                                    return@loop
+                                }
+                            }
                         }
-                        if (project.town.toLowerCase().contains(queryString)) {
-                            filterList.add(project)
-                        }
-                        if (project.street.toLowerCase().contains(queryString)) {
-                            filterList.add(project)
-                        }
-                        if (project.description.toLowerCase().contains(queryString)) {
-                            filterList.add(project)
-                        }
+//                        if (project.area.toLowerCase().contains(queryString)) {
+//                            filterList.add(project)
+//                        }
+//                        if (project.town.toLowerCase().contains(queryString)) {
+//                            filterList.add(project)
+//                        }
+//                        if (project.street.toLowerCase().contains(queryString)) {
+//                            filterList.add(project)
+//                        }
+//                        if (project.description.toLowerCase().contains(queryString)) {
+//                            filterList.add(project)
+//                        }
                     }
                     results.count = filterList.size
                     results.values = filterList

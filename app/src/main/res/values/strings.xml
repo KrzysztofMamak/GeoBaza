@@ -88,6 +88,7 @@
     <string name="complexity">Complexity</string>
     <string name="increase">Increase</string>
     <string name="decrease">Decrease</string>
+    <string name="unit_km_with_value">%1$.2fkm</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->
