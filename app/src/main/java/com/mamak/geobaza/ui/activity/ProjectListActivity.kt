@@ -85,6 +85,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun handleSuccessResponse(projects: List<Project>) {
+//        TODO Change Delay
         Handler().postDelayed({
             hideProgressBar()
                     srl_projects.isRefreshing = false
@@ -170,6 +171,23 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
             R.id.action_locate -> projectListAdapter.notifyDataSetChanged()
         }
         return true
+    }
+
+    private fun setNavigationDrawer() {
+        nv_project_list.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_travel_planner -> {
+                    true
+                }
+                R.id.nav_statistics -> {
+                    true
+                }
+                R.id.nav_setting -> {
+                    true
+                }
+                else -> true
+            }
+        }
     }
 
     private fun showFilterDialog() {

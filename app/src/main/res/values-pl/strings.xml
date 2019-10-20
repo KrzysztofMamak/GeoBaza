@@ -81,6 +81,9 @@
     <string name="increase">Rosnąco</string>
     <string name="decrease">Malejąco</string>
     <string name="unit_km_with_value">%1$.2fkm</string>
+    <string name="travel_planner">Travel Planner</string>
+    <string name="statistics">Statystyki</string>
+    <string name="settings">Ustawienia</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->
