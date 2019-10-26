@@ -48,6 +48,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         setContentView(R.layout.activity_list_project)
         AndroidInjection.inject(this)
         checkPermissionsAndShotLocation()
+        setNavigationDrawer()
         initRecycler()
         initSwipeRefreshLayout()
         initViewModel()
@@ -68,7 +69,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
 
     private fun initSwipeRefreshLayout() {
         srl_projects.setOnRefreshListener {
-            projectListViewModel.fetchProjectsByRepo()
+            getProjects()
         }
     }
 
@@ -86,7 +87,6 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun handleSuccessResponse(projects: List<Project>) {
-//        TODO Change Delay
         Handler().postDelayed({
             hideProgressBar()
                     srl_projects.isRefreshing = false
@@ -97,6 +97,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         }, DELAY_SHORT)
     }
 
+//    TODO change onError behaviour - repo
     private fun handleErrorResponse(exception: Exception? = null) {
         hideProgressBar()
         srl_projects.isRefreshing = false

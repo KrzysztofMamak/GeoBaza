@@ -14,4 +14,8 @@ class ProjectLocalRepo(private val projectDao: ProjectDao) {
     fun addProjects(projects: List<ProjectEntity>) {
         projectDao.insert(projects)
     }
+
+    fun updateProjects(projects: List<ProjectEntity>) {
+        projectDao.insert(projects)
+    }
 }

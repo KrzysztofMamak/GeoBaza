@@ -7,10 +7,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import com.mamak.geobaza.data.db.AppDatabase
-import com.mamak.geobaza.data.db.entity.ProjectEntity
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.data.repository.ProjectLocalRepo
-import com.mamak.geobaza.data.repository.ProjectRepo
 import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.network.api.ProjectApiService
 import com.mamak.geobaza.network.connection.Resource
@@ -27,48 +24,30 @@ class ProjectListViewModel @Inject constructor(
 ) : BaseViewModel() {
     private val projectsLiveData = MutableLiveData<Resource<List<Project>>>()
 
-//    @SuppressLint("CheckResult")
-//    fun fetchProjects() {
-//        projectApiService.getProjects()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnSubscribe {
-//                projectsLiveData.postValue(Resource.loading())
-//            }
-//            .subscribeBy(
-//                onNext = {
-//                    projectsLiveData.postValue(Resource.success(it))
-////                    appDatabase.projectDao().insert(it[0].toProjectEntity())
-////                    appDatabase.projectDao().insert(it[1].toProjectEntity())
-////                    Timber.d(appDatabase.projectDao().getProjectByNumber(1).toString())
-////                    Timber.d(appDatabase.projectDao().getProjectByNumber(2).toString())
-//                },
-//                onError = {
-//                    projectsLiveData.postValue(Resource.error(it as Exception))
-//                }
-//            )
-//    }
-
     @SuppressLint("CheckResult")
     fun fetchProjectsByRepo() {
-        ProjectRepo(projectApiService, ProjectLocalRepo(appDatabase.projectDao())).getAllUsers()
+//        TODO replace with repository methods
+        addToDisposable(projectApiService.getProjects()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
                 projectsLiveData.postValue(Resource.loading())
             }
-            .subscribeBy(
-                onNext = {it1 ->
-                    projectsLiveData.postValue(Resource.success(
-                        (it1 as List<ProjectEntity>).map {
-                                it2 -> it2.toProject()
+            .subscribeBy (
+                onNext = {
+                    appDatabase.projectDao().insert(
+                        it.map { it1 ->
+                            it1.toProjectEntity()
                         }
-                    ))
+                    )
+                    projectsLiveData.postValue(Resource.success(it))
                 },
                 onError = {
-                    projectsLiveData.postValue(Resource.error(it as Exception))
+                    val projects = appDatabase.projectDao().getAllProjects().map { it.toProject() }
+                    projectsLiveData.postValue(Resource.success(projects))
                 }
             )
+        )
     }
 
     @SuppressLint("MissingPermission")
@@ -85,4 +64,8 @@ class ProjectListViewModel @Inject constructor(
     }
 
     fun getProjectsLiveData() = projectsLiveData
+
+    override fun onCleared() {
+        onStop()
+    }
 }

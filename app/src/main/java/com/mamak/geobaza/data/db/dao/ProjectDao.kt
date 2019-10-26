@@ -22,4 +22,13 @@ interface ProjectDao {
 
     @Query("SELECT * FROM projects WHERE number=:number")
     fun getProjectByNumber(number: Int): List<ProjectEntity>
+
+    @Query("DELETE FROM projects")
+    fun deleteAllProjects()
+
+    @Transaction
+    fun updateProjects(projects: List<ProjectEntity>) {
+        deleteAllProjects()
+        insert(projects)
+    }
 }
