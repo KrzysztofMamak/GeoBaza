@@ -48,11 +48,15 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         setContentView(R.layout.activity_list_project)
         AndroidInjection.inject(this)
         checkPermissionsAndShotLocation()
+        initComponents()
+        initViewModel()
+        getProjects()
+    }
+
+    private fun initComponents() {
         setNavigationDrawer()
         initRecycler()
         initSwipeRefreshLayout()
-        initViewModel()
-        getProjects()
     }
 
     private fun initViewModel() {
