@@ -1,6 +1,7 @@
 package com.mamak.geobaza.ui.activity
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
@@ -186,7 +187,10 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
             LocationManager.navigateByGeoCoordinates(this@ProjectListActivity, x, y)
         }
 
-        override fun openProjectDetails(number: Int?) {}
+        override fun openProjectDetails(number: Int?) {
+            val intent = Intent(this@ProjectListActivity, ProjectDetailsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun createFilterDialogInterface(): FilterDialogInterface {
