@@ -36,7 +36,7 @@
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <com.mamak.geobaza.utils.EmptyView
+            <com.mamak.geobaza.utils.view.EmptyView
                     android:id="@+id/ev_project_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

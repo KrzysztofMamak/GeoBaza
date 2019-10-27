@@ -21,10 +21,10 @@ import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.FilterDialogFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
-import com.mamak.geobaza.utils.AppConstans.DELAY_SHORT
-import com.mamak.geobaza.utils.AppConstans.REQUEST_CODE_ACCESS_FINE_LOCATION
-import com.mamak.geobaza.utils.EmptyView
-import com.mamak.geobaza.utils.LocationManager
+import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
+import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_ACCESS_FINE_LOCATION
+import com.mamak.geobaza.utils.view.EmptyView
+import com.mamak.geobaza.utils.manager.LocationManager
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*

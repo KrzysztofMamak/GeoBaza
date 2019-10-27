@@ -92,6 +92,9 @@
     <string name="travel_planner">Travel Planner</string>
     <string name="statistics">Statistics</string>
     <string name="settings">Settings</string>
+    <string name="overview">Overview</string>
+    <string name="map">Map</string>
+    <string name="sketch">Sketch</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

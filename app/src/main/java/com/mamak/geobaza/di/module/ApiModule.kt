@@ -2,7 +2,7 @@ package com.mamak.geobaza.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.mamak.geobaza.utils.AppConstans.BASE_URL
+import com.mamak.geobaza.utils.constans.AppConstans.BASE_URL
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

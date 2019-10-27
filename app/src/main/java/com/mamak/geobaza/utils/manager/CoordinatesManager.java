@@ -1,7 +1,7 @@
-package com.mamak.geobaza.utils;
+package com.mamak.geobaza.utils.manager;
 
 //TODO Refactor
-public abstract class CoordinatesConverter {
+public abstract class CoordinatesManager {
     public static double[] tr2000WGS(double[] xy){
         double[] wsp={1,1};
 

@@ -6,9 +6,8 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Point
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
-import com.mamak.geobaza.utils.LocationManager.calculateDistance
+import com.mamak.geobaza.utils.manager.LocationManager.calculateDistance
 import kotlinx.android.synthetic.main.item_list_project.view.*
-import java.text.DecimalFormat
 
 class ProjectListViewHolder(
     itemView: View,

@@ -84,6 +84,9 @@
     <string name="travel_planner">Travel Planner</string>
     <string name="statistics">Statystyki</string>
     <string name="settings">Ustawienia</string>
+    <string name="overview">Przegląd</string>
+    <string name="map">Mapa</string>
+    <string name="sketch">Szkic</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

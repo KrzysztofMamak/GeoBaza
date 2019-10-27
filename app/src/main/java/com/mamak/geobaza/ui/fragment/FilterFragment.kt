@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import com.mamak.geobaza.R
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
-import com.mamak.geobaza.utils.ProjectListManager
+import com.mamak.geobaza.utils.manager.ProjectListManager
 import kotlinx.android.synthetic.main.fragment_filter_project_list.*
 
 //TODO Refactor

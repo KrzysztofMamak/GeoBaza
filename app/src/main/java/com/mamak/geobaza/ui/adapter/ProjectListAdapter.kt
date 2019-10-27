@@ -9,7 +9,7 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.viewholder.ProjectListViewHolder
-import com.mamak.geobaza.utils.ProjectListManager
+import com.mamak.geobaza.utils.manager.ProjectListManager
 import javax.inject.Inject
 
 class ProjectListAdapter @Inject constructor(private val projectListItemCommunication: ProjectListItemInterface)

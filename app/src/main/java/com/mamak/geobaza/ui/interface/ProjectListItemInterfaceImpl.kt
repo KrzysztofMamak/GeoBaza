@@ -1,8 +1,7 @@
 package com.mamak.geobaza.ui.`interface`
 
 import android.content.Context
-import com.mamak.geobaza.utils.LocationManager
-import javax.inject.Inject
+import com.mamak.geobaza.utils.manager.LocationManager
 
 //TODO Inject Interface
 class ProjectListItemInterfaceImpl(val context: Context)

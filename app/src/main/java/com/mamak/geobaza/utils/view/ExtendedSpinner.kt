@@ -1,4 +1,4 @@
-package com.mamak.geobaza.utils
+package com.mamak.geobaza.utils.view
 
 import android.content.Context
 import android.util.AttributeSet

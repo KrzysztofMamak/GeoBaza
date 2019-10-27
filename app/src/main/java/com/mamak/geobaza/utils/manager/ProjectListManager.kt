@@ -1,4 +1,4 @@
-package com.mamak.geobaza.utils
+package com.mamak.geobaza.utils.manager
 
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
@@ -6,9 +6,12 @@ import com.mamak.geobaza.data.singleton.ProjectLab
 //TODO Refactor, Safe
 object ProjectListManager {
     var area = "All"
-    var state: State = ProjectListManager.State.ALL
-    var sort: Sort = ProjectListManager.Sort.NUMBER
-    var order: Order = ProjectListManager.Order.INCREASE
+    var state: State =
+        ProjectListManager.State.ALL
+    var sort: Sort =
+        ProjectListManager.Sort.NUMBER
+    var order: Order =
+        ProjectListManager.Order.INCREASE
 
     fun getRequiredProjects(): MutableList<Project> {
         val originalList = ProjectLab.getAllProjects()
@@ -92,10 +95,10 @@ object ProjectListManager {
     }
 
     fun setAttributes(area: String, state: State, sort: Sort, order: Order) {
-        this.area = area
-        this.state = state
-        this.sort = sort
-        this.order = order
+        ProjectListManager.area = area
+        ProjectListManager.state = state
+        ProjectListManager.sort = sort
+        ProjectListManager.order = order
     }
 
     enum class State {

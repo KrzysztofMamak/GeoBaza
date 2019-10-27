@@ -1,11 +1,10 @@
-package com.mamak.geobaza.utils
+package com.mamak.geobaza.utils.view
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import androidx.annotation.DrawableRes
 import com.mamak.geobaza.R
 import kotlinx.android.synthetic.main.layout_empty_view.view.*
 

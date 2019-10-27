@@ -1,4 +1,4 @@
-package com.mamak.geobaza.utils
+package com.mamak.geobaza.utils.constans
 
 object AppConstans {
     const val BASE_URL = "http://192.168.0.105:8080/"
