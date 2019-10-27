@@ -1,9 +1,11 @@
 package com.mamak.geobaza.utils
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.annotation.DrawableRes
 import com.mamak.geobaza.R
 import kotlinx.android.synthetic.main.layout_empty_view.view.*
 
@@ -13,24 +15,26 @@ class EmptyView(context: Context, attributeSet: AttributeSet) : FrameLayout(cont
         addView(view)
     }
 
-    fun showNoDataEmptyView(message: String = context.getString(R.string.ev_empty_project_list)) {
-        iv_empty_view.setImageDrawable(context.getDrawable(R.drawable.ic_no_data))
-        tv_empty_view.text = message
-    }
-
-    fun showNoInternetEmptyView(message: String = context.getString(R.string.ev_no_internet)) {
-        iv_empty_view.setImageDrawable(context.getDrawable(R.drawable.ic_no_internet))
-        tv_empty_view.text = message
-    }
-
-    fun showNoServiceEmptyView(message: String = context.getString(R.string.ev_no_service)) {
-        iv_empty_view.setImageDrawable(context.getDrawable(R.drawable.ic_no_service))
-        tv_empty_view.text = message
-    }
-
-    companion object {
-        enum class EmptyViewType {
-            NO_DATA, NO_INTERNET, NO_SERVICE
+    fun draw(type: Type) {
+        when (type) {
+            Type.NO_DATA -> {
+                draw(context.getString(R.string.ev_no_data), context.getDrawable(R.drawable.ic_no_data))
+            }
+            Type.NO_INTERNET -> {
+                draw(context.getString(R.string.ev_no_internet), context.getDrawable(R.drawable.ic_no_internet))
+            }
+            Type.NO_SERVICE -> {
+                draw(context.getString(R.string.ev_no_service), context.getDrawable(R.drawable.ic_no_service))
+            }
         }
+    }
+
+    fun draw(message: String, drawable: Drawable?) {
+        iv_empty_view.setImageDrawable(drawable)
+        tv_empty_view.text = message
+    }
+
+    enum class Type {
+        NO_DATA, NO_INTERNET, NO_SERVICE
     }
 }

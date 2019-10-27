@@ -11,7 +11,7 @@ import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.utils.ProjectListManager
 import kotlinx.android.synthetic.main.fragment_filter_project_list.*
 
-
+//TODO Refactor
 class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterface) : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_filter_project_list, container, false)

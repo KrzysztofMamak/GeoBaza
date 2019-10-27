@@ -105,17 +105,19 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     private fun handleErrorResponse(exception: Exception? = null) {
         hideProgressBar()
         srl_projects.isRefreshing = false
+        setEmptyViewOnClick()
         when (exception) {
             is SocketTimeoutException -> {
-                showEmptyView(EmptyView.Companion.EmptyViewType.NO_SERVICE)
+                ev_project_list.draw(EmptyView.Type.NO_SERVICE)
             }
             is ConnectException -> {
-                showEmptyView(EmptyView.Companion.EmptyViewType.NO_INTERNET)
+                ev_project_list.draw(EmptyView.Type.NO_INTERNET)
             }
             else -> {
-                showEmptyView(EmptyView.Companion.EmptyViewType.NO_DATA)
+                ev_project_list.draw(EmptyView.Type.NO_DATA)
             }
         }
+        ev_project_list.visibility = View.VISIBLE
     }
 
     private fun showProgressBar() {
@@ -128,22 +130,6 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         pb_projects.visibility = View.GONE
         srl_projects.visibility = View.VISIBLE
         rv_projects.visibility = View.VISIBLE
-    }
-
-    private fun showEmptyView(emptyViewType: EmptyView.Companion.EmptyViewType) {
-        setEmptyViewOnClick()
-        when (emptyViewType) {
-            EmptyView.Companion.EmptyViewType.NO_DATA -> {
-                ev_project_list.showNoDataEmptyView()
-            }
-            EmptyView.Companion.EmptyViewType.NO_INTERNET -> {
-                ev_project_list.showNoInternetEmptyView()
-            }
-            EmptyView.Companion.EmptyViewType.NO_SERVICE -> {
-                ev_project_list.showNoServiceEmptyView()
-            }
-        }
-        ev_project_list.visibility = View.VISIBLE
     }
 
     private fun setEmptyViewOnClick() {
@@ -182,15 +168,9 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     private fun setNavigationDrawer() {
         nv_project_list.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_travel_planner -> {
-                    true
-                }
-                R.id.nav_statistics -> {
-                    true
-                }
-                R.id.nav_setting -> {
-                    true
-                }
+                R.id.nav_travel_planner -> true
+                R.id.nav_statistics -> true
+                R.id.nav_setting -> true
                 else -> true
             }
         }

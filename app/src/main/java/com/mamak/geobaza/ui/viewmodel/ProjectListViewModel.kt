@@ -43,7 +43,9 @@ class ProjectListViewModel @Inject constructor(
                     projectsLiveData.postValue(Resource.success(it))
                 },
                 onError = {
-                    val projects = appDatabase.projectDao().getAllProjects().map { it.toProject() }
+                    val projects = appDatabase.projectDao().getAllProjects().map {
+                        it.toProject()
+                    }
                     projectsLiveData.postValue(Resource.success(projects))
                 }
             )
