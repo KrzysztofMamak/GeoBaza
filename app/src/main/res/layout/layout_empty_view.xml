@@ -8,7 +8,7 @@
 
     <ImageView
             android:id="@+id/iv_empty_view"
-            android:contentDescription="@string/cd_empty_view_icon"
+            android:contentDescription="@null"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintTop_toTopOf="parent"
