@@ -10,12 +10,12 @@
             android:id="@+id/tl_project"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorSecondary"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorColor="@color/colorTextOnPrimary"
             app:tabIndicatorHeight="1.6dp"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/white"
+            app:tabSelectedTextColor="@color/colorTextOnPrimary"
             app:tabTextColor="@color/colorTextOnPrimary" />
 
     <androidx.viewpager.widget.ViewPager

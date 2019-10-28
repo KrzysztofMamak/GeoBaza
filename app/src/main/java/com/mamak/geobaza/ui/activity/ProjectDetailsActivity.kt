@@ -1,6 +1,11 @@
 package com.mamak.geobaza.ui.activity
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.WindowManager
+import androidx.core.app.NavUtils
+import androidx.core.content.ContextCompat
 import com.mamak.geobaza.R
 import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
@@ -27,5 +32,32 @@ class ProjectDetailsActivity : BaseActivity() {
         }
         vp_project.adapter = projectDetailsTabAdapter
         tl_project.setupWithViewPager(vp_project)
+    }
+
+    override fun setActionBarColor() {
+        supportActionBar?.apply {
+            setBackgroundDrawable(ColorDrawable(getColor(R.color.colorSecondary)))
+            elevation = 0F
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(false)
+        }
+    }
+
+    override fun setStatusBar() {
+        window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = ContextCompat.getColor(this@ProjectDetailsActivity, R.color.colorSecondaryDark)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                NavUtils.navigateUpFromSameTask(this)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
