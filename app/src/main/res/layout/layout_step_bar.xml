@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+            android:id="@+id/iv_first_step"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/item_circle_full"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v_first_line"/>
+
+    <View
+            android:id="@+id/v_first_line"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:background="#19D8C8"
+            app:layout_constraintStart_toEndOf="@id/iv_first_step"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_second_step"/>
+
+    <ImageView
+            android:id="@+id/iv_second_step"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/item_circle_full"
+            app:layout_constraintStart_toEndOf="@id/v_first_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v_second_line"/>
+
+    <View
+            android:id="@+id/v_second_line"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:background="#19D8C8"
+            app:layout_constraintStart_toEndOf="@id/iv_second_step"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_thirth_step"/>
+
+    <ImageView
+            android:id="@+id/iv_thirth_step"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/item_circle"
+            app:layout_constraintStart_toEndOf="@id/v_second_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/v_thirth_line"/>
+
+    <View
+            android:id="@+id/v_thirth_line"
+            android:layout_width="30dp"
+            android:layout_height="1dp"
+            android:background="#19D8C8"
+            app:layout_constraintStart_toEndOf="@id/iv_thirth_step"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_fourth_step"/>
+
+    <ImageView
+            android:id="@+id/iv_fourth_step"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/item_circle"
+            app:layout_constraintStart_toEndOf="@id/v_thirth_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

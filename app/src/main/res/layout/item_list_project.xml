@@ -17,7 +17,7 @@
             android:contentDescription="@string/cd_project_number"
             android:layout_width="@dimen/icon_touch_size_medium"
             android:layout_height="@dimen/icon_touch_size_medium"
-            android:background="@drawable/item_circle_text_view"
+            android:background="@drawable/item_circle"
             android:textSize="20sp"
             android:textColor="@color/colorSecondaryLight"
             android:gravity="center"
