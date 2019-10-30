@@ -23,6 +23,7 @@ import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.FilterDialogFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
+import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_ACCESS_FINE_LOCATION
 import com.mamak.geobaza.utils.view.EmptyView
 import com.mamak.geobaza.utils.manager.LocationManager
@@ -189,6 +190,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
 
         override fun openProjectDetails(number: Int?) {
             val intent = Intent(this@ProjectListActivity, ProjectDetailsActivity::class.java)
+            intent.putExtra(EXTRA_PROJECT_NUMBER, number)
             startActivity(intent)
         }
     }

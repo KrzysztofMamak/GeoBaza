@@ -7,20 +7,32 @@ import android.view.WindowManager
 import androidx.core.app.NavUtils
 import androidx.core.content.ContextCompat
 import com.mamak.geobaza.R
+import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
 import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
+import com.mamak.geobaza.utils.constans.AppConstans
+import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import kotlinx.android.synthetic.main.activity_details_project.*
 
+//TODO getting project from db via viewmodel and manage it in fragments
 class ProjectDetailsActivity : BaseActivity() {
     private lateinit var projectDetailsTabAdapter: ProjectDetailsTabAdapter
+    private var project: Project? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_project)
+        setCurrentProject()
         setAdapter()
+    }
+
+    private fun setCurrentProject() {
+        val projectNumber = intent.getIntExtra(EXTRA_PROJECT_NUMBER, 1)
+        project = ProjectLab.getProject(projectNumber)
     }
 
     private fun setAdapter() {

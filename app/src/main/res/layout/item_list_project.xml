@@ -9,8 +9,7 @@
         android:paddingBottom="@dimen/default_padding_margin"
         android:paddingStart="@dimen/default_padding_margin_x"
         android:paddingEnd="@dimen/default_padding_margin_x"
-        android:background="@color/colorPrimary"
-        android:layout_marginBottom="@dimen/divider_small">
+        android:background="@color/colorPrimary">
 
     <TextView
             android:id="@+id/tv_project_number"
