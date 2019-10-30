@@ -12,24 +12,24 @@
         android:background="@color/colorPrimary">
 
     <TextView
-            android:id="@+id/tv_field_value"
+            android:id="@+id/tv_property_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_huge"
             android:textColor="@color/colorTextOnPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_field_name"
+            app:layout_constraintBottom_toTopOf="@id/tv_property_name"
             tools:text="Wodzisławski"/>
 
     <TextView
-            android:id="@+id/tv_field_name"
+            android:id="@+id/tv_property_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_big"
             android:textColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_field_value"
+            app:layout_constraintTop_toBottomOf="@id/tv_property_value"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Powiat"/>
 

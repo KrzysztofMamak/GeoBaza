@@ -3,11 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:paddingTop="@dimen/default_padding_margin"
-        android:paddingBottom="@dimen/default_padding_margin"
-        android:paddingStart="@dimen/default_padding_margin_x"
-        android:paddingEnd="@dimen/default_padding_margin_x">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_first_step"
