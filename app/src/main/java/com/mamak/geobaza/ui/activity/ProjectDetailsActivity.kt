@@ -38,7 +38,7 @@ class ProjectDetailsActivity : BaseActivity() {
     private fun setAdapter() {
         projectDetailsTabAdapter = ProjectDetailsTabAdapter(supportFragmentManager)
         projectDetailsTabAdapter.apply {
-            addFragment(ProjectOverviewFragment(), getString(R.string.overview))
+            addFragment(ProjectOverviewFragment(project), getString(R.string.overview))
             addFragment(ProjectMapFragment(), getString(R.string.map))
             addFragment(ProjectSketchFragment(), getString(R.string.sketch))
         }
