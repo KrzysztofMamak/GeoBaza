@@ -15,7 +15,8 @@
             app:layout_constraintEnd_toStartOf="@id/v_first_line">
 
         <ImageView
-                android:id="@+id/iv_first_step"
+                android:id="@+id/iv_first_step_background"
+                android:contentDescription="@null"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/item_circle_full"
@@ -25,9 +26,11 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
+                android:id="@+id/iv_first_step_foreground"
+                android:contentDescription="@null"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_check"
+                android:src="@drawable/ic_print"
                 android:tint="@color/colorTextOnPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +59,8 @@
             app:layout_constraintEnd_toStartOf="@id/v_second_line">
 
         <ImageView
-                android:id="@+id/iv_second_step"
+                android:id="@+id/iv_second_step_background"
+                android:contentDescription="@null"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/item_circle_full"
@@ -66,9 +70,11 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
+                android:id="@+id/iv_second_step_foreground"
+                android:contentDescription="@null"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_check"
+                android:src="@drawable/ic_golf_course"
                 android:tint="@color/colorTextOnPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -85,19 +91,20 @@
             app:layout_constraintStart_toEndOf="@id/container_second_step"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/container_thirth_step"/>
+            app:layout_constraintEnd_toStartOf="@id/container_third_step"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_thirth_step"
+            android:id="@+id/container_third_step"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/v_second_line"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/v_thirth_line">
+            app:layout_constraintEnd_toStartOf="@id/v_third_line">
 
         <ImageView
-                android:id="@+id/iv_thirth_step"
+                android:id="@+id/iv_third_step_background"
+                android:contentDescription="@null"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/item_circle"
@@ -107,9 +114,11 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
+                android:id="@+id/iv_third_step_foreground"
+                android:contentDescription="@null"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_cross"
+                android:src="@drawable/ic_gps_fixed"
                 android:tint="@color/colorSecondaryLight"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -119,11 +128,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-            android:id="@+id/v_thirth_line"
+            android:id="@+id/v_third_line"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/colorSecondaryLight"
-            app:layout_constraintStart_toEndOf="@id/container_thirth_step"
+            app:layout_constraintStart_toEndOf="@id/container_third_step"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/container_fourth_step"/>
@@ -132,13 +141,14 @@
             android:id="@+id/container_fourth_step"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/v_thirth_line"
+            app:layout_constraintStart_toEndOf="@id/v_third_line"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
-                android:id="@+id/iv_fourth_step"
+                android:id="@+id/iv_fourth_step_background"
+                android:contentDescription="@null"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/item_circle"
@@ -148,9 +158,11 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
+                android:id="@+id/iv_fourth_step_foreground"
+                android:contentDescription="@null"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_cross"
+                android:src="@drawable/ic_check"
                 android:tint="@color/colorSecondaryLight"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

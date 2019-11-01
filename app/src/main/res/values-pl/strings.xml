@@ -94,5 +94,6 @@
     <string name="cd_navigation_icon">Ikona nawigacji</string>
     <string name="cd_project_number">Numer projektu</string>
     <string name="cd_empty_view_icon">Ikona pustego widoku</string>
+    <string name="cd_edit_project">Edytuj projekt</string>
     <!-- End -> Content Description -->
 </resources>

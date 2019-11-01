@@ -1,6 +1,5 @@
 package com.mamak.geobaza.ui.fragment
 
-import android.graphics.LinearGradient
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,5 +33,20 @@ class ProjectOverviewFragment(private val project: Project?) : Fragment() {
 
     private fun setProjectDataAdapter(project: Project?) {
         projectDataAdapter.setFields(MappingManager.projectToFieldList(project))
+    }
+
+    private fun initStepbar() {
+//        TODO managing stepbar
+        project?.let {
+            if (it.isMarked) {
+
+            }
+            if (it.isMeasured) {
+
+            }
+            if (it.isDone) {
+
+            }
+        }
     }
 }
