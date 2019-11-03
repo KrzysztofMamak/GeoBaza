@@ -73,7 +73,7 @@
     <string name="all">Wszystkie</string>
     <string name="marked">Wytyczone</string>
     <string name="measured">Zmierzone</string>
-    <string name="done">Gotowe</string>
+    <string name="finished">Gotowe</string>
     <string name="number">Numer</string>
     <string name="distance">Dystans</string>
     <string name="alphabet">Alfabet</string>

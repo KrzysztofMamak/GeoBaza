@@ -43,6 +43,7 @@ ext {
     picasso_version = "2.71828"
     permission_manager_version = "1.0.0"
     map_box_version = "8.4.0"
+    open_street_map_version = "6.1.2"
 }
 
 dependencies {
@@ -99,4 +100,7 @@ dependencies {
 
     //MapBox
     implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:$map_box_version"
+
+    //OpenStreetMap
+    implementation "org.osmdroid:osmdroid-android:$open_street_map_version"
 }

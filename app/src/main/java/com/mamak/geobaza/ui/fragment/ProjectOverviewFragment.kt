@@ -44,7 +44,7 @@ class ProjectOverviewFragment(private val project: Project?) : Fragment() {
             if (it.isMeasured) {
 
             }
-            if (it.isDone) {
+            if (it.isFinished) {
 
             }
         }

@@ -54,7 +54,7 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
         val position: Int = when (ProjectListManager.state) {
             ProjectListManager.State.MARKED -> spinner_state.getIndex(getString(R.string.marked))
             ProjectListManager.State.MEASURED -> spinner_state.getIndex(getString(R.string.measured))
-            ProjectListManager.State.DONE -> spinner_state.getIndex(getString(R.string.done))
+            ProjectListManager.State.DONE -> spinner_state.getIndex(getString(R.string.finished))
             else -> spinner_state.getIndex(getString(R.string.all))
         }
         spinner_state.setSelection(position)
@@ -106,7 +106,7 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
         return when (spinner_state.selectedItem) {
             getString(R.string.marked) -> ProjectListManager.State.MARKED
             getString(R.string.measured) -> ProjectListManager.State.MEASURED
-            getString(R.string.done) -> ProjectListManager.State.DONE
+            getString(R.string.finished) -> ProjectListManager.State.DONE
             else -> ProjectListManager.State.ALL
         }
     }

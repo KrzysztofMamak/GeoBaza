@@ -14,9 +14,11 @@ import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
 import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
-import com.mamak.geobaza.utils.constans.AppConstans
+import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
+import com.mapbox.mapboxsdk.Mapbox
 import kotlinx.android.synthetic.main.activity_details_project.*
+
 
 //TODO getting project from db via viewmodel and manage it in fragments
 class ProjectDetailsActivity : BaseActivity() {
@@ -25,6 +27,7 @@ class ProjectDetailsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Mapbox.getInstance(this, ACCESS_TOKEN_MAPBOX)
         setContentView(R.layout.activity_details_project)
         setCurrentProject()
         setAdapter()
@@ -39,7 +42,7 @@ class ProjectDetailsActivity : BaseActivity() {
         projectDetailsTabAdapter = ProjectDetailsTabAdapter(supportFragmentManager)
         projectDetailsTabAdapter.apply {
             addFragment(ProjectOverviewFragment(project), getString(R.string.overview))
-            addFragment(ProjectMapFragment(), getString(R.string.map))
+            addFragment(ProjectMapFragment(project), getString(R.string.map))
             addFragment(ProjectSketchFragment(), getString(R.string.sketch))
         }
         vp_project.adapter = projectDetailsTabAdapter

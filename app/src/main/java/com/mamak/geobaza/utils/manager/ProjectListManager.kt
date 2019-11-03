@@ -23,6 +23,7 @@ object ProjectListManager {
         return resultList
     }
 
+//    TODO correct
     private fun filterProjects(list: List<Project>): List<Project> {
         var tempList =  mutableListOf<Project>()
         tempList.addAll(list)
@@ -38,7 +39,7 @@ object ProjectListManager {
             when (state) {
                 ProjectListManager.State.MARKED -> it.isMarked
                 ProjectListManager.State.MEASURED -> it.isMeasured
-                ProjectListManager.State.DONE -> it.isDone
+                ProjectListManager.State.DONE -> it.isFinished
                 else -> true
             }
         }

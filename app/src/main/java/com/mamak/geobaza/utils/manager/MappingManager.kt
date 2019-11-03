@@ -13,9 +13,11 @@ object MappingManager {
             add(Pair("Opis", project?.description))
             add(Pair("Ilość punktów", project?.pointList?.size.toString()))
             add(Pair("Data otrzymania", project?.startDate))
+            add(Pair("Data przetworzenia", project?.processDate))
             add(Pair("Data wytyczenia", project?.markDate))
             add(Pair("Data pomiaru", project?.measureDate))
             add(Pair("Data zakończenia", project?.number.toString()))
+            add(Pair("Notatka", project?.note))
         }
         return fieldList
     }

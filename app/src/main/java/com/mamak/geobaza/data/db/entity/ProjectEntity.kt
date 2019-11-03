@@ -25,17 +25,23 @@ data class ProjectEntity(
     @ColumnInfo(name = "pointList")
     var pointList: List<Point>,
 
+    @ColumnInfo(name = "isProcessed")
+    var isProcessed: Boolean,
+
     @ColumnInfo(name = "isMarked")
     var isMarked: Boolean,
 
     @ColumnInfo(name = "isMeasured")
     var isMeasured: Boolean,
 
-    @ColumnInfo(name = "isDone")
-    var isDone: Boolean,
+    @ColumnInfo(name = "isFinished")
+    var isFinished: Boolean,
 
     @ColumnInfo(name = "startDate")
     var startDate: String?,
+
+    @ColumnInfo(name = "processDate")
+    var processDate: String?,
 
     @ColumnInfo(name = "markDate")
     var markDate: String?,
@@ -43,8 +49,11 @@ data class ProjectEntity(
     @ColumnInfo(name = "measureDate")
     var measureDate: String?,
 
-    @ColumnInfo(name = "doneDate")
-    var doneDate: String?
+    @ColumnInfo(name = "finishDate")
+    var finishDate: String?,
+
+    @ColumnInfo(name = "note")
+    var note: String?
 ) {
     fun toProject(): Project {
         return Project(
@@ -54,13 +63,16 @@ data class ProjectEntity(
             street,
             description,
             pointList,
+            isProcessed,
             isMarked,
             isMeasured,
-            isDone,
+            isFinished,
             startDate,
+            processDate,
             markDate,
             measureDate,
-            doneDate
+            finishDate,
+            note
         )
     }
 }
