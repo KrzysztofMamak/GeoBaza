@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamak.geobaza.R
@@ -21,6 +22,7 @@ class ProjectOverviewFragment(private val project: Project?) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecycler()
+        initStepbar()
         setProjectDataAdapter(project)
     }
 
@@ -38,15 +40,24 @@ class ProjectOverviewFragment(private val project: Project?) : Fragment() {
     private fun initStepbar() {
 //        TODO managing stepbar
         project?.let {
-            if (it.isMarked) {
+            when {
+                it.isProcessed -> {
 
-            }
-            if (it.isMeasured) {
+                }
+                it.isMarked -> {
 
-            }
-            if (it.isFinished) {
+                }
+                it.isMeasured -> {
 
+                }
+                it.isFinished -> {
+
+                }
             }
         }
+    }
+
+    private fun setStep(foreground: ImageView, background: ImageView) {
+
     }
 }
