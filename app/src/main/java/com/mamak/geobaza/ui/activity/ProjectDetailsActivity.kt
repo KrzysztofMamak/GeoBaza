@@ -6,22 +6,31 @@ import android.view.MenuItem
 import android.view.WindowManager
 import androidx.core.app.NavUtils
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
+import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
 import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
+import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
+import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mapbox.mapboxsdk.Mapbox
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_details_project.*
+import javax.inject.Inject
 
-
-//TODO getting project from db via viewmodel and manage it in fragments
 class ProjectDetailsActivity : BaseActivity() {
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelFactory
+    @Inject
+    internal lateinit var  projectDetailsSharedViewModel: ProjectDetailsSharedViewModel
+
     private lateinit var projectDetailsTabAdapter: ProjectDetailsTabAdapter
     private var project: Project? = null
 
@@ -29,13 +38,18 @@ class ProjectDetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, ACCESS_TOKEN_MAPBOX)
         setContentView(R.layout.activity_details_project)
+        AndroidInjection.inject(this)
+        initViewModel()
         setCurrentProject()
-        setAdapter()
     }
 
     private fun setCurrentProject() {
         val projectNumber = intent.getIntExtra(EXTRA_PROJECT_NUMBER, 1)
-        project = ProjectLab.getProject(projectNumber)
+        projectDetailsSharedViewModel.getProjectFromDb(projectNumber)
+        projectDetailsSharedViewModel.getProjectLiveData().observe(this, Observer {
+            project = it
+            setAdapter()
+        })
     }
 
     private fun setAdapter() {
@@ -47,6 +61,10 @@ class ProjectDetailsActivity : BaseActivity() {
         }
         vp_project.adapter = projectDetailsTabAdapter
         tl_project.setupWithViewPager(vp_project)
+    }
+
+    private fun initViewModel() {
+        projectDetailsSharedViewModel = viewModelFactory.create(projectDetailsSharedViewModel::class.java)
     }
 
     override fun setActionBarColor() {

@@ -95,11 +95,9 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     private fun handleSuccessResponse(projects: List<Project>) {
         Handler().postDelayed({
             hideProgressBar()
-                    srl_projects.isRefreshing = false
-                    ev_project_list.visibility = View.GONE
-                    ProjectLab.setProjects(projects).also {
-                        projectListAdapter.setProjects()
-                    }
+            srl_projects.isRefreshing = false
+            ev_project_list.visibility = View.GONE
+            projectListAdapter.setProjects(projects.toMutableList())
         }, DELAY_SHORT)
     }
 

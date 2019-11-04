@@ -33,14 +33,14 @@ class ProjectListAdapter @Inject constructor(private val projectListItemCommunic
         holder.bindView(filteredProjects[position])
     }
 
-    fun setProjects() {
-        this.projects = ProjectListManager.getRequiredProjects()
-        this.filteredProjects = ProjectListManager.getRequiredProjects()
+    fun setProjects(projects: MutableList<Project>) {
+        this.projects = projects
+        this.filteredProjects = projects
         notifyDataSetChanged()
     }
 
     fun filterProjects() {
-        filteredProjects = ProjectListManager.getRequiredProjects()
+        filteredProjects = ProjectListManager.getRequiredProjects(projects)
         notifyDataSetChanged()
     }
 

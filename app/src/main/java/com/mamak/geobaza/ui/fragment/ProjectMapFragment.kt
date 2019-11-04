@@ -51,8 +51,8 @@ class ProjectMapFragment(private val project: Project?)
         mv_project_map.onStop()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         mv_project_map.onDestroy()
     }
 

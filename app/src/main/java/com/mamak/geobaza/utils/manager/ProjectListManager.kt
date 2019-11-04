@@ -1,7 +1,6 @@
 package com.mamak.geobaza.utils.manager
 
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.data.singleton.ProjectLab
 
 object ProjectListManager {
     const val ALL_AREAS = "ALL"
@@ -14,11 +13,10 @@ object ProjectListManager {
     var order: Order =
         ProjectListManager.Order.INCREASE
 
-    fun getRequiredProjects(): MutableList<Project> {
-        val originalList = ProjectLab.getAllProjects()
+    fun getRequiredProjects(projects: MutableList<Project>): MutableList<Project> {
         var resultList = mutableListOf<Project>()
 
-        resultList.addAll(filterProjects(originalList))
+        resultList.addAll(filterProjects(projects))
         resultList = sortProjects(resultList).toMutableList()
 
         return resultList

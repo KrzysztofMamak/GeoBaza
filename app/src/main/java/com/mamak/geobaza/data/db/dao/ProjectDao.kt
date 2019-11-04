@@ -21,7 +21,7 @@ interface ProjectDao {
     fun getAllProjects(): List<ProjectEntity>
 
     @Query("SELECT * FROM projects WHERE number=:number")
-    fun getProjectByNumber(number: Int): List<ProjectEntity>
+    fun getProjectByNumber(number: Int): ProjectEntity
 
     @Query("DELETE FROM projects")
     fun deleteAllProjects()

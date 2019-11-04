@@ -1,5 +1,6 @@
 package com.mamak.geobaza.di.module
 
+import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.ProjectListActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -8,4 +9,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract fun projectListActivity(): ProjectListActivity
+
+    @ContributesAndroidInjector
+    abstract fun projectDetailsActivity(): ProjectDetailsActivity
 }

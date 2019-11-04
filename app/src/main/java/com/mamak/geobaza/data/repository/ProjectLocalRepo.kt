@@ -11,6 +11,12 @@ class ProjectLocalRepo(private val projectDao: ProjectDao) {
         }
     }
 
+    fun getProjectByNumber(projectNumber: Int): Observable<ProjectEntity> {
+        return Observable.fromCallable {
+            projectDao.getProjectByNumber(projectNumber)
+        }
+    }
+
     fun addProjects(projects: List<ProjectEntity>) {
         projectDao.insert(projects)
     }
