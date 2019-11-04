@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.buchandersenn.android_permission_manager.PermissionManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
@@ -25,8 +24,8 @@ import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_ACCESS_FINE_LOCATION
-import com.mamak.geobaza.utils.view.EmptyView
 import com.mamak.geobaza.utils.manager.LocationManager
+import com.mamak.geobaza.utils.view.EmptyView
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*
@@ -197,7 +196,6 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         return object : FilterDialogInterface {
             override fun filterProjects() {
                 projectListAdapter.filterProjects()
-//                TODO -  Hide SearchView, Refactor
                 this@ProjectListActivity.currentFocus?.clearFocus()
             }
         }
