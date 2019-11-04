@@ -11,7 +11,6 @@ import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.utils.manager.ProjectListManager
 import kotlinx.android.synthetic.main.fragment_filter_project_list.*
 
-//TODO Refactor
 class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterface) : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_filter_project_list, container, false)
@@ -33,6 +32,7 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
     }
 
     private fun setAdapters() {
+//        TODO manage via database
         spinner_area.adapter = createArrayAdapter(R.array.array_area_filter)
         spinner_state.adapter = createArrayAdapter(R.array.array_state_filter)
         spinner_sort_type.adapter = createArrayAdapter(R.array.array_sort_type_filter)
@@ -47,11 +47,17 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
     }
 
     private fun setAreaSpinner() {
-        spinner_area.setSelection(spinner_area.getIndex(ProjectListManager.area))
+        val index = if (ProjectListManager.area == ProjectListManager.ALL_AREAS) {
+            spinner_area.getIndex(getString(R.string.all))
+        } else {
+            spinner_area.getIndex(ProjectListManager.area)
+        }
+        spinner_area.setSelection(index)
     }
 
     private fun setStateSpinner() {
         val position: Int = when (ProjectListManager.state) {
+            ProjectListManager.State.PROCESSED -> spinner_state.getIndex(getString(R.string.processed))
             ProjectListManager.State.MARKED -> spinner_state.getIndex(getString(R.string.marked))
             ProjectListManager.State.MEASURED -> spinner_state.getIndex(getString(R.string.measured))
             ProjectListManager.State.DONE -> spinner_state.getIndex(getString(R.string.finished))
@@ -99,11 +105,17 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
     }
 
     private fun applyAreaChanges(): String {
-        return spinner_area.selectedItem as String
+        val area = spinner_area.selectedItem as String
+        return if (area == getString(R.string.all)) {
+            ProjectListManager.ALL_AREAS
+        } else {
+            area
+        }
     }
 
     private fun applyStateChanges(): ProjectListManager.State {
         return when (spinner_state.selectedItem) {
+            getString(R.string.processed) -> ProjectListManager.State.PROCESSED
             getString(R.string.marked) -> ProjectListManager.State.MARKED
             getString(R.string.measured) -> ProjectListManager.State.MEASURED
             getString(R.string.finished) -> ProjectListManager.State.DONE
@@ -113,17 +125,17 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
 
     private fun applySortChanges(): ProjectListManager.Sort {
         return when (spinner_sort_type.selectedItem) {
-            getString(R.string.number) -> ProjectListManager.Sort.NUMBER
+            getString(R.string.complexity) -> ProjectListManager.Sort.COMPLEXITY
             getString(R.string.distance) -> ProjectListManager.Sort.DISTANCE
             getString(R.string.alphabet) -> ProjectListManager.Sort.ALPHABET
-            else -> ProjectListManager.Sort.COMPLEXITY
+            else -> ProjectListManager.Sort.NUMBER
         }
     }
 
     private fun applyOrderChanges(): ProjectListManager.Order {
         return when (spinner_sort_order.selectedItem) {
-            getString(R.string.increase) -> ProjectListManager.Order.INCREASE
-            else -> ProjectListManager.Order.DECREASE
+            getString(R.string.decrease) -> ProjectListManager.Order.DECREASE
+            else -> ProjectListManager.Order.INCREASE
         }
     }
 }

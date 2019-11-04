@@ -29,16 +29,17 @@
     <!-- Area -->
     <string-array name="array_area_filter">
         <item>Cieszyn</item>
-        <item>Jastrzębie-Zdrój</item>
+        <item>Jastrzebie-Zdroj</item>
         <item>Pszczyna</item>
         <item>Rybnik</item>
-        <item>Wodzisław Śląski</item>
-        <item>Żory</item>
-        <item>All</item>
+        <item>Wodzislaw Slaski</item>
+        <item>Zory</item>
+        <item>Wszystkie</item>
     </string-array>
 
     <!-- State -->
     <string-array name="array_state_filter">
+        <item>Przetworzone</item>
         <item>Wytyczone</item>
         <item>Zmierzone</item>
         <item>Wykonane</item>
@@ -71,6 +72,7 @@
     <string name="apply">Zastosuj</string>
     <string name="search_filter">Filtr wyszukiwania</string>
     <string name="all">Wszystkie</string>
+    <string name="processed">Przetworzone</string>
     <string name="marked">Wytyczone</string>
     <string name="measured">Zmierzone</string>
     <string name="finished">Gotowe</string>

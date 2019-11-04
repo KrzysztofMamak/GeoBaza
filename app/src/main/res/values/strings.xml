@@ -37,16 +37,17 @@
     <!-- Area -->
     <string-array name="array_area_filter">
         <item>Cieszyn</item>
-        <item>Jastrzębie-Zdrój</item>
+        <item>Jastrzebie-Zdroj</item>
         <item>Pszczyna</item>
         <item>Rybnik</item>
-        <item>Wodzisław Śląski</item>
-        <item>Żory</item>
+        <item>Wodzislaw Slaski</item>
+        <item>Zory</item>
         <item>All</item>
     </string-array>
 
     <!-- State -->
     <string-array name="array_state_filter">
+        <item>Processed</item>
         <item>Marked</item>
         <item>Measured</item>
         <item>Done</item>
@@ -79,6 +80,7 @@
     <string name="apply">Apply</string>
     <string name="search_filter">Search Filter</string>
     <string name="all">All</string>
+    <string name="processed">Processed</string>
     <string name="marked">Marked</string>
     <string name="measured">Measured</string>
     <string name="finished">Done</string>

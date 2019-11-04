@@ -3,9 +3,10 @@ package com.mamak.geobaza.utils.manager
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
 
-//TODO Refactor, Safe
 object ProjectListManager {
-    var area = "All"
+    const val ALL_AREAS = "ALL"
+
+    var area = ALL_AREAS
     var state: State =
         ProjectListManager.State.ALL
     var sort: Sort =
@@ -23,12 +24,11 @@ object ProjectListManager {
         return resultList
     }
 
-//    TODO correct
     private fun filterProjects(list: List<Project>): List<Project> {
         var tempList =  mutableListOf<Project>()
         tempList.addAll(list)
 
-        if (area != "All") {
+        if (area != ALL_AREAS) {
             tempList = tempList.filter {
                 it.area == area
             }.toMutableList()
@@ -37,6 +37,7 @@ object ProjectListManager {
 
         return tempList.filter {
             when (state) {
+                ProjectListManager.State.PROCESSED -> it.isProcessed
                 ProjectListManager.State.MARKED -> it.isMarked
                 ProjectListManager.State.MEASURED -> it.isMeasured
                 ProjectListManager.State.DONE -> it.isFinished
@@ -45,6 +46,7 @@ object ProjectListManager {
         }
     }
 
+//    TODO Refactor
     private fun sortProjects(list: List<Project>): List<Project> {
         return when (sort) {
             ProjectListManager.Sort.NUMBER -> {
@@ -58,7 +60,7 @@ object ProjectListManager {
                     }
                 }
             }
-//            TODO Check
+
             ProjectListManager.Sort.DISTANCE -> {
                 if (order == ProjectListManager.Order.INCREASE) {
                     list.sortedBy {
@@ -103,7 +105,7 @@ object ProjectListManager {
     }
 
     enum class State {
-        MARKED, MEASURED, DONE, ALL
+        PROCESSED, MARKED, MEASURED, DONE, ALL
     }
 
     enum class Sort {
