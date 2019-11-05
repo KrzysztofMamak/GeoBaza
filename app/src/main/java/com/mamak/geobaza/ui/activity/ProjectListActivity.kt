@@ -95,7 +95,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         Handler().postDelayed({
             hideProgressBar()
             srl_projects.isRefreshing = false
-            ev_project_list.visibility = View.GONE
+            ev_projects.visibility = View.GONE
             projectListAdapter.setProjects(projects.toMutableList())
         }, DELAY_SHORT)
     }
@@ -107,16 +107,16 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
         setEmptyViewOnClick()
         when (exception) {
             is SocketTimeoutException -> {
-                ev_project_list.draw(EmptyView.Type.NO_SERVICE)
+                ev_projects.draw(EmptyView.Type.NO_SERVICE)
             }
             is ConnectException -> {
-                ev_project_list.draw(EmptyView.Type.NO_INTERNET)
+                ev_projects.draw(EmptyView.Type.NO_INTERNET)
             }
             else -> {
-                ev_project_list.draw(EmptyView.Type.NO_DATA)
+                ev_projects.draw(EmptyView.Type.NO_DATA)
             }
         }
-        ev_project_list.visibility = View.VISIBLE
+    ev_projects.visibility = View.VISIBLE
     }
 
     private fun showProgressBar() {
@@ -132,7 +132,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun setEmptyViewOnClick() {
-        ev_project_list.setOnClickListener {
+        ev_projects.setOnClickListener {
             getProjects()
             it.visibility = View.GONE
         }
@@ -165,7 +165,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun setNavigationDrawer() {
-        nv_project_list.setNavigationItemSelectedListener {
+        nv_projects.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_travel_planner -> true
                 R.id.nav_statistics -> true

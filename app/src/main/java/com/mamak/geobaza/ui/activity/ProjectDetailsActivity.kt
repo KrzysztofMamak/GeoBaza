@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
@@ -17,7 +16,6 @@ import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
 import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
-import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mapbox.mapboxsdk.Mapbox
@@ -32,7 +30,7 @@ class ProjectDetailsActivity : BaseActivity() {
     internal lateinit var  projectDetailsSharedViewModel: ProjectDetailsSharedViewModel
 
     private lateinit var projectDetailsTabAdapter: ProjectDetailsTabAdapter
-    private var project: Project? = null
+    private lateinit var project: Project
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

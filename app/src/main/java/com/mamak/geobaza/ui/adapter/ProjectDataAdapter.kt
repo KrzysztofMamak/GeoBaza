@@ -7,7 +7,7 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.ui.viewholder.ProjectPropertyViewHolder
 
 class ProjectDataAdapter : RecyclerView.Adapter<ProjectPropertyViewHolder>() {
-    private var fields = mutableListOf<Pair<String, String?>>()
+    private var properties = mutableListOf<Pair<String, String?>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectPropertyViewHolder {
         return ProjectPropertyViewHolder(
@@ -17,14 +17,14 @@ class ProjectDataAdapter : RecyclerView.Adapter<ProjectPropertyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return fields.size
+        return properties.size
     }
 
     override fun onBindViewHolder(holder: ProjectPropertyViewHolder, position: Int) {
-        holder.bindView(fields[position])
+        holder.bindView(properties[position])
     }
 
-    fun setFields(fields: MutableList<Pair<String, String?>>) {
-        this.fields = fields
+    fun setProperties(fields: MutableList<Pair<String, String?>>) {
+        this.properties = fields
     }
 }

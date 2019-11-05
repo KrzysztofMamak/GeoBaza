@@ -12,7 +12,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import kotlinx.android.synthetic.main.fragment_project_map.*
 
-class ProjectMapFragment(private val project: Project?)
+class ProjectMapFragment(private val project: Project)
         : Fragment(), OnMapReadyCallback {
     private lateinit var mapboxMap: MapboxMap
 
@@ -22,8 +22,8 @@ class ProjectMapFragment(private val project: Project?)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mv_project_map.onCreate(savedInstanceState)
-        mv_project_map.getMapAsync(this)
+        mv_project.onCreate(savedInstanceState)
+        mv_project.getMapAsync(this)
     }
 
     override fun onMapReady(mapboxMap: MapboxMap) {
@@ -33,36 +33,36 @@ class ProjectMapFragment(private val project: Project?)
 
     override fun onStart() {
         super.onStart()
-        mv_project_map.onStart()
+        mv_project.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-        mv_project_map.onResume()
+        mv_project.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mv_project_map.onPause()
+        mv_project.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        mv_project_map.onStop()
+        mv_project.onStop()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mv_project_map.onDestroy()
+        mv_project.onDestroy()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mv_project_map.onLowMemory()
+        mv_project.onLowMemory()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mv_project_map.onSaveInstanceState(outState)
+        mv_project.onSaveInstanceState(outState)
     }
 }

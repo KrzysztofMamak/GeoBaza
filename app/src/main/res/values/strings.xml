@@ -101,9 +101,7 @@
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->
-    <string name="cd_navigation_icon">Navigation icon</string>
-    <string name="cd_project_number">Project number</string>
-    <string name="cd_empty_view_icon">EmptyView icon</string>
+    <string name="cd_navigation_icon">Navigate</string>
     <string name="cd_edit_project">Edit project</string>
     <!-- End -> Content Description -->
 </resources>

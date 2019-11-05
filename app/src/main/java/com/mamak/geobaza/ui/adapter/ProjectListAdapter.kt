@@ -84,7 +84,7 @@ class ProjectListAdapter @Inject constructor(private val projectListItemCommunic
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//                TODO Cast Warning -> Try - Catch
+                @Suppress("UNCHECKED_CAST")
                 filteredProjects = results?.values as MutableList<Project>
                 notifyDataSetChanged()
             }
