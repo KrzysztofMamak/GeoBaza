@@ -98,6 +98,10 @@
     <string name="map">Map</string>
     <string name="sketch">Sketch</string>
     <string name="project_data">Project data</string>
+    <string name="create_account">Create new account</string>
+    <string name="login">Login</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

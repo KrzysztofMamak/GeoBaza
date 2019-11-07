@@ -90,6 +90,10 @@
     <string name="map">Mapa</string>
     <string name="sketch">Szkic</string>
     <string name="project_data">Dane projektu</string>
+    <string name="create_account">Utwórz nowe konto</string>
+    <string name="login">Zaloguj się</string>
+    <string name="email_address">Adres Email</string>
+    <string name="password">Hasło</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

@@ -36,6 +36,8 @@
                     android:value=".ui.activity.ProjectListActivity" />
         </activity>
 
+        <activity android:name=".ui.activity.RegistrationLoginActivity" />
+
     </application>
 
 </manifest>

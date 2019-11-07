@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
+import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -23,4 +24,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProjectDetailsSharedViewModel::class)
     protected abstract fun projectDetailsSharedViewModel(projectDetailsSharedViewModel: ProjectDetailsSharedViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegistrationLoginSharedViewModel::class)
+    protected abstract fun registrationLoginSharedViewModel(registrationLoginSharedViewModel: RegistrationLoginSharedViewModel): ViewModel
 }
