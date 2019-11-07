@@ -30,13 +30,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.ProjectDetailsActivity">
+        <activity android:name=".ui.activity.ProjectDetailsActivity"
+                  android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".ui.activity.ProjectListActivity" />
         </activity>
 
-        <activity android:name=".ui.activity.RegistrationLoginActivity" />
+        <activity android:name=".ui.activity.RegistrationLoginActivity"
+                  android:screenOrientation="portrait"/>
 
     </application>
 

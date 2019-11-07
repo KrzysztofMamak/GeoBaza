@@ -9,6 +9,11 @@ import com.mamak.geobaza.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment() {
+//    @Inject
+//    internal lateinit var viewModelFactory: ViewModelFactory
+//    @Inject
+//    internal lateinit var  registrationLoginSharedViewModel: RegistrationLoginSharedViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
@@ -31,4 +36,8 @@ class LoginFragment : BaseFragment() {
     private fun login() {
 
     }
+
+//    private fun initViewModel() {
+//        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+//    }
 }
