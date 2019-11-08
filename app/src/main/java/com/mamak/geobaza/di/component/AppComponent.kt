@@ -17,6 +17,7 @@ import javax.inject.Singleton
     InterfaceModule::class,
     ContextModule::class,
     ActivityModule::class,
+    FragmentModule::class,
     PicassoModule::class,
     DbModule::class,
     LocationModule::class
