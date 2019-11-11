@@ -53,7 +53,7 @@ class LoginFragment : BaseFragment() {
 
     private fun login() {
         val email = et_email.text.toString()
-        val password = et_password.toString()
+        val password = et_password.text.toString()
         registrationLoginSharedViewModel.login(email, password)
 
         registrationLoginSharedViewModel.getLoginLiveData().observe(this, Observer { resource ->
