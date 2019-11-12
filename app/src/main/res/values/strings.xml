@@ -102,6 +102,8 @@
     <string name="login">Login</string>
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm password</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

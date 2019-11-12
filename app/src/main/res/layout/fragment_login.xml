@@ -31,7 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/container_login_input"
+                android:id="@+id/container_email_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
@@ -69,7 +69,7 @@
                 android:id="@+id/container_password_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/container_login_input"
+                app:layout_constraintTop_toBottomOf="@id/container_email_input"
                 app:layout_constraintBottom_toTopOf="@id/b_login"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -106,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login"
                 android:textSize="@dimen/text_huge"
+                android:textColor="@color/colorTextOnSecondary"
                 android:background="@drawable/item_circle_full"
                 android:layout_marginTop="@dimen/default_padding_margin"
                 app:layout_constraintStart_toStartOf="parent"

@@ -94,6 +94,8 @@
     <string name="login">Zaloguj się</string>
     <string name="email_address">Adres Email</string>
     <string name="password">Hasło</string>
+    <string name="register">Zarejestruj</string>
+    <string name="confirm_password">Potwierdź hasło</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

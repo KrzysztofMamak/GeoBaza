@@ -1,8 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+    <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="@dimen/text_header_big"
+            android:textColor="@color/colorSecondaryLight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/container_register"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_margin_xxxx"
+            android:layout_marginEnd="@dimen/default_padding_margin_xxxx"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_email_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/container_password_input_first"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/iv_email"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_person"
+                    android:tint="@color/colorSecondaryLight"
+                    android:layout_width="@dimen/icon_touch_size_small"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/email_address"
+                    android:textColor="@color/colorSecondaryLight"
+                    android:textColorHint="@color/colorSecondaryLight"
+                    app:layout_constraintStart_toEndOf="@id/iv_email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_password_input_first"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/container_email_input"
+                app:layout_constraintBottom_toTopOf="@id/container_password_input_second"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/iv_password_first"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_lock_outline"
+                    android:tint="@color/colorSecondaryLight"
+                    android:layout_width="@dimen/icon_touch_size_small"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                    android:id="@+id/et_password_first"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    android:textColor="@color/colorSecondaryLight"
+                    android:textColorHint="@color/colorSecondaryLight"
+                    app:layout_constraintStart_toEndOf="@id/iv_password_first"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_password_input_second"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/container_password_input_first"
+                app:layout_constraintBottom_toTopOf="@id/b_register"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                    android:id="@+id/iv_password_second"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_lock"
+                    android:tint="@color/colorSecondaryLight"
+                    android:layout_width="@dimen/icon_touch_size_small"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                    android:id="@+id/et_password_second"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/confirm_password"
+                    android:textColor="@color/colorSecondaryLight"
+                    android:textColorHint="@color/colorSecondaryLight"
+                    app:layout_constraintStart_toEndOf="@id/iv_password_second"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+                android:id="@+id/b_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:textSize="@dimen/text_huge"
+                android:textColor="@color/colorTextOnSecondary"
+                android:background="@drawable/item_circle_full"
+                android:layout_marginTop="@dimen/default_padding_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/container_password_input_second"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

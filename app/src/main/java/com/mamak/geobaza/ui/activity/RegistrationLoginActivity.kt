@@ -1,6 +1,9 @@
 package com.mamak.geobaza.ui.activity
 
 import android.os.Bundle
+import android.view.WindowManager
+import android.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
@@ -33,5 +36,13 @@ class RegistrationLoginActivity : BaseActivity() {
         transaction.replace(R.id.container_fragment, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun setStatusBar() {
+        window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = ContextCompat.getColor(this@RegistrationLoginActivity, R.color.colorPrimaryDark)
+        }
     }
 }
