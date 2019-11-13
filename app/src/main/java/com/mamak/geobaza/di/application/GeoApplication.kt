@@ -6,7 +6,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.di.component.DaggerAppComponent
 import com.mamak.geobaza.di.module.*
 import com.mamak.geobaza.ui.activity.ProjectListActivity
-import com.mamak.geobaza.ui.activity.RegistrationLoginActivity
 
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
