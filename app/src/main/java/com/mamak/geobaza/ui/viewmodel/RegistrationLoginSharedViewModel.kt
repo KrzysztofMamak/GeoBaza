@@ -56,4 +56,8 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
 
     fun getLoginLiveData() = loginLiveData
     fun getRegistrationLiveData() = registrationLiveData
+
+    override fun onCleared() {
+        onStop()
+    }
 }

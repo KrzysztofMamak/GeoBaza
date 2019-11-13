@@ -1,7 +1,7 @@
 package com.mamak.geobaza.di.component
 
 import android.app.Application
-import com.mamak.geobaza.di.controller.AppController
+import com.mamak.geobaza.di.application.GeoApplication
 import com.mamak.geobaza.di.module.ViewModelModule
 import com.mamak.geobaza.di.module.*
 import dagger.BindsInstance
@@ -46,5 +46,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun inject(appController: AppController)
+    fun inject(geoApplication: GeoApplication)
 }

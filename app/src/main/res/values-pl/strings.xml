@@ -96,6 +96,7 @@
     <string name="password">Hasło</string>
     <string name="register">Zarejestruj</string>
     <string name="confirm_password">Potwierdź hasło</string>
+    <string name="sign_out">Wyloguj się</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

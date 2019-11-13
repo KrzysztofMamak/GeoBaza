@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
@@ -47,35 +48,17 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun setListeners() {
-        et_email.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
+        listOf<EditText>(et_email, et_password_first, et_password_second).forEach {
+            it.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {}
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                setRegistrationAvailability()
-            }
-        })
-
-        et_password_first.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                setRegistrationAvailability()
-            }
-        })
-
-        et_password_second.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                setRegistrationAvailability()
-            }
-        })
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    setRegistrationAvailability()
+                }
+            })
+        }
     }
 
     private fun validateUser(): Boolean {
@@ -121,7 +104,7 @@ class RegistrationFragment : BaseFragment() {
         b_register.apply {
             context?.let {
                 background = it.getDrawable(R.drawable.item_circle)
-                setTextColor(it.getColor(R.color.colorSecondary))
+                setTextColor(it.getColor(R.color.colorSecondaryLight))
                 isEnabled = false
             }
         }
@@ -146,7 +129,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun handleErrorResponse() {
-
+//        TODO handleErrorResponse()
     }
 
     private fun showProgressBar() {

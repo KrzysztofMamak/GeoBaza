@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.buchandersenn.android_permission_manager.PermissionManager
+import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.factory.ViewModelFactory
@@ -116,7 +117,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
                 ev_projects.draw(EmptyView.Type.NO_DATA)
             }
         }
-    ev_projects.visibility = View.VISIBLE
+        ev_projects.visibility = View.VISIBLE
     }
 
     private fun showProgressBar() {
@@ -170,6 +171,10 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
                 R.id.nav_travel_planner -> true
                 R.id.nav_statistics -> true
                 R.id.nav_setting -> true
+                R.id.nav_sign_out -> {
+                    signOut()
+                    true
+                }
                 else -> true
             }
         }
@@ -206,6 +211,14 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
             .usingRequestCode(REQUEST_CODE_ACCESS_FINE_LOCATION)
             .onPermissionGranted { projectListViewModel.shotLocation() }
             .request()
+    }
+
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, RegistrationLoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

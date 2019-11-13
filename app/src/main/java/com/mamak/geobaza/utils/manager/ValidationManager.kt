@@ -8,8 +8,8 @@ object ValidationManager {
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                 "A-Z]{2,7}$"
-
         val pattern = Pattern.compile(emailRegex)
+
         return pattern.matcher(email).matches()
     }
 }
