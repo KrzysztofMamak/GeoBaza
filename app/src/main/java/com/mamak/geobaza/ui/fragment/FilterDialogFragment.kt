@@ -45,6 +45,7 @@ class FilterDialogFragment(
 
     private fun setAdapters() {
         val areaList = AreaLab.getAreas()
+        areaList.add(0, getString(R.string.all))
         spinner_area.adapter = createArrayAdapterFromList(areaList)
         spinner_state.adapter = createArrayAdapterFromResource(R.array.array_state_filter)
         spinner_sort_type.adapter = createArrayAdapterFromResource(R.array.array_sort_type_filter)

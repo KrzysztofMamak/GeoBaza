@@ -188,11 +188,11 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun setAreas(projects: MutableList<Project>) {
-        val areaSet = HashSet<String>()
+        val areaList = mutableListOf<String>()
         projects.forEach {
-            areaSet.add(it.area)
+            areaList.add(it.area)
         }
-        AreaLab.setAreas(areaSet)
+        AreaLab.setAreas(areaList)
     }
 
     private fun createProjectListItemInterface() = object : ProjectListItemInterface {
