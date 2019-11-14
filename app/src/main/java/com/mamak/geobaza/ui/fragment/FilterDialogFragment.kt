@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import com.mamak.geobaza.R
+import com.mamak.geobaza.data.singleton.AreaLab
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.utils.manager.ProjectListManager
 import kotlinx.android.synthetic.main.fragment_filter_project_list.*
 
-class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterface) : DialogFragment() {
+class FilterDialogFragment(
+    private val filterDialogInterface: FilterDialogInterface
+) : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_filter_project_list, container, false)
     }
@@ -22,7 +25,7 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
         setOnClicks()
     }
 
-    private fun createArrayAdapter(itemsArray: Int) : ArrayAdapter<CharSequence>? {
+    private fun createArrayAdapterFromResource(itemsArray: Int) : ArrayAdapter<CharSequence>? {
         var arrayAdapter: ArrayAdapter<CharSequence>? = null
         context?.let {
             arrayAdapter = ArrayAdapter.createFromResource(it, itemsArray, R.layout.item_spinner)
@@ -31,12 +34,21 @@ class FilterDialogFragment(private val filterDialogInterface: FilterDialogInterf
         return arrayAdapter
     }
 
+    private fun createArrayAdapterFromList(areaList: MutableList<String>): ArrayAdapter<CharSequence>? {
+        var arrayAdapter: ArrayAdapter<CharSequence>? = null
+        context?.let {
+            arrayAdapter = ArrayAdapter(it, R.layout.item_spinner, areaList as List<CharSequence>)
+            (arrayAdapter as ArrayAdapter<CharSequence>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        return arrayAdapter
+    }
+
     private fun setAdapters() {
-//        TODO manage via database
-        spinner_area.adapter = createArrayAdapter(R.array.array_area_filter)
-        spinner_state.adapter = createArrayAdapter(R.array.array_state_filter)
-        spinner_sort_type.adapter = createArrayAdapter(R.array.array_sort_type_filter)
-        spinner_sort_order.adapter = createArrayAdapter(R.array.array_sort_order_filter)
+        val areaList = AreaLab.getAreas()
+        spinner_area.adapter = createArrayAdapterFromList(areaList)
+        spinner_state.adapter = createArrayAdapterFromResource(R.array.array_state_filter)
+        spinner_sort_type.adapter = createArrayAdapterFromResource(R.array.array_sort_type_filter)
+        spinner_sort_order.adapter = createArrayAdapterFromResource(R.array.array_sort_order_filter)
     }
 
     private fun setSpinners() {

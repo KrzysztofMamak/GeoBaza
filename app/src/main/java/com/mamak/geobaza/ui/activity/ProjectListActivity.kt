@@ -15,6 +15,7 @@ import com.github.buchandersenn.android_permission_manager.PermissionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.data.singleton.AreaLab
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
@@ -93,6 +94,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun handleSuccessResponse(projects: List<Project>) {
+        setAreas(projects.toMutableList())
         Handler().postDelayed({
             hideProgressBar()
             srl_projects.isRefreshing = false
@@ -183,6 +185,14 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     private fun showFilterDialog() {
         val filterDialogFragment = FilterDialogFragment(createFilterDialogInterface())
         filterDialogFragment.show(supportFragmentManager, null)
+    }
+
+    private fun setAreas(projects: MutableList<Project>) {
+        val areaSet = HashSet<String>()
+        projects.forEach {
+            areaSet.add(it.area)
+        }
+        AreaLab.setAreas(areaSet)
     }
 
     private fun createProjectListItemInterface() = object : ProjectListItemInterface {

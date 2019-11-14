@@ -6,16 +6,12 @@ object ProjectListManager {
     const val ALL_AREAS = "ALL"
 
     var area = ALL_AREAS
-    var state: State =
-        ProjectListManager.State.ALL
-    var sort: Sort =
-        ProjectListManager.Sort.NUMBER
-    var order: Order =
-        ProjectListManager.Order.INCREASE
+    var state: State = ProjectListManager.State.ALL
+    var sort: Sort = ProjectListManager.Sort.NUMBER
+    var order: Order = ProjectListManager.Order.INCREASE
 
     fun getRequiredProjects(projects: MutableList<Project>): MutableList<Project> {
         var resultList = mutableListOf<Project>()
-
         resultList.addAll(filterProjects(projects))
         resultList = sortProjects(resultList).toMutableList()
 
@@ -31,7 +27,6 @@ object ProjectListManager {
                 it.area == area
             }.toMutableList()
         }
-
 
         return tempList.filter {
             when (state) {
