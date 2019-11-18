@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Statistic">
+    <option name="excludedDirectories">
+      <list>
+        <option value="$PROJECT_DIR$/app/build/generated" />
+        <option value="$PROJECT_DIR$/app/build/intermediates" />
+        <option value="$PROJECT_DIR$/app/build/kotlin" />
+        <option value="$PROJECT_DIR$/app/build/outputs" />
+        <option value="$PROJECT_DIR$/app/build/tmp" />
+      </list>
+    </option>
+  </component>
+</project>

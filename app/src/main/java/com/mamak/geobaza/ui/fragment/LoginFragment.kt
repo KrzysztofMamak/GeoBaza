@@ -58,7 +58,9 @@ class LoginFragment : BaseFragment() {
             } else if (resource.data != null) {
                 if (resource.data.isSuccessful) {
                     val intent = Intent(activity, ProjectListActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
+                    activity.finish()
                 } else {
                     handleErrorResponse()
                 }
