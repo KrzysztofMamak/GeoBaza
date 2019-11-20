@@ -1,59 +1,68 @@
 package com.mamak.geobaza.ui.fragment
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mamak.geobaza.R
+import androidx.fragment.app.Fragment
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.ui.base.BaseMapBoxFragment
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
-import com.mapbox.mapboxsdk.maps.Style
 import kotlinx.android.synthetic.main.fragment_project_map.*
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.CustomZoomButtonsController
+import org.osmdroid.views.overlay.ItemizedIconOverlay
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.OverlayItem
 
-class ProjectMapFragment(private val project: Project)
-        : BaseMapBoxFragment(), OnMapReadyCallback, MapboxMap.OnMapClickListener {
-    private val ID_ICON = "id-icon"
-
-    //private lateinit var symbolManager: SymbolManager
-
+class ProjectMapFragment(private val project: Project): Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_project_map, container, false)
+        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context))
+        Configuration.getInstance().userAgentValue = context?.packageName
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setMap()
+        setMapController()
         super.onViewCreated(view, savedInstanceState)
-        mv_project.onCreate(savedInstanceState)
-        mv_project.getMapAsync(this)
+
     }
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
-        this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
-            mapboxMap.addOnMapClickListener(this@ProjectMapFragment)
+    private fun setMap() {
+        mv_project.setUseDataConnection(true)
+        mv_project.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
+        mv_project.zoomController.setVisibility(CustomZoomButtonsController.Visibility.ALWAYS)
+        mv_project.setMultiTouchControls(true)
+        drawPointsOnMap()
+    }
+
+    private fun setMapController() {
+        val mapController = mv_project.controller
+        mapController.setZoom(14.0)
+    }
+
+    private fun drawPointsOnMap() {
+        val items = mutableListOf<OverlayItem>()
+        project.apply {
+            pointList.forEach {
+                items.add(OverlayItem(this.area, this.street, GeoPoint(it.x, it.y)))
+            }
         }
-    }
 
-    override fun onMapClick(point: LatLng): Boolean {
-        return true
-    }
+        val overlay = ItemizedOverlayWithFocus<OverlayItem>(items,
+                object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
+            override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
+                return true
+            }
 
-    private fun addSymbol(point: LatLng) {
+            override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
+                return false
+            }
+        }, context)
 
-    }
-
-    private fun getStyleBuilder(styleUrl: String) {
-
-    }
-
-    private fun generateBitmap(drawableRes: Int) {
-
-    }
-
-    override fun onDestroyView() {
-        mapboxMap.removeOnMapClickListener(this)
-        super.onDestroyView()
+        overlay.setFocusItemsOnTap(true)
+        mv_project.overlays.add(overlay)
     }
 }
