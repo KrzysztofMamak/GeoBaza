@@ -26,7 +26,8 @@
 
         <activity
                 android:name=".ui.activity.ProjectListActivity"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
+                android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 
         <activity

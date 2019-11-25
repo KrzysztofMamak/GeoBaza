@@ -16,27 +16,7 @@
     <string name="sort_order">Kolejność</string>
     <!-- End -> Sort categories -->
 
-    <!-- Start -> Areas -->
-    <string name="area_cieszyn">Cieszyn</string>
-    <string name="area_jastrzebie_zdroj">Jastrzębie-Zdrój</string>
-    <string name="area_pszczyna">Pszczyna</string>
-    <string name="area_rybnik">Rybnik</string>
-    <string name="area_wodzislaw_slaski">Wodzisław Śląski</string>
-    <string name="area_zory">Żory</string>
-    <!-- End -> Areas -->
-
     <!-- Start -> FilterDialogFragment -->
-    <!-- Area -->
-    <string-array name="array_area_filter">
-        <item>Cieszyn</item>
-        <item>Jastrzebie-Zdroj</item>
-        <item>Pszczyna</item>
-        <item>Rybnik</item>
-        <item>Wodzislaw Slaski</item>
-        <item>Zory</item>
-        <item>Wszystkie</item>
-    </string-array>
-
     <!-- State -->
     <string-array name="array_state_filter">
         <item>Przetworzone</item>
@@ -62,6 +42,8 @@
     <!-- Start -> FilterDialogFragment -->
 
     <!-- Start -> Menu -->
+    <string name="navigation_drawer_open">Otwórz okno nawigacji</string>
+    <string name="navigation_drawer_close">Zamknij okno nawigacji</string>
     <string name="menu_filter">Filtrowanie</string>
     <string name="menu_search">Wyszukiwanie</string>
     <string name="menu_locate">Lokalizowanie</string>

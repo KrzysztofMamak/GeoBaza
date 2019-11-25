@@ -7,11 +7,14 @@ import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.buchandersenn.android_permission_manager.PermissionManager
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
@@ -35,7 +38,9 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
-class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsResultCallback {
+class ProjectListActivity : BaseActivity(),
+        ActivityCompat.OnRequestPermissionsResultCallback,
+        NavigationView.OnNavigationItemSelectedListener {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
@@ -57,7 +62,7 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     }
 
     private fun initComponents() {
-        setNavigationDrawer()
+        setNavigation()
         initRecycler()
         initSwipeRefreshLayout()
     }
@@ -72,6 +77,22 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
             adapter = projectListAdapter
             layoutManager = LinearLayoutManager(this@ProjectListActivity)
         }
+    }
+
+    private fun setNavigation() {
+        setSupportActionBar(tb_projects)
+
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawer_layout,
+            tb_projects,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        nv_projects.setNavigationItemSelectedListener(this)
     }
 
     private fun initSwipeRefreshLayout() {
@@ -161,24 +182,27 @@ class ProjectListActivity : BaseActivity(), ActivityCompat.OnRequestPermissionsR
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_filter -> showFilterDialog()
-//            TODO Check - Updating list after location change
             R.id.action_locate -> projectListAdapter.notifyDataSetChanged()
         }
         return true
     }
 
-    private fun setNavigationDrawer() {
-        nv_projects.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_travel_planner -> true
-                R.id.nav_statistics -> true
-                R.id.nav_setting -> true
-                R.id.nav_sign_out -> {
-                    signOut()
-                    true
-                }
-                else -> true
-            }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_travel_planner -> {}
+            R.id.nav_statistics -> {}
+            R.id.nav_setting -> {}
+            R.id.nav_sign_out -> signOut()
+        }
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
         }
     }
 
