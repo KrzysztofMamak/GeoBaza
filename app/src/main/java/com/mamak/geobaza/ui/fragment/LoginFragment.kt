@@ -85,6 +85,7 @@ class LoginFragment : BaseFragment() {
     private fun launchRegistrationFragment() {
         val registrationFragment = RegistrationFragment()
         val fragmentTransaction = getActivity()?.supportFragmentManager?.beginTransaction()
+
         fragmentTransaction?.replace(R.id.container_fragment, registrationFragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()

@@ -1,5 +1,6 @@
 package com.mamak.geobaza.ui.fragment
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.ui.activity.ProjectDataEditActivity
 import com.mamak.geobaza.ui.adapter.ProjectDataAdapter
+import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mamak.geobaza.utils.manager.MappingManager
 import kotlinx.android.synthetic.main.fragment_project_overview.*
 import kotlinx.android.synthetic.main.layout_step_bar.view.*
@@ -27,6 +30,7 @@ class ProjectOverviewFragment(private val project: Project) : Fragment() {
         initRecycler()
         setStepbar()
         setProjectDataAdapter(project)
+        setOnClick()
     }
 
     private fun initRecycler() {
@@ -74,6 +78,14 @@ class ProjectOverviewFragment(private val project: Project) : Fragment() {
                     ColorStateList.valueOf(it.getColor(R.color.colorSecondaryLight)))
             }
             background.setImageDrawable(context?.getDrawable(R.drawable.item_circle))
+        }
+    }
+
+    private fun setOnClick() {
+        iv_edit_project.setOnClickListener {
+            val intent = Intent(activity, ProjectDataEditActivity::class.java)
+            intent.putExtra(EXTRA_PROJECT_NUMBER, project.number)
+            startActivity(intent)
         }
     }
 }

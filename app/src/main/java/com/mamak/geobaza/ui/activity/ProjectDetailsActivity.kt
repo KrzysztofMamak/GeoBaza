@@ -1,5 +1,6 @@
 package com.mamak.geobaza.ui.activity
 
+import android.Manifest
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
@@ -7,6 +8,7 @@ import android.view.WindowManager
 import androidx.core.app.NavUtils
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import com.github.buchandersenn.android_permission_manager.PermissionManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.factory.ViewModelFactory
@@ -16,6 +18,7 @@ import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
 import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
+import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mapbox.mapboxsdk.Mapbox
@@ -31,12 +34,14 @@ class ProjectDetailsActivity : BaseActivity() {
 
     private lateinit var projectDetailsTabAdapter: ProjectDetailsTabAdapter
     private lateinit var project: Project
+    private val permissionManager = PermissionManager.create(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, ACCESS_TOKEN_MAPBOX)
         setContentView(R.layout.activity_details_project)
         AndroidInjection.inject(this)
+        checkPermissions()
         initViewModel()
         setCurrentProject()
     }
@@ -90,5 +95,16 @@ class ProjectDetailsActivity : BaseActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun checkPermissions() {
+        permissionManager.with(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_NETWORK_STATE)
+            .usingRequestCode(AppConstans.REQUEST_CODE_FINE_OMS_PERMISSIONS)
+            .request()
     }
 }
