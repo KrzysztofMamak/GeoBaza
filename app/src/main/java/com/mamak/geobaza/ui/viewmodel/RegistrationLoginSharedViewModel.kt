@@ -12,27 +12,32 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
-    private val loginLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
+    private val loginViaEmailLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
+    private val loginViaGoogleLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
     private val registrationLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
     private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
 
-    fun login(email: String, password: String) {
+    fun loginViaEmailAndPassword(email: String, password: String) {
         addToDisposable(
             firebaseAuthenticationApi.loginViaEmailAndPassword(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-                    loginLiveData.postValue(Resource.loading())
+                    loginViaEmailLiveData.postValue(Resource.loading())
                 }
                 .subscribeBy(
                     onNext = {
-                        loginLiveData.postValue(Resource.success(it))
+                        loginViaEmailLiveData.postValue(Resource.success(it))
                     },
                     onError = {
-                        loginLiveData.postValue(Resource.error(it as Exception))
+                        loginViaEmailLiveData.postValue(Resource.error(it as Exception))
                     }
                 )
         )
+    }
+
+    fun loginViaGoogle() {
+
     }
 
     fun register(email: String, password: String) {
@@ -54,7 +59,8 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
         )
     }
 
-    fun getLoginLiveData() = loginLiveData
+    fun getLoginViaEmailLiveData() = loginViaEmailLiveData
+    fun getLoginViaGoogleLiveData() = loginViaGoogleLiveData
     fun getRegistrationLiveData() = registrationLiveData
 
     override fun onCleared() {

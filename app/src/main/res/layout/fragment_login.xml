@@ -58,6 +58,7 @@
                     android:hint="@string/email_address"
                     android:textColor="@color/colorSecondaryLight"
                     android:textColorHint="@color/colorSecondaryLight"
+                    android:backgroundTint="@color/colorSecondaryLight"
                     app:layout_constraintStart_toEndOf="@id/iv_email"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -93,6 +94,7 @@
                     android:hint="@string/password"
                     android:textColor="@color/colorSecondaryLight"
                     android:textColorHint="@color/colorSecondaryLight"
+                    android:backgroundTint="@color/colorSecondaryLight"
                     app:layout_constraintStart_toEndOf="@id/iv_password"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -104,15 +106,78 @@
                 android:id="@+id/b_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
+                android:text="@string/sign_in"
                 android:textSize="@dimen/text_huge"
-                android:textColor="@color/colorTextOnSecondary"
-                android:background="@drawable/item_circle_full"
+                android:textColor="@color/colorSecondaryLight"
+                android:background="@drawable/item_circle"
                 android:layout_marginTop="@dimen/default_padding_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/container_password_input"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toTopOf="@id/tv_or"/>
+
+        <TextView
+                android:id="@+id/tv_or"
+                android:text="@string/or"
+                android:textColor="@color/colorSecondaryLight"
+                android:textSize="@dimen/text_huge"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_padding_margin_x"
+                app:layout_constraintTop_toBottomOf="@id/b_login"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/container_login_via_google"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_login_via_google"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/icon_touch_size_medium"
+                android:background="@drawable/item_circle_full"
+                android:backgroundTint="@color/colorTextOnPrimary"
+                android:layout_marginTop="@dimen/default_padding_margin_x"
+                app:layout_constraintTop_toBottomOf="@id/tv_or"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_google"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                        android:id="@+id/iv_google"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_google"
+                        android:layout_width="@dimen/icon_touch_size_small"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_padding_margin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tv_google"/>
+
+                <TextView
+                        android:id="@+id/tv_google"
+                        android:text="@string/sign_in_via_google"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_huge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_google"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

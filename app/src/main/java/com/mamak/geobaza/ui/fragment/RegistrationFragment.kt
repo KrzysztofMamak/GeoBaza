@@ -100,22 +100,22 @@ class RegistrationFragment : BaseFragment() {
         }
     }
 
-    private fun denyRegistration() {
-        b_register.apply {
-            context?.let {
-                background = it.getDrawable(R.drawable.item_circle)
-                setTextColor(it.getColor(R.color.colorSecondaryLight))
-                isEnabled = false
-            }
-        }
-    }
-
     private fun allowRegistration() {
         b_register.apply {
             context?.let {
                 background = it.getDrawable(R.drawable.item_circle_full)
                 setTextColor(it.getColor(R.color.colorTextOnSecondary))
                 isEnabled = true
+            }
+        }
+    }
+
+    private fun denyRegistration() {
+        b_register.apply {
+            context?.let {
+                background = it.getDrawable(R.drawable.item_circle)
+                setTextColor(it.getColor(R.color.colorSecondaryLight))
+                isEnabled = false
             }
         }
     }
