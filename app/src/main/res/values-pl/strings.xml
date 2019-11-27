@@ -82,6 +82,8 @@
     <string name="sign_out">Wyloguj się</string>
     <string name="or">lub</string>
     <string name="sign_in_via_google">Zaloguj się za pomocą Google</string>
+    <string name="sign_in_via_github">Zaloguj się za pomocą Github</string>
+    <string name="forgot_password"><u>Zapomniałeś hasła?</u></string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

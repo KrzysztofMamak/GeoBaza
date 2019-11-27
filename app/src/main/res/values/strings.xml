@@ -90,6 +90,8 @@
     <string name="sign_out">Sign out</string>
     <string name="or">or</string>
     <string name="sign_in_via_google">Sign in with Google</string>
+    <string name="sign_in_via_github">Sign in with GitHub</string>
+    <string name="forgot_password"><u>Forgot password?</u></string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->
