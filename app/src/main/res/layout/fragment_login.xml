@@ -5,19 +5,42 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimary">
 
-    <TextView
-            android:id="@+id/tv_app_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="@dimen/text_header_big"
-            android:textColor="@color/colorSecondaryLight"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/container_login"/>
+            app:layout_constraintBottom_toTopOf="@id/container_login">
+
+        <com.mamak.geobaza.utils.view.GeoBazaLogoView
+                android:id="@+id/app_logo"
+                android:layout_width="@dimen/icon_touch_size_medium"
+                android:layout_height="@dimen/icon_touch_size_medium"
+                android:layout_marginRight="@dimen/default_padding_margin"
+                app:foregroundColor="@color/colorSecondaryLight"
+                app:backgroundColor="@color/colorSecondaryLight"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_app_name"/>
+
+        <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_header_big"
+                android:textColor="@color/colorSecondaryLight"
+                app:layout_constraintStart_toEndOf="@id/app_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_login"

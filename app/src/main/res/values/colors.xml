@@ -2,9 +2,9 @@
 <resources>
     <!-- Start -> Application -->
     <!-- Primary -->
-    <color name="colorPrimary">#424242</color>
-    <color name="colorPrimaryDark">#1b1b1b</color>
-    <color name="colorPrimaryLight">#6d6d6d</color>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryLight">#484848</color>
 
     <!-- Secondary -->
     <color name="colorSecondary">#009688</color>
