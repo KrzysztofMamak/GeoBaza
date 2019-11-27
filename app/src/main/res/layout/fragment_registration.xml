@@ -61,7 +61,8 @@
                     app:layout_constraintStart_toEndOf="@id/iv_email"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="autoFill"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,7 +97,8 @@
                     app:layout_constraintStart_toEndOf="@id/iv_password_first"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="autoFill"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,7 +133,8 @@
                     app:layout_constraintStart_toEndOf="@id/iv_password_second"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="autoFill"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -164,6 +167,7 @@
 
     <ImageView
             android:id="@+id/iv_registration_check"
+            android:contentDescription="@null"
             android:layout_width="@dimen/icon_touch_size_small"
             android:layout_height="@dimen/icon_touch_size_small"
             android:visibility="gone"

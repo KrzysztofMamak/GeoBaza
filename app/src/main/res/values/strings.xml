@@ -12,6 +12,7 @@
     <string name="ev_no_internet">Cannot connect to server. Check your Internet connection and try again.</string>
     <string name="ev_no_service">Service is not available. Try again later.</string>
     <string name="ev_no_data">No results.</string>
+    <string name="ev_no_password">We need your registered email address to send you a password reset link.</string>
     <!-- End -> EmptyView -->
 
     <!-- Start -> Filter categories -->
@@ -92,6 +93,7 @@
     <string name="sign_in_via_google">Sign in with Google</string>
     <string name="sign_in_via_github">Sign in with GitHub</string>
     <string name="forgot_password"><u>Forgot password?</u></string>
+    <string name="reset_password">Reset password</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

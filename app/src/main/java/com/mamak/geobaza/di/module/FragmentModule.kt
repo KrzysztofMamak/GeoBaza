@@ -24,4 +24,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeRegistrationFragment(): RegistrationFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributePasswordResetFragment(): PasswordResetFragment
 }

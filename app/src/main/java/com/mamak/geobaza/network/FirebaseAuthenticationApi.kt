@@ -24,4 +24,10 @@ class FirebaseAuthenticationApi {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
         }
     }
+
+    fun resetPassword(email: String): Observable<Task<Void>> {
+        return Observable.fromCallable {
+            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+        }
+    }
 }

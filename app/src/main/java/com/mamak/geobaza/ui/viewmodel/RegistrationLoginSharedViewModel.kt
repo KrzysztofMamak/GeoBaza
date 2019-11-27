@@ -13,10 +13,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
+    private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
     private val authViaEmailLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
     private val authViaGoogleLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
     private val registrationLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
-    private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
+    private val resetPasswordLiveData = MutableLiveData<Resource<Task<Void>>>()
+
 
     fun authViaEmailAndPassword(email: String, password: String) {
         addToDisposable(
@@ -75,9 +77,29 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
         )
     }
 
+    fun resetPassword(email: String) {
+        addToDisposable(
+            firebaseAuthenticationApi.resetPassword(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    resetPasswordLiveData.postValue(Resource.loading())
+                }
+                .subscribeBy(
+                    onNext = {
+                        resetPasswordLiveData.postValue(Resource.success(it))
+                    },
+                    onError = {
+                        resetPasswordLiveData.postValue(Resource.error(it as Exception))
+                    }
+                )
+        )
+    }
+
     fun getAuthViaEmailLiveData() = authViaEmailLiveData
     fun getAuthViaGoogleLiveData() = authViaGoogleLiveData
     fun getRegistrationLiveData() = registrationLiveData
+    fun getResetPasswordLiveData() = resetPasswordLiveData
 
     override fun onCleared() {
         onStop()
