@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.utils.manager.CoordinatesManager
 import kotlinx.android.synthetic.main.fragment_project_map.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.library.BuildConfig
@@ -29,6 +30,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setMap()
+        drawPointsOnMap()
     }
 
     private fun setConfiguration() {
@@ -39,27 +41,36 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
     }
 
     private fun setMap() {
-        val gpsMyLocationProvider = GpsMyLocationProvider(context)
-        gpsMyLocationProvider.addLocationSource(LocationManager.GPS_PROVIDER)
-        val locationOverlay = MyLocationNewOverlay(gpsMyLocationProvider, mv_project)
-
         mv_project.apply {
             setUseDataConnection(true)
             setMultiTouchControls(true)
             setTileSource(TileSourceFactory.MAPNIK)
-            overlays.add(locationOverlay)
+        }
+        setMapController()
+        setMapOverlay()
+    }
+
+    private fun setMapController() {
+        mv_project.apply {
             zoomController.setVisibility(CustomZoomButtonsController.Visibility.ALWAYS)
             controller.setZoom(16.0)
         }
+    }
 
-        drawPointsOnMap()
+    private fun setMapOverlay() {
+        val gpsMyLocationProvider = GpsMyLocationProvider(context)
+        gpsMyLocationProvider.addLocationSource(LocationManager.GPS_PROVIDER)
+        val locationOverlay = MyLocationNewOverlay(gpsMyLocationProvider, mv_project)
+
+        mv_project.overlays.add(locationOverlay)
     }
 
     private fun drawPointsOnMap() {
         val items = mutableListOf<OverlayItem>()
         project.apply {
             pointList.forEach {
-                items.add(OverlayItem(this.area, this.street, GeoPoint(it.x, it.y)))
+                val geoCoordinates = CoordinatesManager.tr2000WGS(doubleArrayOf(it.x, it.y)).asList()
+                items.add(OverlayItem(this.area, this.street, GeoPoint(geoCoordinates[0], geoCoordinates[1])))
             }
         }
 
