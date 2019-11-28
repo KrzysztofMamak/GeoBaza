@@ -2,7 +2,11 @@ package com.mamak.geobaza.network.connection
 
 import java.lang.Exception
 
-class Resource<T> private constructor(private val status: Status, val data: T?, val exception: Exception?) {
+class Resource<T> private constructor(
+        private val status: Status,
+        val data: T?,
+        val exception: Exception?,
+        message: String? = null) {
     val isSuccess: Boolean
         get() = status === Status.SUCCESS && data != null
 
@@ -15,6 +19,10 @@ class Resource<T> private constructor(private val status: Status, val data: T?, 
     companion object {
         fun <T> success(data: T?): Resource<T> {
             return Resource(Status.SUCCESS, data, null)
+        }
+
+        fun <T> error(message: String): Resource<T> {
+            return Resource(Status.ERROR, null, null, message)
         }
 
         fun <T> error(exception: Exception?): Resource<T> {

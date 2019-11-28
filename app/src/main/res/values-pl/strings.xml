@@ -86,6 +86,9 @@
     <string name="sign_in_via_github">Zaloguj się za pomocą Github</string>
     <string name="forgot_password"><u>Zapomniałeś hasła?</u></string>
     <string name="reset_password">Resetuj hasło</string>
+    <string name="password_reset_success">Wiadomość wysłano pomyślnie na podany adres email.</string>
+    <string name="password_reset_no_user">Nie znaleziono użytkownika o podanym adresie email.</string>
+    <string name="password_reset_failed">Nie udało się wysłać wiadomości na podany adres email. Spróbuj ponownie później.</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

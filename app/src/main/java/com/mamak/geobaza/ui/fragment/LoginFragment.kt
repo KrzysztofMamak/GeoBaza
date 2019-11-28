@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -62,11 +63,11 @@ class LoginFragment : BaseFragment() {
         }
 
         tv_register.setOnClickListener {
-            launchRegistrationFragment()
+            launchFragment(RegistrationFragment())
         }
 
         tv_forgot_password.setOnClickListener {
-//            TODO forgotPassword
+            launchFragment(PasswordResetFragment())
         }
     }
 
@@ -195,11 +196,9 @@ class LoginFragment : BaseFragment() {
 //        TODO showProgressBar()
     }
 
-    private fun launchRegistrationFragment() {
-        val registrationFragment = RegistrationFragment()
+    private fun launchFragment(fragment: Fragment) {
         val fragmentTransaction = getActivity()?.supportFragmentManager?.beginTransaction()
-
-        fragmentTransaction?.replace(R.id.container_fragment, registrationFragment)
+        fragmentTransaction?.replace(R.id.container_fragment, fragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
     }

@@ -94,6 +94,9 @@
     <string name="sign_in_via_github">Sign in with GitHub</string>
     <string name="forgot_password"><u>Forgot password?</u></string>
     <string name="reset_password">Reset password</string>
+    <string name="password_reset_success">Message sent to given email address.</string>
+    <string name="password_reset_no_user">User with given email address doesn\'t exist.</string>
+    <string name="password_reset_failed">Cannot sent a message to given email address. Try again later.</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

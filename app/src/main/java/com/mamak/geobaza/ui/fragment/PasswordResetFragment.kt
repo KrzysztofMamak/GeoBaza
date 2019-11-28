@@ -1,17 +1,21 @@
 package com.mamak.geobaza.ui.fragment
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuthEmailException
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import com.mamak.geobaza.utils.manager.ValidationManager
+import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 import javax.inject.Inject
@@ -35,6 +39,7 @@ class PasswordResetFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClick()
+        setEmptyView()
         setListener()
     }
 
@@ -58,6 +63,8 @@ class PasswordResetFragment : BaseFragment() {
 
     private fun resetPassword() {
         val email = et_email.text.toString()
+        resetFeedbackInfo()
+        showProgressBar()
         sendPasswordResetLink(email)
     }
 
@@ -75,22 +82,73 @@ class PasswordResetFragment : BaseFragment() {
                             handleErrorResponse()
                         }
                     } else {
-                        handleErrorResponse()
+                        handleErrorResponse(resource.exception)
                     }
                 }
             )
     }
 
+    private fun setEmptyView() {
+        ev_no_password.apply {
+            draw(EmptyView.Type.NO_PASSWORD)
+            visibility = View.VISIBLE
+        }
+    }
+
     private fun showProgressBar() {
-//        TODO showProgressBar
+        pb_forgot_password_registration.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        pb_forgot_password_registration.visibility = View.GONE
     }
 
     private fun handleSuccessResponse() {
-//        TODO handleSuccessResponse
+        hideProgressBar()
+        tv_feedback.text = getString(R.string.password_reset_success)
+        showIconForSuccess()
     }
 
-    private fun handleErrorResponse() {
-//        TODO handleErrorResponse
+    private fun handleErrorResponse(exception: Exception? = null) {
+        hideProgressBar()
+        if (exception == null) {
+            tv_feedback.text = getString(R.string.password_reset_failed)
+        } else {
+            when (exception) {
+                is FirebaseAuthEmailException -> {
+                    tv_feedback.text = getString(R.string.password_reset_no_user)
+                }
+                else -> {
+                    tv_feedback.text = getString(R.string.password_reset_failed)
+                }
+            }
+        }
+        showIconForFail()
+    }
+
+    private fun resetFeedbackInfo() {
+        iv_forgot_password_check.visibility = View.GONE
+        tv_feedback.visibility = View.GONE
+    }
+
+    private fun showIconForSuccess() {
+        iv_forgot_password_check.apply {
+            setImageDrawable(context.getDrawable(R.drawable.ic_check))
+            ImageViewCompat.setImageTintList(
+                this,
+                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
+            visibility = View.VISIBLE
+        }
+    }
+
+    private fun showIconForFail() {
+        iv_forgot_password_check.apply {
+            setImageDrawable(context.getDrawable(R.drawable.ic_cross))
+            ImageViewCompat.setImageTintList(
+                this,
+                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
+            visibility = View.VISIBLE
+        }
     }
 
     private fun setPasswordResetAvailability() {
