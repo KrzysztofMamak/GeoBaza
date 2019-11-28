@@ -21,7 +21,7 @@ class GeoBazaLogo(context: Context, attrs: AttributeSet) : ConstraintLayout(cont
             ImageViewCompat.setImageTintList(
                 iv_background,
                 ColorStateList.valueOf(
-                    getColor(R.styleable.GeoBazaLogo_foregroundColor, 0)
+                    getColor(R.styleable.GeoBazaLogo_backgroundColor, 0)
                 )
             )
             recycle()

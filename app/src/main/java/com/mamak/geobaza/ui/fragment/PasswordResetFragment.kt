@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
-import com.google.firebase.auth.FirebaseAuthEmailException
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseFragment
@@ -105,23 +104,18 @@ class PasswordResetFragment : BaseFragment() {
 
     private fun handleSuccessResponse() {
         hideProgressBar()
-        tv_feedback.text = getString(R.string.password_reset_success)
+        tv_feedback.apply {
+            text = getString(R.string.password_reset_success)
+            visibility = View.VISIBLE
+        }
         showIconForSuccess()
     }
 
     private fun handleErrorResponse(exception: Exception? = null) {
         hideProgressBar()
-        if (exception == null) {
-            tv_feedback.text = getString(R.string.password_reset_failed)
-        } else {
-            when (exception) {
-                is FirebaseAuthEmailException -> {
-                    tv_feedback.text = getString(R.string.password_reset_no_user)
-                }
-                else -> {
-                    tv_feedback.text = getString(R.string.password_reset_failed)
-                }
-            }
+        tv_feedback.apply {
+            text = getString(R.string.password_reset_failed)
+            visibility = View.VISIBLE
         }
         showIconForFail()
     }
