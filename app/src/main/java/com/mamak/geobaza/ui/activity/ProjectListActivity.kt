@@ -45,8 +45,6 @@ class ProjectListActivity : BaseActivity(),
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
     internal lateinit var  projectListViewModel: ProjectListViewModel
-    @Inject
-    internal lateinit var picasso: Picasso
 
     private lateinit var projectListAdapter: ProjectListAdapter
     private var permissionManager = PermissionManager.create(this)

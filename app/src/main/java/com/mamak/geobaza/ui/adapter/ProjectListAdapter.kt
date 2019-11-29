@@ -12,7 +12,7 @@ import com.mamak.geobaza.ui.viewholder.ProjectListViewHolder
 import com.mamak.geobaza.utils.manager.ProjectListManager
 import javax.inject.Inject
 
-class ProjectListAdapter @Inject constructor(private val projectListItemCommunication: ProjectListItemInterface)
+class ProjectListAdapter(private val projectListItemCommunication: ProjectListItemInterface)
         : RecyclerView.Adapter<ProjectListViewHolder>(), Filterable {
     private var projects = mutableListOf<Project>()
     private var filteredProjects = mutableListOf<Project>()
