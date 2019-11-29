@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
-import com.mamak.geobaza.network.FirebaseAuthenticationApi
 import com.mamak.geobaza.network.api.ProjectApiService
 import com.mamak.geobaza.network.connection.Resource
 import com.mamak.geobaza.ui.base.BaseViewModel

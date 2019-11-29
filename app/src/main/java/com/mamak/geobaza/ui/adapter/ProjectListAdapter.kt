@@ -10,7 +10,6 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.viewholder.ProjectListViewHolder
 import com.mamak.geobaza.utils.manager.ProjectListManager
-import javax.inject.Inject
 
 class ProjectListAdapter(private val projectListItemCommunication: ProjectListItemInterface)
         : RecyclerView.Adapter<ProjectListViewHolder>(), Filterable {

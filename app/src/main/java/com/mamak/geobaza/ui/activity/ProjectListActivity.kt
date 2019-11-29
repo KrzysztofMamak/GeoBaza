@@ -31,7 +31,6 @@ import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_ACCESS_FINE_LOCATION
 import com.mamak.geobaza.utils.manager.LocationManager
 import com.mamak.geobaza.utils.view.EmptyView
-import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*
 import java.net.ConnectException

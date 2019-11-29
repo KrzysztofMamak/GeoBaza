@@ -2,7 +2,6 @@ package com.mamak.geobaza.ui.activity
 
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.mamak.geobaza.R

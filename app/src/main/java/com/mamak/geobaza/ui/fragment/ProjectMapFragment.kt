@@ -1,5 +1,6 @@
 package com.mamak.geobaza.ui.fragment
 
+import android.graphics.Color
 import android.location.LocationManager
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.utils.manager.MappingManager
+import com.mamak.geobaza.utils.manager.OsmManager
 import kotlinx.android.synthetic.main.fragment_project_map.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.library.BuildConfig
@@ -17,6 +19,7 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.overlay.Marker
+import org.osmdroid.views.overlay.PathOverlay
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
@@ -46,6 +49,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
         }
         setMapController()
         setMyLocationOverlay()
+        drawLinesThroughoutAllPoints()
     }
 
     private fun setMapController() {
@@ -88,11 +92,27 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
     }
 
     private fun zoomToCurrentLocation() {
-//        TODO zoom to user current location
+
     }
 
     private fun zoomToPoints() {
-//        TODO zoom to all points on the map
+        mv_project.zoomToBoundingBox(OsmManager.createBoundingBoxFromPointList(
+            project.pointList.toMutableList()),
+            true
+        )
+    }
+
+    private fun drawLinesThroughoutAllPoints() {
+        val pathOverlay = PathOverlay(Color.BLACK)
+        project.pointList.forEach {
+            pathOverlay.addPoint(MappingManager.pointToGeoPoint(it))
+        }
+        mv_project.overlays.add(pathOverlay)
+        zoomToPoints()
+    }
+
+    private fun removeAllLines() {
+
     }
 
     private fun zoomToAllOverlays() {
