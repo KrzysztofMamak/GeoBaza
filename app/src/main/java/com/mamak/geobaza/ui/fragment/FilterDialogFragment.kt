@@ -34,7 +34,7 @@ class FilterDialogFragment(
         return arrayAdapter
     }
 
-    private fun createArrayAdapterFromList(areaList: MutableList<String>): ArrayAdapter<CharSequence>? {
+    private fun getArrayAdapterFromList(areaList: MutableList<String>): ArrayAdapter<CharSequence>? {
         var arrayAdapter: ArrayAdapter<CharSequence>? = null
         context?.let {
             arrayAdapter = ArrayAdapter(it, R.layout.item_spinner, areaList as List<CharSequence>)
@@ -46,7 +46,7 @@ class FilterDialogFragment(
     private fun setAdapters() {
         val areaList = AreaLab.getAreas()
         areaList.add(0, getString(R.string.all))
-        spinner_area.adapter = createArrayAdapterFromList(areaList)
+        spinner_area.adapter = getArrayAdapterFromList(areaList)
         spinner_state.adapter = createArrayAdapterFromResource(R.array.array_state_filter)
         spinner_sort_type.adapter = createArrayAdapterFromResource(R.array.array_sort_type_filter)
         spinner_sort_order.adapter = createArrayAdapterFromResource(R.array.array_sort_order_filter)

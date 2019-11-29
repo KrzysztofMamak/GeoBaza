@@ -94,5 +94,9 @@
     <!-- Start -> Content Description -->
     <string name="cd_navigation_icon">Nawiguj</string>
     <string name="cd_edit_project">Edytuj projekt</string>
+    <string name="cd_show_current_location">Przybliż do bieżącej lokalizacji.</string>
+    <string name="cd_show_points">Przybliż do punktów projektu</string>
+    <string name="cd_draw_lines">Rysuj linie między punktami.</string>
+    <string name="cd_remove_lines">Usuń linie pomiędzy punktami.</string>
     <!-- End -> Content Description -->
 </resources>

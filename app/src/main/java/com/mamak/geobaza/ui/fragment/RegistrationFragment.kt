@@ -55,7 +55,7 @@ class RegistrationFragment : BaseFragment() {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    setRegistrationAvailability()
+                    setRegistrationButton()
                 }
             })
         }
@@ -92,30 +92,23 @@ class RegistrationFragment : BaseFragment() {
 
     }
 
-    private fun setRegistrationAvailability() {
+    private fun setRegistrationButton() {
+        val color: Int
+        val drawable: Int
+
         if (validateUser()) {
-            allowRegistration()
+            color = R.color.colorTextOnSecondary
+            drawable = R.drawable.item_circle_full
         } else {
-            denyRegistration()
+            color = R.color.colorSecondaryLight
+            drawable = R.drawable.item_circle
         }
-    }
 
-    private fun allowRegistration() {
         b_register.apply {
             context?.let {
-                background = it.getDrawable(R.drawable.item_circle_full)
-                setTextColor(it.getColor(R.color.colorTextOnSecondary))
+                setTextColor(it.getColor(color))
+                background = it.getDrawable(drawable)
                 isEnabled = true
-            }
-        }
-    }
-
-    private fun denyRegistration() {
-        b_register.apply {
-            context?.let {
-                background = it.getDrawable(R.drawable.item_circle)
-                setTextColor(it.getColor(R.color.colorSecondaryLight))
-                isEnabled = false
             }
         }
     }
@@ -128,9 +121,8 @@ class RegistrationFragment : BaseFragment() {
         }, DELAY_SHORT)
     }
 
-    private fun handleErrorResponse() {
-//        TODO handleErrorResponse()
-    }
+//    TODO handleErrorResponse
+    private fun handleErrorResponse() {}
 
     private fun showProgressBar() {
         pb_registration.visibility = View.VISIBLE

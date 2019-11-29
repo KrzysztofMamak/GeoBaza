@@ -2,11 +2,60 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <org.osmdroid.views.MapView
             android:id="@+id/mv_project"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+    <ImageView
+            android:id="@+id/iv_zoom_current_location"
+            android:contentDescription="@string/cd_show_current_location"
+            android:layout_width="@dimen/icon_touch_size_medium"
+            android:layout_height="@dimen/icon_touch_size_medium"
+            android:layout_marginBottom="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:padding="@dimen/default_padding_margin"
+            android:elevation="@dimen/elevation_small"
+            android:background="@drawable/item_circle_full"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_my_location"
+            android:tint="@color/colorSecondaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_zoom_points"/>
+
+    <ImageView
+            android:id="@+id/iv_zoom_points"
+            android:contentDescription="@string/cd_show_points"
+            android:layout_width="@dimen/icon_touch_size_medium"
+            android:layout_height="@dimen/icon_touch_size_medium"
+            android:layout_marginBottom="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:padding="@dimen/default_padding_margin"
+            android:elevation="@dimen/elevation_small"
+            android:background="@drawable/item_circle_full"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_filter_center_focus"
+            android:tint="@color/colorSecondaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/iv_lines_switch"/>
+
+    <ImageView
+            android:id="@+id/iv_lines_switch"
+            android:contentDescription="@string/cd_draw_lines"
+            android:layout_width="@dimen/icon_touch_size_medium"
+            android:layout_height="@dimen/icon_touch_size_medium"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:layout_marginBottom="@dimen/default_padding_margin_x"
+            android:padding="@dimen/default_padding_margin"
+            android:elevation="@dimen/elevation_small"
+            android:background="@drawable/item_circle_full"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_timeline"
+            android:tint="@color/colorSecondaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -83,7 +83,7 @@ class LoginFragment : BaseFragment() {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    setLoginAvailability()
+                    setLoginButton()
                 }
             })
         }
@@ -147,11 +147,24 @@ class LoginFragment : BaseFragment() {
         )
     }
 
-    private fun setLoginAvailability() {
+    private fun setLoginButton() {
+        val color: Int
+        val drawable: Int
+
         if (validateUser()) {
-            allowSignIn()
+            color = R.color.colorTextOnSecondary
+            drawable = R.drawable.item_circle_full
         } else {
-            denySignIn()
+            color = R.color.colorSecondaryLight
+            drawable = R.drawable.item_circle
+        }
+
+        b_login_email.apply {
+            context?.let {
+                background = it.getDrawable(drawable)
+                setTextColor(it.getColor(color))
+                isEnabled = true
+            }
         }
     }
 
@@ -164,37 +177,11 @@ class LoginFragment : BaseFragment() {
         return false
     }
 
-    private fun allowSignIn() {
-        b_login_email.apply {
-            context?.let {
-                background = it.getDrawable(R.drawable.item_circle_full)
-                setTextColor(it.getColor(R.color.colorTextOnSecondary))
-                isEnabled = true
-            }
-        }
-    }
+//    TODO handleErrorResponse
+    private fun handleErrorResponse() {}
 
-    private fun denySignIn() {
-        b_login_email.apply {
-            context?.let {
-                background = it.getDrawable(R.drawable.item_circle)
-                setTextColor(it.getColor(R.color.colorSecondaryLight))
-                isEnabled = false
-            }
-        }
-    }
-
-    private fun handleSuccessResponse() {
-//        TODO handleSuccessResponse()
-    }
-
-    private fun handleErrorResponse() {
-//        TODO handleErrorResponse()
-    }
-
-    private fun showProgressBar() {
-//        TODO showProgressBar()
-    }
+//    TODO showProgressBar()
+    private fun showProgressBar() {}
 
     private fun launchFragment(fragment: Fragment) {
         val fragmentTransaction = getActivity()?.supportFragmentManager?.beginTransaction()

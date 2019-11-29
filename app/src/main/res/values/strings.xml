@@ -102,5 +102,9 @@
     <!-- Start -> Content Description -->
     <string name="cd_navigation_icon">Navigate</string>
     <string name="cd_edit_project">Edit project</string>
+    <string name="cd_show_current_location">Zoom to current location.</string>
+    <string name="cd_show_points">Zoom to project points.</string>
+    <string name="cd_draw_lines">Draw lines between all points.</string>
+    <string name="cd_remove_lines">Remove lines between points.</string>
     <!-- End -> Content Description -->
 </resources>

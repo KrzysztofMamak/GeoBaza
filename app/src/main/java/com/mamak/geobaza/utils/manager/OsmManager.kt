@@ -2,9 +2,10 @@ package com.mamak.geobaza.utils.manager
 
 import com.mamak.geobaza.data.model.Point
 import org.osmdroid.util.BoundingBox
+import org.osmdroid.util.GeoPoint
 
 object OsmManager {
-    fun createBoundingBoxFromPointList(pointList: MutableList<Point>): BoundingBox {
+    fun getBoundingBoxByPointList(pointList: MutableList<Point>): BoundingBox {
         val boundingBox = BoundingBox()
         var north = Double.MIN_VALUE
         var east = Double.MIN_VALUE
@@ -18,5 +19,15 @@ object OsmManager {
         }
         boundingBox.set(north, east, south, west)
         return boundingBox
+    }
+
+    fun getAveragePointFromList(pointList: MutableList<Point>): GeoPoint {
+        var latitudeSum: Double = 0.0
+        var longitudeSum: Double = 0.0
+        pointList.map { MappingManager.pointToGeoPoint(it) }.forEach {
+            latitudeSum += it.latitude
+            longitudeSum += it.longitude
+        }
+        return GeoPoint(latitudeSum / pointList.size, longitudeSum / pointList.size)
     }
 }
