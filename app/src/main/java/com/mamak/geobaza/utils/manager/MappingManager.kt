@@ -1,6 +1,8 @@
 package com.mamak.geobaza.utils.manager
 
+import com.mamak.geobaza.data.model.Point
 import com.mamak.geobaza.data.model.Project
+import org.osmdroid.util.GeoPoint
 
 object MappingManager {
     fun projectToFieldList(project: Project?): MutableList<Pair<String, String?>> {
@@ -20,5 +22,10 @@ object MappingManager {
             add(Pair("Notatka", project?.note))
         }
         return fieldList
+    }
+
+    fun pointToGeoPoint(point: Point): GeoPoint {
+        val geoCoordinates = CoordinatesManager.tr2000WGS(doubleArrayOf(point.x, point.y)).asList()
+        return GeoPoint(geoCoordinates[0], geoCoordinates[1])
     }
 }

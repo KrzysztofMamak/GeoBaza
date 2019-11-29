@@ -9,16 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.utils.manager.CoordinatesManager
+import com.mamak.geobaza.utils.manager.MappingManager
 import kotlinx.android.synthetic.main.fragment_project_map.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.library.BuildConfig
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
-import org.osmdroid.views.overlay.ItemizedIconOverlay
-import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
-import org.osmdroid.views.overlay.OverlayItem
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
@@ -30,7 +28,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setMap()
-        drawPointsOnMap()
+        drawPoints()
     }
 
     private fun setConfiguration() {
@@ -47,7 +45,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
             setTileSource(TileSourceFactory.MAPNIK)
         }
         setMapController()
-        setMapOverlay()
+        setMyLocationOverlay()
     }
 
     private fun setMapController() {
@@ -57,38 +55,48 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
         }
     }
 
-    private fun setMapOverlay() {
+    private fun setMyLocationOverlay() {
         val gpsMyLocationProvider = GpsMyLocationProvider(context)
         gpsMyLocationProvider.addLocationSource(LocationManager.GPS_PROVIDER)
         val locationOverlay = MyLocationNewOverlay(gpsMyLocationProvider, mv_project)
-
         mv_project.overlays.add(locationOverlay)
     }
 
-    private fun drawPointsOnMap() {
-        val items = mutableListOf<OverlayItem>()
+    private fun drawPoints() {
         project.apply {
             pointList.forEach {
-                val geoCoordinates = CoordinatesManager.tr2000WGS(doubleArrayOf(it.x, it.y)).asList()
-                items.add(OverlayItem(this.area, this.street, GeoPoint(geoCoordinates[0], geoCoordinates[1])))
+                val marker = createMarker(
+                    this.town,
+                    "${this.street} - ${this.description}",
+                    MappingManager.pointToGeoPoint(it)
+                )
+                mv_project.overlays.add(marker)
             }
         }
+    }
 
-        val overlay = ItemizedOverlayWithFocus<OverlayItem>(
-            items,
-            object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
-                override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
-                    return true
-                }
+    private fun createMarker(pointTitle: String, pointDescription: String, geoPoint: GeoPoint): Marker {
+        val marker = Marker(mv_project)
+        marker.apply {
+            icon = context?.getDrawable(R.drawable.ic_place)
+            title = pointTitle
+            subDescription = pointDescription
+            position = geoPoint
+            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        }
+        return marker
+    }
 
-                override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
-                    return false
-                }
-            }, context
-        )
+    private fun zoomToCurrentLocation() {
+//        TODO zoom to user current location
+    }
 
-        overlay.setFocusItemsOnTap(true)
-        mv_project.overlays.add(overlay)
+    private fun zoomToPoints() {
+//        TODO zoom to all points on the map
+    }
+
+    private fun zoomToAllOverlays() {
+//        TODO zoom to all map overlays
     }
 
     override fun onResume() {
