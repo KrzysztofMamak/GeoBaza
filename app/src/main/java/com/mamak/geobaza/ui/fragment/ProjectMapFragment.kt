@@ -7,6 +7,7 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import com.mamak.geobaza.R
@@ -29,6 +30,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
     private val markerList = mutableListOf<Marker>()
     private val polyline = Polyline()
     private var linesDrawn = false
+    private var locationFollowed = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setConfiguration()
@@ -75,8 +77,12 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
     }
 
     private fun setOnClicks() {
-        iv_zoom_current_location.setOnClickListener {
-            zoomToCurrentLocation()
+        iv_follow_location.setOnClickListener {
+            if (!locationFollowed) {
+                enableFollowLocation()
+            } else {
+                disableFollowLocation()
+            }
         }
         iv_zoom_points.setOnClickListener {
             zoomToPoints()
@@ -123,28 +129,31 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
         val points = project.pointList.map {
             MappingManager.pointToGeoPoint(it)
         }
-        polyline.setPoints(points)
+        polyline.apply {
+            setPoints(points)
+            outlinePaint.color = resources.getColor(R.color.colorSecondaryDark, null)
+        }
     }
 
     private fun drawPolyline() {
         mv_project.overlays.add(polyline)
         mv_project.invalidate()
         linesDrawn = true
-        setPolylineButton()
+        setButton(iv_lines_switch, linesDrawn)
     }
 
     private fun removePolyline() {
         mv_project.overlays.remove(polyline)
         mv_project.invalidate()
         linesDrawn = false
-        setPolylineButton()
+        setButton(iv_lines_switch, linesDrawn)
     }
 
-    private fun setPolylineButton() {
+    private fun setButton(imageView: ImageView, isActive: Boolean) {
         val foregroundColor: Int
         val backgroundColor: Int
 
-        if (linesDrawn) {
+        if (isActive) {
             foregroundColor = R.color.white
             backgroundColor = R.color.colorSecondaryDark
         } else {
@@ -152,7 +161,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
             backgroundColor = R.color.white
         }
 
-        iv_lines_switch.apply {
+        imageView.apply {
             ImageViewCompat.setImageTintList(
                 this,
                 ColorStateList.valueOf(context.getColor(foregroundColor))
@@ -168,8 +177,19 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
         )
     }
 
-//    TODO zoomToCurrentLocation()
-    private fun zoomToCurrentLocation() {}
+    private fun enableFollowLocation() {
+        myLocationNewOverlay.enableFollowLocation()
+        mv_project.invalidate()
+        locationFollowed = true
+        setButton(iv_follow_location, locationFollowed)
+    }
+
+    private fun disableFollowLocation() {
+        myLocationNewOverlay.disableFollowLocation()
+        mv_project.invalidate()
+        locationFollowed = false
+        setButton(iv_follow_location, locationFollowed)
+    }
 
     override fun onResume() {
         super.onResume()
