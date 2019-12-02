@@ -30,6 +30,7 @@ class RegistrationLoginActivity : BaseActivity() {
         registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
     }
 
+//    TODO use apply instead
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container_fragment, fragment)

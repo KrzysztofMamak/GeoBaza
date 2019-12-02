@@ -70,6 +70,16 @@ class ProjectDetailsActivity : BaseActivity() {
         projectDetailsSharedViewModel = viewModelFactory.create(projectDetailsSharedViewModel::class.java)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                NavUtils.navigateUpFromSameTask(this)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun setActionBarColor() {
         supportActionBar?.apply {
             setBackgroundDrawable(ColorDrawable(getColor(R.color.colorSecondary)))
@@ -84,16 +94,6 @@ class ProjectDetailsActivity : BaseActivity() {
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             statusBarColor = ContextCompat.getColor(this@ProjectDetailsActivity, R.color.colorSecondaryDark)
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            android.R.id.home -> {
-                NavUtils.navigateUpFromSameTask(this)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 

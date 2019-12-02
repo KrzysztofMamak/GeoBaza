@@ -125,6 +125,7 @@ class PasswordResetFragment : BaseFragment() {
         tv_feedback.visibility = View.GONE
     }
 
+//    TODO refactor
     private fun showIconForSuccess() {
         iv_forgot_password_check.apply {
             setImageDrawable(context.getDrawable(R.drawable.ic_check))
@@ -135,6 +136,7 @@ class PasswordResetFragment : BaseFragment() {
         }
     }
 
+//    TODO refactor
     private fun showIconForFail() {
         iv_forgot_password_check.apply {
             setImageDrawable(context.getDrawable(R.drawable.ic_cross))
@@ -161,6 +163,7 @@ class PasswordResetFragment : BaseFragment() {
         return false
     }
 
+//    TODO refactor
     private fun allowPasswordReset() {
         b_reset_password.apply {
             context?.let {
@@ -171,6 +174,7 @@ class PasswordResetFragment : BaseFragment() {
         }
     }
 
+//    TODO refactor
     private fun denyPasswordReset() {
         b_reset_password.apply {
             context?.let {

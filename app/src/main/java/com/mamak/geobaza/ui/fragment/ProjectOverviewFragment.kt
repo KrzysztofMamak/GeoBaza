@@ -63,6 +63,7 @@ class ProjectOverviewFragment(private val project: Project) : Fragment() {
             project.isFinished)
     }
 
+//    TODO refactor
     private fun setCheckPoint(foreground: ImageView, background: ImageView, isChecked: Boolean) {
         if (isChecked) {
             context?.let {

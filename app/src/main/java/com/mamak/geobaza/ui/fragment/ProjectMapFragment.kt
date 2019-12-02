@@ -29,8 +29,8 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
     private lateinit var myLocationNewOverlay: MyLocationNewOverlay
     private val markerList = mutableListOf<Marker>()
     private val polyline = Polyline()
-    private var linesDrawn = false
-    private var locationFollowed = false
+    private var polylineVisibility = false
+    private var followLocation = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setConfiguration()
@@ -78,7 +78,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
 
     private fun setOnClicks() {
         iv_follow_location.setOnClickListener {
-            if (!locationFollowed) {
+            if (!followLocation) {
                 enableFollowLocation()
             } else {
                 disableFollowLocation()
@@ -88,7 +88,7 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
             zoomToPoints()
         }
         iv_lines_switch.setOnClickListener {
-            if (!linesDrawn) {
+            if (!polylineVisibility) {
                 drawPolyline()
             } else {
                 removePolyline()
@@ -135,31 +135,45 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
         }
     }
 
+    private fun zoomToPoints() {
+        mv_project.zoomToBoundingBox(OsmManager.getBoundingBoxByPointList(
+            project.pointList.toMutableList()),
+            true
+        )
+        disableFollowLocation()
+    }
+
+    private fun enableFollowLocation() {
+        myLocationNewOverlay.enableFollowLocation()
+        mv_project.invalidate()
+        followLocation = true
+        setButton(iv_follow_location, followLocation)
+    }
+
+    private fun disableFollowLocation() {
+        myLocationNewOverlay.disableFollowLocation()
+        mv_project.invalidate()
+        followLocation = false
+        setButton(iv_follow_location, followLocation)
+    }
+
     private fun drawPolyline() {
         mv_project.overlays.add(polyline)
         mv_project.invalidate()
-        linesDrawn = true
-        setButton(iv_lines_switch, linesDrawn)
+        polylineVisibility = true
+        setButton(iv_lines_switch, polylineVisibility)
     }
 
     private fun removePolyline() {
         mv_project.overlays.remove(polyline)
         mv_project.invalidate()
-        linesDrawn = false
-        setButton(iv_lines_switch, linesDrawn)
+        polylineVisibility = false
+        setButton(iv_lines_switch, polylineVisibility)
     }
 
     private fun setButton(imageView: ImageView, isActive: Boolean) {
-        val foregroundColor: Int
-        val backgroundColor: Int
-
-        if (isActive) {
-            foregroundColor = R.color.white
-            backgroundColor = R.color.colorSecondaryDark
-        } else {
-            foregroundColor = R.color.colorSecondaryDark
-            backgroundColor = R.color.white
-        }
+        val foregroundColor: Int = if (isActive) R.color.white else R.color.colorSecondaryDark
+        val backgroundColor: Int = if (isActive) R.color.colorSecondaryDark else R.color.white
 
         imageView.apply {
             ImageViewCompat.setImageTintList(
@@ -168,27 +182,6 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
             )
             backgroundTintList = ColorStateList.valueOf(context.getColor(backgroundColor))
         }
-    }
-
-    private fun zoomToPoints() {
-        mv_project.zoomToBoundingBox(OsmManager.getBoundingBoxByPointList(
-            project.pointList.toMutableList()),
-            true
-        )
-    }
-
-    private fun enableFollowLocation() {
-        myLocationNewOverlay.enableFollowLocation()
-        mv_project.invalidate()
-        locationFollowed = true
-        setButton(iv_follow_location, locationFollowed)
-    }
-
-    private fun disableFollowLocation() {
-        myLocationNewOverlay.disableFollowLocation()
-        mv_project.invalidate()
-        locationFollowed = false
-        setButton(iv_follow_location, locationFollowed)
     }
 
     override fun onResume() {

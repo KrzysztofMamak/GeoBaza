@@ -75,7 +75,6 @@ class RegistrationFragment : BaseFragment() {
         val email = et_email.text.toString()
         val password = et_password_first.text.toString()
         registrationLoginSharedViewModel.registerViaEmailAndPassword(email, password)
-
         registrationLoginSharedViewModel.getRegistrationLiveData().observe(this, Observer { resource ->
             if (resource.isLoading) {
                 showProgressBar()
@@ -89,7 +88,6 @@ class RegistrationFragment : BaseFragment() {
                 handleErrorResponse()
             }
         })
-
     }
 
     private fun setRegistrationButton() {
