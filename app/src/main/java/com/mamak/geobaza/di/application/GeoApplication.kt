@@ -1,11 +1,8 @@
 package com.mamak.geobaza.di.application
 
 import android.app.Application
-import android.content.Intent
-import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.di.component.DaggerAppComponent
 import com.mamak.geobaza.di.module.*
-import com.mamak.geobaza.ui.activity.ProjectListActivity
 
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -31,17 +28,5 @@ class GeoApplication : Application(), HasAndroidInjector {
             .locationModule(LocationModule())
             .build()
             .inject(this)
-        checkUserSection()
-    }
-
-    private fun checkUserSection() {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val currentUser = firebaseAuth.currentUser
-        if (currentUser != null) {
-            val intent = Intent(this, ProjectListActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-        }
     }
 }

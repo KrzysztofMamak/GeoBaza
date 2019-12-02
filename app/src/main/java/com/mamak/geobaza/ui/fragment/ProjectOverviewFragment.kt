@@ -1,6 +1,5 @@
 package com.mamak.geobaza.ui.fragment
 
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.ui.activity.ProjectDataEditActivity
 import com.mamak.geobaza.ui.adapter.ProjectDataAdapter
-import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
 import com.mamak.geobaza.utils.manager.MappingManager
 import kotlinx.android.synthetic.main.fragment_project_overview.*
 import kotlinx.android.synthetic.main.layout_step_bar.view.*
@@ -45,48 +42,41 @@ class ProjectOverviewFragment(private val project: Project) : Fragment() {
     }
 
     private fun setStepbar() {
-        setCheckPoint(
+        setCheckpoint(
             sb_project_checkpoints.iv_first_step_foreground,
             sb_project_checkpoints.iv_first_step_background,
             project.isProcessed)
-        setCheckPoint(
+        setCheckpoint(
             sb_project_checkpoints.iv_second_step_foreground,
             sb_project_checkpoints.iv_second_step_background,
             project.isMarked)
-        setCheckPoint(
+        setCheckpoint(
             sb_project_checkpoints.iv_third_step_foreground,
             sb_project_checkpoints.iv_third_step_background,
             project.isMeasured)
-        setCheckPoint(
+        setCheckpoint(
             sb_project_checkpoints.iv_fourth_step_foreground,
             sb_project_checkpoints.iv_fourth_step_background,
             project.isFinished)
     }
 
 //    TODO refactor
-    private fun setCheckPoint(foreground: ImageView, background: ImageView, isChecked: Boolean) {
-        if (isChecked) {
-            context?.let {
-                ImageViewCompat.setImageTintList(
-                    foreground,
-                    ColorStateList.valueOf(it.getColor(R.color.colorTextOnPrimary)))
-            }
-            background.setImageDrawable(context?.getDrawable(R.drawable.item_circle_full))
-        } else {
-            context?.let {
-                ImageViewCompat.setImageTintList(
-                    foreground,
-                    ColorStateList.valueOf(it.getColor(R.color.colorSecondaryLight)))
-            }
-            background.setImageDrawable(context?.getDrawable(R.drawable.item_circle))
+    private fun setCheckpoint(foreground: ImageView, background: ImageView, isChecked: Boolean) {
+        val foregroundColor = if (isChecked) R.color.white else R.color.colorSecondaryLight
+        val drawable = if (isChecked) R.drawable.item_circle_full else R.drawable.item_circle
+        context?.let {
+            ImageViewCompat.setImageTintList(
+                foreground,
+                ColorStateList.valueOf(it.getColor(foregroundColor)))
         }
+        background.setImageDrawable(context?.getDrawable(drawable))
     }
 
     private fun setOnClick() {
         iv_edit_project.setOnClickListener {
-            val intent = Intent(activity, ProjectDataEditActivity::class.java)
-            intent.putExtra(EXTRA_PROJECT_NUMBER, project.number)
-            startActivity(intent)
+//            val intent = Intent(activity, ProjectDataEditActivity::class.java)
+//            intent.putExtra(EXTRA_PROJECT_NUMBER, project.number)
+//            startActivity(intent)
         }
     }
 }

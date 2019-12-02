@@ -1,9 +1,11 @@
 package com.mamak.geobaza.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseActivity
@@ -26,6 +28,11 @@ class RegistrationLoginActivity : BaseActivity() {
         replaceFragment(LoginFragment())
     }
 
+    override fun onStart() {
+        super.onStart()
+        checkUserSession()
+    }
+
     private fun initViewModel() {
         registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
     }
@@ -44,5 +51,19 @@ class RegistrationLoginActivity : BaseActivity() {
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             statusBarColor = ContextCompat.getColor(this@RegistrationLoginActivity, R.color.colorPrimaryDark)
         }
+    }
+
+    private fun checkUserSession() {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null) {
+            launchRegistrationLoginActivity()
+        }
+    }
+
+    private fun launchRegistrationLoginActivity() {
+        val intent = Intent(this, ProjectListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

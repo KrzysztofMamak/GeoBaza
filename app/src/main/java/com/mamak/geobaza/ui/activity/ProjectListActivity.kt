@@ -246,13 +246,16 @@ class ProjectListActivity : BaseActivity(),
 
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
-        val intent = Intent(this, RegistrationLoginActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
+        launchRegistrationLoginActivity()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         permissionManager.handlePermissionResult(requestCode, grantResults)
+    }
+
+    private fun launchRegistrationLoginActivity() {
+        val intent = Intent(this, RegistrationLoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

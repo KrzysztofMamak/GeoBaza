@@ -1,6 +1,5 @@
 package com.mamak.geobaza.di.module
 
-import com.mamak.geobaza.ui.activity.ProjectDataEditActivity
 import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.ProjectListActivity
 import com.mamak.geobaza.ui.activity.RegistrationLoginActivity
@@ -17,7 +16,4 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     abstract fun registrationLoginActivity(): RegistrationLoginActivity
-
-    @ContributesAndroidInjector
-    abstract fun projectDataEditActivity(): ProjectDataEditActivity
 }

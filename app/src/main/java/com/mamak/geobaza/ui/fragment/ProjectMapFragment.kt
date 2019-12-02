@@ -116,7 +116,9 @@ class ProjectMapFragment(private val project: Project) : Fragment() {
     private fun getMarker(pointTitle: String, pointDescription: String, geoPoint: GeoPoint): Marker {
         val marker = Marker(mv_project)
         marker.apply {
-            icon = context?.getDrawable(R.drawable.ic_place)
+            icon = context?.getDrawable(R.drawable.ic_place)?.apply {
+                setTint(resources.getColor(R.color.colorSecondaryDark, null))
+            }
             title = pointTitle
             subDescription = pointDescription
             position = geoPoint
