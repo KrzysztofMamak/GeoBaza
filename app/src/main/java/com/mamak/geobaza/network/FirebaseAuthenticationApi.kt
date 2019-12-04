@@ -1,5 +1,6 @@
 package com.mamak.geobaza.network
 
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
@@ -28,6 +29,12 @@ class FirebaseAuthenticationApi {
     fun resetPassword(email: String): Observable<Task<Void>> {
         return Observable.fromCallable {
             FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+        }
+    }
+
+    fun googleSignOut(googleSigninClient: GoogleSignInClient): Observable<Task<Void>> {
+        return Observable.fromCallable {
+            googleSigninClient.signOut()
         }
     }
 }

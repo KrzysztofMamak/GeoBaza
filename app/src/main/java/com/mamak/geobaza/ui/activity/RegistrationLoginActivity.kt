@@ -54,14 +54,13 @@ class RegistrationLoginActivity : BaseActivity() {
     }
 
     private fun checkUserSession() {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val currentUser = firebaseAuth.currentUser
+        val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            launchRegistrationLoginActivity()
+            launchProjectListActivity()
         }
     }
 
-    private fun launchRegistrationLoginActivity() {
+    private fun launchProjectListActivity() {
         val intent = Intent(this, ProjectListActivity::class.java)
         startActivity(intent)
         finish()

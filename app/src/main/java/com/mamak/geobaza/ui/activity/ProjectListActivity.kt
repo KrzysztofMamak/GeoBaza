@@ -14,6 +14,8 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.buchandersenn.android_permission_manager.PermissionManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.R
@@ -246,7 +248,22 @@ class ProjectListActivity : BaseActivity(),
 
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
-        launchRegistrationLoginActivity()
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+        val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+        projectListViewModel.googleSignOut(googleSignInClient)
+        projectListViewModel.getGoogleSignOutLiveData().observe(this, Observer { resource ->
+            if (resource!!.isLoading) {
+
+            } else if (resource.data != null) {
+                if (resource.data.isSuccessful) {
+                    launchRegistrationLoginActivity()
+                } else {
+
+                }
+            } else {
+
+            }
+        })
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
