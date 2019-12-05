@@ -22,7 +22,6 @@ class GeoApplication : Application(), HasAndroidInjector {
         DaggerAppComponent.builder()
             .application(this)
             .projectApiModule(ProjectApiModule())
-            .interfaceModule(InterfaceModule())
             .picassoModule(PicassoModule())
             .dbModule(DbModule())
             .locationModule(LocationModule())

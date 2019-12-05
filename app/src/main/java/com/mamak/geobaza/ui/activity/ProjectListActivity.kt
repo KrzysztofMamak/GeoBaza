@@ -61,6 +61,10 @@ class ProjectListActivity : BaseActivity(),
         getProjects()
     }
 
+    private fun initViewModel() {
+        projectListViewModel = viewModelFactory.create(projectListViewModel::class.java)
+    }
+
     private fun initComponents() {
         setNavigation()
         initRecycler()
@@ -144,12 +148,44 @@ class ProjectListActivity : BaseActivity(),
         ev_projects.visibility = View.VISIBLE
     }
 
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+            val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+            val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+            projectListViewModel.apply {
+                googleSignOut(googleSignInClient)
+                getGoogleSignOutLiveData().observe(this@ProjectListActivity, Observer { resource ->
+                    when {
+                        resource.isLoading -> {}
+                        resource.isSuccess -> launchRegistrationLoginActivity()
+                        else -> handleSignOutErrorResponse(resource.exception)
+                    }
+                })
+            }
+        } else {
+            handleSignOutSuccessResponse()
+        }
+    }
+
+    private fun handleSignOutSuccessResponse() {
+        launchRegistrationLoginActivity()
+    }
+
+    private fun handleSignOutErrorResponse(geoBazaException: GeoBazaException?) {
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {}
+        } else {}
+    }
+
+//    TODO Refactor
     private fun showProgressBar() {
         pb_projects.visibility = View.VISIBLE
         srl_projects.visibility = View.GONE
         rv_projects.visibility = View.GONE
     }
 
+//    TODO Refactor
     private fun hideProgressBar() {
         pb_projects.visibility = View.GONE
         srl_projects.visibility = View.VISIBLE
@@ -161,6 +197,32 @@ class ProjectListActivity : BaseActivity(),
             getProjects()
             it.visibility = View.GONE
         }
+    }
+
+    private fun showFilterDialog() {
+        val filterDialogFragment = FilterDialogFragment(createFilterDialogInterface())
+        filterDialogFragment.show(supportFragmentManager, null)
+    }
+
+    private fun setAreas(projects: MutableList<Project>) {
+        val areaList = mutableListOf<String>()
+        projects.forEach {
+            areaList.add(it.area)
+        }
+        AreaLab.setAreas(areaList)
+    }
+
+    private fun launchRegistrationLoginActivity() {
+        val intent = Intent(this, RegistrationLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun launchProjectDetailsActivity(projectNumber: Int) {
+        val intent = Intent(this, ProjectDetailsActivity::class.java)
+        intent.putExtra(EXTRA_PROJECT_NUMBER, projectNumber)
+        startActivity(intent)
+        finish()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -206,19 +268,6 @@ class ProjectListActivity : BaseActivity(),
         }
     }
 
-    private fun showFilterDialog() {
-        val filterDialogFragment = FilterDialogFragment(createFilterDialogInterface())
-        filterDialogFragment.show(supportFragmentManager, null)
-    }
-
-    private fun setAreas(projects: MutableList<Project>) {
-        val areaList = mutableListOf<String>()
-        projects.forEach {
-            areaList.add(it.area)
-        }
-        AreaLab.setAreas(areaList)
-    }
-
     private fun createProjectListItemInterface() = object : ProjectListItemInterface {
         override fun openGoogleMaps(x: Double, y: Double) {
             LocationManager.navigateByGeoCoordinates(this@ProjectListActivity, x, y)
@@ -245,54 +294,7 @@ class ProjectListActivity : BaseActivity(),
             .request()
     }
 
-    private fun signOut() {
-        FirebaseAuth.getInstance().signOut()
-        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
-            val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
-            val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
-            projectListViewModel.apply {
-                googleSignOut(googleSignInClient)
-                getGoogleSignOutLiveData().observe(this@ProjectListActivity, Observer { resource ->
-                    when {
-                        resource.isLoading -> {}
-                        resource.isSuccess -> launchRegistrationLoginActivity()
-                        else -> handleSignOutErrorResponse(resource.exception)
-                    }
-                })
-            }
-        } else {
-            handleSignOutSuccessResponse()
-        }
-    }
-
-    private fun handleSignOutSuccessResponse() {
-        launchRegistrationLoginActivity()
-    }
-
-    private fun handleSignOutErrorResponse(geoBazaException: GeoBazaException?) {
-        if (geoBazaException != null) {
-            when (geoBazaException.errorCode) {}
-        } else {}
-    }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         permissionManager.handlePermissionResult(requestCode, grantResults)
-    }
-
-    private fun launchRegistrationLoginActivity() {
-        val intent = Intent(this, RegistrationLoginActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun launchProjectDetailsActivity(projectNumber: Int) {
-        val intent = Intent(this, ProjectDetailsActivity::class.java)
-        intent.putExtra(EXTRA_PROJECT_NUMBER, projectNumber)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun initViewModel() {
-        projectListViewModel = viewModelFactory.create(projectListViewModel::class.java)
     }
 }

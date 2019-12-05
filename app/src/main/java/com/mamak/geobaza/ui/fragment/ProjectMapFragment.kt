@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
-import androidx.fragment.app.Fragment
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.utils.manager.MappingManager
 import com.mamak.geobaza.utils.manager.OsmManager
 import kotlinx.android.synthetic.main.fragment_project_map.*
@@ -25,7 +25,7 @@ import org.osmdroid.views.overlay.Polyline
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
-class ProjectMapFragment(private val project: Project) : Fragment() {
+class ProjectMapFragment(private val project: Project) : BaseFragment() {
     private lateinit var myLocationNewOverlay: MyLocationNewOverlay
     private val markerList = mutableListOf<Marker>()
     private val polyline = Polyline()

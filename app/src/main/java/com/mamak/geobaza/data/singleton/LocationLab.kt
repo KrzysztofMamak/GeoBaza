@@ -1,9 +1,8 @@
 package com.mamak.geobaza.data.singleton
 
 import android.location.Location
-import com.mamak.geobaza.data.model.Project
 
-object ProjectLab {
+object LocationLab {
     private var currentLocation: Location? = null
 
     fun setCurrentLocation(currentLocation: Location?) {

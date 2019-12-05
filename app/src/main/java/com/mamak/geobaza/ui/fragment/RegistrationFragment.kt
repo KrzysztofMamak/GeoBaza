@@ -45,6 +45,10 @@ class RegistrationFragment : BaseFragment() {
         setListeners()
     }
 
+    private fun initViewModel() {
+        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+    }
+
     private fun setOnClick() {
         b_register.setOnClickListener {
             resetFeedbackInfo()
@@ -69,10 +73,7 @@ class RegistrationFragment : BaseFragment() {
         val password = et_password.text.toString()
         val passwordConfirm = et_password_confirm.text.toString()
         val email = et_email.text.toString()
-        if (ValidationManager.validateRegistrationData(email, password, passwordConfirm)) {
-            return true
-        }
-        return false
+        return (ValidationManager.validateRegistrationData(email, password, passwordConfirm))
     }
 
     private fun register() {
@@ -87,27 +88,6 @@ class RegistrationFragment : BaseFragment() {
                     else -> handleRegistrationErrorResponse(resource.exception)
                 }
             })
-        }
-    }
-
-    private fun setRegistrationButton() {
-        val color: Int
-        val drawable: Int
-
-        if (validateUser()) {
-            color = R.color.colorTextOnSecondary
-            drawable = R.drawable.item_circle_full
-        } else {
-            color = R.color.colorSecondaryLight
-            drawable = R.drawable.item_circle
-        }
-
-        b_register.apply {
-            context?.let {
-                setTextColor(it.getColor(color))
-                background = it.getDrawable(drawable)
-                isEnabled = true
-            }
         }
     }
 
@@ -138,6 +118,27 @@ class RegistrationFragment : BaseFragment() {
         showIconByFeedback(false)
     }
 
+    private fun setRegistrationButton() {
+        val color: Int
+        val drawable: Int
+
+        if (validateUser()) {
+            color = R.color.colorTextOnSecondary
+            drawable = R.drawable.item_circle_full
+        } else {
+            color = R.color.colorSecondaryLight
+            drawable = R.drawable.item_circle
+        }
+
+        b_register.apply {
+            context?.let {
+                setTextColor(it.getColor(color))
+                background = it.getDrawable(drawable)
+                isEnabled = true
+            }
+        }
+    }
+
     private fun showIconByFeedback(isSuccessful: Boolean) {
         val drawable = if (isSuccessful) R.drawable.ic_check else R.drawable.ic_cross
 
@@ -154,9 +155,5 @@ class RegistrationFragment : BaseFragment() {
     private fun resetFeedbackInfo() {
         iv_registration_check.visibility = View.GONE
         tv_feedback.visibility = View.GONE
-    }
-
-    private fun initViewModel() {
-        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
     }
 }

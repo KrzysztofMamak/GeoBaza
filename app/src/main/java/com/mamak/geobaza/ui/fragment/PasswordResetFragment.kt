@@ -45,6 +45,10 @@ class PasswordResetFragment : BaseFragment() {
         setListener()
     }
 
+    private fun initViewModel() {
+        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+    }
+
     private fun setOnClick() {
         b_password_reset.setOnClickListener {
             resetFeedbackInfo()
@@ -68,6 +72,11 @@ class PasswordResetFragment : BaseFragment() {
                 setPasswordResetButton()
             }
         })
+    }
+
+    private fun validateEmail(): Boolean {
+        val email = et_email.text.toString()
+        return ValidationManager.validateEmail(email)
     }
 
     private fun resetPassword() {
@@ -123,12 +132,6 @@ class PasswordResetFragment : BaseFragment() {
         showIconByFeedback(false)
     }
 
-//    TODO Fix
-    private fun resetFeedbackInfo() {
-        iv_forgot_password_check.visibility = View.GONE
-        tv_feedback.visibility = View.GONE
-    }
-
     private fun setPasswordResetButton() {
         val color: Int
         val drawable: Int
@@ -162,12 +165,9 @@ class PasswordResetFragment : BaseFragment() {
         }
     }
 
-    private fun validateEmail(): Boolean {
-        val email = et_email.text.toString()
-        return ValidationManager.validateEmail(email)
-    }
-
-    private fun initViewModel() {
-        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+//    TODO Fix
+    private fun resetFeedbackInfo() {
+        iv_forgot_password_check.visibility = View.GONE
+        tv_feedback.visibility = View.GONE
     }
 }

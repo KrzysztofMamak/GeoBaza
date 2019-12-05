@@ -19,7 +19,6 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
     private val registrationLiveData = MutableLiveData<Resource<AuthResult>>()
     private val resetPasswordLiveData = MutableLiveData<Resource<Void>>()
 
-
     fun authViaEmailAndPassword(email: String, password: String) {
         addToDisposable(
             firebaseAuthenticationApi.authViaEmailAndPassword(email, password)

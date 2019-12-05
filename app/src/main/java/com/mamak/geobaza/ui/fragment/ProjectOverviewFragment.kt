@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.adapter.ProjectDataAdapter
+import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.utils.manager.MappingManager
 import kotlinx.android.synthetic.main.fragment_project_overview.*
 import kotlinx.android.synthetic.main.layout_step_bar.view.*
 
-class ProjectOverviewFragment(private val project: Project) : Fragment() {
+class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     private val projectDataAdapter = ProjectDataAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

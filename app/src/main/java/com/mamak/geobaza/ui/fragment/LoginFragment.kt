@@ -57,6 +57,10 @@ class LoginFragment : BaseFragment() {
         setListeners()
     }
 
+    private fun initViewModel() {
+        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+    }
+
     private fun setOnClicks() {
         b_login_email.setOnClickListener {
             signInViaEmailAndPassword()
@@ -115,6 +119,26 @@ class LoginFragment : BaseFragment() {
         }
     }
 
+    private fun handleAuthViaEmailAndPasswordSuccessResponse() {
+        startProjectListActivity()
+    }
+
+    private fun handleAuthViaEmailAndPasswordErrorResponse(geoBazaException: GeoBazaException?) {
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {
+                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {}
+                FIREBASE_AUTH_INVALID_USER_EXCEPTION -> {
+                    when (geoBazaException.internalErrorCode) {
+                        ERROR_USER_NOT_FOUND -> {}
+                        ERROR_USER_DISABLED -> {}
+                    }
+                }
+                FIREBASE_EXCEPTION -> {}
+                else -> {}
+            }
+        } else {}
+    }
+
     private fun signInViaGoogle() {
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -140,6 +164,21 @@ class LoginFragment : BaseFragment() {
                 }
             )
         }
+    }
+
+    private fun handleAuthViaGoogleSuccessResponse() {
+        startProjectListActivity()
+    }
+
+    private fun handleAuthViaGoogleErrorResponse(geoBazaException: GeoBazaException?) {
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {
+                FIREBASE_AUTH_USER_COLLISION_EXCEPTION -> {} //disabled
+                FIREBASE_AUTH_EXCEPTION -> {} //provider
+                FIREBASE_EXCEPTION -> {} //internet
+                else -> {}
+            }
+        } else {}
     }
 
     private fun setLoginButton() {
@@ -169,41 +208,6 @@ class LoginFragment : BaseFragment() {
         return (ValidationManager.validateEmail(email) && password.isNotEmpty())
     }
 
-    private fun handleAuthViaGoogleSuccessResponse() {
-        startProjectListActivity()
-    }
-
-    private fun handleAuthViaGoogleErrorResponse(geoBazaException: GeoBazaException?) {
-        if (geoBazaException != null) {
-            when (geoBazaException.errorCode) {
-                FIREBASE_AUTH_USER_COLLISION_EXCEPTION -> {} //disabled
-                FIREBASE_AUTH_EXCEPTION -> {} //provider
-                FIREBASE_EXCEPTION -> {} //internet
-                else -> {}
-            }
-        } else {}
-    }
-
-    private fun handleAuthViaEmailAndPasswordSuccessResponse() {
-        startProjectListActivity()
-    }
-
-    private fun handleAuthViaEmailAndPasswordErrorResponse(geoBazaException: GeoBazaException?) {
-        if (geoBazaException != null) {
-            when (geoBazaException.errorCode) {
-                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {}
-                FIREBASE_AUTH_INVALID_USER_EXCEPTION -> {
-                    when (geoBazaException.internalErrorCode) {
-                        ERROR_USER_NOT_FOUND -> {}
-                        ERROR_USER_DISABLED -> {}
-                    }
-                }
-                FIREBASE_EXCEPTION -> {}
-                else -> {}
-            }
-        } else {}
-    }
-
     private fun launchFragment(fragment: Fragment) {
         val fragmentTransaction = getActivity()?.supportFragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.container_fragment, fragment)
@@ -226,9 +230,5 @@ class LoginFragment : BaseFragment() {
                 authViaGoogle(googleSignInResult.signInAccount)
             }
         }
-    }
-
-    private fun initViewModel() {
-        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
     }
 }

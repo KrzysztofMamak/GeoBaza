@@ -6,7 +6,7 @@ import android.location.Location
 import android.net.Uri
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Point
-import com.mamak.geobaza.data.singleton.ProjectLab
+import com.mamak.geobaza.data.singleton.LocationLab
 
 object LocationManager {
     fun navigateByGeoCoordinates(context: Context, x: Double, y: Double) {
@@ -23,6 +23,6 @@ object LocationManager {
         val geoCoordinates = CoordinatesManager.tr2000WGS(doubleArrayOf(point.x, point.y)).asList()
         location.latitude = geoCoordinates[0]
         location.longitude = geoCoordinates[1]
-        return ProjectLab.getCurrentLocation()?.distanceTo(location)?.div(1000)
+        return LocationLab.getCurrentLocation()?.distanceTo(location)?.div(1000)
     }
 }

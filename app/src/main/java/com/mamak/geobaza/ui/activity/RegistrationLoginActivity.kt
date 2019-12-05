@@ -37,20 +37,19 @@ class RegistrationLoginActivity : BaseActivity() {
         registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
     }
 
-//    TODO use apply instead
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container_fragment, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        transaction.apply {
+            replace(R.id.container_fragment, fragment)
+            addToBackStack(null)
+            commit()
+        }
     }
 
-    override fun setStatusBar() {
-        window.apply {
-            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            statusBarColor = ContextCompat.getColor(this@RegistrationLoginActivity, R.color.colorPrimaryDark)
-        }
+    private fun launchProjectListActivity() {
+        val intent = Intent(this, ProjectListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun checkUserSession() {
@@ -60,9 +59,11 @@ class RegistrationLoginActivity : BaseActivity() {
         }
     }
 
-    private fun launchProjectListActivity() {
-        val intent = Intent(this, ProjectListActivity::class.java)
-        startActivity(intent)
-        finish()
+    override fun setStatusBar() {
+        window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = ContextCompat.getColor(this@RegistrationLoginActivity, R.color.colorPrimaryDark)
+        }
     }
 }
