@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -104,7 +103,7 @@ class ProjectListActivity : BaseActivity(),
     private fun getProjects() {
         projectListViewModel.fetchProjectsByRepo()
         projectListViewModel.getProjectsLiveData().observe(this, Observer { resource ->
-            if (resource!!.isLoading) {
+            if (resource.isLoading) {
                 showProgressBar()
             } else if (!resource.data.isNullOrEmpty()) {
                 handleSuccessResponse(resource.data)
@@ -174,7 +173,6 @@ class ProjectListActivity : BaseActivity(),
                 return false
             }
         })
-
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -223,10 +221,8 @@ class ProjectListActivity : BaseActivity(),
             LocationManager.navigateByGeoCoordinates(this@ProjectListActivity, x, y)
         }
 
-        override fun openProjectDetails(number: Int?) {
-            val intent = Intent(this@ProjectListActivity, ProjectDetailsActivity::class.java)
-            intent.putExtra(EXTRA_PROJECT_NUMBER, number)
-            startActivity(intent)
+        override fun openProjectDetails(projectNumber: Int) {
+            launchProjectDetailsActivity(projectNumber)
         }
     }
 
@@ -248,22 +244,20 @@ class ProjectListActivity : BaseActivity(),
 
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
-        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
-        val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
-        projectListViewModel.googleSignOut(googleSignInClient)
-        projectListViewModel.getGoogleSignOutLiveData().observe(this, Observer { resource ->
-            if (resource!!.isLoading) {
-
-            } else if (resource.data != null) {
-                if (resource.data.isSuccessful) {
-                    launchRegistrationLoginActivity()
-                } else {
-
+        if (GoogleSignIn.getLastSignedInAccount(this) != null) {
+            val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+            val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
+            projectListViewModel.googleSignOut(googleSignInClient)
+            projectListViewModel.getGoogleSignOutLiveData().observe(this, Observer { resource ->
+                when {
+                    resource.isLoading -> {}
+                    resource.isSuccess -> launchRegistrationLoginActivity()
+                    else -> {}
                 }
-            } else {
-
-            }
-        })
+            })
+        } else {
+            launchRegistrationLoginActivity()
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -272,6 +266,13 @@ class ProjectListActivity : BaseActivity(),
 
     private fun launchRegistrationLoginActivity() {
         val intent = Intent(this, RegistrationLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun launchProjectDetailsActivity(projectNumber: Int) {
+        val intent = Intent(this, ProjectDetailsActivity::class.java)
+        intent.putExtra(EXTRA_PROJECT_NUMBER, projectNumber)
         startActivity(intent)
         finish()
     }

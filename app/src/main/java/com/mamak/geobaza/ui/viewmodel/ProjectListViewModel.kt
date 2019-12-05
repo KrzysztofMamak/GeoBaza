@@ -7,11 +7,10 @@ import android.location.LocationManager
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.tasks.Task
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.ProjectLab
-import com.mamak.geobaza.network.FirebaseAuthenticationApi
+import com.mamak.geobaza.network.firebase.FirebaseAuthenticationApi
 import com.mamak.geobaza.network.api.ProjectApiService
 import com.mamak.geobaza.network.connection.Resource
 import com.mamak.geobaza.ui.base.BaseViewModel
@@ -27,12 +26,10 @@ class ProjectListViewModel @Inject constructor(
     private val locationManager: LocationManager
 ) : BaseViewModel() {
     private val projectsLiveData = MutableLiveData<Resource<List<Project>>>()
-    private val googleSignOutLiveData = MutableLiveData<Resource<Task<Void>>>()
+    private val googleSignOutLiveData = MutableLiveData<Resource<Void>>()
     private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
 
-        @SuppressLint("CheckResult")
     fun fetchProjectsByRepo() {
-//        TODO replace with repository methods
         addToDisposable(projectApiService.getProjects()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -71,7 +68,6 @@ class ProjectListViewModel @Inject constructor(
         })
     }
 
-    @SuppressLint("CheckResult")
     fun googleSignOut(googleSignInClient: GoogleSignInClient) {
         addToDisposable(firebaseAuthenticationApi.googleSignOut(googleSignInClient)
             .observeOn(Schedulers.io())
@@ -80,8 +76,8 @@ class ProjectListViewModel @Inject constructor(
                 googleSignOutLiveData.postValue(Resource.loading())
             }
             .subscribeBy(
-                onNext = {
-                    googleSignOutLiveData.postValue(Resource.success(it))
+                onComplete = {
+                    googleSignOutLiveData.postValue(Resource.success(null))
                 },
                 onError = {
                     googleSignOutLiveData.postValue(Resource.error(it as Exception))

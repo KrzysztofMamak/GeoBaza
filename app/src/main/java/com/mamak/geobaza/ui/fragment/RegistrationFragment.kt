@@ -51,7 +51,6 @@ class RegistrationFragment : BaseFragment() {
         listOf<EditText>(et_email, et_password_first, et_password_second).forEach {
             it.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {}
-
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -76,16 +75,10 @@ class RegistrationFragment : BaseFragment() {
         val password = et_password_first.text.toString()
         registrationLoginSharedViewModel.registerViaEmailAndPassword(email, password)
         registrationLoginSharedViewModel.getRegistrationLiveData().observe(this, Observer { resource ->
-            if (resource.isLoading) {
-                showProgressBar()
-            } else if (resource.data != null) {
-                if (resource.data.isSuccessful) {
-                    handleSuccessResponse()
-                } else {
-                    handleErrorResponse()
-                }
-            } else {
-                handleErrorResponse()
+            when {
+                resource.isLoading -> showProgressBar()
+                resource.isSuccess -> handleSuccessResponse()
+                else -> handleErrorResponse()
             }
         })
     }
@@ -119,7 +112,6 @@ class RegistrationFragment : BaseFragment() {
         }, DELAY_SHORT)
     }
 
-//    TODO handleErrorResponse
     private fun handleErrorResponse() {}
 
     private fun showProgressBar() {

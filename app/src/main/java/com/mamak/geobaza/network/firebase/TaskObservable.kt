@@ -1,4 +1,4 @@
-package com.mamak.geobaza.network
+package com.mamak.geobaza.network.firebase
 
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
@@ -32,11 +32,10 @@ internal class TaskObservable<T>(private val callable: Callable<Task<T>>) : Obse
                 observer.onError(e)
             }
         }
-
     }
 
     private class TaskListener<T> internal constructor(private val observer: Observer<in T>) : OnCompleteListener<T>,
-        Disposable, OnFailureListener, OnSuccessListener<T> {
+            Disposable, OnFailureListener, OnSuccessListener<T> {
         private val isDispose = AtomicBoolean(false)
 
         override fun dispose() {

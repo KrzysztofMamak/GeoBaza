@@ -1,10 +1,9 @@
 package com.mamak.geobaza.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
-import com.mamak.geobaza.network.FirebaseAuthenticationApi
+import com.mamak.geobaza.network.firebase.FirebaseAuthenticationApi
 import com.mamak.geobaza.network.connection.Resource
 import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,14 +14,14 @@ import javax.inject.Inject
 class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
     private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
     private val authViaEmailLiveData = MutableLiveData<Resource<AuthResult>>()
-    private val authViaGoogleLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
-    private val registrationLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
-    private val resetPasswordLiveData = MutableLiveData<Resource<Task<Void>>>()
+    private val authViaGoogleLiveData = MutableLiveData<Resource<AuthResult>>()
+    private val registrationLiveData = MutableLiveData<Resource<AuthResult>>()
+    private val resetPasswordLiveData = MutableLiveData<Resource<Void>>()
 
 
     fun authViaEmailAndPassword(email: String, password: String) {
         addToDisposable(
-            firebaseAuthenticationApi.signInWithEmailAndPassword(email, password)
+            firebaseAuthenticationApi.authViaEmailAndPassword(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
@@ -86,8 +85,8 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
                     resetPasswordLiveData.postValue(Resource.loading())
                 }
                 .subscribeBy(
-                    onNext = {
-                        resetPasswordLiveData.postValue(Resource.success(it))
+                    onComplete = {
+                        resetPasswordLiveData.postValue(Resource.success(null))
                     },
                     onError = {
                         resetPasswordLiveData.postValue(Resource.error(it as Exception))

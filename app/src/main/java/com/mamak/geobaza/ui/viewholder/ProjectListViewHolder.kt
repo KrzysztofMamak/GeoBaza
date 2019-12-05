@@ -38,9 +38,9 @@ class ProjectListViewHolder(
         }
     }
 
-    private fun setItemViewOnClick(number: Int?) {
+    private fun setItemViewOnClick(projectNumber: Int) {
         itemView.setOnClickListener {
-            projectListItemCommunication.openProjectDetails(number)
+            projectListItemCommunication.openProjectDetails(projectNumber)
         }
     }
 

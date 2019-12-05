@@ -17,6 +17,7 @@ import com.mamak.geobaza.utils.manager.ValidationManager
 import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class PasswordResetFragment : BaseFragment() {
@@ -72,16 +73,10 @@ class PasswordResetFragment : BaseFragment() {
         registrationLoginSharedViewModel.getResetPasswordLiveData()
             .observe(
                 this, Observer { resource ->
-                    if (resource.isLoading) {
-                        showProgressBar()
-                    } else if (resource.data != null) {
-                        if (resource.data.isSuccessful) {
-                            handleSuccessResponse()
-                        } else {
-                            handleErrorResponse()
-                        }
-                    } else {
-                        handleErrorResponse(resource.exception)
+                    when {
+                        resource.isLoading -> showProgressBar()
+                        resource.isSuccess -> handleSuccessResponse()
+                        else -> handleErrorResponse(resource.exception)
                     }
                 }
             )
@@ -112,6 +107,7 @@ class PasswordResetFragment : BaseFragment() {
     }
 
     private fun handleErrorResponse(exception: Exception? = null) {
+        Timber.e(exception)
         hideProgressBar()
         tv_feedback.apply {
             text = getString(R.string.password_reset_failed)
@@ -125,7 +121,6 @@ class PasswordResetFragment : BaseFragment() {
         tv_feedback.visibility = View.GONE
     }
 
-//    TODO refactor
     private fun showIconForSuccess() {
         iv_forgot_password_check.apply {
             setImageDrawable(context.getDrawable(R.drawable.ic_check))
@@ -136,7 +131,6 @@ class PasswordResetFragment : BaseFragment() {
         }
     }
 
-//    TODO refactor
     private fun showIconForFail() {
         iv_forgot_password_check.apply {
             setImageDrawable(context.getDrawable(R.drawable.ic_cross))
@@ -163,7 +157,6 @@ class PasswordResetFragment : BaseFragment() {
         return false
     }
 
-//    TODO refactor
     private fun allowPasswordReset() {
         b_reset_password.apply {
             context?.let {
@@ -174,7 +167,6 @@ class PasswordResetFragment : BaseFragment() {
         }
     }
 
-//    TODO refactor
     private fun denyPasswordReset() {
         b_reset_password.apply {
             context?.let {

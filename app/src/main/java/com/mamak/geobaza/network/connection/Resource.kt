@@ -8,7 +8,7 @@ class Resource<T> private constructor(
         val exception: Exception?,
         message: String? = null) {
     val isSuccess: Boolean
-        get() = status === Status.SUCCESS && data != null
+        get() = status === Status.SUCCESS
 
     val isLoading: Boolean
         get() = status === Status.LOADING

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,9 +58,7 @@ class LoginFragment : BaseFragment() {
             signInViaGoogle()
         }
 
-        b_login_github.setOnClickListener {
-//            TODO loginViaGithub
-        }
+        b_login_github.setOnClickListener {}
 
         tv_register.setOnClickListener {
             launchFragment(RegistrationFragment())
@@ -80,7 +77,6 @@ class LoginFragment : BaseFragment() {
         listOf<EditText>(et_email, et_password).forEach {
             it.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {}
-
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -97,18 +93,16 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun authViaEmailAndPassword(email: String, password: String) {
+        registrationLoginSharedViewModel.authViaEmailAndPassword(email, password)
         registrationLoginSharedViewModel.getAuthViaEmailLiveData().observe(
             this, Observer { resource ->
-                if (resource.isLoading) {
-                    showProgressBar()
-                } else if (resource.isSuccess) {
-                    startProjectListActivity()
-                } else {
-                    handleErrorResponse()
+                when {
+                    resource.isLoading -> showProgressBar()
+                    resource.isSuccess -> startProjectListActivity()
+                    else -> handleErrorResponse()
                 }
             }
         )
-        registrationLoginSharedViewModel.authViaEmailAndPassword(email, password)
     }
 
     private fun signInViaGoogle() {
@@ -129,16 +123,10 @@ class LoginFragment : BaseFragment() {
         )
         registrationLoginSharedViewModel.getAuthViaGoogleLiveData().observe(
             this, Observer { resource ->
-                if (resource.isLoading) {
-                    showProgressBar()
-                } else if (resource.data != null) {
-                    if (resource.data.isSuccessful) {
-                        startProjectListActivity()
-                    } else {
-                        handleErrorResponse()
-                    }
-                } else {
-                    handleErrorResponse()
+                when {
+                    resource.isLoading -> showProgressBar()
+                    resource.isSuccess -> startProjectListActivity()
+                    else -> handleErrorResponse()
                 }
             }
         )
@@ -174,10 +162,8 @@ class LoginFragment : BaseFragment() {
         return false
     }
 
-//    TODO handleErrorResponse
     private fun handleErrorResponse() {}
 
-//    TODO showProgressBar()
     private fun showProgressBar() {}
 
     private fun launchFragment(fragment: Fragment) {
