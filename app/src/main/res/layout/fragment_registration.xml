@@ -7,17 +7,40 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
 
-    <TextView
-            android:id="@+id/tv_app_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="@dimen/text_header_big"
-            android:textColor="@color/colorSecondaryLight"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/container_register"/>
+            app:layout_constraintBottom_toTopOf="@id/container_register">
+
+        <com.mamak.geobaza.utils.view.GeoBazaLogo
+                android:id="@+id/app_logo"
+                android:layout_width="@dimen/icon_touch_size_medium"
+                android:layout_height="@dimen/icon_touch_size_medium"
+                android:layout_marginEnd="@dimen/default_padding_margin"
+                app:foregroundColor="@color/colorSecondaryLight"
+                app:backgroundColor="@color/colorSecondaryLight"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_app_name"/>
+
+        <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_header_big"
+                android:textColor="@color/colorSecondaryLight"
+                app:layout_constraintStart_toEndOf="@id/app_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_register"
@@ -35,7 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/container_password_input_first"
+                app:layout_constraintBottom_toTopOf="@id/container_password_input"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -67,16 +90,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/container_password_input_first"
+                android:id="@+id/container_password_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/container_email_input"
-                app:layout_constraintBottom_toTopOf="@id/container_password_input_second"
+                app:layout_constraintBottom_toTopOf="@id/container_password_confirm_input"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
-                    android:id="@+id/iv_password_first"
+                    android:id="@+id/iv_password"
                     android:contentDescription="@null"
                     android:src="@drawable/ic_lock_outline"
                     android:tint="@color/colorSecondaryLight"
@@ -87,14 +110,14 @@
                     app:layout_constraintStart_toStartOf="parent"/>
 
             <EditText
-                    android:id="@+id/et_password_first"
+                    android:id="@+id/et_password"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:hint="@string/password"
                     android:textColor="@color/colorSecondaryLight"
                     android:textColorHint="@color/colorSecondaryLight"
-                    app:layout_constraintStart_toEndOf="@id/iv_password_first"
+                    app:layout_constraintStart_toEndOf="@id/iv_password"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -103,16 +126,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/container_password_input_second"
+                android:id="@+id/container_password_confirm_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/container_password_input_first"
+                app:layout_constraintTop_toBottomOf="@id/container_password_input"
                 app:layout_constraintBottom_toTopOf="@id/b_register"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
-                    android:id="@+id/iv_password_second"
+                    android:id="@+id/iv_password_confirm"
                     android:contentDescription="@null"
                     android:src="@drawable/ic_lock"
                     android:tint="@color/colorSecondaryLight"
@@ -123,14 +146,14 @@
                     app:layout_constraintStart_toStartOf="parent"/>
 
             <EditText
-                    android:id="@+id/et_password_second"
+                    android:id="@+id/et_password_confirm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:hint="@string/confirm_password"
                     android:textColor="@color/colorSecondaryLight"
                     android:textColorHint="@color/colorSecondaryLight"
-                    app:layout_constraintStart_toEndOf="@id/iv_password_second"
+                    app:layout_constraintStart_toEndOf="@id/iv_password_confirm"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -149,7 +172,7 @@
                 android:layout_marginTop="@dimen/default_padding_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/container_password_input_second"
+                app:layout_constraintTop_toBottomOf="@id/container_password_confirm_input"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

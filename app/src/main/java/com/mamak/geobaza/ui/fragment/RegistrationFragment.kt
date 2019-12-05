@@ -48,7 +48,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun setListeners() {
-        listOf<EditText>(et_email, et_password_first, et_password_second).forEach {
+        listOf<EditText>(et_email, et_password, et_password_confirm).forEach {
             it.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {}
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -61,10 +61,10 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun validateUser(): Boolean {
-        val passwordFirst = et_password_first.text.toString()
-        val passwordSecond = et_password_second.text.toString()
+        val password = et_password.text.toString()
+        val passwordConfirm = et_password_confirm.text.toString()
         val email = et_email.text.toString()
-        if (passwordFirst == passwordSecond && passwordFirst.length >= 6 && ValidationManager.validateEmail(email)) {
+        if (ValidationManager.validateRegistrationData(email, password, passwordConfirm)) {
             return true
         }
         return false
@@ -72,7 +72,7 @@ class RegistrationFragment : BaseFragment() {
 
     private fun register() {
         val email = et_email.text.toString()
-        val password = et_password_first.text.toString()
+        val password = et_password.text.toString()
         registrationLoginSharedViewModel.registerViaEmailAndPassword(email, password)
         registrationLoginSharedViewModel.getRegistrationLiveData().observe(this, Observer { resource ->
             when {

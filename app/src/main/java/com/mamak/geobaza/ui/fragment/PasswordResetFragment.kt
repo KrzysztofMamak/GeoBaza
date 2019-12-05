@@ -44,42 +44,9 @@ class PasswordResetFragment : BaseFragment() {
     }
 
     private fun setOnClick() {
-        b_reset_password.setOnClickListener {
+        b_password_reset.setOnClickListener {
             resetPassword()
         }
-    }
-
-    private fun setListener() {
-        et_email.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                setPasswordResetAvailability()
-            }
-        })
-    }
-
-    private fun resetPassword() {
-        val email = et_email.text.toString()
-        resetFeedbackInfo()
-        showProgressBar()
-        sendPasswordResetLink(email)
-    }
-
-    private fun sendPasswordResetLink(email: String) {
-        registrationLoginSharedViewModel.resetPassword(email)
-        registrationLoginSharedViewModel.getResetPasswordLiveData()
-            .observe(
-                this, Observer { resource ->
-                    when {
-                        resource.isLoading -> showProgressBar()
-                        resource.isSuccess -> handleSuccessResponse()
-                        else -> handleErrorResponse(resource.exception)
-                    }
-                }
-            )
     }
 
     private fun setEmptyView() {
@@ -89,31 +56,54 @@ class PasswordResetFragment : BaseFragment() {
         }
     }
 
-    private fun showProgressBar() {
-        pb_forgot_password_registration.visibility = View.VISIBLE
+    private fun setListener() {
+        et_email.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                setPasswordResetButton()
+            }
+        })
     }
 
-    private fun hideProgressBar() {
-        pb_forgot_password_registration.visibility = View.GONE
+    private fun resetPassword() {
+        val email = et_email.text.toString()
+        resetFeedbackInfo()
+        sendPasswordResetLink(email)
     }
 
-    private fun handleSuccessResponse() {
-        hideProgressBar()
+    private fun sendPasswordResetLink(email: String) {
+        registrationLoginSharedViewModel.resetPassword(email)
+        registrationLoginSharedViewModel.getResetPasswordLiveData()
+            .observe(
+                this, Observer { resource ->
+                    when {
+                        resource.isLoading -> pb_forgot_password.visibility = View.VISIBLE
+                        resource.isSuccess -> handlePasswordResetSuccessResponse()
+                        else -> handlePasswordResetErrorResponse(resource.exception)
+                    }
+                }
+            )
+    }
+
+    private fun handlePasswordResetSuccessResponse() {
+        pb_forgot_password.visibility = View.GONE
         tv_feedback.apply {
             text = getString(R.string.password_reset_success)
             visibility = View.VISIBLE
         }
-        showIconForSuccess()
+        showIconByFeedback(true)
     }
 
-    private fun handleErrorResponse(exception: Exception? = null) {
+    private fun handlePasswordResetErrorResponse(exception: Exception? = null) {
         Timber.e(exception)
-        hideProgressBar()
+        pb_forgot_password.visibility = View.GONE
         tv_feedback.apply {
             text = getString(R.string.password_reset_failed)
             visibility = View.VISIBLE
         }
-        showIconForFail()
+        showIconByFeedback(false)
     }
 
     private fun resetFeedbackInfo() {
@@ -121,31 +111,36 @@ class PasswordResetFragment : BaseFragment() {
         tv_feedback.visibility = View.GONE
     }
 
-    private fun showIconForSuccess() {
-        iv_forgot_password_check.apply {
-            setImageDrawable(context.getDrawable(R.drawable.ic_check))
-            ImageViewCompat.setImageTintList(
-                this,
-                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
-            visibility = View.VISIBLE
-        }
-    }
+    private fun setPasswordResetButton() {
+        val color: Int
+        val drawable: Int
 
-    private fun showIconForFail() {
-        iv_forgot_password_check.apply {
-            setImageDrawable(context.getDrawable(R.drawable.ic_cross))
-            ImageViewCompat.setImageTintList(
-                this,
-                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
-            visibility = View.VISIBLE
-        }
-    }
-
-    private fun setPasswordResetAvailability() {
         if (validateEmail()) {
-            allowPasswordReset()
+            color = R.color.colorTextOnSecondary
+            drawable = R.drawable.item_circle_full
         } else {
-            denyPasswordReset()
+            color = R.color.colorSecondaryLight
+            drawable = R.drawable.item_circle
+        }
+
+        b_password_reset.apply {
+            context?.let {
+                background = it.getDrawable(drawable)
+                setTextColor(it.getColor(color))
+                isEnabled = true
+            }
+        }
+    }
+
+    private fun showIconByFeedback(isSuccessful: Boolean) {
+        val drawable = if (isSuccessful) R.drawable.ic_check else R.drawable.ic_cross
+
+        iv_forgot_password_check.apply {
+            setImageDrawable(context.getDrawable(drawable))
+            ImageViewCompat.setImageTintList(
+                this,
+                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
+            visibility = View.VISIBLE
         }
     }
 
@@ -155,26 +150,6 @@ class PasswordResetFragment : BaseFragment() {
             return true
         }
         return false
-    }
-
-    private fun allowPasswordReset() {
-        b_reset_password.apply {
-            context?.let {
-                background = it.getDrawable(R.drawable.item_circle_full)
-                setTextColor(it.getColor(R.color.colorTextOnSecondary))
-                isEnabled = true
-            }
-        }
-    }
-
-    private fun denyPasswordReset() {
-        b_reset_password.apply {
-            context?.let {
-                background = it.getDrawable(R.drawable.item_circle)
-                setTextColor(it.getColor(R.color.colorSecondaryLight))
-                isEnabled = false
-            }
-        }
     }
 
     private fun initViewModel() {

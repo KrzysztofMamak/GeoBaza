@@ -12,4 +12,13 @@ object ValidationManager {
 
         return pattern.matcher(email).matches()
     }
+
+    private fun validateDoublePassword(password: String, passwordConfirm: String): Boolean {
+        return (password == passwordConfirm && password.length >= 6)
+    }
+
+    fun validateRegistrationData(email: String, password: String, passwordConfirm: String)
+            : Boolean {
+        return (validateEmail(email) && validateDoublePassword(password, passwordConfirm))
+    }
 }

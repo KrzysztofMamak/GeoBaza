@@ -1,6 +1,9 @@
 package com.mamak.geobaza.utils.manager;
 
-//TODO Refactor
+/*
+ *
+ * @author https://github.com/atomic7777
+ */
 public abstract class CoordinatesManager {
     public static double[] tr2000WGS(double[] xy){
         double[] wsp={1,1};
