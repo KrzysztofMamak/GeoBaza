@@ -11,13 +11,15 @@ import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
+import com.mamak.geobaza.network.firebase.GeoBazaException
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_DISABLED
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_NOT_FOUND
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import com.mamak.geobaza.utils.manager.ValidationManager
 import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class PasswordResetFragment : BaseFragment() {
@@ -45,6 +47,7 @@ class PasswordResetFragment : BaseFragment() {
 
     private fun setOnClick() {
         b_password_reset.setOnClickListener {
+            resetFeedbackInfo()
             resetPassword()
         }
     }
@@ -69,15 +72,14 @@ class PasswordResetFragment : BaseFragment() {
 
     private fun resetPassword() {
         val email = et_email.text.toString()
-        resetFeedbackInfo()
         sendPasswordResetLink(email)
     }
 
     private fun sendPasswordResetLink(email: String) {
-        registrationLoginSharedViewModel.resetPassword(email)
-        registrationLoginSharedViewModel.getResetPasswordLiveData()
-            .observe(
-                this, Observer { resource ->
+        registrationLoginSharedViewModel.apply {
+            resetPassword(email)
+            getResetPasswordLiveData().observe(
+                this@PasswordResetFragment, Observer { resource ->
                     when {
                         resource.isLoading -> pb_forgot_password.visibility = View.VISIBLE
                         resource.isSuccess -> handlePasswordResetSuccessResponse()
@@ -85,6 +87,7 @@ class PasswordResetFragment : BaseFragment() {
                     }
                 }
             )
+        }
     }
 
     private fun handlePasswordResetSuccessResponse() {
@@ -96,16 +99,31 @@ class PasswordResetFragment : BaseFragment() {
         showIconByFeedback(true)
     }
 
-    private fun handlePasswordResetErrorResponse(exception: Exception? = null) {
-        Timber.e(exception)
-        pb_forgot_password.visibility = View.GONE
-        tv_feedback.apply {
-            text = getString(R.string.password_reset_failed)
-            visibility = View.VISIBLE
+    private fun handlePasswordResetErrorResponse(geoBazaException: GeoBazaException?) {
+        when (geoBazaException?.errorCode) {
+            GeoBazaException.FIREBASE_AUTH_INVALID_USER_EXCEPTION -> {
+                when (geoBazaException.internalErrorCode) {
+                    ERROR_USER_DISABLED -> {
+                        tv_feedback.text = getString(R.string.password_reset_user_disabled)
+                    }
+                    ERROR_USER_NOT_FOUND -> {
+                        tv_feedback.text = getString(R.string.password_reset_user_not_found)
+                    }
+                }
+            }
+            GeoBazaException.FIREBASE_EXCEPTION -> {
+                tv_feedback.text = getString(R.string.password_reset_connection_failed)
+            }
+            else -> {
+                tv_feedback.text = getString(R.string.something_went_wrong)
+            }
         }
+        pb_forgot_password.visibility = View.GONE
+        tv_feedback.visibility = View.VISIBLE
         showIconByFeedback(false)
     }
 
+//    TODO Fix
     private fun resetFeedbackInfo() {
         iv_forgot_password_check.visibility = View.GONE
         tv_feedback.visibility = View.GONE
@@ -146,10 +164,7 @@ class PasswordResetFragment : BaseFragment() {
 
     private fun validateEmail(): Boolean {
         val email = et_email.text.toString()
-        if (ValidationManager.validateEmail(email)) {
-            return true
-        }
-        return false
+        return ValidationManager.validateEmail(email)
     }
 
     private fun initViewModel() {

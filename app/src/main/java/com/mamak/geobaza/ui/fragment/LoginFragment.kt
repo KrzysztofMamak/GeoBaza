@@ -17,6 +17,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.GoogleAuthProvider
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
+import com.mamak.geobaza.network.firebase.GeoBazaException
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_DISABLED
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_NOT_FOUND
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_EXCEPTION
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_INVALID_USER_EXCEPTION
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_USER_COLLISION_EXCEPTION
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
 import com.mamak.geobaza.ui.activity.ProjectListActivity
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
@@ -93,16 +101,18 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun authViaEmailAndPassword(email: String, password: String) {
-        registrationLoginSharedViewModel.authViaEmailAndPassword(email, password)
-        registrationLoginSharedViewModel.getAuthViaEmailLiveData().observe(
-            this, Observer { resource ->
-                when {
-                    resource.isLoading -> showProgressBar()
-                    resource.isSuccess -> startProjectListActivity()
-                    else -> handleErrorResponse()
+        registrationLoginSharedViewModel.apply {
+            authViaEmailAndPassword(email, password)
+            getAuthViaEmailLiveData().observe(
+                this@LoginFragment, Observer { resource ->
+                    when {
+                        resource.isLoading -> {}
+                        resource.isSuccess -> handleAuthViaEmailAndPasswordSuccessResponse()
+                        else -> handleAuthViaEmailAndPasswordErrorResponse(resource.exception)
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     private fun signInViaGoogle() {
@@ -118,18 +128,18 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun authViaGoogle(googleSignInAccount: GoogleSignInAccount?) {
-        registrationLoginSharedViewModel.authViaGoogle(
-            GoogleAuthProvider.getCredential(googleSignInAccount?.idToken, null)
-        )
-        registrationLoginSharedViewModel.getAuthViaGoogleLiveData().observe(
-            this, Observer { resource ->
-                when {
-                    resource.isLoading -> showProgressBar()
-                    resource.isSuccess -> startProjectListActivity()
-                    else -> handleErrorResponse()
+        registrationLoginSharedViewModel.apply {
+            authViaGoogle(GoogleAuthProvider.getCredential(googleSignInAccount?.idToken, null))
+            getAuthViaGoogleLiveData().observe(
+                this@LoginFragment, Observer { resource ->
+                    when {
+                        resource.isLoading -> {}
+                        resource.isSuccess -> handleAuthViaGoogleSuccessResponse()
+                        else -> handleAuthViaGoogleErrorResponse(resource.exception)
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     private fun setLoginButton() {
@@ -156,15 +166,43 @@ class LoginFragment : BaseFragment() {
     private fun validateUser(): Boolean {
         val email = et_email.text.toString()
         val password = et_password.text.toString()
-        if (ValidationManager.validateEmail(email) && password.isNotEmpty()) {
-            return true
-        }
-        return false
+        return (ValidationManager.validateEmail(email) && password.isNotEmpty())
     }
 
-    private fun handleErrorResponse() {}
+    private fun handleAuthViaGoogleSuccessResponse() {
+        startProjectListActivity()
+    }
 
-    private fun showProgressBar() {}
+    private fun handleAuthViaGoogleErrorResponse(geoBazaException: GeoBazaException?) {
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {
+                FIREBASE_AUTH_USER_COLLISION_EXCEPTION -> {} //disabled
+                FIREBASE_AUTH_EXCEPTION -> {} //provider
+                FIREBASE_EXCEPTION -> {} //internet
+                else -> {}
+            }
+        } else {}
+    }
+
+    private fun handleAuthViaEmailAndPasswordSuccessResponse() {
+        startProjectListActivity()
+    }
+
+    private fun handleAuthViaEmailAndPasswordErrorResponse(geoBazaException: GeoBazaException?) {
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {
+                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {}
+                FIREBASE_AUTH_INVALID_USER_EXCEPTION -> {
+                    when (geoBazaException.internalErrorCode) {
+                        ERROR_USER_NOT_FOUND -> {}
+                        ERROR_USER_DISABLED -> {}
+                    }
+                }
+                FIREBASE_EXCEPTION -> {}
+                else -> {}
+            }
+        } else {}
+    }
 
     private fun launchFragment(fragment: Fragment) {
         val fragmentTransaction = getActivity()?.supportFragmentManager?.beginTransaction()
@@ -180,10 +218,6 @@ class LoginFragment : BaseFragment() {
         activity.finish()
     }
 
-    private fun initViewModel() {
-        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SIGN_IN_VIA_GOOGLE) {
@@ -192,5 +226,9 @@ class LoginFragment : BaseFragment() {
                 authViaGoogle(googleSignInResult.signInAccount)
             }
         }
+    }
+
+    private fun initViewModel() {
+        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
     }
 }

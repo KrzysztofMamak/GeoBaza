@@ -13,11 +13,11 @@ import com.mamak.geobaza.data.singleton.ProjectLab
 import com.mamak.geobaza.network.firebase.FirebaseAuthenticationApi
 import com.mamak.geobaza.network.api.ProjectApiService
 import com.mamak.geobaza.network.connection.Resource
+import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import java.lang.Exception
 import javax.inject.Inject
 
 class ProjectListViewModel @Inject constructor(
@@ -80,7 +80,7 @@ class ProjectListViewModel @Inject constructor(
                     googleSignOutLiveData.postValue(Resource.success(null))
                 },
                 onError = {
-                    googleSignOutLiveData.postValue(Resource.error(it as Exception))
+                    googleSignOutLiveData.postValue(Resource.error(GeoBazaException(it)))
                 }
             )
         )

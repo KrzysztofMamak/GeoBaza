@@ -95,8 +95,13 @@
     <string name="forgot_password"><u>Forgot password?</u></string>
     <string name="reset_password">Reset password</string>
     <string name="password_reset_success">Message sent to given email address.</string>
-    <string name="password_reset_no_user">User with given email address doesn\'t exist.</string>
-    <string name="password_reset_failed">Cannot sent a message to given email address. Try again later.</string>
+    <string name="password_reset_user_not_found">User with given email address doesn\'t exist.</string>
+    <string name="password_reset_connection_failed">Cannot send a message to given email address. Try again later.</string>
+    <string name="password_reset_user_disabled">User with given email address has been disabled.</string>
+    <string name="something_went_wrong">Ups. Coś poszło nie tak.</string>
+    <string name="account_created">Account has been created. You can now sign in.</string>
+    <string name="account_no_connection">Cannot register. Try again later.</string>
+    <string name="user_exists">User with given email already exist.</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

@@ -5,6 +5,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.mamak.geobaza.network.firebase.FirebaseAuthenticationApi
 import com.mamak.geobaza.network.connection.Resource
+import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -32,7 +33,7 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
                         authViaEmailLiveData.postValue(Resource.success(it))
                     },
                     onError = {
-                        authViaEmailLiveData.postValue(Resource.error(it as Exception))
+                        authViaEmailLiveData.postValue(Resource.error(GeoBazaException(it)))
                     }
                 )
         )
@@ -51,7 +52,7 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
                         authViaGoogleLiveData.postValue(Resource.success(it))
                     },
                     onError = {
-                        authViaGoogleLiveData.postValue(Resource.error(it as Exception))
+                        authViaGoogleLiveData.postValue(Resource.error(GeoBazaException(it)))
                     }
                 )
         )
@@ -70,7 +71,7 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
                         registrationLiveData.postValue(Resource.success(it))
                     },
                     onError = {
-                        registrationLiveData.postValue(Resource.error(it as Exception))
+                        registrationLiveData.postValue(Resource.error(GeoBazaException(it)))
                     }
                 )
         )
@@ -89,7 +90,7 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
                         resetPasswordLiveData.postValue(Resource.success(null))
                     },
                     onError = {
-                        resetPasswordLiveData.postValue(Resource.error(it as Exception))
+                        resetPasswordLiveData.postValue(Resource.error(GeoBazaException(it)))
                     }
                 )
         )

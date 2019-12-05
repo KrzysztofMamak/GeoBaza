@@ -1,11 +1,11 @@
 package com.mamak.geobaza.network.connection
 
-import java.lang.Exception
+import com.mamak.geobaza.network.firebase.GeoBazaException
 
 class Resource<T> private constructor(
         private val status: Status,
         val data: T?,
-        val exception: Exception?,
+        val exception: GeoBazaException?,
         message: String? = null) {
     val isSuccess: Boolean
         get() = status === Status.SUCCESS
@@ -25,8 +25,8 @@ class Resource<T> private constructor(
             return Resource(Status.ERROR, null, null, message)
         }
 
-        fun <T> error(exception: Exception?): Resource<T> {
-            return Resource(Status.ERROR, null, exception)
+        fun <T> error(geoBazaException: GeoBazaException): Resource<T> {
+            return Resource(Status.ERROR, null, geoBazaException)
         }
 
         fun <T> loading(): Resource<T> {

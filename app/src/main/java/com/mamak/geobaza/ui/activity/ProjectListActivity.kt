@@ -22,6 +22,9 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.AreaLab
 import com.mamak.geobaza.factory.ViewModelFactory
+import com.mamak.geobaza.network.firebase.GeoBazaException
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.CONNECT_EXCEPTION
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.SOCKET_TIMEOUT_EXCEPTION
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
@@ -35,8 +38,6 @@ import com.mamak.geobaza.utils.manager.LocationManager
 import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*
-import java.net.ConnectException
-import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class ProjectListActivity : BaseActivity(),
@@ -64,10 +65,6 @@ class ProjectListActivity : BaseActivity(),
         setNavigation()
         initRecycler()
         initSwipeRefreshLayout()
-    }
-
-    private fun initViewModel() {
-        projectListViewModel = viewModelFactory.create(projectListViewModel::class.java)
     }
 
     private fun initRecycler() {
@@ -101,19 +98,21 @@ class ProjectListActivity : BaseActivity(),
     }
 
     private fun getProjects() {
-        projectListViewModel.fetchProjectsByRepo()
-        projectListViewModel.getProjectsLiveData().observe(this, Observer { resource ->
-            if (resource.isLoading) {
-                showProgressBar()
-            } else if (!resource.data.isNullOrEmpty()) {
-                handleSuccessResponse(resource.data)
-            } else {
-                handleErrorResponse(resource.exception)
-            }
-        })
+        projectListViewModel.apply {
+            fetchProjectsByRepo()
+            getProjectsLiveData().observe(this@ProjectListActivity, Observer { resource ->
+                if (resource.isLoading) {
+                    showProgressBar()
+                } else if (!resource.data.isNullOrEmpty()) {
+                    handleFetchingProjectsSuccessResponse(resource.data)
+                } else {
+                    handleFetchingProjectsErrorResponse(resource.exception)
+                }
+            })
+        }
     }
 
-    private fun handleSuccessResponse(projects: List<Project>) {
+    private fun handleFetchingProjectsSuccessResponse(projects: List<Project>) {
         setAreas(projects.toMutableList())
         Handler().postDelayed({
             hideProgressBar()
@@ -123,20 +122,24 @@ class ProjectListActivity : BaseActivity(),
         }, DELAY_SHORT)
     }
 
-    private fun handleErrorResponse(exception: Exception? = null) {
+    private fun handleFetchingProjectsErrorResponse(geoBazaException: GeoBazaException?) {
         hideProgressBar()
         srl_projects.isRefreshing = false
         setEmptyViewOnClick()
-        when (exception) {
-            is SocketTimeoutException -> {
-                ev_projects.draw(EmptyView.Type.NO_SERVICE)
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {
+                SOCKET_TIMEOUT_EXCEPTION -> {
+                    ev_projects.draw(EmptyView.Type.NO_SERVICE)
+                }
+                CONNECT_EXCEPTION -> {
+                    ev_projects.draw(EmptyView.Type.NO_INTERNET)
+                }
+                else -> {
+                    ev_projects.draw(EmptyView.Type.NO_FEEDBACK)
+                }
             }
-            is ConnectException -> {
-                ev_projects.draw(EmptyView.Type.NO_INTERNET)
-            }
-            else -> {
-                ev_projects.draw(EmptyView.Type.NO_DATA)
-            }
+        } else {
+            ev_projects.draw(EmptyView.Type.NO_DATA)
         }
         ev_projects.visibility = View.VISIBLE
     }
@@ -247,17 +250,29 @@ class ProjectListActivity : BaseActivity(),
         if (GoogleSignIn.getLastSignedInAccount(this) != null) {
             val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
             val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
-            projectListViewModel.googleSignOut(googleSignInClient)
-            projectListViewModel.getGoogleSignOutLiveData().observe(this, Observer { resource ->
-                when {
-                    resource.isLoading -> {}
-                    resource.isSuccess -> launchRegistrationLoginActivity()
-                    else -> {}
-                }
-            })
+            projectListViewModel.apply {
+                googleSignOut(googleSignInClient)
+                getGoogleSignOutLiveData().observe(this@ProjectListActivity, Observer { resource ->
+                    when {
+                        resource.isLoading -> {}
+                        resource.isSuccess -> launchRegistrationLoginActivity()
+                        else -> handleSignOutErrorResponse(resource.exception)
+                    }
+                })
+            }
         } else {
-            launchRegistrationLoginActivity()
+            handleSignOutSuccessResponse()
         }
+    }
+
+    private fun handleSignOutSuccessResponse() {
+        launchRegistrationLoginActivity()
+    }
+
+    private fun handleSignOutErrorResponse(geoBazaException: GeoBazaException?) {
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {}
+        } else {}
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -275,5 +290,9 @@ class ProjectListActivity : BaseActivity(),
         intent.putExtra(EXTRA_PROJECT_NUMBER, projectNumber)
         startActivity(intent)
         finish()
+    }
+
+    private fun initViewModel() {
+        projectListViewModel = viewModelFactory.create(projectListViewModel::class.java)
     }
 }

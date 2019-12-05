@@ -87,8 +87,13 @@
     <string name="forgot_password"><u>Zapomniałeś hasła?</u></string>
     <string name="reset_password">Resetuj hasło</string>
     <string name="password_reset_success">Wiadomość wysłano pomyślnie na podany adres email.</string>
-    <string name="password_reset_no_user">Nie znaleziono użytkownika o podanym adresie email.</string>
-    <string name="password_reset_failed">Nie udało się wysłać wiadomości na podany adres email. Spróbuj ponownie później.</string>
+    <string name="password_reset_user_not_found">Nie znaleziono użytkownika o podanym adresie email.</string>
+    <string name="password_reset_connection_failed">Nie udało się wysłać wiadomości na podany adres email. Spróbuj ponownie później.</string>
+    <string name="password_reset_user_disabled">Użytkownik o podanym adresie email został zablokowany.</string>
+    <string name="something_went_wrong">Oops. Something went wrong.</string>
+    <string name="account_created">Konto zostało utworzone. Teraz możesz się zalogować.</string>
+    <string name="account_no_connection">Nie udało się zarejestrować. Spróbuj ponownie później.</string>
+    <string name="user_exists">Istnieje już użytkownik o podanym adresie email.</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

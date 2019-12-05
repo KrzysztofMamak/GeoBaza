@@ -1,22 +1,26 @@
 package com.mamak.geobaza.ui.fragment
 
+import android.content.res.ColorStateList
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
+import com.mamak.geobaza.network.firebase.GeoBazaException
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_USER_COLLISION_EXCEPTION
+import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
-import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
 import com.mamak.geobaza.utils.manager.ValidationManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_registration.*
+import kotlinx.android.synthetic.main.fragment_registration.et_email
 import javax.inject.Inject
 
 class RegistrationFragment : BaseFragment() {
@@ -43,6 +47,7 @@ class RegistrationFragment : BaseFragment() {
 
     private fun setOnClick() {
         b_register.setOnClickListener {
+            resetFeedbackInfo()
             register()
         }
     }
@@ -73,14 +78,16 @@ class RegistrationFragment : BaseFragment() {
     private fun register() {
         val email = et_email.text.toString()
         val password = et_password.text.toString()
-        registrationLoginSharedViewModel.registerViaEmailAndPassword(email, password)
-        registrationLoginSharedViewModel.getRegistrationLiveData().observe(this, Observer { resource ->
-            when {
-                resource.isLoading -> showProgressBar()
-                resource.isSuccess -> handleSuccessResponse()
-                else -> handleErrorResponse()
-            }
-        })
+        registrationLoginSharedViewModel.apply {
+            registerViaEmailAndPassword(email, password)
+            getRegistrationLiveData().observe(this@RegistrationFragment, Observer { resource ->
+                when {
+                    resource.isLoading -> pb_registration.visibility = View.VISIBLE
+                    resource.isSuccess -> handleRegistrationSuccessResponse()
+                    else -> handleRegistrationErrorResponse(resource.exception)
+                }
+            })
+        }
     }
 
     private fun setRegistrationButton() {
@@ -104,26 +111,49 @@ class RegistrationFragment : BaseFragment() {
         }
     }
 
-    private fun handleSuccessResponse() {
-        hideProgressBar()
-        iv_registration_check.visibility = View.VISIBLE
-        Handler().postDelayed({
-            launchLoginFragment()
-        }, DELAY_SHORT)
-    }
-
-    private fun handleErrorResponse() {}
-
-    private fun showProgressBar() {
-        pb_registration.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
+    private fun handleRegistrationSuccessResponse() {
         pb_registration.visibility = View.GONE
+        tv_feedback.apply {
+            text = context?.getString(R.string.account_created)
+            visibility = View.VISIBLE
+        }
+        showIconByFeedback(true)
     }
 
-    private fun launchLoginFragment() {
-        fragmentManager?.popBackStack()
+    private fun handleRegistrationErrorResponse(geoBazaException: GeoBazaException?) {
+        if (geoBazaException != null) {
+            when (geoBazaException.errorCode) {
+                FIREBASE_AUTH_USER_COLLISION_EXCEPTION -> {
+                    tv_feedback.text = context?.getString(R.string.user_exists)
+                }
+                FIREBASE_EXCEPTION -> {
+                    tv_feedback.text = context?.getString(R.string.account_no_connection)
+                }
+            }
+        } else {
+            tv_feedback.text = getString(R.string.something_went_wrong)
+        }
+        pb_registration.visibility = View.GONE
+        tv_feedback.visibility = View.VISIBLE
+        showIconByFeedback(false)
+    }
+
+    private fun showIconByFeedback(isSuccessful: Boolean) {
+        val drawable = if (isSuccessful) R.drawable.ic_check else R.drawable.ic_cross
+
+        iv_registration_check.apply {
+            setImageDrawable(context.getDrawable(drawable))
+            ImageViewCompat.setImageTintList(
+                this,
+                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
+            visibility = View.VISIBLE
+        }
+    }
+
+//    TODO Fix
+    private fun resetFeedbackInfo() {
+        iv_registration_check.visibility = View.GONE
+        tv_feedback.visibility = View.GONE
     }
 
     private fun initViewModel() {

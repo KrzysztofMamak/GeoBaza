@@ -42,6 +42,10 @@ class EmptyView(context: Context, attributeSet: AttributeSet) : FrameLayout(cont
                     context.getString(R.string.forgot_password)
                 )
             }
+            Type.NO_FEEDBACK -> {
+                draw(context.getString(R.string.something_went_wrong),
+                    context.getDrawable(R.drawable.ic_error))
+            }
         }
     }
 
@@ -57,6 +61,6 @@ class EmptyView(context: Context, attributeSet: AttributeSet) : FrameLayout(cont
     }
 
     enum class Type {
-        NO_DATA, NO_INTERNET, NO_SERVICE, NO_PASSWORD
+        NO_DATA, NO_INTERNET, NO_SERVICE, NO_PASSWORD, NO_FEEDBACK
     }
 }
