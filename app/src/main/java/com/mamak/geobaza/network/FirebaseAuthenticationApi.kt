@@ -6,6 +6,8 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.Observable
+import io.reactivex.Single
+import java.util.concurrent.Callable
 
 class FirebaseAuthenticationApi {
     fun authViaEmailAndPassword(email: String, password: String): Observable<Task<AuthResult>> {
@@ -36,5 +38,13 @@ class FirebaseAuthenticationApi {
         return Observable.fromCallable {
             googleSigninClient.signOut()
         }
+    }
+
+    fun signInWithEmailAndPassword(email: String, password: String)
+            : Observable<AuthResult> {
+        val c = Callable<Task<AuthResult>> {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+        }
+        return TaskObservable(c)
     }
 }

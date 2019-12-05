@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
     private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
-    private val authViaEmailLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
+    private val authViaEmailLiveData = MutableLiveData<Resource<AuthResult>>()
     private val authViaGoogleLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
     private val registrationLiveData = MutableLiveData<Resource<Task<AuthResult>>>()
     private val resetPasswordLiveData = MutableLiveData<Resource<Task<Void>>>()
@@ -22,7 +22,7 @@ class RegistrationLoginSharedViewModel @Inject constructor() : BaseViewModel() {
 
     fun authViaEmailAndPassword(email: String, password: String) {
         addToDisposable(
-            firebaseAuthenticationApi.authViaEmailAndPassword(email, password)
+            firebaseAuthenticationApi.signInWithEmailAndPassword(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {

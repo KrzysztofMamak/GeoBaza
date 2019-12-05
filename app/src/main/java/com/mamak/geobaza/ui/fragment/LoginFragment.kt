@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -96,22 +97,18 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun authViaEmailAndPassword(email: String, password: String) {
-        registrationLoginSharedViewModel.authViaEmailAndPassword(email, password)
         registrationLoginSharedViewModel.getAuthViaEmailLiveData().observe(
             this, Observer { resource ->
                 if (resource.isLoading) {
                     showProgressBar()
-                } else if (resource.data != null) {
-                    if (resource.data.isSuccessful) {
-                        startProjectListActivity()
-                    } else {
-                        handleErrorResponse()
-                    }
+                } else if (resource.isSuccess) {
+                    startProjectListActivity()
                 } else {
                     handleErrorResponse()
                 }
             }
         )
+        registrationLoginSharedViewModel.authViaEmailAndPassword(email, password)
     }
 
     private fun signInViaGoogle() {
