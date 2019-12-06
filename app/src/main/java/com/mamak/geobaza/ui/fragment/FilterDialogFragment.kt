@@ -119,11 +119,7 @@ class FilterDialogFragment(
 
     private fun applyAreaChanges(): String {
         val area = spinner_area.selectedItem as String
-        return if (area == getString(R.string.all)) {
-            ProjectListManager.ALL_AREAS
-        } else {
-            area
-        }
+        return if (area == getString(R.string.all)) ProjectListManager.ALL_AREAS else area
     }
 
     private fun applyStateChanges(): ProjectListManager.State {

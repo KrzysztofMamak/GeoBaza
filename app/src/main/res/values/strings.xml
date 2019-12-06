@@ -102,6 +102,16 @@
     <string name="account_created">Account has been created. You can now sign in.</string>
     <string name="account_no_connection">Cannot register. Try again later.</string>
     <string name="user_exists">User with given email already exist.</string>
+    <string name="no_user">No user</string>
+    <string name="no_user_description"></string>
+    <string name="user_disabled">User disabled</string>
+    <string name="user_disabled_description"></string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="wrong_password_description"></string>
+    <string name="no_connection">No connection</string>
+    <string name="no_connection_description"></string>
+    <string name="login_error">Login error</string>
+    <string name="login_error_description"></string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

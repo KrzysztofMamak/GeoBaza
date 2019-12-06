@@ -1,5 +1,6 @@
 package com.mamak.geobaza.ui.fragment
 
+import android.content.ClipDescription
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -29,6 +30,7 @@ import com.mamak.geobaza.ui.activity.ProjectListActivity
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_SIGN_IN_VIA_GOOGLE
+import com.mamak.geobaza.utils.fragment.MultipleChoiceDialogFragment
 import com.mamak.geobaza.utils.manager.ValidationManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -124,19 +126,49 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun handleAuthViaEmailAndPasswordErrorResponse(geoBazaException: GeoBazaException?) {
+        var title: String
+        var description: String
+        var actionFirstText: String
+        var actionSecondText: String? = null
+        var actionThirdText: String? = null
+        var multipleChoiceDialogInterface: MultipleChoiceDialogFragment.MultipleChoiceDialogInterface
         if (geoBazaException != null) {
             when (geoBazaException.errorCode) {
-                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {}
+                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {
+                    title = getString(R.string.wrong_password)
+                    description = getString(R.string.wrong_password_description)
+                    actionFirstText = ""
+                }
                 FIREBASE_AUTH_INVALID_USER_EXCEPTION -> {
                     when (geoBazaException.internalErrorCode) {
-                        ERROR_USER_NOT_FOUND -> {}
-                        ERROR_USER_DISABLED -> {}
+                        ERROR_USER_NOT_FOUND -> {
+                            title = getString(R.string.no_user)
+                            description = getString(R.string.no_user_description)
+                            actionFirstText = ""
+                        }
+                        ERROR_USER_DISABLED -> {
+                            title = getString(R.string.user_disabled)
+                            description = getString(R.string.user_disabled_description)
+                            actionFirstText = ""
+                        }
                     }
                 }
-                FIREBASE_EXCEPTION -> {}
-                else -> {}
+                FIREBASE_EXCEPTION -> {
+                    title = getString(R.string.no_connection)
+                    description = getString(R.string.no_connection_description)
+                    actionFirstText = ""
+                }
+                else -> {
+                    title = getString(R.string.login_error)
+                    description = getString(R.string.login_error_description)
+                    actionFirstText = ""
+                }
             }
-        } else {}
+        } else {
+            title = getString(R.string.login_error)
+            description = getString(R.string.login_error_description)
+            actionFirstText = ""
+        }
     }
 
     private fun signInViaGoogle() {
@@ -173,7 +205,7 @@ class LoginFragment : BaseFragment() {
     private fun handleAuthViaGoogleErrorResponse(geoBazaException: GeoBazaException?) {
         if (geoBazaException != null) {
             when (geoBazaException.errorCode) {
-                FIREBASE_AUTH_USER_COLLISION_EXCEPTION -> {} //disabled
+                FIREBASE_AUTH_USER_COLLISION_EXCEPTION -> {}//disabled
                 FIREBASE_AUTH_EXCEPTION -> {} //provider
                 FIREBASE_EXCEPTION -> {} //internet
                 else -> {}
@@ -213,6 +245,21 @@ class LoginFragment : BaseFragment() {
         fragmentTransaction?.replace(R.id.container_fragment, fragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
+    }
+
+    private fun launchMultipleChoiceDialogFragment(
+            title: String, description: String,
+            actionFirstText: String, actionSecondText: String?, actionThirdText: String?,
+            multipleChoiceDialogInterface: MultipleChoiceDialogFragment.MultipleChoiceDialogInterface
+    ) {
+        MultipleChoiceDialogFragment(
+            title,
+            description,
+            actionFirstText,
+            actionSecondText,
+            actionThirdText,
+            multipleChoiceDialogInterface
+        ).show(fragmentManager, "MultipleChoiceDialogFragment")
     }
 
     private fun startProjectListActivity() {

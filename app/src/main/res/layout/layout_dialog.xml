@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_default_dialog_background">
+
+    <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding_margin_x"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:layout_marginBottom="@dimen/default_padding_margin"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_huge"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_description"
+            tools:text="Nie znaleziono konta"/>
+
+    <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:layout_marginBottom="@dimen/default_padding_margin_x"
+            android:gravity="center"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/text_medium"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/separator_top"
+            tools:text="Nie udalo sie znalezc konta.
+            Sprobuj podac inny numer telefonu lub adres email,
+            a jezeli nie masz konta w GeoBazie, mozesz je zalozyc."/>
+    <View
+            android:id="@+id/separator_top"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="@dimen/default_padding_margin"
+            android:background="@color/light_gray"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_action_first"
+            tools:visibility="visible"/>
+
+    <TextView
+            android:id="@+id/tv_action_first"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding_margin"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:gravity="center"
+            android:textColor="@color/colorSecondary"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/separator_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/separator_mid"
+            tools:text="Sprobuj ponownie"
+            tools:visibility="visible"/>
+
+    <View
+            android:id="@+id/separator_mid"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="@dimen/default_padding_margin"
+            android:background="@color/light_gray"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tv_action_first"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_action_second"
+            tools:visibility="visible"/>
+
+    <TextView
+            android:id="@+id/tv_action_second"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding_margin"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/separator_mid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/separator_bottom"
+            tools:text="Zarejestruj sie"
+            tools:visibility="visible"/>
+
+    <View
+            android:id="@+id/separator_bottom"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="@dimen/default_padding_margin"
+            android:background="@color/light_gray"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tv_action_second"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_action_third"
+            tools:visibility="visible"/>
+
+    <TextView
+            android:id="@+id/tv_action_third"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding_margin"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/separator_bottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Resetuj haslo"
+            tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

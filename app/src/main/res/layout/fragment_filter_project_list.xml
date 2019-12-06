@@ -4,7 +4,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/colorPrimaryDark">
+        android:background="@drawable/item_default_dialog_background">
 
     <TextView
             android:id="@+id/tv_title_choice"
@@ -167,7 +167,7 @@
                 android:id="@+id/tv_cancel_choice"
                 android:text="@string/cancel"
                 android:textSize="16sp"
-                android:textColor="@color/colorTextOnPrimary"
+                android:textColor="@color/light_gray"
                 android:layout_marginEnd="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
