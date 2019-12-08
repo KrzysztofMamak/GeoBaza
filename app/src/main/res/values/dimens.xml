@@ -82,4 +82,8 @@
     <!-- Start -> Divider -->
     <dimen name="divider_small">0.5dp</dimen>
     <!-- End -> Divider -->
+
+    <!-- Start -> Navigation header -->
+    <dimen name="nav_header_height">176dp</dimen>
+    <!-- End -> Navigation header -->
 </resources>
