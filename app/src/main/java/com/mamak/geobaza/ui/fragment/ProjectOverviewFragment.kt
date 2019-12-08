@@ -1,23 +1,37 @@
 package com.mamak.geobaza.ui.fragment
 
-import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.widget.ImageViewCompat
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.adapter.ProjectDataAdapter
 import com.mamak.geobaza.ui.base.BaseFragment
+import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
 import com.mamak.geobaza.utils.manager.MappingManager
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_project_overview.*
-import kotlinx.android.synthetic.main.layout_step_bar.view.*
+import javax.inject.Inject
 
 class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelFactory
+    @Inject
+    internal lateinit var projectDetailsSharedViewModel: ProjectDetailsSharedViewModel
+
     private val projectDataAdapter = ProjectDataAdapter()
+    private var inEditMode = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        AndroidSupportInjection.inject(this)
+        initViewModel()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_project_overview, container, false)
@@ -28,6 +42,10 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
         setStepbar()
         setProjectDataAdapter(project)
         setOnClick()
+    }
+
+    private fun initViewModel() {
+        projectDetailsSharedViewModel = viewModelFactory.create(ProjectDetailsSharedViewModel::class.java)
     }
 
     private fun initRecycler() {
@@ -42,41 +60,57 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun setStepbar() {
-        setCheckpoint(
-            sb_project_checkpoints.iv_first_step_foreground,
-            sb_project_checkpoints.iv_first_step_background,
-            project.isProcessed)
-        setCheckpoint(
-            sb_project_checkpoints.iv_second_step_foreground,
-            sb_project_checkpoints.iv_second_step_background,
-            project.isMarked)
-        setCheckpoint(
-            sb_project_checkpoints.iv_third_step_foreground,
-            sb_project_checkpoints.iv_third_step_background,
-            project.isMeasured)
-        setCheckpoint(
-            sb_project_checkpoints.iv_fourth_step_foreground,
-            sb_project_checkpoints.iv_fourth_step_background,
-            project.isFinished)
+        sb_project_checkpoints.setState(
+            project.isProcessed,
+            project.isMarked,
+            project.isMeasured,
+            project.isFinished
+        )
     }
 
-//    TODO refactor
-    private fun setCheckpoint(foreground: ImageView, background: ImageView, isChecked: Boolean) {
-        val foregroundColor = if (isChecked) R.color.white else R.color.colorSecondaryLight
-        val drawable = if (isChecked) R.drawable.item_circle_full else R.drawable.item_circle
-        context?.let {
-            ImageViewCompat.setImageTintList(
-                foreground,
-                ColorStateList.valueOf(it.getColor(foregroundColor)))
+    private fun updateProject(project: Project) {
+        projectDetailsSharedViewModel.apply {
+            updateProject(project)
+            getProjectUpdateLiveData().observe(this@ProjectOverviewFragment, Observer { resource ->
+                if (resource.isLoading) {
+                    //loading
+                } else if (resource.isSuccess) {
+                    if (resource.data != null) {
+                        if (resource.data.isSuccessful) {
+                            //success
+                            Log.d("TAG", resource.data.toString())
+                        } else {
+                            //error
+                        }
+                    }
+                } else {
+                    //error
+                }
+            })
         }
-        background.setImageDrawable(context?.getDrawable(drawable))
     }
 
     private fun setOnClick() {
         iv_edit_project.setOnClickListener {
-//            val intent = Intent(activity, ProjectDataEditActivity::class.java)
-//            intent.putExtra(EXTRA_PROJECT_NUMBER, project.number)
-//            startActivity(intent)
+            if (inEditMode) {
+                updateProject()
+            } else {
+
+            }
         }
+    }
+
+    private fun switchMode(currentlyInEditMode: Boolean) {
+        if (currentlyInEditMode) {
+
+            inEditMode = false
+        } else {
+
+            inEditMode = true
+        }
+    }
+
+    private fun updateProject() {
+        updateProject(project)
     }
 }

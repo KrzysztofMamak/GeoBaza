@@ -33,4 +33,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Powiat"/>
 
+    <ImageView
+            android:id="@+id/iv_property_edit"
+            android:contentDescription="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_edit"
+            android:tint="@color/colorSecondary"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

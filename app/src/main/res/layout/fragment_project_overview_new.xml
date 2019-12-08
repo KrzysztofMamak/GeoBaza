@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/header_project_data"
+            android:id="@+id/container_header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_margin_x"
@@ -16,8 +16,7 @@
             android:layout_marginBottom="@dimen/default_padding_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/rv_project_data">
+            app:layout_constraintTop_toTopOf="parent">
 
         <TextView
                 android:id="@+id/tv_header_project"
@@ -57,32 +56,62 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_project_data"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/header_project_data"
+    <include
+            android:id="@+id/container_number"
+            layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/sb_project_checkpoints"/>
-
-    <com.mamak.geobaza.utils.view.GeoBazaStepBar
-            android:id="@+id/sb_project_checkpoints"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding_margin_x"
+            app:layout_constraintTop_toBottomOf="@id/container_header"/>
+    <include
+            android:id="@+id/container_area"
+            layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf=""/>
 
-        <!--<include-->
-        <!--android:id="@+id/sb_project_checkpoints"-->
-        <!--layout="@layout/layout_step_bar"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="@dimen/default_padding_margin_x"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <include
+            android:id="@+id/container_points_count"
+            layout="@layout/item_list_property"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf=""/>
+
+    <include
+            android:id="@+id/container_address"
+            layout="@layout/item_list_property"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf=""/>
+
+    <include
+            android:id="@+id/container_state"
+            layout="@layout/item_list_property"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf=""/>
+
+    <include
+            android:id="@+id/container_date_processed"
+            layout="@layout/item_list_property"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf=""/>
+
+    <include
+            android:id="@+id/container_date_marked"
+            layout="@layout/item_list_property"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf=""/>
+
+    <include
+            android:id="@+id/container_date_measured"
+            layout="@layout/item_list_property"
+            app:layout_constraintTop_toBottomOf=""/>
+
+    <include
+            android:id="@+id/container_date_finished"
+            layout="@layout/item_list_property"
+            app:layout_constraintTop_toBottomOf=""/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

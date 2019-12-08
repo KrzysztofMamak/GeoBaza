@@ -4,6 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.repository.ProjectLocalRepo
+import com.mamak.geobaza.network.api.ProjectApiService
+import com.mamak.geobaza.network.connection.GeoBazaResponse
+import com.mamak.geobaza.network.connection.Resource
+import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -11,10 +15,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ProjectDetailsSharedViewModel @Inject constructor(
-    appDatabase: AppDatabase
+    private val appDatabase: AppDatabase,
+    private val projectApiService: ProjectApiService
 ) : BaseViewModel() {
-    private val projectLiveData = MutableLiveData<Project>()
     private val projectLocalRepo = ProjectLocalRepo(appDatabase.projectDao())
+    private val projectLiveData = MutableLiveData<Project>()
+    private val projectUpdateLiveData = MutableLiveData<Resource<GeoBazaResponse>>()
 
     fun getProjectFromDb(projectNumber: Int) {
         addToDisposable(projectLocalRepo.getProjectByNumber(projectNumber)
@@ -28,7 +34,27 @@ class ProjectDetailsSharedViewModel @Inject constructor(
         )
     }
 
+    fun updateProject(project: Project) {
+        addToDisposable(
+            projectApiService.updateProject(project)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    projectUpdateLiveData.postValue(Resource.loading())
+                }
+                .subscribeBy(
+                    onNext = {
+                        projectUpdateLiveData.postValue(Resource.success(it))
+                    },
+                    onError = {
+                        projectUpdateLiveData.postValue(Resource.error(GeoBazaException(it)))
+                    }
+                )
+        )
+    }
+
     fun getProjectLiveData() = projectLiveData
+    fun getProjectUpdateLiveData() = projectUpdateLiveData
 
     override fun onCleared() {
         onStop()
