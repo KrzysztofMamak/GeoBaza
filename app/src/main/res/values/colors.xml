@@ -6,14 +6,60 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryLight">#484848</color>
 
+    <color name="ic_launcher_background">#ffffff</color>
+
     <!-- Secondary -->
-    <color name="colorSecondary">#009688</color>
-    <color name="colorSecondaryDark">#00675b</color>
-    <color name="colorSecondaryLight">#52c7b8</color>
+    <!-- Marshmallow -->
+    <color name="marshmallowColorSecondary">#009688</color>
+    <color name="marshmallowColorSecondaryDark">#00675b</color>
+    <color name="marshmallowColorSecondaryLight">#52c7b8</color>
+    <color name="marshmallowColorTextOnSecondary">#000000</color>
+
+    <!-- Aladdin -->
+    <color name="aladdinColorSecondary">#6a1b9a</color>
+    <color name="aladdinColorSecondaryDark">#38006b</color>
+    <color name="aladdinColorSecondaryLight">#9c4dcc</color>
+    <color name="aladdinColorTextOnSecondary">#ffffff</color>
+
+    <!-- DeepPurple -->
+    <color name="deeppurpleColorSecondary">#4527a0</color>
+    <color name="deeppurpleColorSecondaryDark">#000070</color>
+    <color name="deeppurpleColorSecondaryLight">#7953d2</color>
+    <color name="deeppurpleColorTextOnSecondary">#ffffff</color>
+
+    <!-- TinkyPinky -->
+    <color name="tinkypinkyColorSecondary">#880e4f</color>
+    <color name="tinkypinkyColorSecondaryDark">#560027</color>
+    <color name="tinkypinkyColorSecondaryLight">#bc477b</color>
+    <color name="tinkypinkyColorTextOnSecondary">#ffffff</color>
+
+    <!-- OrangeIsTheNewBlack -->
+    <color name="orangeisthenewblackColorSecondary">#e65100</color>
+    <color name="orangeisthenewblackColorSecondaryDark">#ac1900</color>
+    <color name="orangeisthenewblackColorSecondaryLight">#ff833a</color>
+    <color name="orangeisthenewblackColorTextOnSecondary">#000000</color>
+
+    <!-- AliceInWonderland -->
+    <color name="aliceinwonderlandColorSecondary">#43a047</color>
+    <color name="aliceinwonderlandColorSecondaryDark">#00701a</color>
+    <color name="aliceinwonderlandColorSecondaryLight">#76d275</color>
+    <color name="aliceinwonderlandColorTextOnSecondary">#000000</color>
+
+    <!-- BlackAndYellow -->
+    <color name="blackandyellowColorSecondary">#f9a825</color>
+    <color name="blackandyellowColorSecondaryDark">#c17900</color>
+    <color name="blackandyellowColorSecondaryLight">#ffd95a</color>
+    <color name="blackandyellowColorTextOnSecondary">#000000</color>
+
+    <!-- MerryChristmas -->
+    <color name="merrychristmasColorSecondary">#d32f2f</color>
+    <color name="merrychristmasColorSecondaryDark">#9a0007</color>
+    <color name="merrychristmasColorSecondaryLight">#ff6659</color>
+    <color name="merrychristmasColorTextOnSecondary">#ffffff</color>
 
     <!-- Text -->
     <color name="colorTextOnPrimary">#ffffff</color>
-    <color name="colorTextOnSecondary">#000000</color>
+    <!--<color name="colorTextOnSecondary">#000000</color>-->
     <!-- End -> Application -->
 
     <!-- Start -> Universal -->

@@ -12,6 +12,7 @@ import androidx.core.widget.ImageViewCompat
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.base.BaseFragment
+import com.mamak.geobaza.utils.manager.AttributesManager
 import com.mamak.geobaza.utils.manager.MappingManager
 import com.mamak.geobaza.utils.manager.OsmManager
 import kotlinx.android.synthetic.main.fragment_project_map.*
@@ -114,11 +115,15 @@ class ProjectMapFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun getMarker(pointTitle: String, pointDescription: String, geoPoint: GeoPoint): Marker {
+//        TODO COLORRR
         val marker = Marker(mv_project)
         marker.apply {
-            icon = context?.getDrawable(R.drawable.ic_place)?.apply {
-                setTint(resources.getColor(R.color.colorSecondaryDark, null))
-            }
+            icon = context?.getDrawable(R.drawable.ic_place)
+//            icon = context?.getDrawable(R.drawable.ic_place)?.apply {
+//                setTint(activity.getColor(
+//                    AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryDark)
+//                ))
+//            }
             title = pointTitle
             subDescription = pointDescription
             position = geoPoint
@@ -133,7 +138,7 @@ class ProjectMapFragment(private val project: Project) : BaseFragment() {
         }
         polyline.apply {
             setPoints(points)
-            outlinePaint.color = resources.getColor(R.color.colorSecondaryDark, null)
+            outlinePaint.color = AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryLight)
         }
     }
 
@@ -174,8 +179,21 @@ class ProjectMapFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun setButton(imageView: ImageView, isActive: Boolean) {
-        val foregroundColor: Int = if (isActive) R.color.white else R.color.colorSecondaryDark
-        val backgroundColor: Int = if (isActive) R.color.colorSecondaryDark else R.color.white
+//        TODO COLORRR
+        val foregroundColor: Int = R.color.white
+        val backgroundColor: Int = R.color.white
+//        val foregroundColor: Int =
+//            if (isActive) {
+//                R.color.white
+//            } else {
+//                AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryDark)
+//            }
+//        val backgroundColor: Int =
+//            if (isActive) {
+//                AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryDark)
+//            } else {
+//                R.color.white
+//            }
 
         imageView.apply {
             ImageViewCompat.setImageTintList(

@@ -29,6 +29,7 @@ import com.mamak.geobaza.ui.activity.ProjectListActivity
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_SIGN_IN_VIA_GOOGLE
+import com.mamak.geobaza.utils.manager.AttributesManager
 import com.mamak.geobaza.utils.manager.ValidationManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -198,10 +199,10 @@ class LoginFragment : BaseFragment() {
         val drawable: Int
 
         if (validateUser()) {
-            color = R.color.colorTextOnSecondary
+            color = AttributesManager.getColorResByAttr(activity.theme, R.attr.colorTextOnSecondary)
             drawable = R.drawable.item_circle_full
         } else {
-            color = R.color.colorSecondaryLight
+            color = AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryLight)
             drawable = R.drawable.item_circle
         }
 

@@ -22,7 +22,7 @@
             android:background="@drawable/item_circle_full"
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_my_location"
-            android:tint="@color/colorSecondaryDark"
+            android:tint="?attr/colorSecondaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/iv_zoom_points"/>
 
@@ -38,7 +38,7 @@
             android:background="@drawable/item_circle_full"
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_filter_center_focus"
-            android:tint="@color/colorSecondaryDark"
+            android:tint="?attr/colorSecondaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/iv_lines_switch"/>
 
@@ -54,7 +54,7 @@
             android:background="@drawable/item_circle_full"
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_timeline"
-            android:tint="@color/colorSecondaryDark"
+            android:tint="?attr/colorSecondaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_margin"
             android:layout_marginStart="@dimen/default_padding_margin_x"
-            android:textColor="@color/colorSecondaryDark"
+            android:textColor="?attr/colorSecondaryDark"
             android:textSize="@dimen/text_header_medium"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

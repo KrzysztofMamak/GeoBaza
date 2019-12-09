@@ -9,12 +9,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseActivity
+import com.mamak.geobaza.ui.base.BaseThemeActivityNoActionBar
 import com.mamak.geobaza.ui.fragment.LoginFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class RegistrationLoginActivity : BaseActivity() {
+class RegistrationLoginActivity : BaseThemeActivityNoActionBar() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
@@ -63,7 +64,7 @@ class RegistrationLoginActivity : BaseActivity() {
         window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            statusBarColor = ContextCompat.getColor(this@RegistrationLoginActivity, R.color.colorPrimaryDark)
+            statusBarColor = getColor(R.color.colorPrimaryDark)
         }
     }
 }

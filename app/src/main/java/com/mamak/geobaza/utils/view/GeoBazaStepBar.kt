@@ -1,5 +1,6 @@
 package com.mamak.geobaza.utils.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
@@ -8,9 +9,9 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.ImageViewCompat
 import com.mamak.geobaza.R
+import com.mamak.geobaza.utils.manager.AttributesManager
 import kotlinx.android.synthetic.main.layout_step_bar.view.*
 
-//TODO RREEFFAACCTTOORR!!
 class GeoBazaStepBar(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {
     init {
         View.inflate(context, R.layout.layout_step_bar, this)
@@ -24,7 +25,14 @@ class GeoBazaStepBar(context: Context, attrs: AttributeSet) : ConstraintLayout(c
     }
 
     private fun setStep(foreground: ImageView, background: ImageView, isChecked: Boolean) {
-        val foregroundColor = if (isChecked) R.color.white else R.color.colorSecondaryLight
+//        TODO COLORRR
+        val foregroundColor = R.color.white
+//        val foregroundColor =
+//            if (isChecked) {
+//                R.color.white
+//            } else {
+//                AttributesManager.getColorResByAttr(context.theme, R.attr.colorSecondaryLight)
+//            }
         val drawable = if (isChecked) R.drawable.item_circle_full else R.drawable.item_circle
         context?.let {
             ImageViewCompat.setImageTintList(
