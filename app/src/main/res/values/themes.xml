@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="colorSecondary" format="color"/>
-    <attr name="colorSecondaryDark" format="color"/>
-    <attr name="colorSecondaryLight" format="color"/>
-    <attr name="colorTextOnSecondary" format="color"/>
+    <attr name="colorSecondary" format="reference"/>
+    <attr name="colorSecondaryDark" format="reference"/>
+    <attr name="colorSecondaryLight" format="reference"/>
+    <attr name="colorTextOnSecondary" format="reference"/>
 
-    <style name="Theme.App.MarshMallowActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.MarshMallowActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/marshmallowColorSecondary</item>
         <item name="colorSecondaryDark">@color/marshmallowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/marshmallowColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/marshmallowColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.AladdinActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.AladdinActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/aladdinColorSecondary</item>
         <item name="colorSecondaryDark">@color/aladdinColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aladdinColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/aladdinColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.DeepPurpleActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.DeepPurpleActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/deeppurpleColorSecondary</item>
         <item name="colorSecondaryDark">@color/deeppurpleColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/deeppurpleColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/deeppurpleColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.TinkyPinkyActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.TinkyPinkyActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/tinkypinkyColorSecondary</item>
         <item name="colorSecondaryDark">@color/tinkypinkyColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/tinkypinkyColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/tinkypinkyColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.OrangeIsTheNewBlackActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.OrangeIsTheNewBlackActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/orangeisthenewblackColorSecondary</item>
         <item name="colorSecondaryDark">@color/orangeisthenewblackColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/orangeisthenewblackColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/orangeisthenewblackColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.AliceInWonderlandActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.AliceInWonderlandActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/aliceinwonderlandColorSecondary</item>
         <item name="colorSecondaryDark">@color/aliceinwonderlandColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aliceinwonderlandColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/aliceinwonderlandColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.BlackAndYellowActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.BlackAndYellowActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/blackandyellowColorSecondary</item>
         <item name="colorSecondaryDark">@color/blackandyellowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/blackandyellowColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/blackandyellowColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.MerryChristmasActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.App.MerryChristmasActionBar" parent="@style/AppTheme">
         <item name="colorSecondary">@color/merrychristmasColorSecondary</item>
         <item name="colorSecondaryDark">@color/merrychristmasColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/merrychristmasColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/merrychristmasColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.MarshMallowNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.MarshMallowNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/marshmallowColorSecondary</item>
         <item name="colorSecondaryDark">@color/marshmallowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/marshmallowColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/marshmallowColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.AladdinNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.AladdinNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/aladdinColorSecondary</item>
         <item name="colorSecondaryDark">@color/aladdinColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aladdinColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/aladdinColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.DeepPurpleNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.DeepPurpleNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/deeppurpleColorSecondary</item>
         <item name="colorSecondaryDark">@color/deeppurpleColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/deeppurpleColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/deeppurpleColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.TinkyPinkyNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.TinkyPinkyNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/tinkypinkyColorSecondary</item>
         <item name="colorSecondaryDark">@color/tinkypinkyColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/tinkypinkyColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/tinkypinkyColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.OrangeIsTheNewBlackNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.OrangeIsTheNewBlackNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/orangeisthenewblackColorSecondary</item>
         <item name="colorSecondaryDark">@color/orangeisthenewblackColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/orangeisthenewblackColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/orangeisthenewblackColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.AliceInWonderlandNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.AliceInWonderlandNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/aliceinwonderlandColorSecondary</item>
         <item name="colorSecondaryDark">@color/aliceinwonderlandColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aliceinwonderlandColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/aliceinwonderlandColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.BlackAndYellowNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.BlackAndYellowNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/blackandyellowColorSecondary</item>
         <item name="colorSecondaryDark">@color/blackandyellowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/blackandyellowColorSecondaryLight</item>
         <item name="colorTextOnSecondary">@color/blackandyellowColorTextOnSecondary</item>
     </style>
 
-    <style name="Theme.App.MerryChristmasNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.App.MerryChristmasNoActionBar" parent="@style/NoActionBar">
         <item name="colorSecondary">@color/merrychristmasColorSecondary</item>
         <item name="colorSecondaryDark">@color/merrychristmasColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/merrychristmasColorSecondaryLight</item>

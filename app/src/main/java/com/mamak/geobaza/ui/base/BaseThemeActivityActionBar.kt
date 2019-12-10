@@ -1,6 +1,7 @@
 package com.mamak.geobaza.ui.base
 
 import android.content.SharedPreferences
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.preference.PreferenceManager
 import com.mamak.geobaza.R
@@ -32,6 +33,7 @@ open class BaseThemeActivityActionBar : BaseActivity() {
             setTheme(R.style.Theme_App_MarshMallowActionBar)
         } else {
             when (currentTheme) {
+                AppConstans.THEME_MARSHMALLOW -> setTheme(R.style.Theme_App_MarshMallowActionBar)
                 AppConstans.THEME_ALADDIN -> setTheme(R.style.Theme_App_AladdinActionBar)
                 AppConstans.THEME_DEEP_PURPLE -> setTheme(R.style.Theme_App_DeepPurpleActionBar)
                 AppConstans.THEME_TINKY_PINKY -> setTheme(R.style.Theme_App_TinkyPinkyActionBar)
@@ -42,5 +44,9 @@ open class BaseThemeActivityActionBar : BaseActivity() {
                 else -> setTheme(R.style.Theme_App_MerryChristmasActionBar)
             }
         }
+    }
+
+    protected open fun setActionBarColor() {
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimary)))
     }
 }

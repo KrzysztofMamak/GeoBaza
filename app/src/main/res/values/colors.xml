@@ -6,7 +6,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryLight">#484848</color>
 
-    <color name="ic_launcher_background">#ffffff</color>
+    <color name="ic_launcher_background">#89BCBA</color>
 
     <!-- Secondary -->
     <!-- Marshmallow -->
@@ -59,7 +59,6 @@
 
     <!-- Text -->
     <color name="colorTextOnPrimary">#ffffff</color>
-    <!--<color name="colorTextOnSecondary">#000000</color>-->
     <!-- End -> Application -->
 
     <!-- Start -> Universal -->

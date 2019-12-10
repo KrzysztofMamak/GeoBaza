@@ -9,19 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
-import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_DISABLED
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_NOT_FOUND
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
-import com.mamak.geobaza.utils.manager.AttributesManager
 import com.mamak.geobaza.utils.manager.ValidationManager
 import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 import javax.inject.Inject
+import com.mamak.geobaza.R
+import com.mamak.geobaza.utils.manager.ThemeManager
 
 class PasswordResetFragment : BaseFragment() {
     @Inject
@@ -138,10 +138,10 @@ class PasswordResetFragment : BaseFragment() {
         val drawable: Int
 
         if (validateEmail()) {
-            color = AttributesManager.getColorResByAttr(activity.theme, R.attr.colorTextOnSecondary)
+            color = R.color.white
             drawable = R.drawable.item_circle_full
         } else {
-            color = AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryLight)
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
             drawable = R.drawable.item_circle
         }
 
@@ -162,7 +162,7 @@ class PasswordResetFragment : BaseFragment() {
             ImageViewCompat.setImageTintList(
                 this,
                 ColorStateList.valueOf(context.getColor(
-                    AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryLight)
+                    ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
                 ))
             )
             visibility = View.VISIBLE

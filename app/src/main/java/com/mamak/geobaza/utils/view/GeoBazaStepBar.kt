@@ -1,6 +1,5 @@
 package com.mamak.geobaza.utils.view
 
-import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
@@ -9,7 +8,6 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.ImageViewCompat
 import com.mamak.geobaza.R
-import com.mamak.geobaza.utils.manager.AttributesManager
 import kotlinx.android.synthetic.main.layout_step_bar.view.*
 
 class GeoBazaStepBar(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {

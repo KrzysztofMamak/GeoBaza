@@ -1,6 +1,7 @@
 package com.mamak.geobaza.ui.base
 
 import android.content.SharedPreferences
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.preference.PreferenceManager
 import com.mamak.geobaza.R
@@ -16,7 +17,6 @@ open class BaseThemeActivityNoActionBar : BaseActivity() {
         currentTheme = sharedPref.getString("current_theme", "marshmallow")
         setAppTheme(currentTheme)
         setStatusBar()
-        setActionBarColor()
     }
 
     override fun onResume() {
@@ -32,6 +32,7 @@ open class BaseThemeActivityNoActionBar : BaseActivity() {
             setTheme(R.style.Theme_App_MarshMallowNoActionBar)
         } else {
             when (currentTheme) {
+                AppConstans.THEME_MARSHMALLOW -> setTheme(R.style.Theme_App_MarshMallowNoActionBar)
                 AppConstans.THEME_ALADDIN -> setTheme(R.style.Theme_App_AladdinNoActionBar)
                 AppConstans.THEME_DEEP_PURPLE -> setTheme(R.style.Theme_App_DeepPurpleNoActionBar)
                 AppConstans.THEME_TINKY_PINKY -> setTheme(R.style.Theme_App_TinkyPinkyNoActionBar)

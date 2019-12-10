@@ -17,7 +17,7 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AU
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
-import com.mamak.geobaza.utils.manager.AttributesManager
+import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.ValidationManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_registration.*
@@ -124,10 +124,10 @@ class RegistrationFragment : BaseFragment() {
         val drawable: Int
 
         if (validateUser()) {
-            color = AttributesManager.getColorResByAttr(activity.theme, R.attr.colorTextOnSecondary)
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorTextOnSecondary)
             drawable = R.drawable.item_circle_full
         } else {
-            color = AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryLight)
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
             drawable = R.drawable.item_circle
         }
 
@@ -148,7 +148,7 @@ class RegistrationFragment : BaseFragment() {
             ImageViewCompat.setImageTintList(
                 this,
                 ColorStateList.valueOf(context.getColor(
-                    AttributesManager.getColorResByAttr(activity.theme, R.attr.colorSecondaryLight)
+                    ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
                 ))
             )
             visibility = View.VISIBLE
