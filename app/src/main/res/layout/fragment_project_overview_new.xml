@@ -67,51 +67,51 @@
             layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
     <include
             android:id="@+id/container_points_count"
             layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
     <include
             android:id="@+id/container_address"
             layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
     <include
             android:id="@+id/container_state"
             layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
     <include
             android:id="@+id/container_date_processed"
             layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
     <include
             android:id="@+id/container_date_marked"
             layout="@layout/item_list_property"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
     <include
             android:id="@+id/container_date_measured"
             layout="@layout/item_list_property"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
     <include
             android:id="@+id/container_date_finished"
             layout="@layout/item_list_property"
-            app:layout_constraintTop_toBottomOf=""/>
+            app:layout_constraintTop_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
