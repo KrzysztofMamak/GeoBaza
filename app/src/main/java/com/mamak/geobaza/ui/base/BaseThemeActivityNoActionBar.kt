@@ -32,7 +32,7 @@ open class BaseThemeActivityNoActionBar : BaseActivity() {
             setTheme(R.style.Theme_App_MarshMallowNoActionBar)
         } else {
             when (currentTheme) {
-                AppConstans.THEME_MARSHMALLOW -> setTheme(R.style.Theme_App_MarshMallowNoActionBar)
+                //AppConstans.THEME_MARSHMALLOW -> setTheme(R.style.Theme_App_MarshMallowNoActionBar)
                 AppConstans.THEME_ALADDIN -> setTheme(R.style.Theme_App_AladdinNoActionBar)
                 AppConstans.THEME_DEEP_PURPLE -> setTheme(R.style.Theme_App_DeepPurpleNoActionBar)
                 AppConstans.THEME_TINKY_PINKY -> setTheme(R.style.Theme_App_TinkyPinkyNoActionBar)
@@ -40,7 +40,7 @@ open class BaseThemeActivityNoActionBar : BaseActivity() {
                 AppConstans.THEME_ALICE_IN_WONDERLAND -> setTheme(R.style.Theme_App_AliceInWonderlandNoActionBar)
                 AppConstans.THEME_BLACK_AND_YELLOW -> setTheme(R.style.Theme_App_BlackAndYellowNoActionBar)
                 AppConstans.THEME_MERRY_CHRISTMAS -> setTheme(R.style.Theme_App_MerryChristmasNoActionBar)
-                else -> setTheme(R.style.Theme_App_TinkyPinkyNoActionBar)
+                else -> setTheme(R.style.Theme_App_AliceInWonderlandNoActionBar)
             }
         }
     }

@@ -223,7 +223,6 @@ class ProjectListActivity : BaseThemeActivityNoActionBar(),
         val intent = Intent(this, ProjectDetailsActivity::class.java)
         intent.putExtra(EXTRA_PROJECT_NUMBER, projectNumber)
         startActivity(intent)
-        finish()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
