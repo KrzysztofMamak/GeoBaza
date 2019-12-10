@@ -1,39 +1,22 @@
 package com.mamak.geobaza.ui.base
 
-import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.preference.PreferenceManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.utils.constans.AppConstans
 
 open class BaseThemeActivityActionBar : BaseActivity() {
-    private var currentTheme: String? = null
-    private lateinit var sharedPref: SharedPreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
-        currentTheme = sharedPref.getString("current_theme", "marshmallow")
-        setAppTheme(currentTheme)
-        setStatusBar()
         setActionBarColor()
     }
 
-    override fun onResume() {
-        super.onResume()
-        val theme = sharedPref.getString("current_theme", "marshmallow")
-        if(currentTheme != theme) {
-            recreate()
-        }
-    }
-
-    private fun setAppTheme(currentTheme: String?) {
+    override fun setAppTheme(currentTheme: String?) {
         if (currentTheme == null) {
             setTheme(R.style.Theme_App_MarshMallowActionBar)
         } else {
             when (currentTheme) {
-                //AppConstans.THEME_MARSHMALLOW -> setTheme(R.style.Theme_App_MarshMallowActionBar)
+                AppConstans.THEME_MARSHMALLOW -> setTheme(R.style.Theme_App_MarshMallowActionBar)
                 AppConstans.THEME_ALADDIN -> setTheme(R.style.Theme_App_AladdinActionBar)
                 AppConstans.THEME_DEEP_PURPLE -> setTheme(R.style.Theme_App_DeepPurpleActionBar)
                 AppConstans.THEME_TINKY_PINKY -> setTheme(R.style.Theme_App_TinkyPinkyActionBar)
