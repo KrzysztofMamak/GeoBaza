@@ -28,7 +28,6 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.SOCKET_TIME
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
-import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.base.BaseThemeActivityNoActionBar
 import com.mamak.geobaza.ui.fragment.FilterDialogFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel

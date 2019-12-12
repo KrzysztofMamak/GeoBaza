@@ -37,7 +37,7 @@
         <TextView
                 android:id="@+id/tv_town"
                 android:textSize="@dimen/text_huge"
-                android:textColor="@color/white"
+                android:textColor="@color/colorTextOnPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
