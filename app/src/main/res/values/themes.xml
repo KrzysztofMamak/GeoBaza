@@ -5,7 +5,7 @@
     <attr name="colorSecondaryLight" format="reference"/>
     <attr name="colorTextOnSecondary" format="reference"/>
 
-    <style name="Theme.App.MarshMallowActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.MarshMallowActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/marshmallowColorSecondary</item>
         <item name="colorSecondaryDark">@color/marshmallowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/marshmallowColorSecondaryLight</item>
@@ -13,7 +13,7 @@
         <item name="colorAccent">@color/marshmallowColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.AladdinActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.AladdinActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/aladdinColorSecondary</item>
         <item name="colorSecondaryDark">@color/aladdinColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aladdinColorSecondaryLight</item>
@@ -21,7 +21,7 @@
         <item name="colorAccent">@color/aladdinColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.DeepPurpleActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.DeepPurpleActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/deeppurpleColorSecondary</item>
         <item name="colorSecondaryDark">@color/deeppurpleColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/deeppurpleColorSecondaryLight</item>
@@ -29,7 +29,7 @@
         <item name="colorAccent">@color/deeppurpleColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.TinkyPinkyActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.TinkyPinkyActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/tinkypinkyColorSecondary</item>
         <item name="colorSecondaryDark">@color/tinkypinkyColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/tinkypinkyColorSecondaryLight</item>
@@ -37,7 +37,7 @@
         <item name="colorAccent">@color/tinkypinkyColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.OrangeIsTheNewBlackActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.OrangeIsTheNewBlackActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/orangeisthenewblackColorSecondary</item>
         <item name="colorSecondaryDark">@color/orangeisthenewblackColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/orangeisthenewblackColorSecondaryLight</item>
@@ -45,7 +45,7 @@
         <item name="colorAccent">@color/orangeisthenewblackColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.AliceInWonderlandActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.AliceInWonderlandActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/aliceinwonderlandColorSecondary</item>
         <item name="colorSecondaryDark">@color/aliceinwonderlandColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aliceinwonderlandColorSecondaryLight</item>
@@ -53,7 +53,7 @@
         <item name="colorAccent">@color/aliceinwonderlandColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.BlackAndYellowActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.BlackAndYellowActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/blackandyellowColorSecondary</item>
         <item name="colorSecondaryDark">@color/blackandyellowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/blackandyellowColorSecondaryLight</item>
@@ -61,7 +61,7 @@
         <item name="colorAccent">@color/blackandyellowColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.MerryChristmasActionBar" parent="@style/AppTheme">
+    <style name="Theme.App.MerryChristmasActionBar" parent="@style/AppThemeActionBar">
         <item name="colorSecondary">@color/merrychristmasColorSecondary</item>
         <item name="colorSecondaryDark">@color/merrychristmasColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/merrychristmasColorSecondaryLight</item>
@@ -69,7 +69,7 @@
         <item name="colorAccent">@color/merrychristmasColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.MarshMallowNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.MarshMallowNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/marshmallowColorSecondary</item>
         <item name="colorSecondaryDark">@color/marshmallowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/marshmallowColorSecondaryLight</item>
@@ -77,7 +77,7 @@
         <item name="colorAccent">@color/marshmallowColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.AladdinNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.AladdinNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/aladdinColorSecondary</item>
         <item name="colorSecondaryDark">@color/aladdinColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aladdinColorSecondaryLight</item>
@@ -85,7 +85,7 @@
         <item name="colorAccent">@color/aladdinColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.DeepPurpleNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.DeepPurpleNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/deeppurpleColorSecondary</item>
         <item name="colorSecondaryDark">@color/deeppurpleColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/deeppurpleColorSecondaryLight</item>
@@ -93,7 +93,7 @@
         <item name="colorAccent">@color/deeppurpleColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.TinkyPinkyNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.TinkyPinkyNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/tinkypinkyColorSecondary</item>
         <item name="colorSecondaryDark">@color/tinkypinkyColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/tinkypinkyColorSecondaryLight</item>
@@ -101,7 +101,7 @@
         <item name="colorAccent">@color/tinkypinkyColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.OrangeIsTheNewBlackNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.OrangeIsTheNewBlackNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/orangeisthenewblackColorSecondary</item>
         <item name="colorSecondaryDark">@color/orangeisthenewblackColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/orangeisthenewblackColorSecondaryLight</item>
@@ -109,7 +109,7 @@
         <item name="colorAccent">@color/orangeisthenewblackColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.AliceInWonderlandNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.AliceInWonderlandNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/aliceinwonderlandColorSecondary</item>
         <item name="colorSecondaryDark">@color/aliceinwonderlandColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/aliceinwonderlandColorSecondaryLight</item>
@@ -117,7 +117,7 @@
         <item name="colorAccent">@color/aliceinwonderlandColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.BlackAndYellowNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.BlackAndYellowNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/blackandyellowColorSecondary</item>
         <item name="colorSecondaryDark">@color/blackandyellowColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/blackandyellowColorSecondaryLight</item>
@@ -125,7 +125,7 @@
         <item name="colorAccent">@color/blackandyellowColorSecondaryLight</item>
     </style>
 
-    <style name="Theme.App.MerryChristmasNoActionBar" parent="@style/NoActionBar">
+    <style name="Theme.App.MerryChristmasNoActionBar" parent="@style/AppThemeNoActionBar">
         <item name="colorSecondary">@color/merrychristmasColorSecondary</item>
         <item name="colorSecondaryDark">@color/merrychristmasColorSecondaryDark</item>
         <item name="colorSecondaryLight">@color/merrychristmasColorSecondaryLight</item>

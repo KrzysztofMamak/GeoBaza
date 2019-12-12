@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Start -> Application -->
+    <!-- Launcher -->
+    <color name="ic_launcher_background">#ffffff</color>
+
     <!-- Primary -->
     <color name="colorPrimary">#212121</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryLight">#484848</color>
-
-    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="colorTextOnPrimary">#ffffff</color>
+    <!-- End -> Primary -->
 
     <!-- Secondary -->
     <!-- Marshmallow -->
@@ -56,15 +58,12 @@
     <color name="merrychristmasColorSecondaryDark">#9a0007</color>
     <color name="merrychristmasColorSecondaryLight">#ff6659</color>
     <color name="merrychristmasColorTextOnSecondary">#ffffff</color>
+    <!-- End -> Secondary -->
 
-    <!-- Text -->
-    <color name="colorTextOnPrimary">#ffffff</color>
-    <!-- End -> Application -->
-
-    <!-- Start -> Universal -->
+    <!-- Universal -->
     <color name="light_gray">#888888</color>
     <color name="dark_gray">#444444</color>
     <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="white">#ffffff</color>
     <!-- End -> Universal -->
 </resources>
