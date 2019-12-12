@@ -112,6 +112,7 @@
     <string name="no_connection_description"></string>
     <string name="login_error">Login error</string>
     <string name="login_error_description"></string>
+    <string name="project_list">Project list</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->

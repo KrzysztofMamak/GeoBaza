@@ -25,6 +25,7 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AU
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_INVALID_USER_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_USER_COLLISION_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
+import com.mamak.geobaza.ui.activity.MainActivity
 import com.mamak.geobaza.ui.activity.ProjectListActivity
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
@@ -234,7 +235,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun startProjectListActivity() {
-        val intent = Intent(activity, ProjectListActivity::class.java)
+        val intent = Intent(activity, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         activity.finish()

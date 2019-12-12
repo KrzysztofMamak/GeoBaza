@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navigation_main"
+        app:startDestination="@+id/fragment_project_list">
+
+    <fragment
+            android:id="@+id/fragment_project_list"
+            android:name="com.mamak.geobaza.ui.fragment.ProjectListFragment"
+            android:label="@string/project_list"
+            tools:layout="@layout/fragment_project_list"/>
+
+    <fragment
+            android:id="@+id/fragment_settings"
+            android:name="com.mamak.geobaza.ui.fragment.SettingsFragment"
+            android:label="@string/settings"
+            tools:layout="@layout/fragment_settings"/>
+
+</navigation>

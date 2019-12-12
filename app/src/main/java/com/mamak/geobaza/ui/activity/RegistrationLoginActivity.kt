@@ -48,7 +48,7 @@ class RegistrationLoginActivity : BaseThemeActivityNoActionBar() {
     }
 
     private fun launchProjectListActivity() {
-        val intent = Intent(this, ProjectListActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
