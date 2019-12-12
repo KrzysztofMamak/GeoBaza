@@ -23,11 +23,12 @@
             tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity android:name=".ui.base.BaseActivity"/>
+        <activity android:name=".ui.base.BaseThemeActivityActionBar"/>
+        <activity android:name=".ui.base.BaseThemeActivityNoActionBar"/>
 
         <activity
                 android:name=".ui.activity.ProjectListActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/Theme.AppCompat.NoActionBar">
+                android:screenOrientation="portrait">
         </activity>
 
         <activity
@@ -40,7 +41,6 @@
 
         <activity
                 android:name=".ui.activity.RegistrationLoginActivity"
-                android:theme="@style/Theme.AppCompat.NoActionBar"
                 android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

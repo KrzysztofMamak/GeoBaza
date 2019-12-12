@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.Auth
@@ -29,9 +29,13 @@ import com.mamak.geobaza.ui.activity.ProjectListActivity
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_SIGN_IN_VIA_GOOGLE
+import com.mamak.geobaza.utils.manager.KeyboardManager
+import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.ValidationManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.et_email
+import kotlinx.android.synthetic.main.fragment_login.et_password
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment() {
@@ -86,15 +90,29 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun setListeners() {
-        listOf<EditText>(et_email, et_password).forEach {
-            it.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) {}
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        val textWatcher = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    setLoginButton()
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                setLoginButton()
+            }
+        }
+
+        et_email.addTextChangedListener(textWatcher)
+        et_password.apply {
+            addTextChangedListener(textWatcher)
+            setOnEditorActionListener { v, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    KeyboardManager.hideSoftKeyboard(context, v)
+                    if (validateUser()) {
+                        signInViaEmailAndPassword()
+                    }
+                    true
+                } else {
+                    false
                 }
-            })
+            }
         }
     }
 
@@ -126,29 +144,17 @@ class LoginFragment : BaseFragment() {
     private fun handleAuthViaEmailAndPasswordErrorResponse(geoBazaException: GeoBazaException?) {
         if (geoBazaException != null) {
             when (geoBazaException.errorCode) {
-                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {
-
-                }
+                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {}
                 FIREBASE_AUTH_INVALID_USER_EXCEPTION -> {
                     when (geoBazaException.internalErrorCode) {
-                        ERROR_USER_NOT_FOUND -> {
-
-                        }
-                        ERROR_USER_DISABLED -> {
-
-                        }
+                        ERROR_USER_NOT_FOUND -> {}
+                        ERROR_USER_DISABLED -> {}
                     }
                 }
-                FIREBASE_EXCEPTION -> {
-
-                }
-                else -> {
-
-                }
+                FIREBASE_EXCEPTION -> {}
+                else -> {}
             }
-        } else {
-
-        }
+        } else {}
     }
 
     private fun signInViaGoogle() {
@@ -198,10 +204,10 @@ class LoginFragment : BaseFragment() {
         val drawable: Int
 
         if (validateUser()) {
-            color = R.color.colorTextOnSecondary
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorTextOnSecondary)
             drawable = R.drawable.item_circle_full
         } else {
-            color = R.color.colorSecondaryLight
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
             drawable = R.drawable.item_circle
         }
 

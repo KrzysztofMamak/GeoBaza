@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.WindowManager
 import androidx.core.app.NavUtils
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.github.buchandersenn.android_permission_manager.PermissionManager
 import com.mamak.geobaza.R
@@ -14,6 +13,7 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
 import com.mamak.geobaza.ui.base.BaseActivity
+import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
 import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
 import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
@@ -21,12 +21,13 @@ import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
+import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mapbox.mapboxsdk.Mapbox
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_details_project.*
 import javax.inject.Inject
 
-class ProjectDetailsActivity : BaseActivity() {
+class ProjectDetailsActivity : BaseThemeActivityActionBar() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
@@ -82,7 +83,9 @@ class ProjectDetailsActivity : BaseActivity() {
 
     override fun setActionBarColor() {
         supportActionBar?.apply {
-            setBackgroundDrawable(ColorDrawable(getColor(R.color.colorSecondary)))
+            setBackgroundDrawable(ColorDrawable(getColor(
+                ThemeManager.getColorResByAttr(this@ProjectDetailsActivity, R.attr.colorSecondary)
+            )))
             elevation = 0F
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(false)
@@ -93,7 +96,9 @@ class ProjectDetailsActivity : BaseActivity() {
         window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            statusBarColor = ContextCompat.getColor(this@ProjectDetailsActivity, R.color.colorSecondaryDark)
+            statusBarColor = getColor(
+                ThemeManager.getColorResByAttr(this@ProjectDetailsActivity, R.attr.colorSecondaryDark)
+            )
         }
     }
 

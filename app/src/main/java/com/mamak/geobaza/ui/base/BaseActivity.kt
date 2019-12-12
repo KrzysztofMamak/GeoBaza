@@ -1,21 +1,31 @@
 package com.mamak.geobaza.ui.base
 
-import android.graphics.drawable.ColorDrawable
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
-import com.mamak.geobaza.R
 
 open class BaseActivity : AppCompatActivity() {
+    private var currentTheme: String? = null
+    private lateinit var sharedPref: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setActionBarColor()
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
+        currentTheme = sharedPref.getString("current_theme", "marshmallow")
+        setAppTheme(currentTheme)
         setStatusBar()
     }
 
-    protected open fun setActionBarColor() {
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.colorPrimary)))
+    override fun onResume() {
+        super.onResume()
+        val theme = sharedPref.getString("current_theme", "marshmallow")
+        if(currentTheme != theme) {
+            recreate()
+        }
     }
 
-//    TODO Refactor
     protected open fun setStatusBar() {}
+
+    protected open fun setAppTheme(currentTheme: String?) {}
 }

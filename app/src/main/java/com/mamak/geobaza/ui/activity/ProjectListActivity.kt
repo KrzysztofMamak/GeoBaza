@@ -28,7 +28,7 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.SOCKET_TIME
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
-import com.mamak.geobaza.ui.base.BaseActivity
+import com.mamak.geobaza.ui.base.BaseThemeActivityNoActionBar
 import com.mamak.geobaza.ui.fragment.FilterDialogFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
@@ -40,7 +40,7 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_list_project.*
 import javax.inject.Inject
 
-class ProjectListActivity : BaseActivity(),
+class ProjectListActivity : BaseThemeActivityNoActionBar(),
         ActivityCompat.OnRequestPermissionsResultCallback,
         NavigationView.OnNavigationItemSelectedListener {
     @Inject
@@ -222,7 +222,6 @@ class ProjectListActivity : BaseActivity(),
         val intent = Intent(this, ProjectDetailsActivity::class.java)
         intent.putExtra(EXTRA_PROJECT_NUMBER, projectNumber)
         startActivity(intent)
-        finish()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

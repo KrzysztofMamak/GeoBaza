@@ -10,18 +10,17 @@
             android:id="@+id/tl_project"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorSecondary"
+            android:background="?attr/colorSecondary"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/colorTextOnPrimary"
+            app:tabIndicatorColor="?attr/colorTextOnSecondary"
             app:tabIndicatorHeight="1.6dp"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/colorTextOnPrimary"
-            app:tabTextColor="@color/colorTextOnPrimary" />
+            app:tabSelectedTextColor="?attr/colorTextOnSecondary"
+            app:tabTextColor="?attr/colorTextOnSecondary" />
 
     <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_project"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"/>
+            android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
@@ -17,6 +17,8 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AU
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
+import com.mamak.geobaza.utils.manager.KeyboardManager
+import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.ValidationManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_registration.*
@@ -57,15 +59,30 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun setListeners() {
-        listOf<EditText>(et_email, et_password, et_password_confirm).forEach {
-            it.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) {}
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        val textWatcher = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    setRegistrationButton()
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                setRegistrationButton()
+            }
+        }
+
+        et_email.addTextChangedListener(textWatcher)
+        et_password.addTextChangedListener(textWatcher)
+        et_password_confirm.apply {
+            addTextChangedListener(textWatcher)
+            setOnEditorActionListener { v, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    KeyboardManager.hideSoftKeyboard(context, v)
+                    if (validateUser()) {
+                        register()
+                    }
+                    true
+                } else {
+                    false
                 }
-            })
+            }
         }
     }
 
@@ -123,10 +140,10 @@ class RegistrationFragment : BaseFragment() {
         val drawable: Int
 
         if (validateUser()) {
-            color = R.color.colorTextOnSecondary
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorTextOnSecondary)
             drawable = R.drawable.item_circle_full
         } else {
-            color = R.color.colorSecondaryLight
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
             drawable = R.drawable.item_circle
         }
 
@@ -146,7 +163,10 @@ class RegistrationFragment : BaseFragment() {
             setImageDrawable(context.getDrawable(drawable))
             ImageViewCompat.setImageTintList(
                 this,
-                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
+                ColorStateList.valueOf(context.getColor(
+                    ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
+                ))
+            )
             visibility = View.VISIBLE
         }
     }

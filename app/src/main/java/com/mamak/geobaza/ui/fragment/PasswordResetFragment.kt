@@ -7,9 +7,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
-import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_DISABLED
@@ -21,6 +21,9 @@ import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 import javax.inject.Inject
+import com.mamak.geobaza.R
+import com.mamak.geobaza.utils.manager.ThemeManager
+import com.mamak.geobaza.utils.manager.KeyboardManager
 
 class PasswordResetFragment : BaseFragment() {
     @Inject
@@ -64,14 +67,27 @@ class PasswordResetFragment : BaseFragment() {
     }
 
     private fun setListener() {
-        et_email.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        et_email.apply {
+            addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {}
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                setPasswordResetButton()
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    setPasswordResetButton()
+                }
+            })
+            setOnEditorActionListener { v, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    KeyboardManager.hideSoftKeyboard(context, v)
+                    if (validateEmail()) {
+                        resetPassword()
+                    }
+                    true
+                } else {
+                    false
+                }
             }
-        })
+        }
     }
 
     private fun validateEmail(): Boolean {
@@ -137,10 +153,10 @@ class PasswordResetFragment : BaseFragment() {
         val drawable: Int
 
         if (validateEmail()) {
-            color = R.color.colorTextOnSecondary
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorTextOnSecondary)
             drawable = R.drawable.item_circle_full
         } else {
-            color = R.color.colorSecondaryLight
+            color = ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
             drawable = R.drawable.item_circle
         }
 
@@ -160,7 +176,10 @@ class PasswordResetFragment : BaseFragment() {
             setImageDrawable(context.getDrawable(drawable))
             ImageViewCompat.setImageTintList(
                 this,
-                ColorStateList.valueOf(context.getColor(R.color.colorSecondaryLight)))
+                ColorStateList.valueOf(context.getColor(
+                    ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
+                ))
+            )
             visibility = View.VISIBLE
         }
     }

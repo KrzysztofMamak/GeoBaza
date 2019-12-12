@@ -14,6 +14,7 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.utils.manager.MappingManager
 import com.mamak.geobaza.utils.manager.OsmManager
+import com.mamak.geobaza.utils.manager.ThemeManager
 import kotlinx.android.synthetic.main.fragment_project_map.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.library.BuildConfig
@@ -117,7 +118,9 @@ class ProjectMapFragment(private val project: Project) : BaseFragment() {
         val marker = Marker(mv_project)
         marker.apply {
             icon = context?.getDrawable(R.drawable.ic_place)?.apply {
-                setTint(resources.getColor(R.color.colorSecondaryDark, null))
+                setTint(activity.getColor(
+                    ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryDark)
+                ))
             }
             title = pointTitle
             subDescription = pointDescription
@@ -133,7 +136,7 @@ class ProjectMapFragment(private val project: Project) : BaseFragment() {
         }
         polyline.apply {
             setPoints(points)
-            outlinePaint.color = resources.getColor(R.color.colorSecondaryDark, null)
+            outlinePaint.color = ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
         }
     }
 
@@ -174,8 +177,18 @@ class ProjectMapFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun setButton(imageView: ImageView, isActive: Boolean) {
-        val foregroundColor: Int = if (isActive) R.color.white else R.color.colorSecondaryDark
-        val backgroundColor: Int = if (isActive) R.color.colorSecondaryDark else R.color.white
+        val foregroundColor: Int =
+            if (isActive) {
+                R.color.white
+            } else {
+                ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryDark)
+            }
+        val backgroundColor: Int =
+            if (isActive) {
+                ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryDark)
+            } else {
+                R.color.white
+            }
 
         imageView.apply {
             ImageViewCompat.setImageTintList(
