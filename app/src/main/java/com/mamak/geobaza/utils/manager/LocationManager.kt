@@ -9,13 +9,13 @@ import com.mamak.geobaza.data.model.Point
 import com.mamak.geobaza.data.singleton.LocationLab
 
 object LocationManager {
-    fun navigateByGeoCoordinates(context: Context, x: Double, y: Double) {
+    fun navigateByGeoCoordinates(context: Context?, x: Double, y: Double) {
         val geoCoordinates = CoordinatesManager.tr2000WGS(doubleArrayOf(x, y)).asList()
-        val intentUri = Uri.parse(context.getString(R.string.google_maps_query) +
+        val intentUri = Uri.parse(context?.getString(R.string.google_maps_query) +
                 geoCoordinates[0] + "," + geoCoordinates[1])
         val mapIntent = Intent(Intent.ACTION_VIEW, intentUri)
-        mapIntent.setPackage(context.getString(R.string.google_maps_package))
-        context.startActivity(mapIntent)
+        mapIntent.setPackage(context?.getString(R.string.google_maps_package))
+        context?.startActivity(mapIntent)
     }
 
     fun calculateDistance(point: Point): Float? {

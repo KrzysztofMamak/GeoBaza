@@ -58,6 +58,27 @@
     <string name="menu_locate">Locating</string>
     <!-- End -> Menu -->
 
+    <!-- Themes -->
+    <string name="marshmallow" translatable="false">Marshmallow</string>
+    <string name="aladdin" translatable="false">Aladdin</string>
+    <string name="deep_purple" translatable="false">Deep Purple</string>
+    <string name="tinky_pinky" translatable="false">Tinky Pinky</string>
+    <string name="orange_is_the_new_black" translatable="false">Orange is the new black</string>
+    <string name="alice_in_wonderland" translatable="false">Alice in wonderland</string>
+    <string name="black_and_yellow" translatable="false">Black and yellow</string>
+    <string name="merry_christmas" translatable="false">Merry Christmas</string>
+
+    <array name="theme_names">
+        <item>Marshmallow</item>
+        <item>Aladdin</item>
+        <item>Deep Purple</item>
+        <item>Tinky Pinky</item>
+        <item>Orange is the new black</item>
+        <item>Alice in wonderland</item>
+        <item>Black and yellow</item>
+        <item>Merry Christmas</item>
+    </array>
+
     <!-- Start -> Universal -->
     <string name="cancel">Cancel</string>
     <string name="apply">Apply</string>

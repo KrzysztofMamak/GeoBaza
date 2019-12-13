@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Start -> EmptyView -->
+    <!-- EmptyView -->
     <string name="ev_no_internet">Nie udało się połączyć z serwerem. Sprawdź swoje połączenie i spróbuj ponownie.</string>
     <string name="ev_no_service">Usługa jest niedostępna. Spróbuj ponownie później</string>
     <string name="ev_no_data">Brak wyników.</string>
     <string name="ev_no_password">Potrzebujemy Twój adres email, aby wysłać link do resetowania hasła.</string>
-    <!-- End -> EmptyView -->
 
     <!-- Start -> Filter categories -->
     <string name="filter_area">Obszar</string>
     <string name="filter_state">Stan</string>
-    <!-- End -> Filter categories -->
 
-    <!-- Start -> Sort categories -->
+    <!-- Sort categories -->
     <string name="sort_type">Sortuj według</string>
     <string name="sort_order">Kolejność</string>
-    <!-- End -> Sort categories -->
 
-    <!-- Start -> FilterDialogFragment -->
     <!-- State -->
     <string-array name="array_state_filter">
         <item>Przetworzone</item>
@@ -40,17 +36,15 @@
         <item>Rosnąco</item>
         <item>Malejąco</item>
     </string-array>
-    <!-- Start -> FilterDialogFragment -->
 
-    <!-- Start -> Menu -->
+    <!-- Menu -->
     <string name="navigation_drawer_open">Otwórz okno nawigacji</string>
     <string name="navigation_drawer_close">Zamknij okno nawigacji</string>
     <string name="menu_filter">Filtrowanie</string>
     <string name="menu_search">Wyszukiwanie</string>
     <string name="menu_locate">Lokalizowanie</string>
-    <!-- End -> Menu -->
 
-    <!-- Start -> Universal -->
+    <!-- Universal -->
     <string name="cancel">Anuluj</string>
     <string name="apply">Zastosuj</string>
     <string name="search_filter">Filtr wyszukiwania</string>
@@ -105,14 +99,13 @@
     <string name="login_error">Błąd logowania</string>
     <string name="login_error_description"></string>
     <string name="project_list">Lista projektów</string>
-    <!-- End -> Universal -->
 
-    <!-- Start -> Content Description -->
+    <!-- Content Description -->
     <string name="cd_navigation_icon">Nawiguj</string>
     <string name="cd_edit_project">Edytuj projekt</string>
     <string name="cd_show_current_location">Przybliż do bieżącej lokalizacji.</string>
     <string name="cd_show_points">Przybliż do punktów projektu</string>
     <string name="cd_draw_lines">Rysuj linie między punktami.</string>
     <string name="cd_remove_lines">Usuń linie pomiędzy punktami.</string>
-    <!-- End -> Content Description -->
+
 </resources>

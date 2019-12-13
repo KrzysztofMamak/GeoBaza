@@ -3,9 +3,7 @@ package com.mamak.geobaza.di.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mamak.geobaza.factory.ViewModelFactory
-import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
-import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
-import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
+import com.mamak.geobaza.ui.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -29,4 +27,19 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RegistrationLoginSharedViewModel::class)
     protected abstract fun registrationLoginSharedViewModel(registrationLoginSharedViewModel: RegistrationLoginSharedViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProjectListViewModelNew::class)
+    protected abstract fun projectListViewModelNew(projectListViewModelNew: ProjectListViewModelNew): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    protected abstract fun settingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StatisticsViewModel::class)
+    protected abstract fun statisticsViewModel(statisticsViewModel: StatisticsViewModel): ViewModel
 }

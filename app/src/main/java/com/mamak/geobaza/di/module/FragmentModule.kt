@@ -27,4 +27,13 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributePasswordResetFragment(): PasswordResetFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeProjectListFragment(): ProjectListFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeSettingsFragment(): SettingsFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeStatisticsFragment(): StatisticsFragment
 }

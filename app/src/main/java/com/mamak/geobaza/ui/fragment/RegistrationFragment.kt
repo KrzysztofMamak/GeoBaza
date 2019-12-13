@@ -140,7 +140,7 @@ class RegistrationFragment : BaseFragment() {
         val drawable: Int
 
         if (validateUser()) {
-            color = ThemeManager.getColorResByAttr(activity, R.attr.colorTextOnSecondary)
+            color = ThemeManager.getColorResByAttr(activity.baseContext, R.attr.colorTextOnSecondary)
             drawable = R.drawable.item_circle_full
         } else {
             color = ThemeManager.getColorResByAttr(activity, R.attr.colorSecondaryLight)
