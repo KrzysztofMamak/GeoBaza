@@ -72,6 +72,7 @@ class ProjectListFragment : BaseFragment() {
 
     private fun setSwipeRefreshLayout() {
         srl_projects.setOnRefreshListener {
+            ev_projects.visibility = View.GONE
             getProjects()
         }
     }
