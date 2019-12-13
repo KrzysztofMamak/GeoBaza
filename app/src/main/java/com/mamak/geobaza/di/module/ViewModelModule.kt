@@ -30,6 +30,21 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(RegistrationViewModel::class)
+    protected abstract fun registrationViewModel(registrationViewModel: RegistrationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PasswordResetViewModel::class)
+    protected abstract fun passwordResetViewModel(passwordResetViewModel: PasswordResetViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    protected abstract fun loginViewModel(loginViewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(ProjectListViewModelNew::class)
     protected abstract fun projectListViewModelNew(projectListViewModelNew: ProjectListViewModelNew): ViewModel
 

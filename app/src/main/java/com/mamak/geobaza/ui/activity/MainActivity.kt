@@ -1,7 +1,6 @@
 package com.mamak.geobaza.ui.activity
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
@@ -10,7 +9,6 @@ import com.google.android.material.navigation.NavigationView
 import com.mamak.geobaza.R
 import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.drawer_layout
 
 class MainActivity : BaseThemeActivityActionBar(),
         NavigationView.OnNavigationItemSelectedListener {
