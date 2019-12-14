@@ -16,7 +16,7 @@ import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_USER_COLLISION_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
 import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
+import com.mamak.geobaza.ui.viewmodel.RegistrationViewModel
 import com.mamak.geobaza.utils.manager.KeyboardManager
 import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.ValidationManager
@@ -29,7 +29,7 @@ class RegistrationFragment : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
-    internal lateinit var registrationLoginSharedViewModel: RegistrationLoginSharedViewModel
+    internal lateinit var registrationViewModel: RegistrationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class RegistrationFragment : BaseFragment() {
     }
 
     private fun initViewModel() {
-        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+        registrationViewModel = viewModelFactory.create(RegistrationViewModel::class.java)
     }
 
     private fun setOnClick() {
@@ -96,8 +96,8 @@ class RegistrationFragment : BaseFragment() {
     private fun register() {
         val email = et_email.text.toString()
         val password = et_password.text.toString()
-        registrationLoginSharedViewModel.apply {
-            registerViaEmailAndPassword(email, password)
+        registrationViewModel.apply {
+            register(email, password)
             getRegistrationLiveData().observe(this@RegistrationFragment, Observer { resource ->
                 when {
                     resource.isLoading -> pb_registration.visibility = View.VISIBLE

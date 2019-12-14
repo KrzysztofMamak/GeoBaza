@@ -5,6 +5,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.mamak.geobaza.network.connection.Resource
 import com.mamak.geobaza.network.firebase.FirebaseAuthenticationApi
+import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -22,14 +23,14 @@ class LoginViewModel @Inject constructor(): BaseViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-
+                    authViaEmailAndPasswordLiveData.postValue(Resource.loading())
                 }
                 .subscribeBy(
                     onNext = {
-
+                        authViaEmailAndPasswordLiveData.postValue(Resource.success(it))
                     },
                     onError = {
-
+                        authViaEmailAndPasswordLiveData.postValue(Resource.error(GeoBazaException(it)))
                     }
                 )
         )
@@ -41,14 +42,14 @@ class LoginViewModel @Inject constructor(): BaseViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-
+                    authViaGoogleLiveData.postValue(Resource.loading())
                 }
                 .subscribeBy(
                     onNext = {
-
+                        authViaGoogleLiveData.postValue(Resource.success(it))
                     },
                     onError = {
-
+                        authViaGoogleLiveData.postValue(Resource.error(GeoBazaException(it)))
                     }
                 )
         )

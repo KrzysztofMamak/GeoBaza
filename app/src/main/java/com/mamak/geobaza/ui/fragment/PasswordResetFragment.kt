@@ -15,13 +15,13 @@ import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_DISABLED
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_NOT_FOUND
 import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
 import com.mamak.geobaza.utils.manager.ValidationManager
 import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 import javax.inject.Inject
 import com.mamak.geobaza.R
+import com.mamak.geobaza.ui.viewmodel.PasswordResetViewModel
 import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.KeyboardManager
 
@@ -29,7 +29,7 @@ class PasswordResetFragment : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
-    internal lateinit var registrationLoginSharedViewModel: RegistrationLoginSharedViewModel
+    internal lateinit var passwordResetViewModel: PasswordResetViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +49,7 @@ class PasswordResetFragment : BaseFragment() {
     }
 
     private fun initViewModel() {
-        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+        passwordResetViewModel = viewModelFactory.create(PasswordResetViewModel::class.java)
     }
 
     private fun setOnClick() {
@@ -101,7 +101,7 @@ class PasswordResetFragment : BaseFragment() {
     }
 
     private fun sendPasswordResetLink(email: String) {
-        registrationLoginSharedViewModel.apply {
+        passwordResetViewModel.apply {
             resetPassword(email)
             getResetPasswordLiveData().observe(
                 this@PasswordResetFragment, Observer { resource ->

@@ -26,9 +26,8 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AU
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_USER_COLLISION_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
 import com.mamak.geobaza.ui.activity.MainActivity
-import com.mamak.geobaza.ui.activity.ProjectListActivity
 import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.RegistrationLoginSharedViewModel
+import com.mamak.geobaza.ui.viewmodel.LoginViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_SIGN_IN_VIA_GOOGLE
 import com.mamak.geobaza.utils.manager.KeyboardManager
 import com.mamak.geobaza.utils.manager.ThemeManager
@@ -43,7 +42,7 @@ class LoginFragment : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
-    internal lateinit var registrationLoginSharedViewModel: RegistrationLoginSharedViewModel
+    internal lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +62,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun initViewModel() {
-        registrationLoginSharedViewModel = viewModelFactory.create(RegistrationLoginSharedViewModel::class.java)
+        loginViewModel = viewModelFactory.create(LoginViewModel::class.java)
     }
 
     private fun setOnClicks() {
@@ -124,9 +123,9 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun authViaEmailAndPassword(email: String, password: String) {
-        registrationLoginSharedViewModel.apply {
+        loginViewModel.apply {
             authViaEmailAndPassword(email, password)
-            getAuthViaEmailLiveData().observe(
+            getAuthViaEmailAndPasswordLiveData().observe(
                 this@LoginFragment, Observer { resource ->
                     when {
                         resource.isLoading -> {}
@@ -171,7 +170,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun authViaGoogle(googleSignInAccount: GoogleSignInAccount?) {
-        registrationLoginSharedViewModel.apply {
+        loginViewModel.apply {
             authViaGoogle(GoogleAuthProvider.getCredential(googleSignInAccount?.idToken, null))
             getAuthViaGoogleLiveData().observe(
                 this@LoginFragment, Observer { resource ->
