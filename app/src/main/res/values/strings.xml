@@ -136,7 +136,7 @@
     <string name="login_error_description">Cannot sign in. Try again later.</string>
     <string name="project_list">Project list</string>
     <string name="address">Address</string>
-    <string name="address_input">%s %s street</string>
+    <string name="address_input">%s, %s street</string>
     <string name="area">Area</string>
     <string name="points_count">Number of points</string>
     <string name="received">Received</string>

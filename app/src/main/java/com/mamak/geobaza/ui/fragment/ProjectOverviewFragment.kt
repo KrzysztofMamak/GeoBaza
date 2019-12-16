@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
@@ -19,6 +20,8 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
     internal lateinit var projectDetailsSharedViewModel: ProjectDetailsSharedViewModel
+
+    private var inEditMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,28 +66,28 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
         container_date_finished.tv_property_name.text = getString(R.string.date_finished)
 
         var state = getString(R.string.received)
-        if (project.isProcessed) {
+        if (project.state == ProjectState.PROCESSED) {
             state = getString(R.string.processed)
             container_date_processed.apply {
                 tv_property_value.text = project.processDate
                 visibility = View.VISIBLE
             }
         }
-        if (project.isMarked) {
+        if (project.state == ProjectState.MARKED) {
             state = getString(R.string.marked)
             container_date_marked.apply {
                 tv_property_value.text = project.markDate
                 visibility = View.VISIBLE
             }
         }
-        if (project.isMeasured) {
+        if (project.state == ProjectState.MEASURED) {
             state = getString(R.string.measured)
             container_date_measured.apply {
                 tv_property_value.text = project.measureDate
                 visibility = View.VISIBLE
             }
         }
-        if (project.isFinished) {
+        if (project.state == ProjectState.FINISHED) {
             state = getString(R.string.finished)
             container_date_finished.apply {
                 tv_property_value.text = project.finishDate
@@ -95,5 +98,9 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
             tv_property_name.text = getString(R.string.state)
             tv_property_value.text = state
         }
+    }
+
+    private fun updateProject() {
+
     }
 }

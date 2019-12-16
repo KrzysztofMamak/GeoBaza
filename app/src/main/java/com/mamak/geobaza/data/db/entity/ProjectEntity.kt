@@ -3,6 +3,7 @@ package com.mamak.geobaza.data.db.entity
 import androidx.room.*
 import com.mamak.geobaza.data.model.Point
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.data.model.ProjectState
 
 @Entity(tableName = "projects")
 data class ProjectEntity(
@@ -25,17 +26,8 @@ data class ProjectEntity(
     @ColumnInfo(name = "pointList")
     var pointList: List<Point>,
 
-    @ColumnInfo(name = "isProcessed")
-    var isProcessed: Boolean,
-
-    @ColumnInfo(name = "isMarked")
-    var isMarked: Boolean,
-
-    @ColumnInfo(name = "isMeasured")
-    var isMeasured: Boolean,
-
-    @ColumnInfo(name = "isFinished")
-    var isFinished: Boolean,
+    @ColumnInfo(name = "state")
+    var state: ProjectState,
 
     @ColumnInfo(name = "startDate")
     var startDate: String?,
@@ -63,10 +55,7 @@ data class ProjectEntity(
             street,
             description,
             pointList,
-            isProcessed,
-            isMarked,
-            isMeasured,
-            isFinished,
+            state,
             startDate,
             processDate,
             markDate,

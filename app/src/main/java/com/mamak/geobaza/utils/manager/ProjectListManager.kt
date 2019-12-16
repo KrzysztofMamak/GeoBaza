@@ -1,6 +1,7 @@
 package com.mamak.geobaza.utils.manager
 
 import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.data.model.ProjectState
 
 object ProjectListManager {
     const val ALL_AREAS = "ALL"
@@ -30,10 +31,10 @@ object ProjectListManager {
 
         return tempList.filter {
             when (state) {
-                ProjectListManager.State.PROCESSED -> it.isProcessed
-                ProjectListManager.State.MARKED -> it.isMarked
-                ProjectListManager.State.MEASURED -> it.isMeasured
-                ProjectListManager.State.DONE -> it.isFinished
+                ProjectListManager.State.PROCESSED -> it.state == ProjectState.PROCESSED
+                ProjectListManager.State.MARKED -> it.state == ProjectState.MARKED
+                ProjectListManager.State.MEASURED -> it.state == ProjectState.MEASURED
+                ProjectListManager.State.DONE -> it.state == ProjectState.FINISHED
                 else -> true
             }
         }
