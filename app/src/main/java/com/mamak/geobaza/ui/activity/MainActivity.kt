@@ -1,6 +1,7 @@
 package com.mamak.geobaza.ui.activity
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
@@ -69,5 +70,10 @@ class MainActivity : BaseThemeActivityActionBar(),
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.project_list_actionbar, menu)
+        return true
     }
 }
