@@ -89,6 +89,7 @@
     <string name="measured">Measured</string>
     <string name="finished">Done</string>
     <string name="number">Number</string>
+    <string name="project_number">Project number</string>
     <string name="distance">Distance</string>
     <string name="alphabet">Alphabet</string>
     <string name="complexity">Complexity</string>
@@ -134,6 +135,10 @@
     <string name="login_error">Login error</string>
     <string name="login_error_description"></string>
     <string name="project_list">Project list</string>
+    <string name="address">Address</string>
+    <string name="address_input">$s $s street</string>
+    <string name="area">Area</string>
+    <string name="points_count">Number of points</string>
     <!-- End -> Universal -->
 
     <!-- Start -> Content Description -->
