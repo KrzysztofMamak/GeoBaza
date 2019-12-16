@@ -25,11 +25,6 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(RegistrationLoginSharedViewModel::class)
-    protected abstract fun registrationLoginSharedViewModel(registrationLoginSharedViewModel: RegistrationLoginSharedViewModel): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(RegistrationViewModel::class)
     protected abstract fun registrationViewModel(registrationViewModel: RegistrationViewModel): ViewModel
 

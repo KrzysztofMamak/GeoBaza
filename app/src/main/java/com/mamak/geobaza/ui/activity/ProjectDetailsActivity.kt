@@ -12,7 +12,6 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
-import com.mamak.geobaza.ui.base.BaseActivity
 import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
 import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment

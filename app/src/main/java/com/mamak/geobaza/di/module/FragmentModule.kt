@@ -17,9 +17,6 @@ abstract class FragmentModule {
     abstract fun contributeProjectMapFragment(): ProjectMapFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeProjectOverviewFragment(): ProjectOverviewFragment
-
-    @ContributesAndroidInjector
     abstract fun contributeProjectSketchFragment(): ProjectSketchFragment
 
     @ContributesAndroidInjector
@@ -36,4 +33,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeStatisticsFragment(): StatisticsFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeProjectOverviewFragmentNew(): ProjectOverviewFragment
 }

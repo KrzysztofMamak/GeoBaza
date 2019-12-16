@@ -18,7 +18,7 @@ import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.utils.manager.ValidationManager
 import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_forgot_password.*
+import kotlinx.android.synthetic.main.fragment_reset_password.*
 import javax.inject.Inject
 import com.mamak.geobaza.R
 import com.mamak.geobaza.ui.viewmodel.PasswordResetViewModel
@@ -38,7 +38,7 @@ class PasswordResetFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_forgot_password, container, false)
+        return inflater.inflate(R.layout.fragment_reset_password, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

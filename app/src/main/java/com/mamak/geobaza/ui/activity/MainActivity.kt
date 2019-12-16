@@ -73,7 +73,7 @@ class MainActivity : BaseThemeActivityActionBar(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.project_list_actionbar, menu)
-        return true
+        menuInflater.inflate(R.menu.menu_project_list, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

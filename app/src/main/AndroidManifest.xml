@@ -27,20 +27,15 @@
         <activity android:name=".ui.base.BaseThemeActivityNoActionBar"/>
 
         <activity
-                android:name=".ui.activity.ProjectListActivity"
-                android:screenOrientation="portrait">
-        </activity>
-
-        <activity
                 android:name=".ui.activity.ProjectDetailsActivity"
                 android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".ui.activity.ProjectListActivity" />
+                    android:value=".ui.activity.MainActivity" />
         </activity>
 
         <activity
-                android:name=".ui.activity.RegistrationLoginActivity"
+                android:name=".ui.activity.EntryActivity"
                 android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

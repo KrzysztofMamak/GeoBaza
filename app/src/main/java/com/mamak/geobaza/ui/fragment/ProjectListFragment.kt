@@ -17,7 +17,7 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.SOCKET_TIME
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
-import com.mamak.geobaza.ui.activity.RegistrationLoginActivity
+import com.mamak.geobaza.ui.activity.EntryActivity
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModelNew
@@ -144,8 +144,8 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun showFilterDialog() {
-//        val filterDialogFragment = FilterDialogFragment(createFilterDialogInterface())
-//        filterDialogFragment.show(activity.supportFragmentManager, null)
+        val filterDialogFragment = FilterDialogFragment(createFilterDialogInterface())
+        filterDialogFragment.show(activity.supportFragmentManager, null)
     }
 
     private fun setAreas(projects: MutableList<Project>) {
@@ -157,7 +157,7 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun launchRegistrationLoginActivity() {
-        val intent = Intent(activity, RegistrationLoginActivity::class.java)
+        val intent = Intent(activity, EntryActivity::class.java)
         startActivity(intent)
         activity.finish()
     }
@@ -188,7 +188,7 @@ class ProjectListFragment : BaseFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.project_list_actionbar, menu)
+        inflater.inflate(R.menu.menu_project_list, menu)
         val searchView = menu.findItem(R.id.action_search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -204,9 +204,14 @@ class ProjectListFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_filter -> showFilterDialog()
-            R.id.action_locate -> {}
+            R.id.action_filter -> {
+                showFilterDialog()
+                return true
+            }
+            R.id.action_locate -> {
+                return true
+            }
         }
-        return true
+        return super.onOptionsItemSelected(item)
     }
 }
