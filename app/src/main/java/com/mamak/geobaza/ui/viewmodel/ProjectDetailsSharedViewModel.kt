@@ -44,7 +44,10 @@ class ProjectDetailsSharedViewModel @Inject constructor(
                 }
                 .subscribeBy(
                     onNext = {
-                        projectUpdateLiveData.postValue(Resource.success(it))
+                        if (it.isSuccessful) {
+                            appDatabase.projectDao().update(project.toProjectEntity())
+                            projectUpdateLiveData.postValue(Resource.success(it))
+                        }
                     },
                     onError = {
                         projectUpdateLiveData.postValue(Resource.error(GeoBazaException(it)))

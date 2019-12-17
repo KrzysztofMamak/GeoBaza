@@ -5,5 +5,6 @@ enum class ProjectState {
     PROCESSED,
     MARKED,
     MEASURED,
+    OUTLINED,
     FINISHED
 }

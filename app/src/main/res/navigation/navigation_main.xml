@@ -23,4 +23,13 @@
             android:label="@string/statistics"
             tools:layout="@layout/fragment_statistics"/>
 
+    <dialog
+            android:id="@+id/multipleChoiceDialogFragment"
+            android:name="com.mamak.geobaza.utils.fragment.MultipleChoiceDialogFragment"
+            android:label="@string/sign_out"
+            tools:layout="@layout/layout_dialog">
+        <argument android:name="multipleChoiceInterface"
+                  app:argType="com.mamak.geobaza.utils.fragment.MultipleChoiceDialogFragment$MultipleChoiceDialogInterface"/>
+    </dialog>
+
 </navigation>

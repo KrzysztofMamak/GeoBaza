@@ -105,9 +105,12 @@
     <string name="area">Powiat</string>
     <string name="points_count">Ilość punktów</string>
     <string name="received">Przyjęty</string>
+    <string name="outlined">Naszkicowany</string>
+    <string name="date_received">Data przyjęcia</string>
     <string name="date_processed">Data przetworzenia</string>
     <string name="date_marked">Data wytyczenia</string>
     <string name="date_measured">Data pomiaru</string>
+    <string name="date_outlined">Data szkicu</string>
     <string name="date_finished">Data ukończenia</string>
     <string name="state">Stan</string>
 

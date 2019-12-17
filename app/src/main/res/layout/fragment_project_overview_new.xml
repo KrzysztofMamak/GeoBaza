@@ -101,6 +101,15 @@
             app:layout_constraintTop_toBottomOf="@id/container_points_count"/>
 
     <include
+            android:id="@+id/container_date_received"
+            layout="@layout/item_list_property"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_points_count"/>
+
+    <include
             android:id="@+id/container_date_processed"
             layout="@layout/item_list_property"
             android:visibility="gone"
@@ -108,7 +117,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/container_state"/>
+            app:layout_constraintTop_toBottomOf="@id/container_date_received"/>
 
     <include
             android:id="@+id/container_date_marked"
@@ -131,12 +140,22 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <include
-            android:id="@+id/container_date_finished"
+            android:id="@+id/container_date_outlined"
             layout="@layout/item_list_property"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/container_date_measured"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <include
+            android:id="@+id/container_date_finished"
+            layout="@layout/item_list_property"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/container_date_outlined"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

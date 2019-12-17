@@ -140,9 +140,12 @@
     <string name="area">Area</string>
     <string name="points_count">Number of points</string>
     <string name="received">Received</string>
+    <string name="outlined">Outlined</string>
+    <string name="date_received">Receive date</string>
     <string name="date_processed">Process date</string>
     <string name="date_marked">Mark date</string>
     <string name="date_measured">Measure date</string>
+    <string name="date_outlined">Outline date</string>
     <string name="date_finished">Finish date</string>
     <string name="state">State</string>
     <!-- End -> Universal -->

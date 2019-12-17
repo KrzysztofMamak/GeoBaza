@@ -53,7 +53,10 @@ class MainActivity : BaseThemeActivityActionBar(),
                 Navigation.findNavController(this, R.id.nav_host_fragment)
                     .navigate(R.id.settingsFragment)
             }
-            R.id.nav_sign_out -> {}
+            R.id.nav_sign_out -> {
+                Navigation.findNavController(this, R.id.nav_host_fragment)
+                    .navigate(R.id.multipleChoiceDialogFragment)
+            }
         }
         item.isChecked = true
         drawer_layout.closeDrawer(GravityCompat.START)

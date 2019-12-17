@@ -1,6 +1,7 @@
 package com.mamak.geobaza.utils.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,7 +78,7 @@ class MultipleChoiceDialogFragment(
         separator_bottom.visibility = View.VISIBLE
     }
 
-    interface MultipleChoiceDialogInterface {
+    interface MultipleChoiceDialogInterface : Parcelable {
         fun actionFirst()
         fun actionSecond()
         fun actionThird()

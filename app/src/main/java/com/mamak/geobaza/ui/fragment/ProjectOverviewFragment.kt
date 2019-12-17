@@ -43,64 +43,45 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun setFields() {
-        container_number.apply {
-            tv_property_name.text = getString(R.string.project_number)
-            tv_property_value.text = project.number.toString()
-        }
-        container_area.apply {
-            tv_property_name.text = getString(R.string.area)
-            tv_property_value.text = project.area
-        }
-        container_address.apply {
-            tv_property_name.text = getString(R.string.address)
-            tv_property_value.text = getString(R.string.address_input, project.town, project.street)
-        }
-        container_points_count.apply {
-            tv_property_name.text = getString(R.string.points_count)
-            tv_property_value.text = project.pointList.size.toString()
-        }
-
-        container_date_processed.tv_property_name.text = getString(R.string.date_processed)
-        container_date_marked.tv_property_name.text = getString(R.string.date_marked)
-        container_date_measured.tv_property_name.text = getString(R.string.date_measured)
-        container_date_finished.tv_property_name.text = getString(R.string.date_finished)
+        setField(container_number, getString(R.string.project_number), project.number.toString())
+        setField(container_area, getString(R.string.area), project.area)
+        setField(container_address, getString(R.string.address), getString(R.string.address_input, project.town, project.street))
+        setField(container_points_count, getString(R.string.points_count), project.pointList.size.toString())
 
         var state = getString(R.string.received)
-        if (project.state == ProjectState.PROCESSED) {
+        setField(container_date_received, getString(R.string.date_received), project.receiveDate)
+        if (project.state >= ProjectState.PROCESSED) {
+            setField(container_date_processed, getString(R.string.date_processed), project.processDate)
             state = getString(R.string.processed)
-            container_date_processed.apply {
-                tv_property_value.text = project.processDate
-                visibility = View.VISIBLE
-            }
         }
-        if (project.state == ProjectState.MARKED) {
+        if (project.state >= ProjectState.MARKED) {
+            setField(container_date_marked, getString(R.string.date_marked), project.markDate)
             state = getString(R.string.marked)
-            container_date_marked.apply {
-                tv_property_value.text = project.markDate
-                visibility = View.VISIBLE
-            }
         }
-        if (project.state == ProjectState.MEASURED) {
+        if (project.state >= ProjectState.MEASURED) {
+            setField(container_date_measured, getString(R.string.date_measured), project.measureDate)
             state = getString(R.string.measured)
-            container_date_measured.apply {
-                tv_property_value.text = project.measureDate
-                visibility = View.VISIBLE
-            }
+        }
+        if (project.state >= ProjectState.OUTLINED) {
+            setField(container_date_outlined, getString(R.string.date_outlined), project.measureDate)
+            state = getString(R.string.outlined)
         }
         if (project.state == ProjectState.FINISHED) {
+            setField(container_date_finished, getString(R.string.date_finished), project.finishDate)
             state = getString(R.string.finished)
-            container_date_finished.apply {
-                tv_property_value.text = project.finishDate
-                visibility = View.VISIBLE
-            }
         }
-        container_state.apply {
-            tv_property_name.text = getString(R.string.state)
-            tv_property_value.text = state
+        setField(container_state, getString(R.string.state), state)
+    }
+
+    private fun setField(container: View, propertyName: String, propertyValue: String?) {
+        container.apply {
+            tv_property_value.text = propertyValue
+            tv_property_name.text = propertyName
+            visibility = View.VISIBLE
         }
     }
 
     private fun updateProject() {
-
+//        projectDetailsSharedViewModel.updateProject()
     }
 }

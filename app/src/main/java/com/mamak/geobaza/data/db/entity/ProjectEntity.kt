@@ -29,8 +29,8 @@ data class ProjectEntity(
     @ColumnInfo(name = "state")
     var state: ProjectState,
 
-    @ColumnInfo(name = "startDate")
-    var startDate: String?,
+    @ColumnInfo(name = "receiveDate")
+    var receiveDate: String?,
 
     @ColumnInfo(name = "processDate")
     var processDate: String?,
@@ -40,6 +40,9 @@ data class ProjectEntity(
 
     @ColumnInfo(name = "measureDate")
     var measureDate: String?,
+
+    @ColumnInfo(name = "outlineDate")
+    var outlineDate: String?,
 
     @ColumnInfo(name = "finishDate")
     var finishDate: String?,
@@ -56,10 +59,11 @@ data class ProjectEntity(
             description,
             pointList,
             state,
-            startDate,
+            receiveDate,
             processDate,
             markDate,
             measureDate,
+            outlineDate,
             finishDate,
             note
         )

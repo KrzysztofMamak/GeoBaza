@@ -12,10 +12,11 @@ class Project(
     @SerializedName("description") @Expose var description: String,
     @SerializedName("pointList") @Expose var pointList: List<Point>,
     @SerializedName("state") @Expose var state: ProjectState,
-    @SerializedName("startDate") @Expose var startDate: String? = null,
+    @SerializedName("receiveDate") @Expose var receiveDate: String? = null,
     @SerializedName("processDate") @Expose var processDate: String? = null,
     @SerializedName("markDate") @Expose var markDate: String? = null,
     @SerializedName("measureDate") @Expose var measureDate: String? = null,
+    @SerializedName("outlineDate") @Expose var outlineDate: String? = null,
     @SerializedName("finishDate") @Expose var finishDate: String? = null,
     @SerializedName("note") @Expose var note: String? = null
 ) {
@@ -28,10 +29,11 @@ class Project(
             description,
             pointList,
             state,
-            startDate,
+            receiveDate,
             processDate,
             markDate,
             measureDate,
+            outlineDate,
             finishDate,
             note
         )
