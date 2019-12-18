@@ -150,12 +150,14 @@
     <string name="state">State</string>
     <!-- End -> Universal -->
 
-    <!-- Start -> Content Description -->
+    <!-- Content Description -->
     <string name="cd_navigation_icon">Navigate</string>
     <string name="cd_edit_project">Edit project</string>
     <string name="cd_show_current_location">Zoom to current location.</string>
     <string name="cd_show_points">Zoom to project points.</string>
     <string name="cd_draw_lines">Draw lines between all points.</string>
     <string name="cd_remove_lines">Remove lines between points.</string>
-    <!-- End -> Content Description -->
+    <string name="cd_update_project">Update project.</string>
+    <string name="cd_restore_project_data">Restore project_data.</string>
+
 </resources>

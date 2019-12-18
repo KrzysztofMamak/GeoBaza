@@ -21,8 +21,6 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     @Inject
     internal lateinit var projectDetailsSharedViewModel: ProjectDetailsSharedViewModel
 
-    private var inEditMode = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
@@ -36,6 +34,7 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setFields()
+        setOnClicks()
     }
 
     private fun initViewModel() {
@@ -81,7 +80,20 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
         }
     }
 
+    private fun setOnClicks() {
+
+    }
+
+    private fun showTextEditDialog() {
+
+    }
+
+    private fun showChoiceDialog() {
+
+    }
+
     private fun updateProject() {
+
 //        projectDetailsSharedViewModel.updateProject()
     }
 }

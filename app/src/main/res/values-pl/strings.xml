@@ -121,5 +121,7 @@
     <string name="cd_show_points">Przybliż do punktów projektu</string>
     <string name="cd_draw_lines">Rysuj linie między punktami.</string>
     <string name="cd_remove_lines">Usuń linie pomiędzy punktami.</string>
+    <string name="cd_update_project">Zaktualizuj projekt.</string>
+    <string name="cd_restore_project_data">Przywróć pierwotne dane projektu.</string>
 
 </resources>
