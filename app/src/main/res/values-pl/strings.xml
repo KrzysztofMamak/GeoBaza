@@ -16,11 +16,22 @@
 
     <!-- State -->
     <string-array name="array_state_filter">
+        <item>Przyjęte</item>
         <item>Przetworzone</item>
         <item>Wytyczone</item>
         <item>Zmierzone</item>
-        <item>Wykonane</item>
+        <item>Naszkicowane</item>
+        <item>Ukończone</item>
         <item>Wszystkie</item>
+    </string-array>
+
+    <string-array name="array_state_overview">
+        <item>Przyjęte</item>
+        <item>Przetworzone</item>
+        <item>Wytyczone</item>
+        <item>Zmierzone</item>
+        <item>Naszkicowane</item>
+        <item>Ukończone</item>
     </string-array>
 
     <!-- Sort Type -->
@@ -49,10 +60,6 @@
     <string name="apply">Zastosuj</string>
     <string name="search_filter">Filtr wyszukiwania</string>
     <string name="all">Wszystkie</string>
-    <string name="processed">Przetworzone</string>
-    <string name="marked">Wytyczone</string>
-    <string name="measured">Zmierzone</string>
-    <string name="finished">Gotowe</string>
     <string name="number">Numer</string>
     <string name="project_number">Numer projektu</string>
     <string name="distance">Dystans</string>
@@ -104,8 +111,6 @@
     <string name="address_input">%s ul. %s</string>
     <string name="area">Powiat</string>
     <string name="points_count">Ilość punktów</string>
-    <string name="received">Przyjęty</string>
-    <string name="outlined">Naszkicowany</string>
     <string name="date_received">Data przyjęcia</string>
     <string name="date_processed">Data przetworzenia</string>
     <string name="date_marked">Data wytyczenia</string>
@@ -113,6 +118,15 @@
     <string name="date_outlined">Data szkicu</string>
     <string name="date_finished">Data ukończenia</string>
     <string name="state">Stan</string>
+    <string name="value">Wartość</string>
+    <string name="town">Miasto</string>
+    <string name="street">Ulica</string>
+    <string name="received">Przyjęte</string>
+    <string name="processed">Przetworzone</string>
+    <string name="marked">Wytyczone</string>
+    <string name="measured">Zmierzone</string>
+    <string name="outlined">Naszkicowane</string>
+    <string name="finished">Ukończone</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Nawiguj</string>

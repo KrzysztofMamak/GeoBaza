@@ -12,7 +12,7 @@ import com.mamak.geobaza.ui.fragment.LoginFragment
 class EntryActivity : BaseThemeActivityNoActionBar() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registration_login)
+        setContentView(R.layout.activity_entry)
         replaceFragment(LoginFragment())
     }
 

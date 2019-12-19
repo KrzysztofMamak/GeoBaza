@@ -28,11 +28,22 @@
     <!-- Start -> FilterDialogFragment -->
     <!-- State -->
     <string-array name="array_state_filter">
+        <item>Received</item>
         <item>Processed</item>
         <item>Marked</item>
         <item>Measured</item>
-        <item>Done</item>
+        <item>Outlined</item>
+        <item>Finished</item>
         <item>All</item>
+    </string-array>
+
+    <string-array name="array_state_overview">
+        <item>Received</item>
+        <item>Processed</item>
+        <item>Marked</item>
+        <item>Measured</item>
+        <item>Outlined</item>
+        <item>Finished</item>
     </string-array>
 
     <!-- Sort Type -->
@@ -84,10 +95,6 @@
     <string name="apply">Apply</string>
     <string name="search_filter">Search Filter</string>
     <string name="all">All</string>
-    <string name="processed">Processed</string>
-    <string name="marked">Marked</string>
-    <string name="measured">Measured</string>
-    <string name="finished">Done</string>
     <string name="number">Number</string>
     <string name="project_number">Project number</string>
     <string name="distance">Distance</string>
@@ -139,8 +146,6 @@
     <string name="address_input">%s, %s street</string>
     <string name="area">Area</string>
     <string name="points_count">Number of points</string>
-    <string name="received">Received</string>
-    <string name="outlined">Outlined</string>
     <string name="date_received">Receive date</string>
     <string name="date_processed">Process date</string>
     <string name="date_marked">Mark date</string>
@@ -148,7 +153,15 @@
     <string name="date_outlined">Outline date</string>
     <string name="date_finished">Finish date</string>
     <string name="state">State</string>
-    <!-- End -> Universal -->
+    <string name="value">Value</string>
+    <string name="town">Town</string>
+    <string name="street">Street</string>
+    <string name="received">Received</string>
+    <string name="processed">Processed</string>
+    <string name="marked">Marked</string>
+    <string name="measured">Measured</string>
+    <string name="outlined">Outlined</string>
+    <string name="finished">Done</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Navigate</string>
