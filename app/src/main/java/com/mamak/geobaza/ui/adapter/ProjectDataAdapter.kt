@@ -12,7 +12,7 @@ class ProjectDataAdapter : RecyclerView.Adapter<ProjectPropertyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectPropertyViewHolder {
         return ProjectPropertyViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_list_property, parent, false)
+                .inflate(R.layout.item_list_property_text_view, parent, false)
         )
     }
 

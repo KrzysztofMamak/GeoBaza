@@ -2,7 +2,7 @@ package com.mamak.geobaza.ui.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_list_property.view.*
+import kotlinx.android.synthetic.main.item_list_property_text_view.view.*
 
 class ProjectPropertyViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView) {

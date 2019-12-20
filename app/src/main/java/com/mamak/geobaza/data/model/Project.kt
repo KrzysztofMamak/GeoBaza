@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.mamak.geobaza.data.db.entity.ProjectEntity
 
-class Project(
+data class Project(
     @SerializedName("number") @Expose var number: Int = 0,
     @SerializedName("area") @Expose var area: String,
     @SerializedName("town") @Expose var town: String,
@@ -37,5 +37,12 @@ class Project(
             finishDate,
             note
         )
+    }
+
+    override fun toString(): String {
+        return "Project(number=$number, area='$area', town='$town', street='$street', " +
+                "description='$description', pointList=$pointList, state=$state, " +
+                "receiveDate=$receiveDate, processDate=$processDate, markDate=$markDate, " +
+                "measureDate=$measureDate, outlineDate=$outlineDate, finishDate=$finishDate, note=$note)"
     }
 }

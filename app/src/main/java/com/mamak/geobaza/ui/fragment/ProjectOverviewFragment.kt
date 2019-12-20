@@ -1,28 +1,32 @@
 package com.mamak.geobaza.ui.fragment
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import androidx.core.widget.ImageViewCompat
+import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
+import com.mamak.geobaza.utils.manager.ThemeManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_project_overview.*
-import kotlinx.android.synthetic.main.item_list_property_edit_text.*
-import kotlinx.android.synthetic.main.item_list_property_edit_text.et_property_value
-import kotlinx.android.synthetic.main.item_list_property_edit_text.tv_property_name
 import kotlinx.android.synthetic.main.item_list_property_edit_text.view.*
 import kotlinx.android.synthetic.main.item_list_property_edit_text.view.tv_property_name
 import kotlinx.android.synthetic.main.item_list_property_spinner.*
-import kotlinx.android.synthetic.main.item_list_property_spinner.spinner_property_value
 import kotlinx.android.synthetic.main.item_list_property_spinner.view.*
+import kotlinx.android.synthetic.main.item_list_property_text_view.view.*
 import javax.inject.Inject
 
 class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
@@ -43,7 +47,9 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setSpinner()
         setFields(project)
+        setListeners()
         setOnClicks()
     }
 
@@ -51,36 +57,54 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
         projectDetailsSharedViewModel = viewModelFactory.create(ProjectDetailsSharedViewModel::class.java)
     }
 
+    private fun setSpinner() {
+        context?.let {
+            val arrayAdapter = ArrayAdapter.createFromResource(it, R.array.array_state_overview, R.layout.item_spinner)
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner_property_value.adapter = arrayAdapter
+        }
+    }
+
     private fun setFields(project: Project) {
-        setEditTextField(container_number, getString(R.string.project_number), project.number.toString())
+        setTextViewField(container_number, getString(R.string.project_number), project.number.toString())
+        setTextViewField(container_points_count, getString(R.string.points_count), project.pointList.size.toString())
+
         setEditTextField(container_area, getString(R.string.area), project.area)
         setEditTextField(container_town, getString(R.string.town), project.town)
         setEditTextField(container_street, getString(R.string.street), project.street)
-        setEditTextField(container_points_count, getString(R.string.points_count), project.pointList.size.toString())
+        setEditTextField(container_description, getString(R.string.description), project.description)
+        setEditTextField(container_date_received, getString(R.string.date_received), project.receiveDate)
+        setEditTextField(container_date_processed, getString(R.string.date_processed), project.processDate)
+        setEditTextField(container_date_marked, getString(R.string.date_marked), project.markDate)
+        setEditTextField(container_date_measured, getString(R.string.date_measured), project.measureDate)
+        setEditTextField(container_date_outlined, getString(R.string.date_outlined), project.outlineDate)
+        setEditTextField(container_date_finished, getString(R.string.date_finished), project.finishDate)
 
         var state = getString(R.string.received)
-        setEditTextField(container_date_received, getString(R.string.date_received), project.receiveDate)
         if (project.state >= ProjectState.PROCESSED) {
-            setEditTextField(container_date_processed, getString(R.string.date_processed), project.processDate)
             state = getString(R.string.processed)
         }
         if (project.state >= ProjectState.MARKED) {
-            setEditTextField(container_date_marked, getString(R.string.date_marked), project.markDate)
             state = getString(R.string.marked)
         }
         if (project.state >= ProjectState.MEASURED) {
-            setEditTextField(container_date_measured, getString(R.string.date_measured), project.measureDate)
             state = getString(R.string.measured)
         }
         if (project.state >= ProjectState.OUTLINED) {
-            setEditTextField(container_date_outlined, getString(R.string.date_outlined), project.measureDate)
             state = getString(R.string.outlined)
         }
         if (project.state == ProjectState.FINISHED) {
-            setEditTextField(container_date_finished, getString(R.string.date_finished), project.finishDate)
             state = getString(R.string.finished)
         }
         setSpinnerField(container_state, getString(R.string.state), state)
+        setDateFieldsVisibility(project.state.ordinal)
+    }
+
+    private fun setTextViewField(container: View, propertyName: String, propertyValue: String?) {
+        container.apply {
+            tv_property_value.text = propertyValue
+            tv_property_name.text = propertyName
+        }
     }
 
     private fun setEditTextField(container: View, propertyName: String, propertyValue: String?) {
@@ -96,6 +120,7 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
         container.apply {
             spinner_property_value.setSelection(index)
             tv_property_name.text = propertyName
+            visibility = View.VISIBLE
         }
     }
 
@@ -112,7 +137,7 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
             container_date_finished.et_property_value
         )
             .forEach {
-                it.addTextChangedListener( object : TextWatcher {
+                it.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {}
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -121,23 +146,81 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
                     }
                 })
             }
+        container_state.spinner_property_value.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                checkEquality()
+                setDateFieldsVisibility(position)
+            }
+        }
     }
 
-    private fun getNewProject() {
-        val area = container_area.et_property_value.text
-        val town = container_town.et_property_value.text
-        val street = container_street.et_property_value.text
-        val state = container_state.spinner_property_value.selectedItem
-        val dateReceived = container_date_received.et_property_value.text
-        val dateProcessed = container_date_processed.et_property_value.text
-        val dateMarked = container_date_marked.et_property_value.text
-        val dateMeasured = container_date_measured.et_property_value.text
-        val dateOutlined = container_date_outlined.et_property_value.text
-        val dateFinished = container_date_finished.et_property_value.text
+    private fun setDateFieldsVisibility(position: Int) {
+        container_date_processed.visibility = if (position >= ProjectState.PROCESSED.ordinal) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        container_date_marked.visibility = if (position >= ProjectState.MARKED.ordinal) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        container_date_measured.visibility = if (position >= ProjectState.MEASURED.ordinal) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        container_date_outlined.visibility = if (position >= ProjectState.OUTLINED.ordinal) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        container_date_finished.visibility = if (position == ProjectState.FINISHED.ordinal) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+    }
+
+    private fun getNewProject(): Project {
+        val number = project.number
+        val area = container_area.et_property_value.text.toString()
+        val town = container_town.et_property_value.text.toString()
+        val street = container_street.et_property_value.text.toString()
+        val description = container_description.et_property_value.text.toString()
+        val points = project.pointList
+        val index = container_state.spinner_property_value.selectedItem as String
+        val state = ProjectState.values()[container_state.spinner_property_value.getIndex(index)]
+        val dateReceived = container_date_received.et_property_value.text.toString()
+        val dateProcessed = container_date_processed.et_property_value.text.toString()
+        val dateMarked = container_date_marked.et_property_value.text.toString()
+        val dateMeasured = container_date_measured.et_property_value.text.toString()
+        val dateOutlined = container_date_outlined.et_property_value.text.toString()
+        val dateFinished = container_date_finished.et_property_value.text.toString()
+
+        return Project(
+            number, area, town, street, description, points, state, dateReceived,
+            dateProcessed, dateMarked, dateMeasured, dateOutlined, dateFinished, "-"
+        )
     }
 
     private fun checkEquality() {
+        val hasDataChanged = project != getNewProject()
+        val color = if (hasDataChanged) {
+            context?.getColor(ThemeManager.getColorResByAttr(context, R.attr.colorSecondary))
+        } else {
+            context?.getColor(R.color.light_gray)
+        }
 
+        iv_restore_project_data.isEnabled = hasDataChanged
+        iv_save_project_data.isEnabled = hasDataChanged
+
+        color?.let {
+            ImageViewCompat.setImageTintList(iv_restore_project_data, ColorStateList.valueOf(it))
+            ImageViewCompat.setImageTintList(iv_save_project_data, ColorStateList.valueOf(it))
+        }
     }
 
     private fun setOnClicks() {
@@ -150,6 +233,12 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun updateProject() {
-//        projectDetailsSharedViewModel.updateProject()
+        val newProject = getNewProject()
+        projectDetailsSharedViewModel.apply {
+            updateProject(newProject)
+            getProjectUpdateLiveData().observe(this@ProjectOverviewFragment, Observer { resource ->
+                resource
+            })
+        }
     }
 }

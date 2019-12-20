@@ -121,6 +121,7 @@
     <string name="value">Wartość</string>
     <string name="town">Miasto</string>
     <string name="street">Ulica</string>
+    <string name="description">Opis</string>
     <string name="received">Przyjęte</string>
     <string name="processed">Przetworzone</string>
     <string name="marked">Wytyczone</string>

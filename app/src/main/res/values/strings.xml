@@ -156,6 +156,7 @@
     <string name="value">Value</string>
     <string name="town">Town</string>
     <string name="street">Street</string>
+    <string name="description">Description</string>
     <string name="received">Received</string>
     <string name="processed">Processed</string>
     <string name="marked">Marked</string>
