@@ -17,6 +17,7 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
+import com.mamak.geobaza.network.firebase.GeoBazaFirebaseMessagingService
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
 import com.mamak.geobaza.utils.manager.ThemeManager
@@ -51,6 +52,9 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
         setFields(project)
         setListeners()
         setOnClicks()
+        context?.let {
+            Log.d("TOKEN", GeoBazaFirebaseMessagingService.getToken(it).toString())
+        }
     }
 
     private fun initViewModel() {

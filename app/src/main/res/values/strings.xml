@@ -8,6 +8,8 @@
     <string name="google_maps_package" translatable="false">com.google.android.apps.maps</string>
     <!-- End -> LocationManager -->
 
+    <string name="firebase_notification_channel_id" translatable="false">fire_not_ch_id_1</string>
+
     <!-- Start -> EmptyView -->
     <string name="ev_no_internet">Cannot connect to server. Check your Internet connection and try again.</string>
     <string name="ev_no_service">Service is not available. Try again later.</string>
