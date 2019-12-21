@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
+import com.google.firebase.iid.FirebaseInstanceId
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
@@ -52,9 +53,6 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
         setFields(project)
         setListeners()
         setOnClicks()
-        context?.let {
-            Log.d("TOKEN", GeoBazaFirebaseMessagingService.getToken(it).toString())
-        }
     }
 
     private fun initViewModel() {
@@ -230,6 +228,7 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     private fun setOnClicks() {
         iv_restore_project_data.setOnClickListener {
             setFields(project)
+
         }
         iv_save_project_data.setOnClickListener {
             updateProject()

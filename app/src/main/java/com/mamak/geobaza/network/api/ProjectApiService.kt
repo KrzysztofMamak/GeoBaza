@@ -13,8 +13,4 @@ interface ProjectApiService {
     @Headers("Content-type: application/json")
     @PUT("projects/update/")
     fun updateProject(@Body project: Project): Observable<GeoBazaResponse>
-
-//    @Headers("Content-type: application/json")
-//    @GET("images/{number}/")
-//    fun getImage(@Path("number") number: Int): Call<ResponseBody>
 }
