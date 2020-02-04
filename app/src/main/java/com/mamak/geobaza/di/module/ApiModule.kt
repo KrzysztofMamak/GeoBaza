@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Module(includes = [
     RetrofitModule::class
 ])
-class ProjectApiModule {
+class ApiModule {
     @Provides
     @Singleton
     fun projectApiService(retrofitBuilder: Retrofit.Builder): ProjectApiService {

@@ -21,7 +21,7 @@ class GeoApplication : Application(), HasAndroidInjector {
         super.onCreate()
         DaggerAppComponent.builder()
             .application(this)
-            .projectApiModule(ProjectApiModule())
+            .projectApiModule(ApiModule())
             .picassoModule(PicassoModule())
             .dbModule(DbModule())
             .locationModule(LocationModule())

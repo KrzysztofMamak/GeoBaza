@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="GeoBazaLogo">
-        <attr name="foregroundColor" format="integer" />
-        <attr name="backgroundColor" format="integer" />
+        <attr name="foreColor" format="integer" />
+        <attr name="backColor" format="integer" />
     </declare-styleable>
 </resources>

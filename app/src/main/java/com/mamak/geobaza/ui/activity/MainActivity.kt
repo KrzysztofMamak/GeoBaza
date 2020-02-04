@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI.*
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mamak.geobaza.R
 import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,6 +16,7 @@ class MainActivity : BaseThemeActivityActionBar(),
         NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseMessaging.getInstance().subscribeToTopic("projects")
         setContentView(R.layout.activity_main)
         setNavigation()
     }

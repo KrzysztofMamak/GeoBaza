@@ -18,6 +18,8 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
+import com.mamak.geobaza.network.firebase.FirebaseMessage
+import com.mamak.geobaza.network.firebase.FirebaseMessageData
 import com.mamak.geobaza.network.firebase.GeoBazaFirebaseMessagingService
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
@@ -236,9 +238,11 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun updateProject() {
+        val firebaseMessageData = FirebaseMessageData("1", "2", "3", "4")
+        val firebaseMessage = FirebaseMessage("/topic/projects", firebaseMessageData)
         val newProject = getNewProject()
         projectDetailsSharedViewModel.apply {
-            updateProject(newProject)
+            updateProject(newProject, firebaseMessage)
             getProjectUpdateLiveData().observe(this@ProjectOverviewFragment, Observer { resource ->
                 resource
             })

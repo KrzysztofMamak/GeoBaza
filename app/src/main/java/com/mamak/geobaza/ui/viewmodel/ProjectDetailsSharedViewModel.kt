@@ -4,9 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.repository.ProjectLocalRepo
+import com.mamak.geobaza.network.api.FcmApiService
 import com.mamak.geobaza.network.api.ProjectApiService
 import com.mamak.geobaza.network.connection.GeoBazaResponse
 import com.mamak.geobaza.network.connection.Resource
+import com.mamak.geobaza.network.firebase.FirebaseMessage
 import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,7 +18,8 @@ import javax.inject.Inject
 
 class ProjectDetailsSharedViewModel @Inject constructor(
     private val appDatabase: AppDatabase,
-    private val projectApiService: ProjectApiService
+    private val projectApiService: ProjectApiService,
+    private val fcmApiService: FcmApiService
 ) : BaseViewModel() {
     private val projectLocalRepo = ProjectLocalRepo(appDatabase.projectDao())
     private val projectLiveData = MutableLiveData<Project>()
@@ -34,7 +37,7 @@ class ProjectDetailsSharedViewModel @Inject constructor(
         )
     }
 
-    fun updateProject(project: Project) {
+    fun updateProject(project: Project, firebaseMessage: FirebaseMessage) {
         addToDisposable(
             projectApiService.updateProject(project)
                 .subscribeOn(Schedulers.io())
@@ -44,8 +47,9 @@ class ProjectDetailsSharedViewModel @Inject constructor(
                 }
                 .subscribeBy(
                     onNext = {
-                        if (it.isSuccessful) {
+                        if (!it.isSuccessful) {
                             appDatabase.projectDao().update(project.toProjectEntity())
+                            fcmApiService.sendNotification(firebaseMessage)
                             projectUpdateLiveData.postValue(Resource.success(it))
                         }
                     },

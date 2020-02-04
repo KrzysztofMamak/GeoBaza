@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-    ProjectApiModule::class,
+    ApiModule::class,
     ViewModelModule::class,
     AndroidSupportInjectionModule::class,
     ContextModule::class,
@@ -28,7 +28,7 @@ interface AppComponent {
         fun application(application: Application): Builder
 
         @BindsInstance
-        fun projectApiModule(projectApiModule: ProjectApiModule): Builder
+        fun projectApiModule(projectApiModule: ApiModule): Builder
 
         @BindsInstance
         fun picassoModule(picassoModule: PicassoModule): Builder
