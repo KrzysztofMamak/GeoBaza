@@ -54,6 +54,8 @@ class GeoBazaFirebaseMessagingService : FirebaseMessagingService() {
         notificationManagerCompat.createNotificationChannel(adminChannel)
     }
 
+
+
     companion object {
         fun getToken(context: Context): String? {
             return context.getSharedPreferences("_", Context.MODE_PRIVATE)

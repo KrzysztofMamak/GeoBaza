@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class FirebaseMessage(
     @SerializedName("to")
     @Expose
-    var receiver: String,
-    @SerializedName("data")
+    var to: String,
+    @SerializedName("notification")
     @Expose
-    var data: FirebaseMessageData
+    var notification: FirebaseNotification
 )

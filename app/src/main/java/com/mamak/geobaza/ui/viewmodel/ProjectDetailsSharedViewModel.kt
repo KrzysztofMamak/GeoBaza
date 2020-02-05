@@ -47,14 +47,30 @@ class ProjectDetailsSharedViewModel @Inject constructor(
                 }
                 .subscribeBy(
                     onNext = {
-                        if (!it.isSuccessful) {
+                        if (it.isSuccessful) {
                             appDatabase.projectDao().update(project.toProjectEntity())
-                            fcmApiService.sendNotification(firebaseMessage)
                             projectUpdateLiveData.postValue(Resource.success(it))
                         }
                     },
                     onError = {
                         projectUpdateLiveData.postValue(Resource.error(GeoBazaException(it)))
+                    }
+                )
+        )
+    }
+
+    fun sendPush(firebaseMessage: FirebaseMessage) {
+        addToDisposable(
+            fcmApiService.sendNotification(firebaseMessage)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {  }
+                .subscribeBy(
+                    onNext = {
+
+                    },
+                    onError = {
+
                     }
                 )
         )

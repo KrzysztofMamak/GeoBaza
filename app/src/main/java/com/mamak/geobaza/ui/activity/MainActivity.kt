@@ -16,7 +16,7 @@ class MainActivity : BaseThemeActivityActionBar(),
         NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseMessaging.getInstance().subscribeToTopic("projects")
+        FirebaseMessaging.getInstance().subscribeToTopic("/topics/projects")
         setContentView(R.layout.activity_main)
         setNavigation()
     }

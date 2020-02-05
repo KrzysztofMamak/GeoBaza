@@ -4,7 +4,6 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +12,12 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
-import com.google.firebase.iid.FirebaseInstanceId
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.network.firebase.FirebaseMessage
-import com.mamak.geobaza.network.firebase.FirebaseMessageData
-import com.mamak.geobaza.network.firebase.GeoBazaFirebaseMessagingService
+import com.mamak.geobaza.network.firebase.FirebaseNotification
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
 import com.mamak.geobaza.utils.manager.ThemeManager
@@ -238,10 +235,11 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun updateProject() {
-        val firebaseMessageData = FirebaseMessageData("1", "2", "3", "4")
-        val firebaseMessage = FirebaseMessage("/topic/projects", firebaseMessageData)
+        val firebaseNotification = FirebaseNotification("title", "body")
+        val firebaseMessage = FirebaseMessage("/topics/projects", firebaseNotification)
         val newProject = getNewProject()
         projectDetailsSharedViewModel.apply {
+            sendPush(firebaseMessage)
             updateProject(newProject, firebaseMessage)
             getProjectUpdateLiveData().observe(this@ProjectOverviewFragment, Observer { resource ->
                 resource

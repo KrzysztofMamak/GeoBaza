@@ -2,8 +2,9 @@ package com.mamak.geobaza.utils.constans
 
 object AppConstans {
     const val SERVER_KEY = "AAAA0Ydzh8k:APA91bGhqQUNkQAoMPXG8BYsxwG2RiH7Id-UMHloRLAB0i36T6FOtxYa4IAZ3TmMHRCZ-7DVkXGDubCtKnsVBnMHW28hRhNSqqPHKT_gHugq_Dts9GqHqAJ2LD3MHNeaoBGMWAdPmlzm"
-    const val BASE_URL_PROJECTS = "http://192.168.0.101:8080/"
-    const val BASE_URL_FCM = "https://fcm.googleapis.com"
+    const val LEGACY_SERVER_KEY = "AIzaSyABmXkgLnOFujMFZ_2dRuoXRIaYC3ClZFE"
+    const val BASE_URL_PROJECTS = "http://192.168.0.105:8080/"
+    const val BASE_URL_FCM = "https://fcm.googleapis.com/"
     const val EXTRA_PROJECT_NUMBER = "projectNumber"
     const val REQUEST_CODE_ACCESS_FINE_LOCATION = 1001
     const val REQUEST_CODE_FINE_OMS_PERMISSIONS = 1002
