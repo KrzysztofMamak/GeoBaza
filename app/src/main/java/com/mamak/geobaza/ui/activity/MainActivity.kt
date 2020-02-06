@@ -1,11 +1,14 @@
 package com.mamak.geobaza.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI.*
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import com.mamak.geobaza.R
@@ -17,6 +20,13 @@ class MainActivity : BaseThemeActivityActionBar(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseMessaging.getInstance().subscribeToTopic("/topics/projects")
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Log.d("Temat: ", "suuuuuuuub")
+                } else {
+                    Log.d("Temat: ", "nieeeeeeesub")
+                }
+            }
         setContentView(R.layout.activity_main)
         setNavigation()
     }
