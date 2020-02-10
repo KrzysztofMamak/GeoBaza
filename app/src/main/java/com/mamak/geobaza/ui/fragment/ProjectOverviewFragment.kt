@@ -10,14 +10,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
-import com.mamak.geobaza.network.firebase.FirebaseMessage
-import com.mamak.geobaza.network.firebase.FirebaseNotification
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
 import com.mamak.geobaza.utils.manager.ThemeManager
@@ -30,7 +29,7 @@ import kotlinx.android.synthetic.main.item_list_property_spinner.view.*
 import kotlinx.android.synthetic.main.item_list_property_text_view.view.*
 import javax.inject.Inject
 
-class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
+class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
@@ -235,15 +234,24 @@ class ProjectOverviewFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun updateProject() {
-        val firebaseNotification = FirebaseNotification("title", "body")
-        val firebaseMessage = FirebaseMessage("/topics/projects", firebaseNotification)
         val newProject = getNewProject()
         projectDetailsSharedViewModel.apply {
-            sendPush(firebaseMessage)
-            updateProject(newProject, firebaseMessage)
+            updateProject(newProject)
             getProjectUpdateLiveData().observe(this@ProjectOverviewFragment, Observer { resource ->
-                resource
+                if (resource.isSuccess) {
+                    handleProjectUpdateSuccessResponse()
+                } else {
+                    handleProjectUpdateErrorResponse()
+                }
             })
         }
+    }
+
+    private fun handleProjectUpdateSuccessResponse() {
+        Toast.makeText(context, getString(R.string.project_update_success), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handleProjectUpdateErrorResponse() {
+        Toast.makeText(context, getString(R.string.project_update_error), Toast.LENGTH_SHORT).show()
     }
 }

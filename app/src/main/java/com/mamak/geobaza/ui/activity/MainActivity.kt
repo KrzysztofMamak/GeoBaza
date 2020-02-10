@@ -1,22 +1,34 @@
 package com.mamak.geobaza.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI.*
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.mamak.geobaza.R
+import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
+import com.mamak.geobaza.ui.viewmodel.MainActivityViewModel
+import com.mamak.geobaza.utils.manager.DialogManager
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseThemeActivityActionBar(),
         NavigationView.OnNavigationItemSelectedListener {
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelFactory
+    @Inject
+    internal lateinit var mainActivityViewModel: MainActivityViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseMessaging.getInstance().subscribeToTopic("/topics/projects")
@@ -29,6 +41,10 @@ class MainActivity : BaseThemeActivityActionBar(),
             }
         setContentView(R.layout.activity_main)
         setNavigation()
+    }
+
+    private fun initViewModel() {
+        mainActivityViewModel = viewModelFactory.create(MainActivityViewModel::class.java)
     }
 
     private fun setNavigation() {
@@ -66,8 +82,18 @@ class MainActivity : BaseThemeActivityActionBar(),
                     .navigate(R.id.settingsFragment)
             }
             R.id.nav_sign_out -> {
-                Navigation.findNavController(this, R.id.nav_host_fragment)
-                    .navigate(R.id.multipleChoiceDialogFragment)
+//                TODO change to navigation component
+//                Navigation.findNavController(this, R.id.nav_host_fragment)
+//                    .navigate(R.id.multipleChoiceDialogFragment)
+                DialogManager.showYesNoDialog(
+                    context = this,
+                    description = getString(R.string.sign_out_confirm),
+                    textYes = getString(R.string.yes),
+                    textNo = getString(R.string.no),
+                    yesOnClick = {
+                        signOut()
+                    }
+                )
             }
         }
         item.isChecked = true
@@ -90,5 +116,29 @@ class MainActivity : BaseThemeActivityActionBar(),
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_project_list, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+        mainActivityViewModel.apply {
+//            googleSignOut()
+            getGoogleSignOutLiveData().observe(
+                this@MainActivity, Observer { resource ->
+                    when {
+                        resource.isLoading -> {}
+                        resource.isSuccess -> {
+                            launchEntryActivity()
+                        }
+                        else -> {}
+                    }
+                }
+            )
+        }
+    }
+
+    private fun launchEntryActivity() {
+        val intent = Intent(this, EntryActivity::class.java)
+        startActivity(intent)
+        this.finish()
     }
 }

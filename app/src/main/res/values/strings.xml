@@ -132,7 +132,7 @@
     <string name="something_went_wrong">Oops. Something went wrong.</string>
     <string name="account_created">Account has been created. You can now sign in.</string>
     <string name="account_no_connection">Cannot register. Try again later.</string>
-    <string name="user_exists">User with given email already exist.</string>
+    <string name="user_exists">User with given email already exists.</string>
     <string name="no_user">No user</string>
     <string name="no_user_description">There is no user with given email address</string>
     <string name="user_disabled">User disabled</string>
@@ -145,7 +145,6 @@
     <string name="login_error_description">Cannot sign in. Try again later.</string>
     <string name="project_list">Project list</string>
     <string name="address">Address</string>
-    <!--<string name="address_input">%s, %s street</string>-->
     <string name="area">Area</string>
     <string name="points_count">Number of points</string>
     <string name="date_received">Receive date</string>
@@ -165,6 +164,11 @@
     <string name="measured">Measured</string>
     <string name="outlined">Outlined</string>
     <string name="finished">Done</string>
+    <string name="project_update_error">Project has been updated.</string>
+    <string name="project_update_success">Cannot update the project.</string>
+    <string name="sign_out_confirm">Do you want to sign out?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Navigate</string>

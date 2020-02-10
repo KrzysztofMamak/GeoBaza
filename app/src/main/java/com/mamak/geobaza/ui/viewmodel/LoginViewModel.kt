@@ -12,7 +12,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(): BaseViewModel() {
+class LoginViewModel @Inject constructor() : BaseViewModel() {
     private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
     private val authViaEmailAndPasswordLiveData = MutableLiveData<Resource<AuthResult>>()
     private val authViaGoogleLiveData = MutableLiveData<Resource<AuthResult>>()

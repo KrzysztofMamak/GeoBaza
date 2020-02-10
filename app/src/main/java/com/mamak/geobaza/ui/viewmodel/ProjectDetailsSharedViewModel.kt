@@ -4,11 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.repository.ProjectLocalRepo
-import com.mamak.geobaza.network.api.FcmApiService
 import com.mamak.geobaza.network.api.ProjectApiService
 import com.mamak.geobaza.network.connection.GeoBazaResponse
 import com.mamak.geobaza.network.connection.Resource
-import com.mamak.geobaza.network.firebase.FirebaseMessage
 import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,8 +16,7 @@ import javax.inject.Inject
 
 class ProjectDetailsSharedViewModel @Inject constructor(
     private val appDatabase: AppDatabase,
-    private val projectApiService: ProjectApiService,
-    private val fcmApiService: FcmApiService
+    private val projectApiService: ProjectApiService
 ) : BaseViewModel() {
     private val projectLocalRepo = ProjectLocalRepo(appDatabase.projectDao())
     private val projectLiveData = MutableLiveData<Project>()
@@ -37,7 +34,7 @@ class ProjectDetailsSharedViewModel @Inject constructor(
         )
     }
 
-    fun updateProject(project: Project, firebaseMessage: FirebaseMessage) {
+    fun updateProject(project: Project) {
         addToDisposable(
             projectApiService.updateProject(project)
                 .subscribeOn(Schedulers.io())
@@ -58,24 +55,6 @@ class ProjectDetailsSharedViewModel @Inject constructor(
                 )
         )
     }
-
-    fun sendPush(firebaseMessage: FirebaseMessage) {
-        addToDisposable(
-            fcmApiService.sendNotification(firebaseMessage)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {  }
-                .subscribeBy(
-                    onNext = {
-
-                    },
-                    onError = {
-
-                    }
-                )
-        )
-    }
-
     fun getProjectLiveData() = projectLiveData
     fun getProjectUpdateLiveData() = projectUpdateLiveData
 

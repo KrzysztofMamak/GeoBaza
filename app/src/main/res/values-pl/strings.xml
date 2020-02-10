@@ -108,7 +108,6 @@
     <string name="login_error_description">Nie udało się zalogować. Spróbuj ponownie później</string>
     <string name="project_list">Lista projektów</string>
     <string name="address">Adres</string>
-    <string name="address_input">%s ul. %s</string>
     <string name="area">Powiat</string>
     <string name="points_count">Ilość punktów</string>
     <string name="date_received">Data przyjęcia</string>
@@ -128,6 +127,11 @@
     <string name="measured">Zmierzone</string>
     <string name="outlined">Naszkicowane</string>
     <string name="finished">Ukończone</string>
+    <string name="project_update_error">Projekt został zaktualizowany.</string>
+    <string name="project_update_success">Nie udało się zaktualizować projektu.</string>
+    <string name="sign_out_confirm">Czy na pewno chcesz się wylogować?</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Nawiguj</string>

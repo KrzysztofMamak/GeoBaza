@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.Auth
@@ -144,17 +145,29 @@ class LoginFragment : BaseFragment() {
     private fun handleAuthViaEmailAndPasswordErrorResponse(geoBazaException: GeoBazaException?) {
         if (geoBazaException != null) {
             when (geoBazaException.errorCode) {
-                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {}
+                FIREBASE_AUTH_INVALID_CREDENTIALS_EXCEPTION -> {
+                    Toast.makeText(context, getString(R.string.wrong_password_description), Toast.LENGTH_SHORT).show()
+                }
                 FIREBASE_AUTH_INVALID_USER_EXCEPTION -> {
                     when (geoBazaException.internalErrorCode) {
-                        ERROR_USER_NOT_FOUND -> {}
-                        ERROR_USER_DISABLED -> {}
+                        ERROR_USER_NOT_FOUND -> {
+                            Toast.makeText(context, getString(R.string.no_user_description), Toast.LENGTH_SHORT).show()
+                        }
+                        ERROR_USER_DISABLED -> {
+                            Toast.makeText(context, getString(R.string.user_disabled_description), Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-                FIREBASE_EXCEPTION -> {}
-                else -> {}
+                FIREBASE_EXCEPTION -> {
+                    Toast.makeText(context, getString(R.string.login_error_description), Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(context, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
+                }
             }
-        } else {}
+        } else {
+            Toast.makeText(context, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun signInViaGoogle() {
