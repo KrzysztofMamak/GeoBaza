@@ -25,7 +25,9 @@ class EntryActivity : BaseThemeActivityNoActionBar() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.apply {
             replace(R.id.container_fragment, fragment)
-            addToBackStack(null)
+            if (fragment !is LoginFragment) {
+                addToBackStack(null)
+            }
             commit()
         }
     }

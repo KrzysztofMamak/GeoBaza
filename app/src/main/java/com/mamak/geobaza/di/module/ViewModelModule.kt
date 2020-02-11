@@ -52,4 +52,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(StatisticsViewModel::class)
     protected abstract fun statisticsViewModel(statisticsViewModel: StatisticsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    protected abstract fun mainActivityViewModel(mainActivityViewModel: MainActivityViewModel): ViewModel
 }

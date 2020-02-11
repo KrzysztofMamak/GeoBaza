@@ -9,6 +9,7 @@
     <!-- End -> LocationManager -->
 
     <string name="firebase_notification_channel_id" translatable="false">fire_not_ch_id_1</string>
+    <string name="subscription_topic_projects" translatable="false">/topics/projects</string>
 
     <!-- Start -> EmptyView -->
     <string name="ev_no_internet">Cannot connect to server. Check your Internet connection and try again.</string>

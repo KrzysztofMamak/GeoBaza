@@ -12,9 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.GoogleAuthProvider
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
@@ -30,6 +28,7 @@ import com.mamak.geobaza.ui.activity.MainActivity
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.LoginViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_SIGN_IN_VIA_GOOGLE
+import com.mamak.geobaza.utils.manager.GoogleSignInManager
 import com.mamak.geobaza.utils.manager.KeyboardManager
 import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.ValidationManager
@@ -171,13 +170,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun signInViaGoogle() {
-        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        val googleSignInClient = GoogleSignIn.getClient(activity, googleSignInOptions)
-
+        val googleSignInClient = GoogleSignInManager.getGoogleSignInClient(activity, getString(R.string.default_web_client_id))
         val intent = googleSignInClient.signInIntent
         startActivityForResult(intent, REQUEST_CODE_SIGN_IN_VIA_GOOGLE)
     }

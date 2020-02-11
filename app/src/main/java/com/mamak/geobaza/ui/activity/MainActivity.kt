@@ -1,5 +1,6 @@
 package com.mamak.geobaza.ui.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,8 @@ import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
 import com.mamak.geobaza.ui.viewmodel.MainActivityViewModel
 import com.mamak.geobaza.utils.manager.DialogManager
+import com.mamak.geobaza.utils.manager.GoogleSignInManager
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -31,20 +34,15 @@ class MainActivity : BaseThemeActivityActionBar(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
+        initViewModel()
         FirebaseMessaging.getInstance().subscribeToTopic("/topics/projects")
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Log.d("Temat: ", "suuuuuuuub")
-                } else {
-                    Log.d("Temat: ", "nieeeeeeesub")
-                }
-            }
         setContentView(R.layout.activity_main)
         setNavigation()
     }
 
     private fun initViewModel() {
-        mainActivityViewModel = viewModelFactory.create(MainActivityViewModel::class.java)
+        mainActivityViewModel = viewModelFactory.create(mainActivityViewModel::class.java)
     }
 
     private fun setNavigation() {
@@ -83,17 +81,7 @@ class MainActivity : BaseThemeActivityActionBar(),
             }
             R.id.nav_sign_out -> {
 //                TODO change to navigation component
-//                Navigation.findNavController(this, R.id.nav_host_fragment)
-//                    .navigate(R.id.multipleChoiceDialogFragment)
-                DialogManager.showYesNoDialog(
-                    context = this,
-                    description = getString(R.string.sign_out_confirm),
-                    textYes = getString(R.string.yes),
-                    textNo = getString(R.string.no),
-                    yesOnClick = {
-                        signOut()
-                    }
-                )
+                showSignOutConfirmDialog()
             }
         }
         item.isChecked = true
@@ -119,9 +107,11 @@ class MainActivity : BaseThemeActivityActionBar(),
     }
 
     private fun signOut() {
+        val googleSignInClient = GoogleSignInManager.getGoogleSignInClient(this,
+            getString(R.string.default_web_client_id))
         FirebaseAuth.getInstance().signOut()
         mainActivityViewModel.apply {
-//            googleSignOut()
+            googleSignOut(googleSignInClient)
             getGoogleSignOutLiveData().observe(
                 this@MainActivity, Observer { resource ->
                     when {
@@ -134,6 +124,26 @@ class MainActivity : BaseThemeActivityActionBar(),
                 }
             )
         }
+    }
+
+    private fun showSignOutConfirmDialog() {
+        DialogManager.showYesNoDialog(
+            context = this,
+            description = getString(R.string.sign_out_confirm),
+            textYes = getString(R.string.yes),
+            textNo = getString(R.string.no),
+            dialogOnClickListener = DialogInterface.OnClickListener { dialog, which ->
+                when (which) {
+                    DialogInterface.BUTTON_POSITIVE -> {
+                        dialog.dismiss()
+                        signOut()
+                    }
+                    DialogInterface.BUTTON_NEGATIVE -> {
+                        dialog.dismiss()
+                    }
+                }
+            }
+        )
     }
 
     private fun launchEntryActivity() {

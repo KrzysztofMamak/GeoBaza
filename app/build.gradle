@@ -57,6 +57,7 @@ ext {
     firebase_auth_version = "19.2.0"
     firebase_messaging_version = "20.1.0"
     navigation_version = "2.2.0"
+    firebase_ui_version = "6.2.0"
 }
 
 dependencies {
@@ -125,4 +126,7 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    //FirebaseUI
+    implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_version"
 }
