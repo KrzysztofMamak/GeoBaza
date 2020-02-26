@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
         android:background="@color/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -202,6 +202,15 @@
                         app:layout_constraintTop_toBottomOf="@id/container_date_outlined"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
+
+                <include
+                        android:id="@+id/container_note"
+                        layout="@layout/item_list_property_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/container_date_finished"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

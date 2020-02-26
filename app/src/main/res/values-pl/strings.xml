@@ -132,6 +132,7 @@
     <string name="sign_out_confirm">Czy na pewno chcesz się wylogować?</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
+    <string name="note">Notatka</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Nawiguj</string>

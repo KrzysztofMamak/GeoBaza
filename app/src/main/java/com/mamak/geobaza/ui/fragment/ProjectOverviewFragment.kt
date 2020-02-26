@@ -18,7 +18,7 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
+import com.mamak.geobaza.ui.viewmodel.ProjectOverviewViewModel
 import com.mamak.geobaza.utils.manager.ThemeManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_project_overview.*
@@ -33,7 +33,7 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
-    internal lateinit var projectDetailsSharedViewModel: ProjectDetailsSharedViewModel
+    internal lateinit var projectOverviewViewModel: ProjectOverviewViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +54,7 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
     }
 
     private fun initViewModel() {
-        projectDetailsSharedViewModel = viewModelFactory.create(ProjectDetailsSharedViewModel::class.java)
+        projectOverviewViewModel = viewModelFactory.create(ProjectOverviewViewModel::class.java)
     }
 
     private fun setSpinner() {
@@ -79,6 +79,7 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
         setEditTextField(container_date_measured, getString(R.string.date_measured), project.measureDate)
         setEditTextField(container_date_outlined, getString(R.string.date_outlined), project.outlineDate)
         setEditTextField(container_date_finished, getString(R.string.date_finished), project.finishDate)
+        setEditTextField(container_note, getString(R.string.note), project.note)
 
         var state = getString(R.string.received)
         if (project.state >= ProjectState.PROCESSED) {
@@ -134,7 +135,8 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
             container_date_marked.et_property_value,
             container_date_measured.et_property_value,
             container_date_outlined.et_property_value,
-            container_date_finished.et_property_value
+            container_date_finished.et_property_value,
+            container_note.et_property_value
         )
             .forEach {
                 it.addTextChangedListener(object : TextWatcher {
@@ -199,10 +201,11 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
         val dateMeasured = container_date_measured.et_property_value.text.toString()
         val dateOutlined = container_date_outlined.et_property_value.text.toString()
         val dateFinished = container_date_finished.et_property_value.text.toString()
+        val note = container_note.et_property_value.text.toString()
 
         return Project(
             number, area, town, street, description, points, state, dateReceived,
-            dateProcessed, dateMarked, dateMeasured, dateOutlined, dateFinished, "-"
+            dateProcessed, dateMarked, dateMeasured, dateOutlined, dateFinished, note
         )
     }
 
@@ -235,7 +238,7 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
 
     private fun updateProject() {
         val newProject = getNewProject()
-        projectDetailsSharedViewModel.apply {
+        projectOverviewViewModel.apply {
             updateProject(newProject)
             getProjectUpdateLiveData().observe(this@ProjectOverviewFragment, Observer { resource ->
                 if (resource.isSuccess) {

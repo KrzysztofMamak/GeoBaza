@@ -20,7 +20,7 @@ import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.EntryActivity
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.ProjectListViewModelNew
+import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
 import com.mamak.geobaza.utils.manager.LocationManager
@@ -33,7 +33,7 @@ class ProjectListFragment : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
-    internal lateinit var projectListViewModelNew: ProjectListViewModelNew
+    internal lateinit var projectListViewModel: ProjectListViewModel
 
     private lateinit var projectListAdapter: ProjectListAdapter
 
@@ -54,7 +54,7 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun initViewModel() {
-        projectListViewModelNew = viewModelFactory.create(ProjectListViewModelNew::class.java)
+        projectListViewModel = viewModelFactory.create(ProjectListViewModel::class.java)
     }
 
     private fun setComponents() {
@@ -78,7 +78,7 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun getProjects() {
-        projectListViewModelNew.apply {
+        projectListViewModel.apply {
             fetchProjects()
             getProjectListLiveData().observe(this@ProjectListFragment, Observer { resource ->
                 if (resource.isLoading) {

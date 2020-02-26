@@ -170,6 +170,7 @@
     <string name="sign_out_confirm">Do you want to sign out?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="note">Note</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Navigate</string>

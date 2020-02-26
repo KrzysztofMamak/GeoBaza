@@ -60,18 +60,18 @@ class ProjectListAdapter(private val projectListItemCommunication: ProjectListIt
                                 }
                             }
                         }
-//                        if (project.area.toLowerCase().contains(queryString)) {
-//                            filterList.add(project)
-//                        }
-//                        if (project.town.toLowerCase().contains(queryString)) {
-//                            filterList.add(project)
-//                        }
-//                        if (project.street.toLowerCase().contains(queryString)) {
-//                            filterList.add(project)
-//                        }
-//                        if (project.description.toLowerCase().contains(queryString)) {
-//                            filterList.add(project)
-//                        }
+                        if (project.area.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
+                        }
+                        if (project.town.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
+                        }
+                        if (project.street.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
+                        }
+                        if (project.description.toLowerCase().contains(queryString)) {
+                            filterList.add(project)
+                        }
                     }
                     results.count = filterList.size
                     results.values = filterList

@@ -16,7 +16,7 @@ import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
 import com.mamak.geobaza.ui.fragment.ProjectMapFragment
 import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
 import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
-import com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel
+import com.mamak.geobaza.ui.viewmodel.ProjectDetailsActivityViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
@@ -30,7 +30,7 @@ class ProjectDetailsActivity : BaseThemeActivityActionBar() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
-    internal lateinit var  projectDetailsSharedViewModel: ProjectDetailsSharedViewModel
+    internal lateinit var  projectDetailsActivityViewModel: ProjectDetailsActivityViewModel
 
     private lateinit var projectDetailsTabAdapter: ProjectDetailsTabAdapter
     private lateinit var project: Project
@@ -48,8 +48,8 @@ class ProjectDetailsActivity : BaseThemeActivityActionBar() {
 
     private fun setCurrentProject() {
         val projectNumber = intent.getIntExtra(EXTRA_PROJECT_NUMBER, 1)
-        projectDetailsSharedViewModel.getProjectFromDb(projectNumber)
-        projectDetailsSharedViewModel.getProjectLiveData().observe(this, Observer {
+        projectDetailsActivityViewModel.getProjectFromDb(projectNumber)
+        projectDetailsActivityViewModel.getProjectLiveData().observe(this, Observer {
             project = it
             setAdapter()
         })
@@ -67,7 +67,7 @@ class ProjectDetailsActivity : BaseThemeActivityActionBar() {
     }
 
     private fun initViewModel() {
-        projectDetailsSharedViewModel = viewModelFactory.create(projectDetailsSharedViewModel::class.java)
+        projectDetailsActivityViewModel = viewModelFactory.create(projectDetailsActivityViewModel::class.java)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

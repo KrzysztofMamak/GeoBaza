@@ -66,7 +66,10 @@ class MainActivity : BaseThemeActivityActionBar(),
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_travel_planner -> {}
+            R.id.nav_travel_planner -> {
+                Navigation.findNavController(this, R.id.nav_host_fragment)
+                    .navigate(R.id.travelPlannerFragment)
+            }
             R.id.nav_project_list -> {
                 Navigation.findNavController(this, R.id.nav_host_fragment)
                     .navigate(R.id.projectListFragment)

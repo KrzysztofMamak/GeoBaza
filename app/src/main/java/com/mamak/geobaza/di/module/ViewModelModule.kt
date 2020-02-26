@@ -20,8 +20,8 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ProjectDetailsSharedViewModel::class)
-    protected abstract fun projectDetailsSharedViewModel(projectDetailsSharedViewModel: ProjectDetailsSharedViewModel): ViewModel
+    @ViewModelKey(ProjectDetailsActivityViewModel::class)
+    protected abstract fun projectDetailsActivityViewModel(projectDetailsActivityViewModel: ProjectDetailsActivityViewModel): ViewModel
 
     @Binds
     @IntoMap
@@ -40,11 +40,6 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ProjectListViewModelNew::class)
-    protected abstract fun projectListViewModelNew(projectListViewModelNew: ProjectListViewModelNew): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(SettingsViewModel::class)
     protected abstract fun settingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
 
@@ -57,4 +52,14 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainActivityViewModel::class)
     protected abstract fun mainActivityViewModel(mainActivityViewModel: MainActivityViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TravelPlannerViewModel::class)
+    protected abstract fun travelPlannerViewModel(travelPlannerViewModel: TravelPlannerViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProjectOverviewViewModel::class)
+    protected abstract fun projectOverviewViewModel(projectOverviewViewModel: ProjectOverviewViewModel): ViewModel
 }

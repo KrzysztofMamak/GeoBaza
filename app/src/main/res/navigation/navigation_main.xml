@@ -13,6 +13,11 @@
             tools:layout="@layout/fragment_project_list"/>
 
     <fragment
+            android:id="@+id/travelPlannerFragment"
+            android:name="com.mamak.geobaza.ui.fragment.TravelPlannerFragment"
+            android:label="@string/travel_planner"/>
+
+    <fragment
             android:id="@+id/settingsFragment"
             android:name="com.mamak.geobaza.ui.fragment.SettingsFragment"
             android:label="@string/settings"/>

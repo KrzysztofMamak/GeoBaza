@@ -36,4 +36,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeProjectOverviewFragmentNew(): ProjectOverviewFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeTravelPlannerFragment(): TravelPlannerFragment
 }
