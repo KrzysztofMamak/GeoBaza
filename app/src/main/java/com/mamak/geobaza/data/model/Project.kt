@@ -1,9 +1,12 @@
 package com.mamak.geobaza.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.mamak.geobaza.data.db.entity.ProjectEntity
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Project(
     @SerializedName("number") @Expose var number: Int = 0,
     @SerializedName("area") @Expose var area: String,
@@ -19,7 +22,7 @@ data class Project(
     @SerializedName("outlineDate") @Expose var outlineDate: String? = null,
     @SerializedName("finishDate") @Expose var finishDate: String? = null,
     @SerializedName("note") @Expose var note: String? = null
-) {
+) : Parcelable {
     fun toProjectEntity(): ProjectEntity {
         return ProjectEntity(
             number,

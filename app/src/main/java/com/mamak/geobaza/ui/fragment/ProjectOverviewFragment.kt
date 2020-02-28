@@ -19,6 +19,7 @@ import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectOverviewViewModel
+import com.mamak.geobaza.utils.fragment.DatePickerFragment
 import com.mamak.geobaza.utils.manager.ThemeManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_project_overview.*
@@ -68,18 +69,18 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
     private fun setFields(project: Project) {
         setTextViewField(container_number, getString(R.string.project_number), project.number.toString())
         setTextViewField(container_points_count, getString(R.string.points_count), project.pointList.size.toString())
+        setTextViewField(container_date_received, getString(R.string.date_received), project.receiveDate)
+        setTextViewField(container_date_processed, getString(R.string.date_processed), project.processDate)
+        setTextViewField(container_date_marked, getString(R.string.date_marked), project.markDate)
+        setTextViewField(container_date_measured, getString(R.string.date_measured), project.measureDate)
+        setTextViewField(container_date_outlined, getString(R.string.date_outlined), project.outlineDate)
+        setTextViewField(container_date_finished, getString(R.string.date_finished), project.finishDate)
+        setTextViewField(container_note, getString(R.string.note), project.note)
 
         setEditTextField(container_area, getString(R.string.area), project.area)
         setEditTextField(container_town, getString(R.string.town), project.town)
         setEditTextField(container_street, getString(R.string.street), project.street)
         setEditTextField(container_description, getString(R.string.description), project.description)
-        setEditTextField(container_date_received, getString(R.string.date_received), project.receiveDate)
-        setEditTextField(container_date_processed, getString(R.string.date_processed), project.processDate)
-        setEditTextField(container_date_marked, getString(R.string.date_marked), project.markDate)
-        setEditTextField(container_date_measured, getString(R.string.date_measured), project.measureDate)
-        setEditTextField(container_date_outlined, getString(R.string.date_outlined), project.outlineDate)
-        setEditTextField(container_date_finished, getString(R.string.date_finished), project.finishDate)
-        setEditTextField(container_note, getString(R.string.note), project.note)
 
         var state = getString(R.string.received)
         if (project.state >= ProjectState.PROCESSED) {
@@ -227,12 +228,33 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
     }
 
     private fun setOnClicks() {
+        setTopOnClicks()
+        setDateOnClicks()
+    }
+
+    private fun setTopOnClicks() {
         iv_restore_project_data.setOnClickListener {
             setFields(project)
 
         }
         iv_save_project_data.setOnClickListener {
             updateProject()
+        }
+    }
+
+    private fun setDateOnClicks() {
+        listOf<View>(
+            container_date_received,
+            container_date_processed,
+            container_date_marked,
+            container_date_measured,
+            container_date_outlined,
+            container_date_finished
+        ).forEach {
+            it.setOnClickListener {
+                val datePickerFragment = DatePickerFragment()
+                datePickerFragment.show(activity.supportFragmentManager, null)
+            }
         }
     }
 

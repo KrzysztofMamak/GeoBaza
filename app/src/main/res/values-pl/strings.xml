@@ -136,6 +136,8 @@
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Nawiguj</string>
+    <string name="cd_map_icon">Pokaż na mapie</string>
+    <string name="cd_details_icon">Pokaż szczegóły</string>
     <string name="cd_edit_project">Edytuj projekt</string>
     <string name="cd_show_current_location">Przybliż do bieżącej lokalizacji.</string>
     <string name="cd_show_points">Przybliż do punktów projektu</string>
