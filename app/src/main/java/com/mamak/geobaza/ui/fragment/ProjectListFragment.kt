@@ -15,9 +15,11 @@ import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.CONNECT_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.SOCKET_TIMEOUT_EXCEPTION
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
+import com.mamak.geobaza.ui.`interface`.ProjectItemInterface
 import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.EntryActivity
+import com.mamak.geobaza.ui.adapter.ProjectAdapter
 import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
@@ -35,7 +37,8 @@ class ProjectListFragment : BaseFragment() {
     @Inject
     internal lateinit var projectListViewModel: ProjectListViewModel
 
-    private lateinit var projectListAdapter: ProjectListAdapter
+//    private lateinit var projectListAdapter: ProjectListAdapter
+    private lateinit var projectAdapter: ProjectAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,9 +66,14 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun setRecycler() {
-        projectListAdapter = ProjectListAdapter(createProjectListItemInterface())
+//        projectListAdapter = ProjectListAdapter(createProjectListItemInterface())
+//        rv_projects.apply {
+//            adapter = projectListAdapter
+//            layoutManager = LinearLayoutManager(context)
+//        }
+        projectAdapter = ProjectAdapter(createProjectItemInterface())
         rv_projects.apply {
-            adapter = projectListAdapter
+            adapter = projectAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }
@@ -98,7 +106,7 @@ class ProjectListFragment : BaseFragment() {
             hideProgressBar()
             srl_projects.isRefreshing = false
             ev_projects.visibility = View.GONE
-            projectListAdapter.setProjects(projectList.toMutableList())
+            projectAdapter.setProjects(projectList.toMutableList())
         }, DELAY_SHORT)
     }
 
@@ -168,6 +176,20 @@ class ProjectListFragment : BaseFragment() {
         startActivity(intent)
     }
 
+    private fun createProjectItemInterface() = object : ProjectItemInterface {
+        override fun navigate(x: Double, y: Double) {
+            LocationManager.navigateByGeoCoordinates(activity, x, y)
+        }
+
+        override fun showMap(project: Project) {
+//            TODO Showing map from list
+        }
+
+        override fun showDetails(projectNumber: Int) {
+            launchProjectDetailsActivity(projectNumber)
+        }
+    }
+
     private fun createProjectListItemInterface() = object : ProjectListItemInterface {
         override fun openGoogleMaps(x: Double, y: Double) {
             LocationManager.navigateByGeoCoordinates(activity, x, y)
@@ -181,7 +203,7 @@ class ProjectListFragment : BaseFragment() {
     private fun createFilterDialogInterface(): FilterDialogInterface {
         return object : FilterDialogInterface {
             override fun filterProjects() {
-                projectListAdapter.filterProjects()
+                projectAdapter.filterProjects()
                 activity.currentFocus?.clearFocus()
             }
         }
@@ -196,7 +218,7 @@ class ProjectListFragment : BaseFragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                projectListAdapter.filter.filter(newText)
+                projectAdapter.filter.filter(newText)
                 return false
             }
         })
