@@ -16,6 +16,7 @@ class ProjectAdapter(
 ): RecyclerView.Adapter<ProjectViewHolder>(), Filterable {
     private var projects = mutableListOf<Project>()
     private var filteredProjects = mutableListOf<Project>()
+    private var holderExpanded: ProjectViewHolder? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
         return ProjectViewHolder(
@@ -30,7 +31,18 @@ class ProjectAdapter(
     }
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
-        holder.bind(filteredProjects[position])
+        holder.apply {
+            bind(filteredProjects[position])
+            itemView.setOnClickListener {
+                setExpanded()
+                if (holderExpanded?.adapterPosition == position) {
+                    holderExpanded = null
+                } else {
+                    holderExpanded?.setExpanded()
+                    holderExpanded = holder
+                }
+            }
+        }
     }
 
     fun setProjects(projects: MutableList<Project>) {
@@ -52,7 +64,6 @@ class ProjectAdapter(
                 if (!queryString.isNullOrEmpty()) {
                     val filterList = mutableListOf<Project>()
                     for (project in projects) {
-//                        TODO Check
                         run loop@{
                             listOf(project.area, project.town, project.street, project.description).forEach {
                                 if (it.toLowerCase().contains(queryString)) {

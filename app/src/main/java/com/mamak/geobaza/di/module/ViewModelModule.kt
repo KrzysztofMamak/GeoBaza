@@ -3,6 +3,7 @@ package com.mamak.geobaza.di.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mamak.geobaza.factory.ViewModelFactory
+import com.mamak.geobaza.ui.fragment.MapFragment
 import com.mamak.geobaza.ui.viewmodel.*
 import dagger.Binds
 import dagger.Module
@@ -62,4 +63,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProjectOverviewViewModel::class)
     protected abstract fun projectOverviewViewModel(projectOverviewViewModel: ProjectOverviewViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MapViewModel::class)
+    protected abstract fun mapViewModel(mapViewModel: MapViewModel): ViewModel
 }

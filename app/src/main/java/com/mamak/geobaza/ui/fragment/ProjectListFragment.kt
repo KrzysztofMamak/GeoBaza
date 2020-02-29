@@ -6,6 +6,8 @@ import android.os.Handler
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
@@ -20,7 +22,6 @@ import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.EntryActivity
 import com.mamak.geobaza.ui.adapter.ProjectAdapter
-import com.mamak.geobaza.ui.adapter.ProjectListAdapter
 import com.mamak.geobaza.ui.base.BaseFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
@@ -37,7 +38,6 @@ class ProjectListFragment : BaseFragment() {
     @Inject
     internal lateinit var projectListViewModel: ProjectListViewModel
 
-//    private lateinit var projectListAdapter: ProjectListAdapter
     private lateinit var projectAdapter: ProjectAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,11 +66,6 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun setRecycler() {
-//        projectListAdapter = ProjectListAdapter(createProjectListItemInterface())
-//        rv_projects.apply {
-//            adapter = projectListAdapter
-//            layoutManager = LinearLayoutManager(context)
-//        }
         projectAdapter = ProjectAdapter(createProjectItemInterface())
         rv_projects.apply {
             adapter = projectAdapter
@@ -182,20 +177,12 @@ class ProjectListFragment : BaseFragment() {
         }
 
         override fun showMap(project: Project) {
-//            TODO Showing map from list
+            //ProjectMapFragmentDirections
+            Navigation.findNavController(activity, R.id.nav_host_fragment)
+                .navigate(R.id.mapFragment)
         }
 
         override fun showDetails(projectNumber: Int) {
-            launchProjectDetailsActivity(projectNumber)
-        }
-    }
-
-    private fun createProjectListItemInterface() = object : ProjectListItemInterface {
-        override fun openGoogleMaps(x: Double, y: Double) {
-            LocationManager.navigateByGeoCoordinates(activity, x, y)
-        }
-
-        override fun openProjectDetails(projectNumber: Int) {
             launchProjectDetailsActivity(projectNumber)
         }
     }

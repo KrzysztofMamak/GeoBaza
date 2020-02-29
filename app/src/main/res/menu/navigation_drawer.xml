@@ -19,6 +19,11 @@
             android:title="@string/settings"/>
 
     <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_location_on"
+            android:title="@string/map"/>
+
+    <item
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/ic_lock"
             android:title="@string/sign_out"/>

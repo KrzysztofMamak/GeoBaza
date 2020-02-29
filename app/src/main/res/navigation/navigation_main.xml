@@ -10,7 +10,16 @@
             android:id="@+id/projectListFragment"
             android:name="com.mamak.geobaza.ui.fragment.ProjectListFragment"
             android:label="@string/project_list"
-            tools:layout="@layout/fragment_project_list"/>
+            tools:layout="@layout/fragment_project_list">
+        <action
+                android:id="@+id/action_projectListFragment_to_mapFragment"
+                app:destination="@id/mapFragment">
+            <argument
+                    android:name="projectNumber"
+                    app:argType="integer"
+                    android:defaultValue="-1"/>
+        </action>
+    </fragment>
 
     <fragment
             android:id="@+id/travelPlannerFragment"
@@ -28,13 +37,20 @@
             android:label="@string/statistics"
             tools:layout="@layout/fragment_statistics"/>
 
+    <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.mamak.geobaza.ui.fragment.MapFragment"
+            android:label="@string/map"
+            tools:layout="@layout/fragment_project_map"/>
+
     <dialog
             android:id="@+id/multipleChoiceDialogFragment"
             android:name="com.mamak.geobaza.utils.fragment.MultipleChoiceDialogFragment"
             android:label="@string/sign_out"
             tools:layout="@layout/layout_dialog">
-        <argument android:name="multipleChoiceInterface"
-                  app:argType="com.mamak.geobaza.utils.fragment.MultipleChoiceDialogFragment$MultipleChoiceDialogInterface"/>
+        <argument
+                android:name="multipleChoiceInterface"
+                app:argType="com.mamak.geobaza.utils.fragment.MultipleChoiceDialogFragment$MultipleChoiceDialogInterface"/>
     </dialog>
 
 </navigation>

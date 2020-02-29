@@ -82,6 +82,10 @@ class MainActivity : BaseThemeActivityActionBar(),
                 Navigation.findNavController(this, R.id.nav_host_fragment)
                     .navigate(R.id.settingsFragment)
             }
+            R.id.nav_map -> {
+                Navigation.findNavController(this, R.id.nav_host_fragment)
+                    .navigate(R.id.mapFragment)
+            }
             R.id.nav_sign_out -> {
 //                TODO change to navigation component
                 showSignOutConfirmDialog()

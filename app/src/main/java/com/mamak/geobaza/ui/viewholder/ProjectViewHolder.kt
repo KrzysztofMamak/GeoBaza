@@ -18,7 +18,6 @@ class ProjectViewHolder(
     fun bind(project: Project) {
         setProjectData(project)
         setDistance(project.pointList[0])
-        setItemViewOnClick()
         setNavigationIconOnClick(project.pointList[0].x, project.pointList[0].y)
         setMapIconOnClick(project)
         setDetailsIconOnClick(project.number)
@@ -42,17 +41,9 @@ class ProjectViewHolder(
         }
     }
 
-//    TODO change adapter -> only one item should be expanded at the same time
-    private fun setItemViewOnClick() {
-        itemView.setOnClickListener {
-            if (!isExpanded) {
-                it.container_actions.visibility = View.VISIBLE
-                isExpanded = true
-            } else {
-                it.container_actions.visibility = View.GONE
-                isExpanded = false
-            }
-        }
+    fun setExpanded() {
+        itemView.container_actions.visibility = if (isExpanded) View.GONE else View.VISIBLE
+        isExpanded = !isExpanded
     }
 
     private fun setNavigationIconOnClick(x: Double, y: Double) {
