@@ -4,6 +4,6 @@ import com.mamak.geobaza.data.model.Project
 
 interface ProjectItemInterface {
     fun navigate(x: Double, y: Double)
-    fun showMap(project: Project)
+    fun showMap(projectNumber: Int)
     fun showDetails(projectNumber: Int)
 }

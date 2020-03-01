@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.AreaLab
@@ -18,7 +19,6 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.CONNECT_EXC
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.SOCKET_TIMEOUT_EXCEPTION
 import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
 import com.mamak.geobaza.ui.`interface`.ProjectItemInterface
-import com.mamak.geobaza.ui.`interface`.ProjectListItemInterface
 import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.EntryActivity
 import com.mamak.geobaza.ui.adapter.ProjectAdapter
@@ -176,10 +176,10 @@ class ProjectListFragment : BaseFragment() {
             LocationManager.navigateByGeoCoordinates(activity, x, y)
         }
 
-        override fun showMap(project: Project) {
-            //ProjectMapFragmentDirections
+        override fun showMap(projectNumber: Int) {
+            val action = ProjectListFragmentDirections.actionProjectListFragmentToMapFragment(projectNumber)
             Navigation.findNavController(activity, R.id.nav_host_fragment)
-                .navigate(R.id.mapFragment)
+                .navigate(action)
         }
 
         override fun showDetails(projectNumber: Int) {

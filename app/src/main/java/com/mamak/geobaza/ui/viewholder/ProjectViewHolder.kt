@@ -19,7 +19,7 @@ class ProjectViewHolder(
         setProjectData(project)
         setDistance(project.pointList[0])
         setNavigationIconOnClick(project.pointList[0].x, project.pointList[0].y)
-        setMapIconOnClick(project)
+        setMapIconOnClick(project.number)
         setDetailsIconOnClick(project.number)
     }
 
@@ -52,9 +52,9 @@ class ProjectViewHolder(
         }
     }
 
-    private fun setMapIconOnClick(project: Project) {
+    private fun setMapIconOnClick(projectNumber: Int) {
         itemView.iv_action_map.setOnClickListener {
-            projectItemInterface.showMap(project)
+            projectItemInterface.showMap(projectNumber)
         }
     }
 
