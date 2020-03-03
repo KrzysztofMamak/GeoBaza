@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidConfiguredLogFilters">
+    <filters>
+      <filter>
+        <option name="logLevel" value="verbose" />
+        <option name="logMessagePattern" value="WakeLock" />
+        <option name="logTagPattern" value="" />
+        <option name="name" value="WakeLock" />
+        <option name="packageNamePattern" value="" />
+        <option name="pid" value="" />
+      </filter>
+    </filters>
+  </component>
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+  </component>
+  <component name="AvailableLibraryUpdateStorage">
+    <library-updates>
+      <library-update>
+        <group-id>com.google.dagger</group-id>
+        <name>dagger-android-support</name>
+        <version>2.26</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.okhttp3</group-id>
+        <name>okhttp</name>
+        <version>4.4.0</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>org.jetbrains.kotlin</group-id>
+        <name>kotlin-stdlib-jdk7</name>
+        <version>1.3.61</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>android.arch.persistence.room</group-id>
+        <name>rxjava2</name>
+        <version>1.1.1</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.retrofit2</group-id>
+        <name>converter-gson</name>
+        <version>2.7.1</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.firebase</group-id>
+        <name>firebase-auth</name>
+        <version>19.2.0</version>
+        <repository>Google,Google Repository</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.okhttp3</group-id>
+        <name>logging-interceptor</name>
+        <version>4.4.0</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>androidx.navigation</group-id>
+        <name>navigation-fragment-ktx</name>
+        <version>2.3.0-alpha02</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.retrofit2</group-id>
+        <name>adapter-rxjava2</name>
+        <version>2.7.1</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.retrofit2</group-id>
+        <name>retrofit</name>
+        <version>2.7.1</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.android.support.test.espresso</group-id>
+        <name>espresso-core</name>
+        <version>3.0.2</version>
+        <repository>Google,Android Repository</repository>
+      </library-update>
+      <library-update>
+        <group-id>android.arch.persistence.room</group-id>
+        <name>runtime</name>
+        <version>1.1.1</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>org.osmdroid</group-id>
+        <name>osmdroid-android</name>
+        <version>6.1.5</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.jakewharton.timber</group-id>
+        <name>timber</name>
+        <version>4.7.1</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.android.gms</group-id>
+        <name>play-services-maps</name>
+        <version>17.0.0</version>
+        <repository>Google,Google Repository</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.dagger</group-id>
+        <name>dagger-android</name>
+        <version>2.26</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.firebase</group-id>
+        <name>firebase-messaging</name>
+        <version>20.1.1</version>
+        <repository>Google,Google Repository</repository>
+      </library-update>
+      <library-update>
+        <group-id>androidx.navigation</group-id>
+        <name>navigation-ui-ktx</name>
+        <version>2.3.0-alpha02</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.android.material</group-id>
+        <name>material</name>
+        <version>1.2.0-alpha05</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.dagger</group-id>
+        <name>dagger</name>
+        <version>2.26</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.dagger</group-id>
+        <name>dagger-compiler</name>
+        <version>2.26</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.github.bumptech.glide</group-id>
+        <name>glide</name>
+        <version>4.11.0</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.picasso</group-id>
+        <name>picasso</name>
+        <version>2.71828</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>android.arch.persistence.room</group-id>
+        <name>compiler</name>
+        <version>1.1.1</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>androidx.constraintlayout</group-id>
+        <name>constraintlayout</name>
+        <version>2.0.0-beta4</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.github.bumptech.glide</group-id>
+        <name>compiler</name>
+        <version>4.11.0</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.google.android.gms</group-id>
+        <name>play-services-auth</name>
+        <version>17.0.0</version>
+        <repository>Google,Google Repository</repository>
+      </library-update>
+      <library-update>
+        <group-id>junit</group-id>
+        <name>junit</name>
+        <version>4.13</version>
+        <repository>JCenter</repository>
+      </library-update>
+    </library-updates>
+    <last-search-timestamp>1583016199094</last-search-timestamp>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ed47746a-3b0c-4274-bdd1-167169c175eb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/fragment/MapFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/fragment/MapFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/fragment/ProjectListFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/fragment/ProjectListFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/navigation_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/navigation_main.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_28" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GeoBaza" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GeoBaza" type="f1a62948:ProjectNode" />
+                <item name=":app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GeoBaza" type="f1a62948:ProjectNode" />
+                <item name=":app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GeoBaza" type="f1a62948:ProjectNode" />
+                <item name=":app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Object" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="resourceFile" />
+        <option value="valueResourceFile" />
+        <option value="navigationResourceFile" />
+        <option value="Kotlin File" />
+        <option value="layoutResourceFile" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindBugs-IDEA-Workspace">
+    <toolWindowEditorPreview>false</toolWindowEditorPreview>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>glide</find>
+      <find>builder</find>
+      <find>contex</find>
+      <find>mutableListOf</find>
+      <find>spinner</find>
+      <find>shot</find>
+      <find>request</find>
+      <find>pro</find>
+      <find>ProjectLi</find>
+      <find>pointdao</find>
+      <find>srl</find>
+      <find>holder</find>
+      <find>mani</find>
+      <find>strin</find>
+      <find>appcons</find>
+      <find>module</find>
+      <find>viewModelFactory</find>
+      <find>liste</find>
+      <find>y</find>
+      <find>color</find>
+      <find>colorSeco</find>
+      <find>colorSecondaryLight</find>
+      <find>NoActionBar</find>
+      <find>number</find>
+      <find>received</find>
+      <find>attr</find>
+      <find>backgroundCo</find>
+      <find>backgr</find>
+      <find>geobazalo</find>
+      <find>top</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src\main\java\com\mamak\geobaza\network\api</dir>
+    </dirStrings>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="D:\Users\mamak\keystores\android.keystore" />
+    <option name="KEY_ALIAS" value="GeoBaza" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1YV9S406N0FkX7Ei3J0QdKRA2Nd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DEBUGGABLE_DEVICE" value="Nexus_5X_API_28 [emulator-5554]" />
+    <property name="DEBUGGABLE_PROCESS" value="com.mamak.geobaza" />
+    <property name="DEBUGGER_ID" value="Auto" />
+    <property name="ExportApk.ApkPath" value="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app" />
+    <property name="ExportApk.BuildVariants" value="release" />
+    <property name="ExportApk.SignV2" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="device.picker.selection" value="Nexus_5X_API_28" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CryptoCurrency20Kotlin" />
+    <property name="not.eligible.for.single.variant.sync" value="true" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="instant.run" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.mamak.geobaza.network.firebase" />
+      <recent name="com.mamak.geobaza.utils.view" />
+      <recent name="com.mamak.geobaza.utils.manager" />
+      <recent name="com.mamak.geobaza.utils.constans" />
+      <recent name="com.mamak.geobaza.ui.fragment" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.mamak.geobaza.data.singleton" />
+      <recent name="com.mamak.geobaza.network" />
+      <recent name="com.mamak.geobaza.utils" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.mamak.geobaza.data.db" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src\main\java\com\mamak\geobaza\data\model" />
+      <recent name="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src\main\res\layout" />
+      <recent name="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src\main\res\drawable" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.mamak.geobaza.utils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src\main\res\drawable" />
+      <recent name="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src\main\res\layout" />
+      <recent name="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src\main\res\drawable-v24" />
+      <recent name="D:\Users\mamak\AndroidStudioProjects\GeoBaza\app\src" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="val a = 4         val b = 2         val conditionOutput = &quot;Condition ${a} % ${b} == 0 gives ${a % b == 0}.&quot;" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.mamak.geobaza.ui in app" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mamak.geobaza.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mamak.geobaza.ui" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GeoBaza:app [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/app" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="signingReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.GeoBaza:app [signingReport]" />
+        <item itemvalue="Android JUnit.com.mamak.geobaza.ui in app" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed47746a-3b0c-4274-bdd1-167169c175eb" name="Default Changelist" comment="" />
+      <created>1567095952225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567095952225</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>51</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>56</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>61</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>66</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>71</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>76</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>81</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>86</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>91</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>96</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>101</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/Task.class</url>
+          <line>106</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9e9f10c5ec8aefca2bad22334122223c/jars/classes.jar!/com/google/android/gms/tasks/zzu.class</url>
+          <line>314</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/viewmodel/MainActivityViewModel.kt</url>
+          <line>27</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/viewmodel/MainActivityViewModel.kt</url>
+          <line>30</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/viewmodel/MainActivityViewModel.kt</url>
+          <line>18</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/fragment/MapFragment.kt</url>
+          <line>203</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/fragment/MapFragment.kt</url>
+          <line>128</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mamak/geobaza/ui/fragment/MapFragment.kt</url>
+          <line>82</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Remote">
+        <watch expression="((ProjectDetailsSharedViewModel)this).projectUpdateLiveData" custom="com.mamak.geobaza.ui.viewmodel.ProjectDetailsSharedViewModel" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

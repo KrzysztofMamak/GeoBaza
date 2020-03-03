@@ -30,16 +30,18 @@ import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import javax.inject.Inject
 
-class MapFragment(private val projectNumber: Int = -1) : BaseFragment() {
+class MapFragment() : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
     internal lateinit var mapViewModel: MapViewModel
 
+    private var currentProjectNumber = -1
     private var projects = mutableListOf<Project>()
     private var currentProject: Project? = null
     private lateinit var myLocationNewOverlay: MyLocationNewOverlay
     private val markerList = mutableListOf<Marker>()
+    private val currentProjectMarkerList = mutableListOf<Marker>()
     private val polyline = Polyline()
     private var polylineVisibility = false
     private var followLocation = false
@@ -48,6 +50,7 @@ class MapFragment(private val projectNumber: Int = -1) : BaseFragment() {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
         initViewModel()
+        getProjectNumber()
         getProjects()
     }
 
@@ -67,10 +70,17 @@ class MapFragment(private val projectNumber: Int = -1) : BaseFragment() {
         mapViewModel = viewModelFactory.create(MapViewModel::class.java)
     }
 
+    private fun getProjectNumber() {
+        arguments?.let {
+            val safeArgs = MapFragmentArgs.fromBundle(it).projectNumber
+            currentProjectNumber = safeArgs
+        }
+    }
+
     private fun getProjects() {
         projects = mapViewModel.getProjectsFromDatabase().toMutableList()
         projects.forEach {
-            if (it.number == projectNumber) {
+            if (it.number == currentProjectNumber) {
                 currentProject = it
             }
         }
@@ -131,7 +141,7 @@ class MapFragment(private val projectNumber: Int = -1) : BaseFragment() {
     private fun drawPoints() {
         markerList.clear()
         for (project in projects) {
-            val isCurrent = project.number == projectNumber
+            val isCurrent = project.number == currentProjectNumber
             project.apply {
                 pointList.forEach {
                     val marker = getMarker(
@@ -141,7 +151,11 @@ class MapFragment(private val projectNumber: Int = -1) : BaseFragment() {
                         isCurrent
                     )
                     mv_project.overlays.add(marker)
-                    markerList.add(marker)
+                    if (isCurrent) {
+                        currentProjectMarkerList.add(marker)
+                    } else {
+                        markerList.add(marker)
+                    }
                 }
             }
         }

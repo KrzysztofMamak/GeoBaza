@@ -13,12 +13,7 @@
             tools:layout="@layout/fragment_project_list">
         <action
                 android:id="@+id/action_projectListFragment_to_mapFragment"
-                app:destination="@id/mapFragment">
-            <argument
-                    android:name="projectNumber"
-                    app:argType="integer"
-                    android:defaultValue="-1"/>
-        </action>
+                app:destination="@id/mapFragment"/>
     </fragment>
 
     <fragment
@@ -41,7 +36,12 @@
             android:id="@+id/mapFragment"
             android:name="com.mamak.geobaza.ui.fragment.MapFragment"
             android:label="@string/map"
-            tools:layout="@layout/fragment_project_map"/>
+            tools:layout="@layout/fragment_project_map">
+        <argument
+                android:name="projectNumber"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+    </fragment>
 
     <dialog
             android:id="@+id/multipleChoiceDialogFragment"

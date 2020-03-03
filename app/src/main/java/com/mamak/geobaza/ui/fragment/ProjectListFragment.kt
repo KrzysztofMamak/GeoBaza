@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -177,9 +178,10 @@ class ProjectListFragment : BaseFragment() {
         }
 
         override fun showMap(projectNumber: Int) {
-            val action = ProjectListFragmentDirections.actionProjectListFragmentToMapFragment(projectNumber)
+            val action = ProjectListFragmentDirections
+                    .actionProjectListFragmentToMapFragment(projectNumber)
             Navigation.findNavController(activity, R.id.nav_host_fragment)
-                .navigate(action)
+                    .navigate(action)
         }
 
         override fun showDetails(projectNumber: Int) {
