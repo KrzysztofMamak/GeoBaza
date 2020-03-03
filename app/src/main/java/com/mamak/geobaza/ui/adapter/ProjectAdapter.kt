@@ -10,6 +10,7 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.`interface`.ProjectItemInterface
 import com.mamak.geobaza.ui.viewholder.ProjectViewHolder
 import com.mamak.geobaza.utils.manager.ProjectListManager
+import kotlinx.android.synthetic.main.item_list_project_new.view.*
 
 class ProjectAdapter(
     private val projectItemInterface: ProjectItemInterface
@@ -33,13 +34,13 @@ class ProjectAdapter(
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
         holder.apply {
             bind(filteredProjects[position])
-            itemView.setOnClickListener {
+            itemView.container_project.setOnClickListener {
                 setExpanded()
-                if (holderExpanded?.adapterPosition == position) {
-                    holderExpanded = null
+                holderExpanded = if (holderExpanded?.adapterPosition == position) {
+                    null
                 } else {
                     holderExpanded?.setExpanded()
-                    holderExpanded = holder
+                    holder
                 }
             }
         }

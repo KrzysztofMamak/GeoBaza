@@ -9,7 +9,9 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
@@ -68,9 +70,11 @@ class ProjectListFragment : BaseFragment() {
 
     private fun setRecycler() {
         projectAdapter = ProjectAdapter(createProjectItemInterface())
+        val itemDecor = DividerItemDecoration(context, HORIZONTAL)
         rv_projects.apply {
             adapter = projectAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(itemDecor)
         }
     }
 
@@ -84,7 +88,7 @@ class ProjectListFragment : BaseFragment() {
     private fun getProjects() {
         projectListViewModel.apply {
             fetchProjects()
-            getProjectListLiveData().observe(this@ProjectListFragment, Observer { resource ->
+            getProjectListLiveData().observe(viewLifecycleOwner, Observer { resource ->
                 if (resource.isLoading) {
                     showProgressBar()
                 } else if (!resource.data.isNullOrEmpty()) {
