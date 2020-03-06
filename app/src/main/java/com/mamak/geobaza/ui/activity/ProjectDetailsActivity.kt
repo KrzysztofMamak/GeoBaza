@@ -8,14 +8,12 @@ import android.view.WindowManager
 import androidx.core.app.NavUtils
 import androidx.lifecycle.Observer
 import com.github.buchandersenn.android_permission_manager.PermissionManager
+import com.google.android.material.tabs.TabLayoutMediator
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
 import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
-import com.mamak.geobaza.ui.fragment.ProjectMapFragment
-import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
-import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
 import com.mamak.geobaza.ui.viewmodel.ProjectDetailsActivityViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
@@ -56,14 +54,18 @@ class ProjectDetailsActivity : BaseThemeActivityActionBar() {
     }
 
     private fun setAdapter() {
-        projectDetailsTabAdapter = ProjectDetailsTabAdapter(supportFragmentManager)
-        projectDetailsTabAdapter.apply {
-            addFragment(ProjectOverviewFragment(project), getString(R.string.overview))
-            addFragment(ProjectMapFragment(project), getString(R.string.map))
-            addFragment(ProjectSketchFragment(), getString(R.string.sketch))
-        }
+        projectDetailsTabAdapter = ProjectDetailsTabAdapter(project, this)
         vp_project_details.adapter = projectDetailsTabAdapter
-        tl_project.setupWithViewPager(vp_project_details)
+        TabLayoutMediator(tl_project, vp_project_details,
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                tab.text = when (position) {
+                    0 -> getString(R.string.overview)
+                    1 -> getString(R.string.map)
+                    2 -> getString(R.string.sketch)
+                    else -> getString(R.string.overview)
+                }
+            }
+        ).attach()
     }
 
     private fun initViewModel() {

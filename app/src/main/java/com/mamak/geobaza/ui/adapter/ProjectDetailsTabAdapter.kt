@@ -1,22 +1,26 @@
 package com.mamak.geobaza.ui.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.mamak.geobaza.data.model.Project
+import com.mamak.geobaza.ui.fragment.ProjectMapFragment
+import com.mamak.geobaza.ui.fragment.ProjectOverviewFragment
+import com.mamak.geobaza.ui.fragment.ProjectSketchFragment
 
-class ProjectDetailsTabAdapter(fragmentManager: FragmentManager)
-        : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    private var fragmentList = mutableListOf<Fragment>()
-    private var titleList = mutableListOf<String>()
-
-    fun addFragment(fragment: Fragment, title: String) {
-        fragmentList.add(fragment)
-        titleList.add(title)
+class ProjectDetailsTabAdapter(
+    private val project: Project,
+    fragmentActivity: FragmentActivity
+) : FragmentStateAdapter(fragmentActivity) {
+    private val fragmentsCount = 3
+    override fun createFragment(position: Int): Fragment {
+        return when (position) {
+            0 -> ProjectOverviewFragment(project)
+            1 -> ProjectMapFragment(project)
+            2 -> ProjectSketchFragment()
+            else -> ProjectOverviewFragment(project)
+        }
     }
 
-    override fun getItem(position: Int) = fragmentList[position]
-
-    override fun getPageTitle(position: Int) = titleList[position]
-
-    override fun getCount() = fragmentList.size
+    override fun getItemCount() = fragmentsCount
 }

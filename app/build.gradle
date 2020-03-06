@@ -64,6 +64,7 @@ ext {
     firebase_messaging_version = "20.1.1"
     navigation_version = "2.2.1"
     firebase_ui_version = "6.2.0"
+    view_pager_2_version = "1.0.0"
 }
 
 dependencies {
@@ -135,4 +136,7 @@ dependencies {
 
     //FirebaseUI
     implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_version"
+
+    //ViewPager2
+    implementation "androidx.viewpager2:viewpager2:$view_pager_2_version"
 }
