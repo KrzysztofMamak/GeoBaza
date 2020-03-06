@@ -8,7 +8,7 @@
         android:background="@color/colorPrimary">
 
     <TextView
-            android:id="@+id/tv_property_name"
+            android:id="@+id/tv_editable_property_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_margin"
@@ -21,7 +21,7 @@
             tools:text="Adres"/>
 
     <EditText
-            android:id="@+id/et_property_value"
+            android:id="@+id/et_editable_property_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@null"
@@ -33,7 +33,7 @@
             android:layout_marginBottom="@dimen/default_padding_margin"
             android:layout_marginStart="@dimen/default_padding_margin_x"
             android:layout_marginEnd="@dimen/default_padding_margin_x"
-            app:layout_constraintTop_toBottomOf="@id/tv_property_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_editable_property_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

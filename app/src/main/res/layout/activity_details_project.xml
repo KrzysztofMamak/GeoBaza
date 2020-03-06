@@ -1,26 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tl_project"
+    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorSecondary"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="?attr/colorTextOnSecondary"
-            app:tabIndicatorHeight="1.6dp"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="?attr/colorTextOnSecondary"
-            app:tabTextColor="?attr/colorTextOnSecondary" />
+            android:background="?attr/colorSecondary">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_project_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tl_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/colorSecondary"
+                    app:tabIndicatorColor="?attr/colorTextOnSecondary"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="?attr/colorTextOnSecondary"
+                    app:tabTextColor="?attr/colorTextOnSecondary">
+
+                <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/overview"/>
+
+                <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/map"/>
+
+                <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sketch"/>
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vp_project"
+            android:id="@+id/vp_project_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

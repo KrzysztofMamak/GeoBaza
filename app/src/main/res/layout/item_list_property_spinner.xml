@@ -8,7 +8,7 @@
         android:background="@color/colorPrimary">
 
     <TextView
-            android:id="@+id/tv_property_name"
+            android:id="@+id/tv_spinner_property_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding_margin"
@@ -30,7 +30,7 @@
             android:layout_marginEnd="@dimen/default_padding_margin_x"
             android:backgroundTint="@color/white"
             android:foregroundTint="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/tv_property_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_spinner_property_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

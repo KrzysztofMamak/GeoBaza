@@ -10,7 +10,7 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.ui.`interface`.ProjectItemInterface
 import com.mamak.geobaza.ui.viewholder.ProjectViewHolder
 import com.mamak.geobaza.utils.manager.ProjectListManager
-import kotlinx.android.synthetic.main.item_list_project_new.view.*
+import kotlinx.android.synthetic.main.item_list_project_expandable.view.*
 
 class ProjectAdapter(
     private val projectItemInterface: ProjectItemInterface
@@ -22,7 +22,7 @@ class ProjectAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
         return ProjectViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_list_project_new, parent, false),
+                .inflate(R.layout.item_list_project_expandable, parent, false),
             projectItemInterface
         )
     }
@@ -73,6 +73,7 @@ class ProjectAdapter(
                                 }
                             }
                         }
+//                        TODO Check if unnecessary
                         if (project.area.toLowerCase().contains(queryString)) {
                             filterList.add(project)
                         }

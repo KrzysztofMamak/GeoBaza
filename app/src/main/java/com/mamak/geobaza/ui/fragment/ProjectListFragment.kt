@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.singleton.AreaLab
@@ -70,11 +66,11 @@ class ProjectListFragment : BaseFragment() {
 
     private fun setRecycler() {
         projectAdapter = ProjectAdapter(createProjectItemInterface())
-        val itemDecor = DividerItemDecoration(context, HORIZONTAL)
+        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         rv_projects.apply {
             adapter = projectAdapter
             layoutManager = LinearLayoutManager(context)
-            addItemDecoration(itemDecor)
+            addItemDecoration(itemDecoration)
         }
     }
 
@@ -88,7 +84,7 @@ class ProjectListFragment : BaseFragment() {
     private fun getProjects() {
         projectListViewModel.apply {
             fetchProjects()
-            getProjectListLiveData().observe(viewLifecycleOwner, Observer { resource ->
+            getProjectListLiveData().observe(this@ProjectListFragment, Observer { resource ->
                 if (resource.isLoading) {
                     showProgressBar()
                 } else if (!resource.data.isNullOrEmpty()) {
@@ -133,6 +129,7 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun showProgressBar() {
+        ev_projects.visibility = View.GONE
         pb_projects.visibility = View.VISIBLE
         srl_projects.visibility = View.GONE
         rv_projects.visibility = View.GONE
@@ -217,6 +214,7 @@ class ProjectListFragment : BaseFragment() {
         })
     }
 
+//    TODO toolbar actions
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_filter -> {

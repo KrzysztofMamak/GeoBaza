@@ -2,10 +2,10 @@ package com.mamak.geobaza.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentPagerAdapter
 
 class ProjectDetailsTabAdapter(fragmentManager: FragmentManager)
-        : FragmentStatePagerAdapter(fragmentManager) {
+        : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     private var fragmentList = mutableListOf<Fragment>()
     private var titleList = mutableListOf<String>()
 

@@ -24,8 +24,7 @@ import com.mamak.geobaza.utils.manager.ThemeManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_project_overview.*
 import kotlinx.android.synthetic.main.item_list_property_edit_text.view.*
-import kotlinx.android.synthetic.main.item_list_property_edit_text.view.tv_property_name
-import kotlinx.android.synthetic.main.item_list_property_spinner.*
+import kotlinx.android.synthetic.main.item_list_property_spinner.spinner_property_value
 import kotlinx.android.synthetic.main.item_list_property_spinner.view.*
 import kotlinx.android.synthetic.main.item_list_property_text_view.view.*
 import javax.inject.Inject
@@ -49,7 +48,7 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setSpinner()
-        setFields(project)
+        setFields()
         setListeners()
         setOnClicks()
     }
@@ -66,7 +65,7 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
         }
     }
 
-    private fun setFields(project: Project) {
+    private fun setFields() {
         setTextViewField(container_number, getString(R.string.project_number), project.number.toString())
         setTextViewField(container_points_count, getString(R.string.points_count), project.pointList.size.toString())
         setTextViewField(container_date_received, getString(R.string.date_received), project.receiveDate)
@@ -75,8 +74,8 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
         setTextViewField(container_date_measured, getString(R.string.date_measured), project.measureDate)
         setTextViewField(container_date_outlined, getString(R.string.date_outlined), project.outlineDate)
         setTextViewField(container_date_finished, getString(R.string.date_finished), project.finishDate)
-        setTextViewField(container_note, getString(R.string.note), project.note)
 
+        setEditTextField(container_note, getString(R.string.note), project.note)
         setEditTextField(container_area, getString(R.string.area), project.area)
         setEditTextField(container_town, getString(R.string.town), project.town)
         setEditTextField(container_street, getString(R.string.street), project.street)
@@ -111,8 +110,8 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
 
     private fun setEditTextField(container: View, propertyName: String, propertyValue: String?) {
         container.apply {
-            et_property_value.setText(propertyValue)
-            tv_property_name.text = propertyName
+            et_editable_property_value.setText(propertyValue)
+            tv_editable_property_name.text = propertyName
             visibility = View.VISIBLE
         }
     }
@@ -121,23 +120,18 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
         val index = spinner_property_value.getIndex(propertyValue)
         container.apply {
             spinner_property_value.setSelection(index)
-            tv_property_name.text = propertyName
+            tv_spinner_property_name.text = propertyName
             visibility = View.VISIBLE
         }
     }
 
     private fun setListeners() {
         listOf<EditText>(
-            container_area.et_property_value,
-            container_town.et_property_value,
-            container_street.et_property_value,
-            container_date_received.et_property_value,
-            container_date_processed.et_property_value,
-            container_date_marked.et_property_value,
-            container_date_measured.et_property_value,
-            container_date_outlined.et_property_value,
-            container_date_finished.et_property_value,
-            container_note.et_property_value
+            container_area.et_editable_property_value,
+            container_town.et_editable_property_value,
+            container_street.et_editable_property_value,
+            container_description.et_editable_property_value,
+            container_note.et_editable_property_value
         )
             .forEach {
                 it.addTextChangedListener(object : TextWatcher {
@@ -189,20 +183,20 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
 
     private fun getNewProject(): Project {
         val number = project.number
-        val area = container_area.et_property_value.text.toString()
-        val town = container_town.et_property_value.text.toString()
-        val street = container_street.et_property_value.text.toString()
-        val description = container_description.et_property_value.text.toString()
+        val area = container_area.et_editable_property_value.text.toString()
+        val town = container_town.et_editable_property_value.text.toString()
+        val street = container_street.et_editable_property_value.text.toString()
+        val description = container_description.et_editable_property_value.text.toString()
         val points = project.pointList
         val index = container_state.spinner_property_value.selectedItem as String
         val state = ProjectState.values()[container_state.spinner_property_value.getIndex(index)]
-        val dateReceived = container_date_received.et_property_value.text.toString()
-        val dateProcessed = container_date_processed.et_property_value.text.toString()
-        val dateMarked = container_date_marked.et_property_value.text.toString()
-        val dateMeasured = container_date_measured.et_property_value.text.toString()
-        val dateOutlined = container_date_outlined.et_property_value.text.toString()
-        val dateFinished = container_date_finished.et_property_value.text.toString()
-        val note = container_note.et_property_value.text.toString()
+        val dateReceived = container_date_received.tv_property_value.text.toString()
+        val dateProcessed = container_date_processed.tv_property_value.text.toString()
+        val dateMarked = container_date_marked.tv_property_value.text.toString()
+        val dateMeasured = container_date_measured.tv_property_value.text.toString()
+        val dateOutlined = container_date_outlined.tv_property_value.text.toString()
+        val dateFinished = container_date_finished.tv_property_value.text.toString()
+        val note = container_note.et_editable_property_value.text.toString()
 
         return Project(
             number, area, town, street, description, points, state, dateReceived,
@@ -234,7 +228,7 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
 
     private fun setTopOnClicks() {
         iv_restore_project_data.setOnClickListener {
-            setFields(project)
+            setFields()
 
         }
         iv_save_project_data.setOnClickListener {

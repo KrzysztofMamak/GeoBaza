@@ -62,8 +62,8 @@ class ProjectDetailsActivity : BaseThemeActivityActionBar() {
             addFragment(ProjectMapFragment(project), getString(R.string.map))
             addFragment(ProjectSketchFragment(), getString(R.string.sketch))
         }
-        vp_project.adapter = projectDetailsTabAdapter
-        tl_project.setupWithViewPager(vp_project)
+        vp_project_details.adapter = projectDetailsTabAdapter
+        tl_project.setupWithViewPager(vp_project_details)
     }
 
     private fun initViewModel() {
