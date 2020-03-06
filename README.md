@@ -1,3 +1,4 @@
+<img src="https://github.com/KrzysztofMamak/GeoBaza/blob/master/app/src/main/res/drawable/ic_compass.png" width="200" height="200" />
 <h1>GeoBaza</h1>
 
 GeoBaza application is being made for family geodesian venture. 
