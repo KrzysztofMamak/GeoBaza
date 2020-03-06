@@ -7,7 +7,7 @@ It allows user to view geodesian project details, update work progress using RES
 This application is being made using MVVM pattern and Kotlin. 
 It also uses android component androidx Navigation.
 
-<h2>Features:</h2>
+Features:
 - sending notifications about work progress to all users using Firebase
 - navigating to work destinations by geodesian coordinates using google maps
 - exploring geodesian project details
