@@ -1,4 +1,4 @@
-<h1>GeoBaza<h1>
+<h1>GeoBaza</h1>
 
 GeoBaza application is being made for family geodesian venture. 
 This project is also a workshop, where I can improve my skills in Android Programming.
