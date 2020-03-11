@@ -64,6 +64,20 @@
     </string-array>
     <!-- Start -> FilterDialogFragment -->
 
+    <!-- Units -->
+    <string-array name="array_units">
+        <item>Km</item>
+        <item>Mi</item>
+    </string-array>
+
+    <!-- Zones -->
+    <string-array name="array_zones">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
     <!-- Start -> Menu -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -71,6 +85,10 @@
     <string name="menu_search">Searching</string>
     <string name="menu_locate">Locating</string>
     <!-- End -> Menu -->
+
+    <!-- Units -->
+    <string name="unit_km" translatable="false">Km</string>
+    <string name="unit_mi" translatable="false">Mi</string>
 
     <!-- Themes -->
     <string name="marshmallow" translatable="false">Marshmallow</string>
@@ -106,6 +124,7 @@
     <string name="increase">Increase</string>
     <string name="decrease">Decrease</string>
     <string name="unit_km_with_value">%1$.2fkm</string>
+    <string name="unit_mi_with_value">%1$.2fmi</string>
     <string name="travel_planner">Travel Planner</string>
     <string name="statistics">Statistics</string>
     <string name="settings">Settings</string>
@@ -171,6 +190,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="note">Note</string>
+    <string name="units">Units</string>
+    <string name="zone">Zone</string>
+    <string name="theme">Theme</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Navigate</string>

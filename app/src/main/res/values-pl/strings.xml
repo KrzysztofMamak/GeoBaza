@@ -68,6 +68,7 @@
     <string name="increase">Rosnąco</string>
     <string name="decrease">Malejąco</string>
     <string name="unit_km_with_value">%1$.2fkm</string>
+    <string name="unit_mi_with_value">%1$.2fmi</string>
     <string name="travel_planner">Travel Planner</string>
     <string name="statistics">Statystyki</string>
     <string name="settings">Ustawienia</string>
@@ -133,6 +134,9 @@
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
     <string name="note">Notatka</string>
+    <string name="units">Jednostki</string>
+    <string name="zone">Strefa</string>
+    <string name="theme">Motyw</string>
 
     <!-- Content Description -->
     <string name="cd_navigation_icon">Nawiguj</string>

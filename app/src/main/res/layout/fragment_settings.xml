@@ -6,20 +6,98 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorPrimary">
 
-    <com.mamak.geobaza.utils.view.ExtendedSpinner
-            android:id="@+id/spinner_themes"
-            android:layout_width="0dp"
+    <TextView
+            android:id="@+id/tv_header_units"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/colorSecondaryLight"
+            android:text="@string/units"
+            android:textSize="@dimen/text_huge"
+            android:textColor="@color/light_gray"
+            android:layout_marginTop="@dimen/default_padding_margin_x"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-            android:id="@+id/b_apply_theme"
+    <com.mamak.geobaza.utils.view.ExtendedSpinner
+            android:id="@+id/spinner_units"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/spinner_themes"
+            android:layout_marginTop="@dimen/default_padding_margin"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:backgroundTint="?attr/colorSecondaryLight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_header_units"/>
+
+    <TextView
+            android:id="@+id/tv_header_zone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zone"
+            android:textSize="@dimen/text_huge"
+            android:textColor="@color/light_gray"
+            android:layout_marginTop="@dimen/default_padding_margin_x"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner_units"/>
+
+    <com.mamak.geobaza.utils.view.ExtendedSpinner
+            android:id="@+id/spinner_zones"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding_margin"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:backgroundTint="?attr/colorSecondaryLight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_header_zone"/>
+
+    <TextView
+            android:id="@+id/tv_header_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/theme"
+            android:textSize="@dimen/text_huge"
+            android:textColor="@color/light_gray"
+            android:layout_marginTop="@dimen/default_padding_margin_x"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner_zones"/>
+
+    <com.mamak.geobaza.utils.view.ExtendedSpinner
+            android:id="@+id/spinner_themes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding_margin"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:backgroundTint="?attr/colorSecondaryLight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_header_theme"/>
+
+    <Button
+            android:id="@+id/b_apply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/apply"
+            android:textSize="@dimen/text_huge"
+            android:textColor="?attr/colorSecondaryLight"
+            android:background="@drawable/item_circle"
+            android:clickable="false"
+            android:layout_marginTop="@dimen/default_padding_margin"
+            android:layout_marginStart="@dimen/default_padding_margin_x"
+            android:layout_marginEnd="@dimen/default_padding_margin_x"
+            android:layout_marginBottom="@dimen/default_padding_margin_x"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

@@ -217,6 +217,7 @@ class LoginFragment : BaseFragment() {
             drawable = R.drawable.item_circle
         }
 
+//        TODO isEnabled changing
         b_login_email.apply {
             context?.let {
                 background = it.getDrawable(drawable)

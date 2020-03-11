@@ -20,4 +20,7 @@ object AppConstans {
     const val THEME_ALICE_IN_WONDERLAND = "alice_in_wonderland"
     const val THEME_BLACK_AND_YELLOW = "black_and_yellow"
     const val THEME_MERRY_CHRISTMAS = "merry_christmas"
+
+    const val UNIT_KM = "km"
+    const val UNIT_MI = "mi"
 }

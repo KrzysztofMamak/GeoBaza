@@ -132,17 +132,16 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
             container_street.et_editable_property_value,
             container_description.et_editable_property_value,
             container_note.et_editable_property_value
-        )
-            .forEach {
-                it.addTextChangedListener(object : TextWatcher {
-                    override fun afterTextChanged(s: Editable?) {}
-                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        ).forEach {
+            it.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {}
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        checkEquality()
-                    }
-                })
-            }
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    checkEquality()
+                }
+            })
+        }
         container_state.spinner_property_value.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
