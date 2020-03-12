@@ -92,7 +92,7 @@
             android:textSize="@dimen/text_huge"
             android:textColor="?attr/colorSecondaryLight"
             android:background="@drawable/item_circle"
-            android:clickable="false"
+            android:enabled="false"
             android:layout_marginTop="@dimen/default_padding_margin"
             android:layout_marginStart="@dimen/default_padding_margin_x"
             android:layout_marginEnd="@dimen/default_padding_margin_x"

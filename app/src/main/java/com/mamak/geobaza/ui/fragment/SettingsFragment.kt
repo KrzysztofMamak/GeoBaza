@@ -111,7 +111,6 @@ class SettingsFragment : BaseFragment() {
     private fun setApplyButton() {
         val color: Int
         val drawable: Int
-
         val enable = hasSharedPrefChanged()
 
         if (enable) {
@@ -168,6 +167,7 @@ class SettingsFragment : BaseFragment() {
     }
 
     private fun setSpinners() {
+        setListeners()
         setUnitsSpinner()
         setZoneSpinner()
         setThemeSpinner()

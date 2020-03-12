@@ -208,8 +208,9 @@ class LoginFragment : BaseFragment() {
     private fun setLoginButton() {
         val color: Int
         val drawable: Int
+        val enable = validateUser()
 
-        if (validateUser()) {
+        if (enable) {
             color = ThemeManager.getColorResByAttr(activity, R.attr.colorTextOnSecondary)
             drawable = R.drawable.item_circle_full
         } else {
@@ -222,7 +223,7 @@ class LoginFragment : BaseFragment() {
             context?.let {
                 background = it.getDrawable(drawable)
                 setTextColor(it.getColor(color))
-                isEnabled = true
+                isEnabled = enable
             }
         }
     }
