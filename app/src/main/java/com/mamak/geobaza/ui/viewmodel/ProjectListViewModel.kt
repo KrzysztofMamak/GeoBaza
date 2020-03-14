@@ -1,6 +1,8 @@
 package com.mamak.geobaza.ui.viewmodel
 
+import android.location.LocationManager
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.network.api.ProjectApiService
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 class ProjectListViewModel @Inject constructor(
     private val projectApiService: ProjectApiService,
-    private val appDatabase: AppDatabase
+    private val appDatabase: AppDatabase,
+    private val fusedLocationProviderClient: FusedLocationProviderClient
 ) : BaseViewModel() {
     private val projectListLiveData = MutableLiveData<Resource<List<Project>>>()
 
@@ -41,6 +44,11 @@ class ProjectListViewModel @Inject constructor(
                 }
             )
         )
+    }
+
+
+    fun getLocation() {
+        
     }
 
     fun getProjectListLiveData() = projectListLiveData

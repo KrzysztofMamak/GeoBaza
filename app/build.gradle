@@ -61,7 +61,7 @@ ext {
     map_box_version = "8.4.0"
     open_street_map_version = "6.1.5"
     firebase_auth_version = "19.2.0"
-    firebase_messaging_version = "20.1.1"
+    firebase_messaging_version = "20.1.2"
     navigation_version = "2.2.1"
     firebase_ui_version = "6.2.0"
     view_pager_2_version = "1.0.0"
@@ -113,6 +113,7 @@ dependencies {
     //Play Services
     implementation "com.google.android.gms:play-services-maps:$play_services_version"
     implementation "com.google.android.gms:play-services-auth:$play_services_version"
+    implementation "com.google.android.gms:play-services-location:$play_services_version"
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
