@@ -74,6 +74,8 @@ class SettingsFragment : BaseFragment() {
             setCustomTheme()
             setUnit()
             setZone()
+            saveSharedPref()
+            setApplyButton()
         }
     }
 

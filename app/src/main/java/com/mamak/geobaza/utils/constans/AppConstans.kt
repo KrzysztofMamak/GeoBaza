@@ -14,12 +14,12 @@ object AppConstans {
 
     const val THEME_MARSHMALLOW = "Marshmallow"
     const val THEME_ALADDIN = "Aladdin"
-    const val THEME_DEEP_PURPLE = "Deep_purple"
-    const val THEME_TINKY_PINKY = "Tinky_pinky"
-    const val THEME_ORANGE_IS_THE_NEW_BLACK = "Orange_is_the_new_black"
-    const val THEME_ALICE_IN_WONDERLAND = "Alice_in_wonderland"
-    const val THEME_BLACK_AND_YELLOW = "Black_and_yellow"
-    const val THEME_MERRY_CHRISTMAS = "Merry_christmas"
+    const val THEME_DEEP_PURPLE = "Deep purple"
+    const val THEME_TINKY_PINKY = "Tinky pinky"
+    const val THEME_ORANGE_IS_THE_NEW_BLACK = "Orange is the new black"
+    const val THEME_ALICE_IN_WONDERLAND = "Alice in wonderland"
+    const val THEME_BLACK_AND_YELLOW = "Black and yellow"
+    const val THEME_MERRY_CHRISTMAS = "Merry christmas"
 
     const val UNIT_KM = "Km"
     const val UNIT_MI = "Mi"

@@ -46,9 +46,8 @@ class ProjectListViewModel @Inject constructor(
         )
     }
 
-
     fun getLocation() {
-        
+
     }
 
     fun getProjectListLiveData() = projectListLiveData
