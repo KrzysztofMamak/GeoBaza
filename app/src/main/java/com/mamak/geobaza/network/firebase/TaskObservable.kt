@@ -34,8 +34,8 @@ internal class TaskObservable<T>(private val callable: Callable<Task<T>>) : Obse
         }
     }
 
-    private class TaskListener<T> internal constructor(private val observer: Observer<in T>) : OnCompleteListener<T>,
-            Disposable, OnFailureListener, OnSuccessListener<T> {
+    private class TaskListener<T> internal constructor(private val observer: Observer<in T>)
+            : OnCompleteListener<T>, Disposable, OnFailureListener, OnSuccessListener<T> {
         private val isDispose = AtomicBoolean(false)
 
         override fun dispose() {

@@ -11,6 +11,8 @@ object AppConstans {
     const val REQUEST_CODE_SIGN_IN_VIA_GOOGLE = 1003
     const val DELAY_SHORT = 1000L
     const val ACCESS_TOKEN_MAPBOX = "pk.eyJ1Ijoia3J6eXN6dG9mbWFtYWsiLCJhIjoiY2syYzk0MnFiM2FxNzNjbnJkaDA0Y2hkNSJ9.9Fpk_KR5bAaFttiDIcDORg"
+    const val INTERVAL_LOCATION_NORMAL = 10000L
+    const val INTERVAL_LOCATION_FASTEST = 3000L
 
     const val THEME_MARSHMALLOW = "Marshmallow"
     const val THEME_ALADDIN = "Aladdin"

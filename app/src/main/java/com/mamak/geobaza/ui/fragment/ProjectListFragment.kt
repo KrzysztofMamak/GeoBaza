@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -44,6 +45,7 @@ class ProjectListFragment : BaseFragment() {
         AndroidSupportInjection.inject(this)
         initViewModel()
         getProjects()
+        //activity.setActionBar()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -53,6 +55,7 @@ class ProjectListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setComponents()
+        getLocation()
     }
 
     private fun initViewModel() {
@@ -226,5 +229,16 @@ class ProjectListFragment : BaseFragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun getLocation() {
+        projectListViewModel.getLocation()
+        projectListViewModel.getLocationLiveData().observe(this@ProjectListFragment,
+            Observer { resource ->
+                if (resource.isSuccess && resource.data != null) {
+                    Toast.makeText(context, resource.data.altitude.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+        )
     }
 }

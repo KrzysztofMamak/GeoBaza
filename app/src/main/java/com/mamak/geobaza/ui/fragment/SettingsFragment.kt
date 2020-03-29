@@ -55,6 +55,7 @@ class SettingsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setSpinners()
         setOnClick()
+        activity.supportActionBar?.hide()
     }
 
     private fun initViewModel() {
