@@ -1,6 +1,5 @@
 package com.mamak.geobaza.network.firebase
 
-import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthCredential
