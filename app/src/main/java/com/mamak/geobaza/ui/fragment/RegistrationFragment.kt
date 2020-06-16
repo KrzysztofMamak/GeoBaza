@@ -15,8 +15,8 @@ import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_USER_COLLISION_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
-import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.RegistrationViewModel
+import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.viewmodel.RegistrationViewModel
 import com.mamak.geobaza.utils.manager.KeyboardManager
 import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.ValidationManager

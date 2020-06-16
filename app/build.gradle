@@ -1,13 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'com.google.gms.google-services'
-
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
@@ -55,14 +50,17 @@ ext {
     glide_version = "4.11.0"
     recyclerview_version = "1.0.0"
     room_version = "1.1.1"
-    play_services_version = "17.0.0"
+    play_services_maps_version = "17.0.0"
+    play_services_auth_version = "18.0.0"
+    play_services_location_version = "17.0.0"
     picasso_version = "2.71828"
     permission_manager_version = "1.0.0"
     map_box_version = "8.4.0"
     open_street_map_version = "6.1.5"
-    firebase_auth_version = "19.2.0"
-    firebase_messaging_version = "20.1.2"
-    navigation_version = "2.2.1"
+    firebase_auth_version = "19.3.1"
+    firebase_messaging_version = "20.2.0"
+    firebase_ui_storage_version = "3.2.1"
+    navigation_version = "2.2.2"
     firebase_ui_version = "6.2.0"
     view_pager_2_version = "1.0.0"
 }
@@ -111,9 +109,9 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:$room_version"
 
     //Play Services
-    implementation "com.google.android.gms:play-services-maps:$play_services_version"
-    implementation "com.google.android.gms:play-services-auth:$play_services_version"
-    implementation "com.google.android.gms:play-services-location:$play_services_version"
+    implementation "com.google.android.gms:play-services-maps:$play_services_maps_version"
+    implementation "com.google.android.gms:play-services-auth:$play_services_auth_version"
+    implementation "com.google.android.gms:play-services-location:$play_services_location_version"
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
@@ -137,6 +135,7 @@ dependencies {
 
     //FirebaseUI
     implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_version"
+    implementation "com.firebaseui:firebase-ui-storage:$firebase_ui_storage_version"
 
     //ViewPager2
     implementation "androidx.viewpager2:viewpager2:$view_pager_2_version"

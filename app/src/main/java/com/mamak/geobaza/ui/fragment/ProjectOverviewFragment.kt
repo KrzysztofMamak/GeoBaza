@@ -17,8 +17,8 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
-import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.ProjectOverviewViewModel
+import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.viewmodel.ProjectOverviewViewModel
 import com.mamak.geobaza.utils.fragment.DatePickerFragment
 import com.mamak.geobaza.utils.manager.ThemeManager
 import dagger.android.support.AndroidSupportInjection

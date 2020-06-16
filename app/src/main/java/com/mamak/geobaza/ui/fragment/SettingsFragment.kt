@@ -10,8 +10,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
-import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.SettingsViewModel
+import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.viewmodel.SettingsViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.THEME_ALADDIN
 import com.mamak.geobaza.utils.constans.AppConstans.THEME_ALICE_IN_WONDERLAND
 import com.mamak.geobaza.utils.constans.AppConstans.THEME_BLACK_AND_YELLOW

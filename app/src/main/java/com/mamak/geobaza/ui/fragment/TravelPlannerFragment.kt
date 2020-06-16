@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
-import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.TravelPlannerViewModel
+import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.viewmodel.TravelPlannerViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 

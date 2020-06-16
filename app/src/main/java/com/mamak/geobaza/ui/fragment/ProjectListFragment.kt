@@ -17,13 +17,13 @@ import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.CONNECT_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.SOCKET_TIMEOUT_EXCEPTION
-import com.mamak.geobaza.ui.`interface`.FilterDialogInterface
-import com.mamak.geobaza.ui.`interface`.ProjectItemInterface
+import com.mamak.geobaza.communication.FilterDialogInterface
+import com.mamak.geobaza.communication.ProjectItemInterface
 import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.EntryActivity
-import com.mamak.geobaza.ui.adapter.ProjectAdapter
-import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.ProjectListViewModel
+import com.mamak.geobaza.adapter.ProjectAdapter
+import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
 import com.mamak.geobaza.utils.manager.LocationManager
@@ -68,7 +68,8 @@ class ProjectListFragment : BaseFragment() {
     }
 
     private fun setRecycler() {
-        projectAdapter = ProjectAdapter(createProjectItemInterface())
+        projectAdapter =
+            ProjectAdapter(createProjectItemInterface())
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         rv_projects.apply {
             adapter = projectAdapter
@@ -176,7 +177,8 @@ class ProjectListFragment : BaseFragment() {
         startActivity(intent)
     }
 
-    private fun createProjectItemInterface() = object : ProjectItemInterface {
+    private fun createProjectItemInterface() = object :
+        ProjectItemInterface {
         override fun navigate(x: Double, y: Double) {
             LocationManager.navigateByGeoCoordinates(activity, x, y)
         }

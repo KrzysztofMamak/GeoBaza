@@ -1,8 +1,9 @@
-package com.mamak.geobaza.ui.base
+package com.mamak.geobaza.base
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import com.mamak.geobaza.R
+import com.mamak.geobaza.base.BaseActivity
 import com.mamak.geobaza.utils.constans.AppConstans
 
 open class BaseThemeActivityActionBar : BaseActivity() {

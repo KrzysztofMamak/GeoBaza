@@ -11,7 +11,7 @@ import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.ui.base.BaseFragment
+import com.mamak.geobaza.base.BaseFragment
 import com.mamak.geobaza.utils.manager.MappingManager
 import com.mamak.geobaza.utils.manager.OsmManager
 import com.mamak.geobaza.utils.manager.ThemeManager

@@ -14,14 +14,14 @@ import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.network.firebase.GeoBazaException
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_DISABLED
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.ERROR_USER_NOT_FOUND
-import com.mamak.geobaza.ui.base.BaseFragment
+import com.mamak.geobaza.base.BaseFragment
 import com.mamak.geobaza.utils.manager.ValidationManager
 import com.mamak.geobaza.utils.view.EmptyView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_reset_password.*
 import javax.inject.Inject
 import com.mamak.geobaza.R
-import com.mamak.geobaza.ui.viewmodel.PasswordResetViewModel
+import com.mamak.geobaza.viewmodel.PasswordResetViewModel
 import com.mamak.geobaza.utils.manager.ThemeManager
 import com.mamak.geobaza.utils.manager.KeyboardManager
 

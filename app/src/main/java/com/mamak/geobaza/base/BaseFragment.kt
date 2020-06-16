@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.base
+package com.mamak.geobaza.base
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity

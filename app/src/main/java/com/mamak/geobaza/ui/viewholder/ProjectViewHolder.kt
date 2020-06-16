@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Point
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.ui.`interface`.ProjectItemInterface
+import com.mamak.geobaza.communication.ProjectItemInterface
 import com.mamak.geobaza.utils.manager.LocationManager.calculateDistance
 import kotlinx.android.synthetic.main.item_list_project_expandable.view.*
 

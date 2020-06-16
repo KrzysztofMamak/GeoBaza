@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.viewmodel
+package com.mamak.geobaza.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.AuthCredential
@@ -6,7 +6,7 @@ import com.google.firebase.auth.AuthResult
 import com.mamak.geobaza.network.connection.Resource
 import com.mamak.geobaza.network.firebase.FirebaseAuthenticationApi
 import com.mamak.geobaza.network.firebase.GeoBazaException
-import com.mamak.geobaza.ui.base.BaseViewModel
+import com.mamak.geobaza.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers

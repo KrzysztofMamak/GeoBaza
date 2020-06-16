@@ -12,9 +12,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.factory.ViewModelFactory
-import com.mamak.geobaza.ui.adapter.ProjectDetailsTabAdapter
-import com.mamak.geobaza.ui.base.BaseThemeActivityActionBar
-import com.mamak.geobaza.ui.viewmodel.ProjectDetailsActivityViewModel
+import com.mamak.geobaza.adapter.ProjectDetailsTabAdapter
+import com.mamak.geobaza.base.BaseThemeActivityActionBar
+import com.mamak.geobaza.viewmodel.ProjectDetailsActivityViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.ACCESS_TOKEN_MAPBOX
 import com.mamak.geobaza.utils.constans.AppConstans.EXTRA_PROJECT_NUMBER
@@ -54,7 +54,8 @@ class ProjectDetailsActivity : BaseThemeActivityActionBar() {
     }
 
     private fun setAdapter() {
-        projectDetailsTabAdapter = ProjectDetailsTabAdapter(project, this)
+        projectDetailsTabAdapter =
+            ProjectDetailsTabAdapter(project, this)
         vp_project_details.adapter = projectDetailsTabAdapter
         TabLayoutMediator(tl_project, vp_project_details,
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->

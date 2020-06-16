@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.base
+package com.mamak.geobaza.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

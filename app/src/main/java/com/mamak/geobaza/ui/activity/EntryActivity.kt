@@ -6,7 +6,7 @@ import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.mamak.geobaza.R
-import com.mamak.geobaza.ui.base.BaseThemeActivityNoActionBar
+import com.mamak.geobaza.base.BaseThemeActivityNoActionBar
 import com.mamak.geobaza.ui.fragment.LoginFragment
 
 class EntryActivity : BaseThemeActivityNoActionBar() {

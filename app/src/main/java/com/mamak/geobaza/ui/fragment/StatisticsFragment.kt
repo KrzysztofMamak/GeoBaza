@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import com.mamak.geobaza.R
 import com.mamak.geobaza.factory.ViewModelFactory
-import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.StatisticsViewModel
+import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.viewmodel.StatisticsViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 

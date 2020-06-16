@@ -1,8 +1,8 @@
-package com.mamak.geobaza.ui.viewmodel
+package com.mamak.geobaza.viewmodel
 
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.ui.base.BaseViewModel
+import com.mamak.geobaza.base.BaseViewModel
 import javax.inject.Inject
 
 class MapViewModel @Inject constructor(

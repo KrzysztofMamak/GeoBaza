@@ -1,39 +1,40 @@
-package com.mamak.geobaza.ui.viewmodel
+package com.mamak.geobaza.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.AuthResult
 import com.mamak.geobaza.network.connection.Resource
 import com.mamak.geobaza.network.firebase.FirebaseAuthenticationApi
 import com.mamak.geobaza.network.firebase.GeoBazaException
-import com.mamak.geobaza.ui.base.BaseViewModel
+import com.mamak.geobaza.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class PasswordResetViewModel @Inject constructor() : BaseViewModel() {
+class RegistrationViewModel @Inject constructor() : BaseViewModel() {
     private val firebaseAuthenticationApi = FirebaseAuthenticationApi()
-    private val resetPasswordLiveData = MutableLiveData<Resource<Void>>()
+    private val registrationLiveData = MutableLiveData<Resource<AuthResult>>()
 
-    fun resetPassword(email: String) {
+    fun register(email: String, password: String) {
         addToDisposable(
-            firebaseAuthenticationApi.resetPassword(email)
+            firebaseAuthenticationApi.registerViaEmailAndPassword(email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-                    resetPasswordLiveData.postValue(Resource.loading())
+                    registrationLiveData.postValue(Resource.loading())
                 }
                 .subscribeBy(
-                    onComplete = {
-                        resetPasswordLiveData.postValue(Resource.success(null))
+                    onNext = {
+                        registrationLiveData.postValue(Resource.success(it))
                     },
                     onError = {
-                        resetPasswordLiveData.postValue(Resource.error(GeoBazaException(it)))
+                        registrationLiveData.postValue(Resource.error(GeoBazaException(it)))
                     }
                 )
         )
     }
 
-    fun getResetPasswordLiveData() = resetPasswordLiveData
+    fun getRegistrationLiveData() = registrationLiveData
 
     override fun onCleared() {
         onStop()

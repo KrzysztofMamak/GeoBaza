@@ -22,9 +22,9 @@
             android:usesCleartextTraffic="true"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
 
-        <activity android:name=".ui.base.BaseActivity"/>
-        <activity android:name=".ui.base.BaseThemeActivityActionBar"/>
-        <activity android:name=".ui.base.BaseThemeActivityNoActionBar"/>
+        <activity android:name=".base.BaseActivity"/>
+        <activity android:name=".base.BaseThemeActivityActionBar"/>
+        <activity android:name=".base.BaseThemeActivityNoActionBar"/>
 
         <activity
                 android:name=".ui.activity.ProjectDetailsActivity"

@@ -1,14 +1,10 @@
-package com.mamak.geobaza.ui.viewmodel
+package com.mamak.geobaza.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.repository.ProjectLocalRepo
-import com.mamak.geobaza.network.api.ProjectApiService
-import com.mamak.geobaza.network.connection.GeoBazaResponse
-import com.mamak.geobaza.network.connection.Resource
-import com.mamak.geobaza.network.firebase.GeoBazaException
-import com.mamak.geobaza.ui.base.BaseViewModel
+import com.mamak.geobaza.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers

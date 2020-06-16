@@ -1,6 +1,6 @@
-package com.mamak.geobaza.ui.viewmodel
+package com.mamak.geobaza.viewmodel
 
-import com.mamak.geobaza.ui.base.BaseViewModel
+import com.mamak.geobaza.base.BaseViewModel
 import javax.inject.Inject
 
 class StatisticsViewModel @Inject constructor() : BaseViewModel() {

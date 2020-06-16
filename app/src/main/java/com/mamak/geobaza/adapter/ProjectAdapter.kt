@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.adapter
+package com.mamak.geobaza.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Project
-import com.mamak.geobaza.ui.`interface`.ProjectItemInterface
+import com.mamak.geobaza.communication.ProjectItemInterface
 import com.mamak.geobaza.ui.viewholder.ProjectViewHolder
 import com.mamak.geobaza.utils.manager.ProjectListManager
 import kotlinx.android.synthetic.main.item_list_project_expandable.view.*

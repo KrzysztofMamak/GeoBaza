@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.`interface`
+package com.mamak.geobaza.communication
 
 interface FilterDialogInterface {
     fun filterProjects()

@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.adapter
+package com.mamak.geobaza.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

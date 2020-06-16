@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.`interface`
+package com.mamak.geobaza.communication
 
 import com.mamak.geobaza.data.model.Project
 

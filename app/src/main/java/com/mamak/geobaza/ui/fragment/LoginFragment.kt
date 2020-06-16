@@ -25,8 +25,8 @@ import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AU
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_AUTH_USER_COLLISION_EXCEPTION
 import com.mamak.geobaza.network.firebase.GeoBazaException.ErrorCode.FIREBASE_EXCEPTION
 import com.mamak.geobaza.ui.activity.MainActivity
-import com.mamak.geobaza.ui.base.BaseFragment
-import com.mamak.geobaza.ui.viewmodel.LoginViewModel
+import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.viewmodel.LoginViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.REQUEST_CODE_SIGN_IN_VIA_GOOGLE
 import com.mamak.geobaza.utils.manager.GoogleSignInManager
 import com.mamak.geobaza.utils.manager.KeyboardManager
@@ -252,8 +252,10 @@ class LoginFragment : BaseFragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SIGN_IN_VIA_GOOGLE) {
             val googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            if (googleSignInResult.isSuccess) {
-                authViaGoogle(googleSignInResult.signInAccount)
+            googleSignInResult?.let {
+                if (it.isSuccess) {
+                    authViaGoogle(it.signInAccount)
+                }
             }
         }
     }

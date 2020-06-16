@@ -1,4 +1,4 @@
-package com.mamak.geobaza.ui.viewmodel
+package com.mamak.geobaza.viewmodel
 
 import android.location.Location
 import android.os.Looper
@@ -11,7 +11,7 @@ import com.mamak.geobaza.data.db.AppDatabase
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.network.api.ProjectApiService
 import com.mamak.geobaza.network.connection.Resource
-import com.mamak.geobaza.ui.base.BaseViewModel
+import com.mamak.geobaza.base.BaseViewModel
 import com.mamak.geobaza.utils.constans.AppConstans.INTERVAL_LOCATION_FASTEST
 import com.mamak.geobaza.utils.constans.AppConstans.INTERVAL_LOCATION_NORMAL
 import io.reactivex.android.schedulers.AndroidSchedulers
