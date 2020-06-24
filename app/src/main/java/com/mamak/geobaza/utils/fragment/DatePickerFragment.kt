@@ -3,21 +3,27 @@ package com.mamak.geobaza.utils.fragment
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import com.mamak.geobaza.utils.constans.AppConstans.DATE_DAY
+import com.mamak.geobaza.utils.constans.AppConstans.DATE_MONTH
+import com.mamak.geobaza.utils.constans.AppConstans.DATE_YEAR
 import java.util.*
 
-class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
+class DatePickerFragment(
+    private val datePickerInterface: DatePickerDialog.OnDateSetListener
+) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
+        var year = c.get(Calendar.YEAR)
+        var month = c.get(Calendar.MONTH)
+        var day = c.get(Calendar.DAY_OF_MONTH)
 
-        return DatePickerDialog(context, this, year, month, day)
-    }
+        arguments?.let {
+            year = it.getInt(DATE_YEAR)
+            month = it.getInt(DATE_MONTH)
+            day = it.getInt(DATE_DAY)
+        }
 
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-
+        return DatePickerDialog(context, datePickerInterface, year, month, day)
     }
 }

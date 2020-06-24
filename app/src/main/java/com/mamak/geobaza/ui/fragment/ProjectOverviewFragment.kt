@@ -1,5 +1,6 @@
 package com.mamak.geobaza.ui.fragment
 
+import android.app.DatePickerDialog
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
@@ -7,10 +8,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Observer
 import com.mamak.geobaza.R
@@ -18,6 +16,9 @@ import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.data.model.ProjectState
 import com.mamak.geobaza.factory.ViewModelFactory
 import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.utils.constans.AppConstans.DATE_DAY
+import com.mamak.geobaza.utils.constans.AppConstans.DATE_MONTH
+import com.mamak.geobaza.utils.constans.AppConstans.DATE_YEAR
 import com.mamak.geobaza.viewmodel.ProjectOverviewViewModel
 import com.mamak.geobaza.utils.fragment.DatePickerFragment
 import com.mamak.geobaza.utils.manager.ThemeManager
@@ -29,7 +30,8 @@ import kotlinx.android.synthetic.main.item_list_property_spinner.view.*
 import kotlinx.android.synthetic.main.item_list_property_text_view.view.*
 import javax.inject.Inject
 
-class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
+class ProjectOverviewFragment(private var project: Project) : BaseFragment(),
+    DatePickerDialog.OnDateSetListener {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
@@ -243,9 +245,25 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
             container_date_measured,
             container_date_outlined,
             container_date_finished
-        ).forEach {
-            it.setOnClickListener {
-                val datePickerFragment = DatePickerFragment()
+        ).forEach { view ->
+            view.setOnClickListener {
+                val datePickerFragment = DatePickerFragment(
+                    DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                        it.tv_property_value.text = getString(
+                            R.string.template_date,
+                            dayOfMonth.toString(),
+                            (month + 1).toString(),
+                            year.toString())
+                    }
+                )
+                if (it.tv_property_value.text != "-") {
+                    val args = Bundle()
+                    val dateStrings = it.tv_property_value.text.toString().split(".")
+                    args.putInt(DATE_DAY, dateStrings[0].toInt())
+                    args.putInt(DATE_MONTH, dateStrings[1].toInt() - 1)
+                    args.putInt(DATE_YEAR, dateStrings[2].toInt())
+                    datePickerFragment.arguments = args
+                }
                 datePickerFragment.show(activity.supportFragmentManager, null)
             }
         }
@@ -271,5 +289,9 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
 
     private fun handleProjectUpdateErrorResponse() {
         Toast.makeText(context, getString(R.string.project_update_error), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+
     }
 }

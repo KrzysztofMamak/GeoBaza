@@ -25,4 +25,8 @@ object AppConstans {
 
     const val UNIT_KM = "Km"
     const val UNIT_MI = "Mi"
+
+    const val DATE_DAY = "date_day"
+    const val DATE_MONTH = "date_month"
+    const val DATE_YEAR = "date_year"
 }
