@@ -233,7 +233,7 @@ class ProjectListFragment : BaseFragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun getLocation() {
+    private fun getLocation() {
         projectListViewModel.getLocation()
         projectListViewModel.getLocationLiveData().observe(this@ProjectListFragment,
             Observer { resource ->

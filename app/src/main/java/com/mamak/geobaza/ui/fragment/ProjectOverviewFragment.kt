@@ -30,8 +30,7 @@ import kotlinx.android.synthetic.main.item_list_property_spinner.view.*
 import kotlinx.android.synthetic.main.item_list_property_text_view.view.*
 import javax.inject.Inject
 
-class ProjectOverviewFragment(private var project: Project) : BaseFragment(),
-    DatePickerDialog.OnDateSetListener {
+class ProjectOverviewFragment(private var project: Project) : BaseFragment() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelFactory
     @Inject
@@ -289,9 +288,5 @@ class ProjectOverviewFragment(private var project: Project) : BaseFragment(),
 
     private fun handleProjectUpdateErrorResponse() {
         Toast.makeText(context, getString(R.string.project_update_error), Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-
     }
 }

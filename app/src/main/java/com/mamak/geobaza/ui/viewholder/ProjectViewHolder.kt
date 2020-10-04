@@ -1,5 +1,6 @@
 package com.mamak.geobaza.ui.viewholder
 
+import android.location.Location
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.mamak.geobaza.R
@@ -15,9 +16,9 @@ class ProjectViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     private var isExpanded = false
 
-    fun bind(project: Project) {
+    fun bind(project: Project, location: Location?) {
         setProjectData(project)
-        setDistance(project.pointList[0])
+        setDistance(project.pointList[0], location)
         setNavigationIconOnClick(project.pointList[0].x, project.pointList[0].y)
         setMapIconOnClick(project.number)
         setDetailsIconOnClick(project.number)
@@ -32,12 +33,10 @@ class ProjectViewHolder(
         }
     }
 
-    private fun setDistance(point: Point) {
-        calculateDistance(point)?.let {
-            itemView.apply {
-                tv_distance.text = context.getString(R.string.unit_km_with_value, it)
-                visibility = View.VISIBLE
-            }
+    private fun setDistance(point: Point, location: Location?) {
+        itemView.apply {
+            tv_distance.text = context.getString(R.string.unit_km_with_value)// TODO , distance)
+            visibility = View.VISIBLE
         }
     }
 

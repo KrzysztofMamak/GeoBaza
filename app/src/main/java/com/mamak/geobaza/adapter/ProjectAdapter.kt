@@ -1,5 +1,6 @@
 package com.mamak.geobaza.adapter
 
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -18,6 +19,7 @@ class ProjectAdapter(
     private var projects = mutableListOf<Project>()
     private var filteredProjects = mutableListOf<Project>()
     private var holderExpanded: ProjectViewHolder? = null
+    private var location: Location? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
         return ProjectViewHolder(
@@ -33,7 +35,7 @@ class ProjectAdapter(
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
         holder.apply {
-            bind(filteredProjects[position])
+            bind(filteredProjects[position], location) //TODO Location?
             itemView.container_project.setOnClickListener {
                 setExpanded()
                 holderExpanded = if (holderExpanded?.adapterPosition == position) {
