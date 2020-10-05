@@ -7,6 +7,7 @@ import com.mamak.geobaza.R
 import com.mamak.geobaza.data.model.Point
 import com.mamak.geobaza.data.model.Project
 import com.mamak.geobaza.communication.ProjectItemInterface
+import com.mamak.geobaza.utils.manager.LocationManager
 import com.mamak.geobaza.utils.manager.LocationManager.calculateDistance
 import kotlinx.android.synthetic.main.item_list_project_expandable.view.*
 
@@ -16,9 +17,9 @@ class ProjectViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
     private var isExpanded = false
 
-    fun bind(project: Project, location: Location?) {
+    fun bind(project: Project) {
         setProjectData(project)
-        setDistance(project.pointList[0], location)
+        setDistance(project.pointList[0])
         setNavigationIconOnClick(project.pointList[0].x, project.pointList[0].y)
         setMapIconOnClick(project.number)
         setDetailsIconOnClick(project.number)
@@ -33,10 +34,13 @@ class ProjectViewHolder(
         }
     }
 
-    private fun setDistance(point: Point, location: Location?) {
-        itemView.apply {
-            tv_distance.text = context.getString(R.string.unit_km_with_value)// TODO , distance)
-            visibility = View.VISIBLE
+    private fun setDistance(point: Point) {
+        val distance = LocationManager.calculateDistance(point)
+        distance?.let {
+            itemView.apply {
+                tv_distance.text = context.getString(R.string.unit_km_with_value, it)
+                visibility = View.VISIBLE
+            }
         }
     }
 

@@ -7,9 +7,9 @@ object ProjectListManager {
     const val ALL_AREAS = "ALL"
 
     var area = ALL_AREAS
-    var state: State = ProjectListManager.State.ALL
-    var sort: Sort = ProjectListManager.Sort.NUMBER
-    var order: Order = ProjectListManager.Order.INCREASE
+    var state: State = State.ALL
+    var sort: Sort = Sort.NUMBER
+    var order: Order = Order.INCREASE
 
     fun getRequiredProjects(projects: MutableList<Project>): MutableList<Project> {
         var resultList = mutableListOf<Project>()
@@ -31,10 +31,10 @@ object ProjectListManager {
 
         return tempList.filter {
             when (state) {
-                ProjectListManager.State.PROCESSED -> it.state == ProjectState.PROCESSED
-                ProjectListManager.State.MARKED -> it.state == ProjectState.MARKED
-                ProjectListManager.State.MEASURED -> it.state == ProjectState.MEASURED
-                ProjectListManager.State.DONE -> it.state == ProjectState.FINISHED
+                State.PROCESSED -> it.state == ProjectState.PROCESSED
+                State.MARKED -> it.state == ProjectState.MARKED
+                State.MEASURED -> it.state == ProjectState.MEASURED
+                State.DONE -> it.state == ProjectState.FINISHED
                 else -> true
             }
         }
@@ -43,8 +43,8 @@ object ProjectListManager {
 //    TODO Refactor
     private fun sortProjects(list: List<Project>): List<Project> {
         return when (sort) {
-            ProjectListManager.Sort.NUMBER -> {
-                if (order == ProjectListManager.Order.INCREASE) {
+            Sort.NUMBER -> {
+                if (order == Order.INCREASE) {
                     list.sortedBy {
                         it.number
                     }
@@ -55,8 +55,8 @@ object ProjectListManager {
                 }
             }
 
-            ProjectListManager.Sort.DISTANCE -> {
-                if (order == ProjectListManager.Order.INCREASE) {
+            Sort.DISTANCE -> {
+                if (order == Order.INCREASE) {
                     list.sortedBy {
                         LocationManager.calculateDistance(it.pointList[0])
                     }
@@ -66,8 +66,8 @@ object ProjectListManager {
                     }
                 }
             }
-            ProjectListManager.Sort.ALPHABET -> {
-                if (order == ProjectListManager.Order.INCREASE) {
+            Sort.ALPHABET -> {
+                if (order == Order.INCREASE) {
                     list.sortedBy {
                         it.town
                     }
@@ -77,8 +77,8 @@ object ProjectListManager {
                     }
                 }
             }
-            ProjectListManager.Sort.COMPLEXITY -> {
-                if (order == ProjectListManager.Order.INCREASE) {
+            Sort.COMPLEXITY -> {
+                if (order == Order.INCREASE) {
                     list.sortedBy {
                         it.pointList.size
                     }

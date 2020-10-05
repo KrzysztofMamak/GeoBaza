@@ -35,7 +35,7 @@ class ProjectAdapter(
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
         holder.apply {
-            bind(filteredProjects[position], location) //TODO Location?
+            bind(filteredProjects[position])
             itemView.container_project.setOnClickListener {
                 setExpanded()
                 holderExpanded = if (holderExpanded?.adapterPosition == position) {

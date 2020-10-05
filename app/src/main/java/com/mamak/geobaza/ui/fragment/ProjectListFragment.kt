@@ -23,6 +23,7 @@ import com.mamak.geobaza.ui.activity.ProjectDetailsActivity
 import com.mamak.geobaza.ui.activity.EntryActivity
 import com.mamak.geobaza.adapter.ProjectAdapter
 import com.mamak.geobaza.base.BaseFragment
+import com.mamak.geobaza.data.singleton.LocationLab
 import com.mamak.geobaza.viewmodel.ProjectListViewModel
 import com.mamak.geobaza.utils.constans.AppConstans
 import com.mamak.geobaza.utils.constans.AppConstans.DELAY_SHORT
@@ -238,7 +239,8 @@ class ProjectListFragment : BaseFragment() {
         projectListViewModel.getLocationLiveData().observe(this@ProjectListFragment,
             Observer { resource ->
                 if (resource.isSuccess && resource.data != null) {
-                    Toast.makeText(context, resource.data.altitude.toString(), Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context, resource.data.altitude.toString(), Toast.LENGTH_LONG).show()
+                    LocationLab.setCurrentLocation(resource.data)
                 }
             }
         )
