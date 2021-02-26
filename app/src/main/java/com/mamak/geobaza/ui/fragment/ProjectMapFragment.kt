@@ -141,11 +141,11 @@ class ProjectMapFragment(private val project: Project) : BaseFragment() {
     }
 
     private fun zoomToPoints() {
+        disableFollowLocation()
         mv_project.zoomToBoundingBox(OsmManager.getBoundingBoxByPointList(
             project.pointList.toMutableList()),
             true
         )
-        disableFollowLocation()
     }
 
     private fun enableFollowLocation() {

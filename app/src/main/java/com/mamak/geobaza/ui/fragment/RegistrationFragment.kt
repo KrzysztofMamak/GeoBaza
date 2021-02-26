@@ -149,8 +149,8 @@ class RegistrationFragment : BaseFragment() {
 
         b_register.apply {
             context?.let {
-                setTextColor(it.getColor(color))
-                background = it.getDrawable(drawable)
+//                setTextColor(it.getColor(color))
+//                background = it.getDrawable(drawable)
                 isEnabled = true
             }
         }

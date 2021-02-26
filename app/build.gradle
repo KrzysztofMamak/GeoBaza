@@ -29,6 +29,7 @@ android {
             storePassword "PanSklep123"
         }
     }
+    ndkVersion '22.0.7026061'
 }
 
 androidExtensions {
